@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="search">
+ <select id="selectListLikeRoom" parameterType="hashmap" resultType="hashmap">
+	SELECT 
+	    ROWNUM,
+	    R.ROOM1_ID,
+	    R.ROOM1_NAME,
+	    R.ROOM1_TYPE,
+	    M.MEM_USERID,
+	    TO_CHAR(R.ROOM1_DATE,'YYYY-MM-DD') ROOM1_DATE,
+	    TO_CHAR(R.ROOM1_CONFIRMD,'YYYY-MM-DD')ROOM1_CONFIRMD,
+	    R.ROOM1_CONFIRM, 
+	    L.LIKE_ID,
+	    L.LIKE_MEMID,
+	    L.LIKE_ROOM1ID
+	FROM 
+	ROOM1 R , MEMBER M, ROOMLIKE L
+	WHERE R.ROOM1_ID = M.MEM_ID AND M.MEM_ID = L.LIKE_MEMID
+	AND
+	      L.LIKE_MEMID = #{MEM_ID}
+</select>
+ </mapper>

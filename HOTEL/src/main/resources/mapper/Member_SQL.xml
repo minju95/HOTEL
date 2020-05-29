@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="member">
+<!-- 회원정보 수정 -->
+<update id="updateOneMember" parameterType="hashmap">
+ <![CDATA[
+	UPDATE 
+		MEMBER 
+	SET 
+		MEM_NAME = #{MEM_NAME}, 
+		MEM_PW = #{MEM_PW}, 
+		MEM_PHONE = #{MEM_PHONE}, 
+		MEM_EMAIL = #{MEM_EMAIL} 
+	WHERE 
+		MEM_USERID = #{MEM_USERID}
+]]>
+</update>
+<!-- 회원 탈퇴 -->
+<update id="updateMemberVisible" parameterType="hashmap">
+ <![CDATA[
+	UPDATE 
+		MEMBER 
+	SET 
+		MEM_VISIBLE = #{MEM_VISIBLE} 
+	WHERE 
+		MEM_USERID = #{MEM_USERID}
+]]>
+</update>
+</mapper>

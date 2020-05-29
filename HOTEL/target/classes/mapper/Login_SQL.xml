@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="login">
+ <!-- 로그인 -->
+<select id="selectOneMember" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		MEM_ID, 
+		MEM_TYPE, 
+		MEM_NAME, 
+		MEM_USERID, 
+		MEM_PW, 
+		MEM_PHONE, 
+		MEM_EMAIL, 
+		MEM_VISIBLE, 
+		MEM_CHG_DATE, 
+		MEM_REV_COUNT 
+	FROM MEMBER 
+	WHERE 
+		MEM_USERID = #{MEM_USERID}
+	AND
+		MEM_PW = #{MEM_PW}
+]]>
+</select>
+<!-- 아이디 찾기 -->
+<select id="findOneMember" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+	SELECT 
+		MEM_ID, 
+		MEM_TYPE, 
+		MEM_NAME, 
+		MEM_USERID, 
+		MEM_PW, 
+		MEM_PHONE, 
+		MEM_EMAIL, 
+		MEM_VISIBLE, 
+		MEM_CHG_DATE, 
+		MEM_REV_COUNT 
+	FROM MEMBER 
+	WHERE 
+		MEM_NAME = #{MEM_NAME} 
+	AND 
+		MEM_EMAIL = #{MEM_EMAIL}
+]]>
+</select>
+<!-- 비번 초기화 -->
+<update id="initPwOneMember" parameterType="hashmap">
+ <![CDATA[
+	UPDATE 
+		(SELECT MEM_PW FROM MEMBER
+		 WHERE 
+		 		MEM_NAME = #{MEM_NAME} 
+			AND 
+				MEM_USERID = #{MEM_USERID} 
+			AND 
+				MEM_EMAIL = #{MEM_EMAIL}
+		) a 
+		SET 
+		a.MEM_PW = #{MEM_PW}
+]]>
+</update>
+</mapper>

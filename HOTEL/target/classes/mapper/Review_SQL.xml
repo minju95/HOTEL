@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="review">
+ <!-- 내가 쓴 후기 리스트 보기 -->
+<select id="selectListMyReview" parameterType="hashmap" resultType="hashmap">
+ <![CDATA[
+ 	SELECT 
+		r1.ROOM1_NAME,
+		r.REVIEW_ID,
+		r.REVIEW_GRADE, 
+		m.MEM_NAME,
+		r.REVIEW_TITLE,
+		r.REVIEW_CONTENT, 
+		r.REVIEW_IMG, 
+		r.REVIEW_DATE,
+		r.REVIEW_CONFIRM,
+		r.REVIEW_CDATE,
+		r.REVIEW_DELETE
+	FROM 
+		REVIEW r, MEMBER m, ROOM1 r1
+	WHERE 
+		r.REVIEW_MEMID = m.MEM_ID AND r1.ROOM1_ID = r.REVIEW_ROOM1ID
+	AND 
+		r.REVIEW_MEMID = #{MEM_ID}
+	AND
+		r.REVIEW_DELETE = 'N'
+ ]]>
+</select>
+<!-- 후기 수정, 삭제 -->
+<update id="updateOneReview" parameterType="hashmap">
+UPDATE REVIEW
+SET
+	REVIEW_GRADE = #{REVIEW_GRADE},
+	REVIEW_TITLE = #{REVIEW_TITLE},
+	REVIEW_CONTENT = #{REVIEW_CONTENT},
+	REVIEW_IMG = #{REVIEW_IMG},
+	REVIEW_DATE = SYSDATE,
+	REVIEW_DELETE = #{REVIEW_DELETE}
+WHERE 
+	REVIEW_ID = #{REVIEW_ID}
+</update>
+</mapper>
