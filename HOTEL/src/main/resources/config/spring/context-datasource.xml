@@ -7,12 +7,12 @@
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE" />
-	<property name="username" value="계정" />
-	<property name="password" value="비밀번호" />
+	<property name="username" value="HOTEL" />
+	<property name="password" value="1234" />
     </bean>
     
     <!-- 로그 -->
-   <!--  <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+    <bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
 		<constructor-arg ref="dataSourceSpied" />
 		<property name="logFormatter">
 			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
@@ -20,5 +20,5 @@
 				<property name="sqlPrefix" value="SQL         :  "/>
 			</bean>
 		</property>
-	</bean> -->
+	</bean> 
 </beans>
