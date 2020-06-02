@@ -2,33 +2,23 @@
 <!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="join">
+ <mapper namespace="signUp">
  <!-- 아이디 중복체크 -->
-<select id="idCheckMember" parameterType="hashmap" resultType="hashmap">
+<select id="selectIdCheck" parameterType="String" resultType="int">
 <![CDATA[
 	SELECT 
-		MEM_ID, 
-		MEM_TYPE, 
-		MEM_NAME, 
-		MEM_USERID, 
-		MEM_PW, 
-		MEM_PHONE, 
-		MEM_EMAIL, 
-		MEM_VISIBLE, 
-		MEM_CHG_DATE, 
-		MEM_REV_COUNT 
-	FROM MEMBER 
-	WHERE 
-		MEM_USERID = #{MEM_USERID}
+		COUNT(*) CNT
+	FROM MEMBER
+    WHERE
+        MEM_USERID = #{mem_userid}
 ]]>
 </select>
  <!-- 회원가입 -->
-<insert id="insertOneMember" parameterType="hashmap">
+<insert id="insertSignUp" parameterType="hashmap">
 <![CDATA[	
         INSERT INTO 
         MEMBER(
         	MEM_ID, 
-	        MEM_TYPE, 
 	        MEM_NAME, 
 	        MEM_USERID, 
 	        MEM_PW, 
@@ -37,7 +27,6 @@
         ) 
 		VALUES(
 			SEQ_MEM_ID.NEXTVAL, 
-			#{MEM_TYPE}, 
 			#{MEM_NAME}, 
 			#{MEM_USERID}, 
 			#{MEM_PW}, 

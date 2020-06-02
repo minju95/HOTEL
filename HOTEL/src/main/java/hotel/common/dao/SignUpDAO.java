@@ -5,8 +5,8 @@ import java.util.Map;
 
 import org.springframework.stereotype.Repository;
 
-@Repository("JoinDAO")
-public class JoinDAO extends AbstractDAO{
+@Repository("SignUpDAO")
+public class SignUpDAO extends AbstractDAO{
 
 	/*
 	 * @SuppressWarnings("unchecked") public List<Map<String, Object>>
@@ -14,17 +14,22 @@ public class JoinDAO extends AbstractDAO{
 	 * (List<Map<String, Object>>)selectList("sample.selectBoardList", map); }
 	 */
 
-	public void insertOneMember(Map<String, Object> map) throws Exception{
-		insert("join.insertOneMember", map);
+	public void insertSignUp(Map<String, Object> map) throws Exception{
+		insert("signUp.insertSignUp", map);
+	}
+	
+	public int selectIdCheck(String mem_userid) throws Exception{
+		return selectOne("signUp.selectIdCheck", mem_userid);
 	}
 	
 	/*
 	 * public void updateHitCnt(Map<String, Object> map) throws Exception{
 	 * update("sample.updateHitCnt", map); }
 	 * 
-	 * @SuppressWarnings("unchecked") public Map<String, Object>
-	 * selectBoardDetail(Map<String, Object> map) throws Exception{ return
-	 * (Map<String, Object>) selectOne("sample.selectBoardDetail", map); }
+	 * @SuppressWarnings("unchecked") 
+	 * public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception{
+	 * return (Map<String, Object>) selectOne("sample.selectBoardDetail", map); 
+	 * }
 	 * 
 	 * public void updateBoard(Map<String, Object> map) throws Exception{
 	 * update("sample.updateBoard", map); }

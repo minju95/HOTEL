@@ -4,7 +4,7 @@
  
  <mapper namespace="member">
 <!-- 회원정보 수정 -->
-<update id="updateOneMember" parameterType="hashmap">
+<update id="updateMember" parameterType="hashmap">
  <![CDATA[
 	UPDATE 
 		MEMBER 
@@ -18,12 +18,10 @@
 ]]>
 </update>
 <!-- 회원 탈퇴 -->
-<update id="updateMemberVisible" parameterType="hashmap">
+<update id="deleteMember" parameterType="hashmap">
  <![CDATA[
-	UPDATE 
-		MEMBER 
-	SET 
-		MEM_VISIBLE = #{MEM_VISIBLE} 
+	DELETE
+		MEMBER  
 	WHERE 
 		MEM_USERID = #{MEM_USERID}
 ]]>

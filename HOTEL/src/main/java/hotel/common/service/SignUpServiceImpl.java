@@ -10,15 +10,15 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import hotel.common.dao.JoinDAO;
+import hotel.common.dao.SignUpDAO;
 
-@Service("JoinService")
-public class JoinServiceImpl implements JoinService{
+@Service("SignUpService")
+public class SignUpServiceImpl implements SignUpService{
 	Logger log = Logger.getLogger(this.getClass());
 
 
-	@Resource(name="JoinDAO")
-	private JoinDAO joinDAO;
+	@Resource(name="SignUpDAO")
+	private SignUpDAO signUpDAO;
 	
 	/*
 	 * @Override public List<Map<String, Object>> selectBoardList(Map<String,
@@ -28,14 +28,25 @@ public class JoinServiceImpl implements JoinService{
 	 */
 
 	@Override
-	public void insertOneMember(Map<String, Object> map) throws Exception {
-		joinDAO.insertOneMember(map);
+	public void insertSignUp(Map<String, Object> map) throws Exception {
+		signUpDAO.insertSignUp(map);
 	}
 
+	@Override
+	public int selectIdCheck(String mem_userid) throws Exception {
+		   
+		return signUpDAO.selectIdCheck(mem_userid); 
+	}
+
+	
+
 	/*
-	 * @Override public Map<String, Object> selectBoardDetail(Map<String, Object>
-	 * map) throws Exception { sampleDAO.updateHitCnt(map); Map<String, Object>
-	 * resultMap = sampleDAO.selectBoardDetail(map); return resultMap; }
+	 * @Override public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
+	 *  sampleDAO.updateHitCnt(map); 
+	 *  Map<String, Object> resultMap = sampleDAO.selectBoardDetail(map); 
+	 *  
+	 *  return resultMap; 
+	 *  }
 	 * 
 	 * @Override public void updateBoard(Map<String, Object> map) throws Exception{
 	 * sampleDAO.updateBoard(map); }

@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public interface JoinService {
+public interface SignUpService {
 
 	/*
 	 * List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws
 	 * Exception;
 	 */
 	
-	void insertOneMember(Map<String, Object> map) throws Exception;
-
+	void insertSignUp(Map<String, Object> map) throws Exception;
+	
+	int selectIdCheck(String mem_userid) throws Exception;
 	/*
 	 * Map<String, Object> selectBoardDetail(Map<String, Object> map) throws
 	 * Exception;
