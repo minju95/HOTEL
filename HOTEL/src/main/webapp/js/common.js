@@ -112,8 +112,8 @@ function gfn_renderPaging(params) {
 	
 	var first = (parseInt((currentIndex-1)/10) *10)+1;
 	var last = (parseInt(totalIndexCount/10) == parseInt(currentIndex/10)) ? totalIndexCount%10 : 10;
-	var prev = (parseInt((currentIndedx-1)/10)*10)-9 > 0 ? (parseInt((currentIndex-1)/10)*10)-9 : 1;
-	var next = (parseInt((currentIndex-1)/10)+1)*10+1<totalIndexCoount ? (parseInt((currentIndex-1)/10)+1)*10+1 : totalIndexCount;
+	var prev = (parseInt((currentIndex-1)/10)*10)-9 > 0 ? (parseInt((currentIndex-1)/10)*10)-9 : 1;
+	var next = (parseInt((currentIndex-1)/10)+1)*10+1<totalIndexCount ? (parseInt((currentIndex-1)/10)+1)*10+1 : totalIndexCount;
 	if(totalIndexCount>10) {
 		preStr +="<a href='#this' class='pad_5' onclick='_movePage(1)'>[<<]</a>"
 			+"<a href='#this' class='pad_5' onclick='_nmovePage("+prev+")'>[<]</a>"
@@ -122,7 +122,7 @@ function gfn_renderPaging(params) {
 		preStr +="<a href='#this' class='pad_5' onclick='_movePage("+prev+")'>[<<]</a>"
 	}
 	
-	if(toalIndexCount < 10) {
+	if(totalIndexCount < 10) {
 		postStr +="<a href='#this' class='pad_5' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
 		
 	}
