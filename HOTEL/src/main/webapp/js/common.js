@@ -99,7 +99,7 @@ function gfn_renderPaging(params) {
 	}
 	
 	var recordCount = params.recordCount;
-	if(gfn_isNull(readCount)==true) {
+	if(gfn_isNull(recordCount)==true) {
 		recordCount = 20;
 	}
 	var totalIndexCount = Math.ceil(totalCount/recordCount);
