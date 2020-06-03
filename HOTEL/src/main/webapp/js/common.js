@@ -75,7 +75,7 @@ function ComAjax(opt_formId) {
 			data : this.param,
 			async : false,
 			success : function(data, status) {
-				if(typeOf(fv_ajaxCallback) == "function") {
+				if(typeof(fv_ajaxCallback) == "function") {
 					fv_ajaxCallback(data);
 				}
 				else {
@@ -141,7 +141,7 @@ function gfn_renderPaging(params) {
 
 function fn_movePage(value) {
 	$("#"+gfv_pageIndex).val(value);
-	if(typeOf(gfv_eventName)=="function"){
+	if(typeof(gfv_eventName)=="function"){
 		gfv_eventName(value);
 	}
 	else {
