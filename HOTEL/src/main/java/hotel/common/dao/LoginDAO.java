@@ -21,7 +21,23 @@ public class LoginDAO extends AbstractDAO{
 	 @SuppressWarnings("unchecked") 
 	 public Map<String, Object> selectLogin(Map<String, Object> map) throws Exception{
 		 
-	 return (Map<String, Object>) selectOne("login.selectLogin", map); 
+		 return (Map<String, Object>) selectOne("login.selectLogin", map); 
+	 }
+	 
+	 @SuppressWarnings("unchecked")
+	 public Map<String, Object> selectSearchMyId(Map<String, Object> map) throws Exception {
+		 
+		 return (Map<String, Object>) selectOne("login.selectSearchMyId", map);
+	 }
+	 
+	 public String findPwd(Map<String, Object> map) throws Exception {
+		 
+		 return (String)selectOne("login.findPwd", map);
+	 }
+	 
+	 public void updatePwd(Map<String, Object> map) throws Exception {
+		 
+		 update("login.updatePwd", map);
 	 }
 	  
 	 /* public void updateBoard(Map<String, Object> map) throws Exception{

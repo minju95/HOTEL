@@ -15,15 +15,15 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
-import hotel.common.dao.LoginDAO;
+import hotel.common.dao.MemberDAO;
 
-@Service("LoginService")
-public class LoginServiceImpl implements LoginService{
+@Service("MemberService")
+public class MemberServiceImpl implements MemberService{
 	Logger log = Logger.getLogger(this.getClass());
 
 
-	@Resource(name="LoginDAO")
-	private LoginDAO loginDAO;
+	@Resource(name="MemberDAO")
+	private MemberDAO memberDAO;
 	
 	// org.springframework.mail.javamail.JavaMailSender
     private JavaMailSender javaMailSender;
@@ -31,37 +31,33 @@ public class LoginServiceImpl implements LoginService{
     public void setJavaMailSender(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     } 
-	/*
-	 * @Override public List<Map<String, Object>> selectBoardList(Map<String,
-	 * Object> map) throws Exception { return sampleDAO.selectBoardList(map);
-	 * 
-	 * }
-	 */
+	
 
 	@Override
-	public Map<String, Object> selectLogin(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = loginDAO.selectLogin(map);
+	public String selectMyLogin(Map<String, Object> map, String id) throws Exception {
 		
+		return (String) memberDAO.selectMyLogin(map, id);
+	}
+
+	
+	@Override
+	public Map<String, Object> selectMemInfo(String id) throws Exception {
+		Map<String,Object> resultMap = memberDAO.selectMemInfo(id);
 		return resultMap;
 	}
 
+	
 	@Override
-	public Map<String, Object> selectSearchMyId(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = loginDAO.selectSearchMyId(map);
-		
-		return resultMap;
+	public void updateMember(Map<String, Object> map) throws Exception {
+		memberDAO.updateMember(map);
 	}
 
+	
 	@Override
-	public String findPwd(Map<String, Object> map) throws Exception {
-		
-		return loginDAO.findPwd(map);
+	public void deleteMember(Map<String, Object> map) throws Exception {
+		memberDAO.deleteMember(map);
 	}
 
-	@Override
-	public void updatePwd(Map<String, Object> map) throws Exception {
-		loginDAO.updatePwd(map);
-	}
 
 	@Override
 	public boolean send(String subject, String text, String from, String to, String filePath) {

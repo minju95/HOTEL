@@ -20,13 +20,8 @@
 <select id="selectSearchMyId" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 	SELECT 
-		MEM_ID, 
-		MEM_TYPE, 
-		MEM_NAME, 
-		MEM_USERID, 
-		MEM_PW, 
-		MEM_PHONE, 
-		MEM_EMAIL
+		MEM_NAME,
+		MEM_USERID
 	FROM MEMBER 
 	WHERE 
 		MEM_NAME = #{MEM_NAME} 
@@ -35,19 +30,16 @@
 ]]>
 </select>
 <!-- 비번 초기화 -->
-<update id="updateMyPassword" parameterType="hashmap">
- <![CDATA[
-	UPDATE 
-		(SELECT MEM_PW FROM MEMBER
-		 WHERE 
-		 		MEM_NAME = #{MEM_NAME} 
-			AND 
-				MEM_USERID = #{MEM_USERID} 
-			AND 
-				MEM_EMAIL = #{MEM_EMAIL}
-		) a 
-		SET 
-		a.MEM_PW = #{MEM_PW}
+<select id="findPwd" parameterType="hashmap" resultType="string">
+<![CDATA[
+		SELECT MEM_USERID FROM MEMBER WHERE MEM_EMAIL = #{MEM_EMAIL} AND MEM_USERID = #{MEM_USERID}
+]]>
+</select>
+<update id="updatePwd" parameterType="hashmap">
+<![CDATA[				
+		UPDATE MEMBER SET MEM_PW = #{MEM_PW} WHERE MEM_USERID = #{MEM_USERID}	
+		 	
 ]]>
 </update>
+
 </mapper>

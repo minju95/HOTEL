@@ -31,7 +31,7 @@
 			#{MEM_USERID}, 
 			#{MEM_PW}, 
 			#{MEM_PHONE}, 
-			#{MEM_EMAIL}
+			LOWER(#{MEM_EMAIL})
 		)
 ]]>
 </insert>

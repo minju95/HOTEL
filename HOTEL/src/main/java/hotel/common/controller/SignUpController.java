@@ -2,8 +2,10 @@ package hotel.common.controller;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import hotel.common.common.CommandMap;
+import hotel.common.service.LoginService;
 import hotel.common.service.SignUpService;
 
 @Controller
@@ -22,24 +25,9 @@ public class SignUpController {
 	
 	@Resource(name="SignUpService")
 	private SignUpService signUpService;
+	@Resource(name="LoginService")
+	private LoginService loginService;
 	
-	/*
-	 * @RequestMapping(value="/sample/openBoardList.do") public ModelAndView
-	 * openBoardList(CommandMap commandMap) throws Exception{ ModelAndView mv = new
-	 * ModelAndView("/sample/boardList");
-	 * 
-	 * List<Map<String,Object>> list =
-	 * sampleService.selectBoardList(commandMap.getMap()); mv.addObject("list",
-	 * list);
-	 * 
-	 * return mv; }
-	 * 
-	 * @RequestMapping(value="/sample/openBoardWrite.do") public ModelAndView
-	 * openBoardWrite(CommandMap commandMap) throws Exception{ ModelAndView mv = new
-	 * ModelAndView("/sample/boardWrite");
-	 * 
-	 * return mv; }
-	 */
 	//회원 가입 폼 이동
 	@RequestMapping(value="/signUpForm")
 	public ModelAndView SignUpForm() throws Exception{
@@ -62,50 +50,34 @@ public class SignUpController {
 	public int selectIdCheck(@RequestParam("mem_userid") String mem_userid) throws Exception{
 		
 		int cnt = signUpService.selectIdCheck(mem_userid);
-		System.out.println(cnt);
 		
 		return cnt;
 	}
 	
-	
-	/*
-	  @RequestMapping(value="/sample/openBoardDetail.do") 
-	  public ModelAndView openBoardDetail(CommandMap commandMap) throws Exception { 
-		  ModelAndView mv = new ModelAndView("/sample/boardDetail");
-	  
-		  Map<String,Object> map = sampleService.selectBoardDetail(commandMap.getMap()); 
-		  mv.addObject("map",map);
-	  
-		  return mv; 
-	  }
-	 */
-	/*
-	  @RequestMapping(value="/sample/openBoardUpdate.do") public ModelAndView
-	  openBoardUpdate(CommandMap commandMap) throws Exception{ ModelAndView mv =
-	  new ModelAndView("/sample/boardUpdate");
-	  
-	  Map<String,Object> map =
-	  sampleService.selectBoardDetail(commandMap.getMap()); mv.addObject("map",
-	  map);
-	  
-	  return mv; }
-	  */
-	  /*
-	  @RequestMapping(value="/sample/updateBoard.do") public ModelAndView
-	  updateBoard(CommandMap commandMap) throws Exception{ ModelAndView mv = new
-	  ModelAndView("redirect:/sample/openBoardDetail.do");
-	  
-	  sampleService.updateBoard(commandMap.getMap());
-	  
-	  mv.addObject("IDX", commandMap.get("IDX")); return mv; }
-	  */
-	/*
-	  @RequestMapping(value="/sample/deleteBoard.do") public ModelAndView
-	  deleteBoard(CommandMap commandMap) throws Exception{ ModelAndView mv = new
-	  ModelAndView("redirect:/sample/openBoardList.do");
-	  
-	  sampleService.deleteBoard(commandMap.getMap());
-	  
-	  return mv; }
- */
+	//이메일 인증-회원가입
+    @RequestMapping(value = "/emailAuth", produces = "application/json")
+    @ResponseBody
+    public boolean sendMailAuth(HttpSession session, @RequestParam String user_email) {
+        int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999
+        String joinCode = String.valueOf(ran);
+        session.setAttribute("joinCode", joinCode);
+ 
+        String subject = "<HOTEL> 회원가입 인증 코드입니다.";
+        StringBuilder sb = new StringBuilder();
+        sb.append("귀하의 인증 코드는 " + joinCode + " 입니다.");
+        return loginService.send(subject, sb.toString(), "1teampjt@gmail.com", user_email, null);
+    }
+    
+    //이메일 인증확인
+    @RequestMapping(value = "/emailAuthCheck", produces = "application/json")
+    @ResponseBody
+    public ModelAndView emailAuth(HttpSession session, @RequestParam String joinCode) {
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	String originalJoinCode = (String)session.getAttribute("joinCode");
+    	log.debug("originalJoinCode >>>>"+originalJoinCode +" & "+joinCode);
+    	if(originalJoinCode.equals(joinCode)) mv.addObject("result","complete");
+    	else mv.addObject("result","fail");
+    	
+    	return mv;
+    }
 }

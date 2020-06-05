@@ -26,12 +26,12 @@
 	
 	
 	<!-- 이메일 인증 보내기 -->
-	<!-- 
-<  	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+	
+  	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />
-    <property name="port" value="??" />
-    <property name="username" value="구글 계정 이메일" />
-    <property name="password" value="구글 계정 비밀번호" />
+    <property name="port" value="587" />
+    <property name="username" value="1teampjt@gmail.com" />
+    <property name="password" value="1TeamPJT!@#" />
     <property name="javaMailProperties">
         <props>
             <prop key="mail.smtp.ssl.trust">smtp.gmail.com</prop>
@@ -41,13 +41,13 @@
     </property>
 	</bean> 
 	
-	<bean id="joinService" class="space.main.service.JoinServiceImpl">
+	<bean id="LoginService" class="hotel.common.service.LoginServiceImpl">
     	<property name="javaMailSender" ref="javaMailSender" />	
 	</bean>
 	
-<bean id="uploadPath" class="java.lang.String">
-<constructor-arg value="C:/test/"></constructor-arg>
- 	-->
+	<bean id="uploadPath" class="java.lang.String">
+	<constructor-arg value="C:/test/"></constructor-arg>
+	 </bean>
 
 	
 
