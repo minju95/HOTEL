@@ -66,6 +66,8 @@
     <bean class="org.springframework.web.servlet.view.BeanNameViewResolver" p:order="0" />
     <bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />    
     
+    
+  
     <bean
     	class="org.springframework.web.servlet.view.UrlBasedViewResolver" p:order="1" 
     	p:viewClass="org.springframework.web.servlet.view.JstlView" 

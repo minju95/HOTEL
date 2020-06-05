@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="adminFac">
+
+	<!-- 부대시설 목록 -->
+	<select id="facilitiesList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/>
+			<![CDATA[
+			SELECT
+				ROWNUM RNUM,
+				FAC_HOTEL_ID,
+				FAC_HOTEL_NAME,
+				FAC_HOTEL_LOCATION,
+				FAC_HOTEL_TIME,
+				FAC_HOTEL_CONTENT,
+				FAC_HOTEL_PHONE,
+				FAC_HOTEL_DETAIL
+			FROM FACILITIES_HOTEL
+			]]>	
+			<choose>
+			<when test="searchOption == 'FAC_HOTEL_NAME'">
+				WHERE FAC_HOTEL_NAME LIKE '%${keyword}%' 
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+			
+		<include refid="common.pagingPost"/>
+	</select>
+	
+	
+	<!-- 부대시설 등록  -->
+	<select id="insertNewFacilities" parameterType="hashmap">
+	<![CDATA[
+	INSERT INTO
+		FACILITIES_HOTEL(
+			FAC_HOTEL_ID,
+			FAC_HOTEL_NAME,
+			FAC_HOTEL_CONTENT,
+			FAC_HOTEL_LOCATION,
+			FAC_HOTEL_TIME,
+			FAC_HOTEL_FAC,
+			FAC_HOTEL_PHONE,
+			FAC_HOTEL_DETAIL
+		)
+	VALUES(
+		SEQ_FAC_HOTEL_ID.NEXTVAL, 
+			#{FAC_HOTEL_NAME}, 
+			#{FAC_HOTEL_CONTENT}, 
+			#{FAC_HOTEL_LOCATION}, 
+			#{FAC_HOTEL_TIME}, 
+			#{FAC_HOTEL_FAC},  
+			#{FAC_HOTEL_PHONE},  
+			#{FAC_HOTEL_DETAIL} 
+	)
+	]]>	
+	</select>
+	
+	<!-- 부대시설 상세보기 -->
+	<select id="facilitiesDetail" parameterType="hashmap" resultType="hashmap">
+			<![CDATA[
+			SELECT 
+			    FAC_HOTEL_ID,
+			    FAC_HOTEL_NAME,
+			    FAC_HOTEL_LOCATION,
+			    FAC_HOTEL_CONTENT,
+			    FAC_HOTEL_TIME,
+			    FAC_HOTEL_FAC,
+			    FAC_HOTEL_PHONE,
+			    FAC_HOTEL_DETAIL
+			FROM 
+			    FACILITIES_HOTEL
+			WHERE 
+			    FAC_HOTEL_ID=#{FAC_HOTEL_ID}
+			]]>	
+	</select>
+	
+</mapper>
