@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>HOTEL</title>
 </head>
 <body>
 메인화면 입니다.<br/>
@@ -21,6 +21,9 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a href="
 </c:otherwise>
 </c:choose>
 <br>
-관리자 권한 : ${ADMIN }
+<c:set var="isAdmin" value="${ADMIN }" />
+<c:if test="${isAdmin == 'Y' }">
+<a href="/hotel/admin">호텔 관리</a>
+</c:if>
 </body>
 </html>

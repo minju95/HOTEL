@@ -31,9 +31,6 @@
 .form-control {
 	width : 400px;
 }
-#user_email {
-	width : 325px;
-}
 #email_check {
 	display : block;
 }
@@ -79,10 +76,7 @@ p>a {
 	<div id="phone_check"></div>
 	<div class="form-group">
 	  <label for="user_email">이메일 주소</label>
-	  <div class="form-inline">
-		  <input type="email" class="form-control" id="user_email" name="MEM_EMAIL" placeholder="이메일을 입력하세요" value="${MemberInfo.MEM_EMAIL }">
-		  <button type="button" class="btn btn-default" id="isCheck_Email">인증</button>
-	  </div>
+	  <input type="email" class="form-control" id="user_email" name="MEM_EMAIL" placeholder="이메일을 입력하세요" value="${MemberInfo.MEM_EMAIL }" readonly>
 	</div>
 	<div id="email_check"></div>
 	<div id="isCheck_EmailForm" class="form-group">
@@ -192,10 +186,10 @@ $(function(){
 	    {
 	     alert("이메일을 입력해주세요.");
 	    }
-	    else if ( $("#isEmailAuth").val() != '1' )
+/* 	    else if ( $("#isEmailAuth").val() != '1' )
 	    {
 	     alert("이메일 인증을 해주세요.");
-	    }
+	    } */
 	    else
 	    { 
 	     $('#signUp').submit();

@@ -47,12 +47,12 @@
 ]]>
 </update>
 <!-- 회원 탈퇴 -->
-<update id="deleteMember" parameterType="hashmap">
+<delete id="deleteMember" parameterType="hashmap">
  <![CDATA[
 	DELETE
 		MEMBER  
 	WHERE 
 		MEM_USERID = #{MEM_USERID}
 ]]>
-</update>
+</delete>
 </mapper>
