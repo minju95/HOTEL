@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="facilities">
+ 
+  <!-- 호텔 부대시설 리스트 이름만 -->
+ <select id="selectFacilities" parameterType="hashmap" resultType="hashmap" >
+<![CDATA[
+      SELECT 
+          FAC_HOTEL_ID, 
+          FAC_HOTEL_NAME
+      FROM 
+          FACILITIES_HOTEL
+]]>
+</select>
+ <!-- 호텔 부대시설 정보조회 -->
+<select id="selectTypeByFacilities" parameterType="hashmap" resultType="hashmap" >
+<![CDATA[
+      SELECT
+          F.FAC_HOTEL_ID,
+          F.FAC_HOTEL_NAME,
+          F.FAC_HOTEL_CONTENT,
+          F.FAC_HOTEL_LOCATION,
+          F.FAC_HOTEL_TIME,
+          F.FAC_HOTEL_FAC,
+          F.FAC_HOTEL_PHONE,
+          F.FAC_HOTEL_DETAIL,
+      LISTAGG(M.HOTEL_IMGS_FILE, ',') 
+      WITHIN GROUP (ORDER BY M.HOTEL_IMGS_FILE)HOTEL_IMGS_FILE
+      FROM
+          FACILITIES_HOTEL F , HOTEL_IMAGES M
+      WHERE 
+          F.FAC_HOTEL_ID = M.FAC_HOTEL_ID
+      AND 
+          F.FAC_HOTEL_ID = #{FAC_HOTEL_ID}
+      GROUP BY 
+          F.FAC_HOTEL_ID,
+          F.FAC_HOTEL_NAME,
+          F.FAC_HOTEL_CONTENT,
+          F.FAC_HOTEL_LOCATION,
+          F.FAC_HOTEL_TIME,
+          F.FAC_HOTEL_FAC,
+          F.FAC_HOTEL_PHONE,
+          F.FAC_HOTEL_DETAIL
+      
+      
+]]>
+</select>
+
+</mapper>
+ 
