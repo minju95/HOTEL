@@ -57,6 +57,23 @@
 	]]>	
 	</select>
 	
+	<!-- 부대시설 이미지 등록 -->
+	<select id="insertFacilitiesImage" parameterType="hashmap">
+	<![CDATA[
+	INSERT INTO
+		HOTEL_IMAGES(
+		HOTEL_IMGS_ID,
+		FAC_HOTEL_ID,
+		HOTEL_IMGS_FILE
+		)
+	VALUES(
+		SEQ_HOTEL_IMGS_ID.NEXTVAL,
+		#{FAC_HOTEL_ID},
+		#{HOTEL_IMGS_FILE}
+		);
+	]]>
+	</select>
+	
 	<!-- 부대시설 상세보기 -->
 	<select id="facilitiesDetail" parameterType="hashmap" resultType="hashmap">
 			<![CDATA[

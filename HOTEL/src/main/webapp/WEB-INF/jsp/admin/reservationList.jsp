@@ -19,7 +19,7 @@
 
 <h3>예약자 리스트</h3>
 	
-	<table name="reservationList" class="table table-striped">
+	<table name="resList" class="table table-striped">
 		<thead>
 			<tr>
 				<th>객실번호</th>
@@ -36,21 +36,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			 <c:forEach var="resList" items="${list}">
-				<tr>
-					<td>${resList.ROOM_ID }</td>
-					<td>${resList.RES_NO }</td>
-					<td>${resList.MEM_NAME}</td>
-					<td>${resList.RES_DATE}</td>
-					<td>${resList.ROOM_TYPE}</td>
-					<td>${resList.RES_ADULT}</td>
-					<td>${resList.RES_CHILD}</td>
-					<td>${resList.RES_CHK_SDAY}</td>
-					<td>${resList.RES_CHK_EDAY }</td>
-					<td>${resList.RES_PRICE}</td>
-					<td>${resList.RES_ANOTHER}</td>
-				</tr>
-			</c:forEach> 
+	
 		</tbody>
 	</table>
 	
@@ -68,30 +54,31 @@
 		</select>
 	    <input type="text" name="keyword" value="${keyword}" placeholder=""
 	    	class="form-control" id="exampleInputName2" onkeyup="enteryKey()">
+	    <input type="text" style="display: none;" />
 	  </div>
-  		<button type="submit" class="btn btn-default" onclick="fn_reservationList(1)">검색</button>
+  		<button type="button" class="btn btn-default" onclick="fn_resList(1)">검색</button>
 	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
 	
 <script>
 	$(document).ready(function(){
-		fn_selectReservationList(1);
+		fn_resList(1);
 	});
 
 	/*검색창에서 엔터 누르면 검색 실행*/ 
 	function enteryKey() {
 		if(window.event.keyCode == 13) { //JavaScript의 keyCode 13 = enter를 의미 
-			fn_selectReservationList(1); //최초로 화면이 호출되면 1페이지 내용 조회
+			fn_resList(1); //최초로 화면이 호출되면 1페이지 내용 조회
 		}
 	}
 	
 	/*페이징 함수*/
-	function fn_reservationList(pageNo)	{ //pageNo : 호출하고자 하는 페이지 번호
+	function fn_resList(pageNo)	{ //pageNo : 호출하고자 하는 페이지 번호
 		var comAjax = new ComAjax();
-
-		comAjax.setUrl("<c:url value='/admin/reservationList' />");
-		comAjax.setCallback("fn_selectReservationListCallback");
+			
+		comAjax.setUrl("<c:url value='/admin/selectResList' />");
+		comAjax.setCallback("fn_resListCallback");
 		comAjax.addParam("PAGE_INDEX", pageNo);
 		comAjax.addParam("PAGE_ROW", 10);
 		comAjax.addParam("searchOption", $("#searchOption > option:selected").val());
@@ -100,38 +87,43 @@
 		comAjax.ajax();	
 	} 
 		
-	   function fn_fn_selectReservationListCallback(data){
-		var total = data.TOTAL;
-		var body = $("table[name='reservationList'] > tbody");
-		body.empty();
-		if(total == 0){
-			var str = "<tr><td colspan='11'>조회된 결과가 없습니다.</td></tr>"; 
-			body.append(str);
-		}else{
-			var params = {
-				divId : "PAGE_NAVI",
-				pageIndex : "PAGE_INDEX",
-				totalCount : total,
-				eventName : "fn_selectReservationList",
-				recordCount : 10
-			};
-			gfn_renderPaging(params);
+	   function fn_resListCallback(data){
+		   var total = data.TOTAL;
+		   alert(total);
+			var body = $("table[name='resList'] > tbody");
+			
+			body.empty();
+			if(total == 0){
+				var str = "<tr><td colspan='11'>조회된 결과가 없습니다.</td></tr>"; 
+				body.append(str);
+				
+			}else{
+				var params = {
+					divId : "PAGE_NAVI",
+					pageIndex : "PAGE_INDEX", 
+					totalCount : total,
+					eventName : "fn_resList", 
+					recordCount : 10 
+				};
+				gfn_renderPaging(params);
 			var str = "";
 			$.each(data.list, function(key, value){
-				str += "<tr>" + "<td>" 
-				+ value.ROOM_ID  + "</td>" + "<td>" 
-			    + value.RES_NO + "</td>" + "<td>"
-			    + value.NAME_DATE + "</td>" + "<td>"
-			    + value.RES_DATE + "</td>" + "<td>"
-			    + value.ROOM_TYPE + "</td>" + "<td>"
-			    + value.RES_ADULT + "</td>" + "<td>"
-			    + value.RES_CHILD + "</td>" + "<td>"
-			    + value.RES_CHK_SDAY + "</td>" + "<td>"
-			    + value.RES_CHK_EDAY + "</td>" + "<td>"
-			    + value.RES_PRICE + "</td>" + "<td>"
-			    + value.RES_ANOTHER + "</td>" + "<td>"
-				+ "</td>" + "</tr>";
-			}); 
+				str += "<tr>"
+				+ "<td>" + value.ROOM_ID  + "</td>"
+				+ "<td>" + value.RES_NO + "</td>"
+				+ "<td>" + value.MEM_NAME + "</td>"
+				+ "<td>" + value.RES_DATE + "</td>"
+				+ "<td>" + value.ROOM_TYPE + "</td>"
+				+ "<td>" + value.RES_ADULT + "</td>"
+				+ "<td>" + value.RES_CHILD + "</td>"
+			    + "<td>" + value.RES_CHK_SDAY + "</td>"
+			    + "<td>" + value.RES_CHK_EDAY + "</td>"
+			    + "<td>" + value.RES_PRICE + "</td>"
+			    + "<td>" + value.RES_ANOTHER + "</td>"
+			     + "</tr>";
+			});
+			//이거 넣어야 데이터 들어감
+			body.append(str); 
 			
 		} 
 	}  

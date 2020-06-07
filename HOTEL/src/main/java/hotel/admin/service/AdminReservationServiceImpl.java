@@ -17,15 +17,10 @@ public class AdminReservationServiceImpl implements AdminReservationService{
 	@Resource(name="AdminReservationDAO")
 	private AdminReservationDAO adminReservationDAO;
 	
-	//리스트
+	//리스트, 검색
 	@Override
-	public List<Map<String, Object>> reservationList(Map<String, Object> map) throws Exception {
-		return adminReservationDAO.reservationList(map);
-	}
-	
-	@Override
-	public List<Map<String, Object>> selectReservationList(Map<String, Object> map) throws Exception {
-		return adminReservationDAO.selectReservationList(map);
+	public List<Map<String, Object>> selectResList(Map<String, Object> map) throws Exception {
+		return adminReservationDAO.selectResList(map);
 	}
 
 }

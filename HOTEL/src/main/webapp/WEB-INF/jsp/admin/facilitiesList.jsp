@@ -98,8 +98,10 @@
 	}  
 	
 	  function fn_facListCallback(data){ //콜백함수
-		var total = data.TOTAL; 
+		var total = data.TOTAL;
+		alert(total);
 		var body = $("table[name='facList'] > tbody");
+		//alert(body);
 		body.empty();
 		if(total == 0){
 			var str = "<tr><td colspan='5'>조회된 결과가 없습니다.</td></tr>"; 

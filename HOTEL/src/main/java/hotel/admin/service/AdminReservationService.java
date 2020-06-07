@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 @Service("AmdminReservationService")
 public interface AdminReservationService { 
 	
-	List<Map<String, Object>> reservationList (Map<String, Object> map) throws Exception;
-	List<Map<String, Object>> selectReservationList (Map<String, Object> map) throws Exception;
+	//리스트, 검색
+	List<Map<String, Object>> selectResList (Map<String, Object> map) throws Exception;
 	
 	
 }
