@@ -45,7 +45,7 @@
 			FAC_HOTEL_DETAIL
 		)
 	VALUES(
-		SEQ_FAC_HOTEL_ID.NEXTVAL, 
+			#{FAC_HOTEL_ID}, 
 			#{FAC_HOTEL_NAME}, 
 			#{FAC_HOTEL_CONTENT}, 
 			#{FAC_HOTEL_LOCATION}, 
@@ -74,6 +74,17 @@
 	]]>
 	</select>
 	
+	<!-- 다음 시퀀스값 가져오기 -->
+	<select id="selectFacId" parameterType="hashmap" resultType="int">
+	<![CDATA[
+		SELECT
+			SEQ_FAC_HOTEL_ID.NEXTVAL
+		FROM DUAL
+	]]>
+	
+	
+	</select>
+	
 	<!-- 부대시설 상세보기 -->
 	<select id="facilitiesDetail" parameterType="hashmap" resultType="hashmap">
 			<![CDATA[
@@ -85,12 +96,13 @@
 			    FAC_HOTEL_TIME,
 			    FAC_HOTEL_FAC,
 			    FAC_HOTEL_PHONE,
-			    FAC_HOTEL_DETAIL
+			    FAC_HOTEL_DEAIL
 			FROM 
 			    FACILITIES_HOTEL
 			WHERE 
 			    FAC_HOTEL_ID=#{FAC_HOTEL_ID}
 			]]>	
 	</select>
+	
 	
 </mapper>

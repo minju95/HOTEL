@@ -15,6 +15,12 @@ public interface AdminFacilitiesService {
 	//등록
 	void insertFacilities (Map<String, Object> map) throws Exception;
 	
+	//이미지 등록
+	void insertFacilitiesImage (Map<String, Object> map) throws Exception;
+	
 	//상세보기
 	Map<String, Object> adminFacDetail(Map<String, Object> map) throws Exception;
+	
+	//부대시설 인덱스 증가
+	int selectFacId() throws Exception;
 }

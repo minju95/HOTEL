@@ -53,7 +53,9 @@ public class AdminFacilitiesController {
 	@RequestMapping(value="/admin/newFacilitiesForm")
 	public ModelAndView insertFacilities(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/newFacilitiesForm");
-		
+		int FAC_HOTEL_ID = adminFacilitiesService.selectFacId(); //부대시설 인덱스 증가
+		mv.addObject("FAC_HOTEL_ID", FAC_HOTEL_ID);
+		System.out.println(mv);
 		return mv;
 	}
 	
@@ -61,7 +63,9 @@ public class AdminFacilitiesController {
 	@RequestMapping(value="/admin/newFacilities")
 	public ModelAndView insertFac(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesList");
-		adminFacilitiesService.insertFacilities(commandMap.getMap());				
+		adminFacilitiesService.insertFacilities(commandMap.getMap());
+		adminFacilitiesService.insertFacilitiesImage(commandMap.getMap());
+		System.out.println(mv);
 		return mv;
 		}
 	

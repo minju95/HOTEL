@@ -14,7 +14,7 @@
 </head>
 
 <body>
-<form id="frm" var="row">
+<form id="frm" enctype="multipart/form-data">
 <table name="facWrite" class="" border="1" cellspacing="0" cellpadding="0">
 	<colgroup>
 		<col width="15%"/>
@@ -25,7 +25,7 @@
 		<tr>
 		
 			<th>부대시설명</th>
-			<input type="hidden" id="FAC_HOTEL_ID" name="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID}">
+			<input type="hidden" id="FAC_HOTEL_ID" name="FAC_HOTEL_ID" value="${FAC_HOTEL_ID}">
 			<td>
 				<input type="text" id="FAC_HOTEL_NAME" name="FAC_HOTEL_NAME" size="70">
 			</td>
@@ -66,6 +66,26 @@
 				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL"></textarea>
 			</td>
 		</tr>
+		<!-- <tr>
+			한개의 파일만 업로드 가능 
+			<th>파일1</th>
+			<td>
+				<input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
+			</td>
+		</tr>
+		<tr>
+			<th>파일2</th>
+			<td>
+				<input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
+			</td>
+		</tr>
+		<tr>
+			여러개의 파일 업로드 가능 
+			<th>파일3(여러개의 파일을 한꺼번에 올리기)</th>
+			<td>
+				<input multiple="multiple" type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
+			</td>
+		</tr> -->
 		
 	</tbody>
 	

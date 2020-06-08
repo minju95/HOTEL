@@ -21,10 +21,21 @@ public class AdminFacilitiesDAO extends AbstractDAO{
 		insert("adminFac.insertNewFacilities", map);
 	}
 	
+	//이미지 등록
+	public void insertFacilitiesImage(Map<String, Object> map) throws Exception{
+		insert("adminFac.insertFacilitiesImage", map);
+	}
+	
 	//상세보기
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> adminFacDetail(Map<String, Object> map) 
 		throws Exception{
 		return (Map<String, Object>) selectOne("adminFac.facilitiesDetail", map);
 	}
+	
+	//부대시설 인덱스 증가
+	public int selectFacId() throws Exception {
+		return (int) selectOne("adminFac.selectFacId");
+	}
+	
 }

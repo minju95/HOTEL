@@ -30,11 +30,23 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 		adminFacilitiesDAO.insertFacilities(map);
 	}
 	
+	//등록
+		@Override
+		public void insertFacilitiesImage(Map<String, Object> map) throws Exception {
+			adminFacilitiesDAO.insertFacilitiesImage(map);
+		}
+	
 	//상세보기
 	@Override
 	public Map<String, Object> adminFacDetail(Map<String, Object> map) throws Exception {
 		Map<String, Object> resultMap = adminFacilitiesDAO.adminFacDetail(map);
 		return resultMap;
+	}
+	
+	//부대시설 인덱스 증가
+	@Override
+	public int selectFacId() throws Exception {
+		return adminFacilitiesDAO.selectFacId();
 	}
 
 	
