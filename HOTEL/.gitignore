@@ -1,4 +1,4 @@
-/HOTEL/src/main/webapp/META-INF/MANIFEST.MF
+/HOTEL/src/main/webapp/META-INF/*.*
 .setting/**/*.*
 /target/
 *.properties
