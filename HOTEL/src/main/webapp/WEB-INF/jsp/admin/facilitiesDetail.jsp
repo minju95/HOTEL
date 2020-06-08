@@ -36,20 +36,33 @@
 			</tr>
 		</tbody>
 		<tbody>
-		<tr>
-			<p>
-				<td colspan="4" height="200" style="padding-left:50px;">
-					${fn:replace(map.FAC_HOTEL_CONTENT, cn, br)}
+			<tr>
+					<td colspan="4" height="200" style="padding-left:50px;">
+						${fn:replace(map.FAC_HOTEL_CONTENT, cn, br)}
+					</td>
+			</tr>
+			<tr>
+					<td colspan="4" height="200" style="padding-left:50px;">
+						${fn:replace(map.FAC_HOTEL_DETAIL, cn, br)}
+					</td>
+			</tr>
+			<tr>
+					<td colspan="4" height="200" style="padding-left:50px;">
+						${fn:replace(map.HOTEL_IMGS_FILE, cn, br)}
+					</td>
+			</tr>
+			<tr>
+			<th scope="row">
+				첨부파일
+			</th>
+			<td colspan="3">
+				<c:forEach var="row" items="${list }">
+					<input type="hidden" id="HOTEL_IMGS_FILE" value="${row.HOTEL_IMGS_FILE }">
+					<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
+					</c:forEach>
 				</td>
-			</p>
-		</tr>
-		<tr>
-			<p>
-				<td colspan="4" height="200" style="padding-left:50px;">
-					${fn:replace(map.FAC_HOTEL_DETAIL, cn, br)}
-				</td>
-			</p>
-		</tr>
+			</tr>
+
 		</tbody>
 	</table>
 	</form>

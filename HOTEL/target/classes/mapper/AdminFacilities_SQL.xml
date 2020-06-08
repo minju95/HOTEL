@@ -19,13 +19,12 @@
 			FROM FACILITIES_HOTEL
 			]]>	
 			<choose>
-			<when test="searchOption == 'FAC_HOTEL_NAME'">
-				WHERE FAC_HOTEL_NAME LIKE '%${keyword}%' 
-			</when>
-			<otherwise>
-			</otherwise>
-		</choose>
-			
+				<when test="searchOption == 'FAC_HOTEL_NAME'">
+					WHERE FAC_HOTEL_NAME LIKE '%${keyword}%' 
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
 		<include refid="common.pagingPost"/>
 	</select>
 	
@@ -102,6 +101,21 @@
 			    fc.FAC_HOTEL_ID=#{FAC_HOTEL_ID}
                 and fc.FAC_HOTEL_ID=img.FAC_HOTEL_ID 
 			]]>	
+	</select>
+	
+	<!-- 선택된 게시글 번호에 해당하는 첨부파일 목록을 조회하는 쿼리 -->
+	<select id="selectFileList" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				HOTEL_IMGS_ID,
+				FAC_HOTEL_ID,
+				HOTEL_IMGS_FILE 
+			FROM 
+				HOTEL_IMAGES
+			WHERE
+				HOTEL_IMGS_ID=#{HOTEL_IMGS_ID}
+		]]>
+	
 	</select>
 	
 	

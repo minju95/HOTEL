@@ -70,7 +70,17 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 	//상세보기
 	@Override
 	public Map<String, Object> adminFacDetail(Map<String, Object> map) throws Exception {
-		Map<String, Object> resultMap = adminFacilitiesDAO.adminFacDetail(map);
+			
+		Map<String, Object> resultMap = adminFacilitiesDAO.adminFacDetail(map); //상세정보 결과값을 map이라는 이름으로 resultMap에 저장
+		Map<String, Object> tempMap = adminFacilitiesDAO.adminFacDetail(map);
+		resultMap.put("map", tempMap);
+		
+		List<Map<String, Object>> list = adminFacilitiesDAO.selectFileList(map); //sampleDAO.selectFileList(): 게시글의 첨부파일 목록을 가져옴
+		resultMap.put("list", list); //그 목록을 resultMap에 "list"라는 이름으로 저장
+		
+		//resultMap에는 map과 list라는 이름의 키가 저장되어 있음을 알아둘 것!
+		//키는 SampleController에서 map.get("map")과 map.get("list")라는 키로 사용됨
+		
 		return resultMap;
 	}
 	

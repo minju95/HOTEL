@@ -73,7 +73,8 @@ public class AdminFacilitiesController {
 		ModelAndView mv = new ModelAndView("/admin/facilitiesDetail");
 			
 		Map<String, Object> map = adminFacilitiesService.adminFacDetail(commandMap.getMap());
-		mv.addObject("map", map);
+		mv.addObject("map", map.get("map"));
+		mv.addObject("list", map.get("list"));
 		return mv;
 	}
 	

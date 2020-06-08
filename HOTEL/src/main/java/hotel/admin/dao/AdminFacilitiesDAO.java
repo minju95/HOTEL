@@ -33,5 +33,11 @@ public class AdminFacilitiesDAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("adminFac.facilitiesDetail", map);
 	}
 	
+	//게시글의 첨부파일 목록
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectFileList(Map<String, Object> map) throws Exception {
+		return selectList("adminFac.selectFileList", map);
+	}
+	
 	
 }
