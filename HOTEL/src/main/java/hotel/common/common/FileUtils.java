@@ -32,6 +32,8 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 		
 		String fac_id = (String) map.get("FAC_HOTEL_ID"); //ServiceImpl에서 전달해준 map에서 신규 생성되는 게시글의 번호를 받아오도록 함
 		File file = new File(filePath);
+		System.out.println(file);
+		
 		if(file.exists()== false) { //파일을 저장할 경로에 해당 폴더가 없으면
 			file.mkdirs(); //폴더 생성
 		}
@@ -43,7 +45,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 				originalFileName = multipartFile.getOriginalFilename(); //파일의 원본이름을 받아옴
 			
 				//서버에 실제 파일을 저장
-				file = new File(originalFileName);
+				file = new File(filePath+originalFileName);
 				multipartFile.transferTo(file); //multipartFile.transferTo(): 지정된 경로에 파일을 생성
 				
 				//위에서 만든 정보를 list에 추가

@@ -43,10 +43,12 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 				adminFacilitiesDAO.insertFacilitiesImage(list.get(i));
 			}
 		
+			/*
 		 MultipartHttpServletRequest multipartHttpServletRequest =
 		 (MultipartHttpServletRequest) request; //MultipartHttpServletRequest 형식으로 형변환
 		 Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
 		 //iterator를 이용하여 map에 있는 데이터에 순차적 접근
+		 
 		 MultipartFile multipartFile = null;
 		 
 			 while(iterator.hasNext()) { //Iterator 인터페이스의 hasNext메소드를 통해 iterator에 다음 값이 있는 동안 반복해서 작업 수행
@@ -61,6 +63,7 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 			 log.debug("-----------file end-----------");
 			 }
 		}
+		*/
 		
 	}
 	

@@ -66,13 +66,14 @@
 				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL"></textarea>
 			</td>
 		</tr>
-		 <tr>
+		
+		<!--  <tr>
 			<th>파일1</th>
 			<td>
 				<input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
 			</td>
 		</tr>
-		<!-- <tr>
+		<tr>
 			<th>파일2</th>
 			<td>
 				<input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
@@ -80,26 +81,47 @@
 		</tr> -->
 		
 		
+		<tr>
+			<th>파일3</th>
+			<td>
+				<div id="fileDiv">
+					<p><input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE_0"></p>
+				</div>
+			</td>
+		</tr>
+		
+		
 	</tbody>
 	
 </table>
 
-<center><a href="#this" class="btn" id="write">등록하기</a></center>
+
+<center>
+	<a href="#this" class="btn" id="write">등록하기</a>
+	<a href="#this" class="btn" id="addFile">파일추가</a>
+	<a href="#this" class="btn" id="list">목록으로</a>
+</center>
 </form>
 
-	<center><a href="#this" class="btn" id="list">목록으로</a></center>
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script>
-		$("#write").on("click", function(e){ //'등록하기'를 클릭하면
-				e.preventDefault();
-				fn_insertFac();//fn_insertFac()함수 호출
-		}); 
+		var img_count = 1; //전역변수 선언(태그가 추가될 때마다 그 값을 1씩 증가시켜 name값이 계속 바뀜)
 
 		$(document).ready(function(){
 	  		$("#list").on("click", function(e){ //'목록으로'를 클릭하면
 	         	e.preventDefault();
 	            fn_facList(); //fn_facList()함수 호출
 	        });
+	        
+	  		$("#write").on("click", function(e){ //'등록하기'를 클릭하면
+				e.preventDefault();
+				fn_insertFac();//fn_insertFac()함수 호출
+			});
+			
+	  		$("#addFile").on("click", function(e){ //파일추가 버튼
+				e.preventDefault();
+				fn_addFile();
+			});
 		}) 
 		
 	  	function fn_facList(){
@@ -131,6 +153,14 @@
 				comSubmit.submit();
 				}
 		}
+		
+		function fn_addFile() {
+				while(img_count<2) {
+					var str = "<tr><td><input type='file' name='HOTEL_IMGS_FILE_"+(img_count++)+"'></td></tr>";
+					$("#fileDiv").append(str);
+				}
+			}
+		
 	</script>	
 </body>
 </html>
