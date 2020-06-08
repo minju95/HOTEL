@@ -33,9 +33,5 @@ public class AdminFacilitiesDAO extends AbstractDAO{
 		return (Map<String, Object>) selectOne("adminFac.facilitiesDetail", map);
 	}
 	
-	//부대시설 인덱스 증가
-	public int selectFacId() throws Exception {
-		return (int) selectOne("adminFac.selectFacId");
-	}
 	
 }

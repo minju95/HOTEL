@@ -31,7 +31,13 @@
 	
 	
 	<!-- 부대시설 등록  -->
-	<select id="insertNewFacilities" parameterType="hashmap">
+	<insert id="insertNewFacilities" parameterType="hashmap" useGeneratedKeys="true" keyProperty="FAC_HOTEL_ID">
+	<selectKey keyProperty="FAC_HOTEL_ID" resultType="string" order="BEFORE">
+		SELECT
+			SEQ_FAC_HOTEL_ID.NEXTVAL
+		FROM DUAL
+	</selectKey>
+	
 	<![CDATA[
 	INSERT INTO
 		FACILITIES_HOTEL(
@@ -55,10 +61,11 @@
 			#{FAC_HOTEL_DETAIL} 
 	)
 	]]>	
-	</select>
+	</insert>
 	
 	<!-- 부대시설 이미지 등록 -->
-	<select id="insertFacilitiesImage" parameterType="hashmap">
+	<insert id="insertFacilitiesImage" parameterType="hashmap" >
+	
 	<![CDATA[
 	INSERT INTO
 		HOTEL_IMAGES(
@@ -72,18 +79,8 @@
 		#{HOTEL_IMGS_FILE}
 		);
 	]]>
-	</select>
+	</insert>
 	
-	<!-- 다음 시퀀스값 가져오기 -->
-	<select id="selectFacId" parameterType="hashmap" resultType="int">
-	<![CDATA[
-		SELECT
-			SEQ_FAC_HOTEL_ID.NEXTVAL
-		FROM DUAL
-	]]>
-	
-	
-	</select>
 	
 	<!-- 부대시설 상세보기 -->
 	<select id="facilitiesDetail" parameterType="hashmap" resultType="hashmap">
@@ -96,7 +93,7 @@
 			    FAC_HOTEL_TIME,
 			    FAC_HOTEL_FAC,
 			    FAC_HOTEL_PHONE,
-			    FAC_HOTEL_DEAIL
+			    FAC_HOTEL_DETAIL
 			FROM 
 			    FACILITIES_HOTEL
 			WHERE 

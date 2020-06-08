@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import hotel.common.logger.LoggerAspect;
 
 @Controller
 public class AdminFacilitiesController {
-	Logger log = Logger.getLogger(LoggerAspect.class);
+	Logger log = Logger.getLogger(this.getClass());
 	
 	@Resource(name="AdminFacilitiesService")
 	private AdminFacilitiesService adminFacilitiesService;
@@ -53,18 +54,16 @@ public class AdminFacilitiesController {
 	@RequestMapping(value="/admin/newFacilitiesForm")
 	public ModelAndView insertFacilities(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/newFacilitiesForm");
-		int FAC_HOTEL_ID = adminFacilitiesService.selectFacId(); //부대시설 인덱스 증가
-		mv.addObject("FAC_HOTEL_ID", FAC_HOTEL_ID);
-		System.out.println(mv);
+		//System.out.println(mv);
 		return mv;
 	}
 	
 	//부대시설 등록처리
 	@RequestMapping(value="/admin/newFacilities")
-	public ModelAndView insertFac(CommandMap commandMap) throws Exception {
+	public ModelAndView insertFac(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		//첨부파일의 경우, HttpServletRequest에서 처리
 		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesList");
-		adminFacilitiesService.insertFacilities(commandMap.getMap());
-		adminFacilitiesService.insertFacilitiesImage(commandMap.getMap());
+		adminFacilitiesService.insertFacilities(commandMap.getMap(), request);
 		System.out.println(mv);
 		return mv;
 		}

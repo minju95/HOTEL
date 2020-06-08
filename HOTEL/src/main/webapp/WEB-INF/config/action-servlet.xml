@@ -28,11 +28,13 @@
 		</mvc:argument-resolvers>
 	</mvc:annotation-driven>
 	
-	<!-- <mvc:interceptors>
+	 <mvc:interceptors>
 		<mvc:interceptor>
 			<mvc:mapping path="/**"/>
 			<bean id="loggerInterceptor" class="hotel.common.logger.LoggerInterceptor"></bean>
 		</mvc:interceptor>
+		
+	<!-- 	
 		<mvc:interceptor>
 			<mvc:mapping path="/mySpace/*"/>
 			<mvc:mapping path="/mypage/*"/>
@@ -55,8 +57,8 @@
 			<mvc:mapping path="/space/writeQnA"/>
 			<mvc:mapping path="/space/SearchList"/>
 			<bean id="UTFInterceptor" class="space.common.common.UTFencodeInterceptor"></bean>
-		</mvc:interceptor>
-	</mvc:interceptors> -->
+		</mvc:interceptor> -->
+	</mvc:interceptors>
 	
 	<aop:aspectj-autoproxy/>
 	<bean id="loggerAspect" class="hotel.common.logger.LoggerAspect"/>
