@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import hotel.admin.dao.AdminFacilitiesDAO;
+import hotel.common.common.FileUtils;
 
 @Service("AdminFacilitiesService")
 public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
@@ -21,6 +22,9 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 	
 	@Resource(name="AdminFacilitiesDAO")
 	private AdminFacilitiesDAO adminFacilitiesDAO;
+	
+	@Resource(name="fileUtils")
+	private FileUtils fileUtils;
 	
 	//리스트
 	@Override
@@ -33,6 +37,12 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 	public void insertFacilities(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		adminFacilitiesDAO.insertFacilities(map);
 		
+		//FileUtils 클래스를 이용하여 파일을 저장하고 데이터를 가져온 후, DB에 저장
+		List<Map<String, Object>> list = fileUtils.parseInsertFileInfo(map, request);
+			for(int i=0, size=list.size(); i<size; i++) {
+				adminFacilitiesDAO.insertFacilitiesImage(list.get(i));
+			}
+		
 		 MultipartHttpServletRequest multipartHttpServletRequest =
 		 (MultipartHttpServletRequest) request; //MultipartHttpServletRequest 형식으로 형변환
 		 Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
@@ -42,7 +52,8 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 			 while(iterator.hasNext()) { //Iterator 인터페이스의 hasNext메소드를 통해 iterator에 다음 값이 있는 동안 반복해서 작업 수행
 				 //hasNext() : iterator 내에 그 다음 데이터의 존재 유무를 알려줌
 			 multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			 if(multipartFile.isEmpty()== false) {
+			 
+			 if(multipartFile.isEmpty()== false) { //로그찍기
 			 log.debug("-----------file start-----------");
 			 log.debug("name: "+multipartFile.getName());
 			 log.debug("fileName : "+multipartFile.getOriginalFilename());
@@ -50,6 +61,7 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 			 log.debug("-----------file end-----------");
 			 }
 		}
+		
 	}
 	
 	//상세보기

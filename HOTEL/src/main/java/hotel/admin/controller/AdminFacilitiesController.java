@@ -64,7 +64,6 @@ public class AdminFacilitiesController {
 		//첨부파일의 경우, HttpServletRequest에서 처리
 		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesList");
 		adminFacilitiesService.insertFacilities(commandMap.getMap(), request);
-		System.out.println(mv);
 		return mv;
 		}
 	

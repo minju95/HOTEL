@@ -77,7 +77,7 @@
 		SEQ_HOTEL_IMGS_ID.NEXTVAL,
 		#{FAC_HOTEL_ID},
 		#{HOTEL_IMGS_FILE}
-		);
+		)
 	]]>
 	</insert>
 	

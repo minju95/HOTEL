@@ -69,7 +69,7 @@
 		 <tr>
 			<th>파일1</th>
 			<td>
-				<input type="file" name="file">
+				<input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
 			</td>
 		</tr>
 		<!-- <tr>
