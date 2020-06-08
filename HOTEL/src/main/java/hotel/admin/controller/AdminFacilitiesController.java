@@ -73,8 +73,8 @@ public class AdminFacilitiesController {
 		ModelAndView mv = new ModelAndView("/admin/facilitiesDetail");
 			
 		Map<String, Object> map = adminFacilitiesService.adminFacDetail(commandMap.getMap());
-		mv.addObject("map", map.get("map"));
-		mv.addObject("list", map.get("list"));
+		mv.addObject("map", map.get("map")); //기존의 게시글 상세정보
+		mv.addObject("list", map.get("list")); //첨부파일 목록
 		return mv;
 	}
 	

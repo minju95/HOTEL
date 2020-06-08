@@ -21,10 +21,10 @@
 	<table name="facDetail" class="table table-striped" align="center" width="800">
 		<thead>
 			<tr>
-				<th>부대시설명</th>
-				<th>위치</th>
-				<th>운영시간</th>
-				<th>전화번호</th>
+				<th scope="row">부대시설명</th>
+				<th scope="row">위치</th>
+				<th scope="row">운영시간</th>
+				<th scope="row">전화번호</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -57,10 +57,13 @@
 			</th>
 			<td colspan="3">
 				<c:forEach var="row" items="${list }">
-					<input type="hidden" id="HOTEL_IMGS_FILE" value="${row.HOTEL_IMGS_FILE }">
+				<p>
+					<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
 					<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
-					</c:forEach>
-				</td>
+				</p>
+				</c:forEach>
+			</td>
+				
 			</tr>
 
 		</tbody>

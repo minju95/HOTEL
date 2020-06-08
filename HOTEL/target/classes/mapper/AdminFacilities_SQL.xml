@@ -85,21 +85,18 @@
 	<select id="facilitiesDetail" parameterType="hashmap" resultType="hashmap">
 			<![CDATA[			    
 			SELECT 
-			    fc.FAC_HOTEL_ID,
-			    fc.FAC_HOTEL_NAME,
-			    fc.FAC_HOTEL_LOCATION,
-			    fc.FAC_HOTEL_CONTENT,
-			    fc.FAC_HOTEL_TIME,
-			    fc.FAC_HOTEL_FAC,
-			    fc.FAC_HOTEL_PHONE,
-			    fc.FAC_HOTEL_DETAIL,
-                img.HOTEL_IMGS_ID,
-                img.HOTEL_IMGS_FILE                
+			    FAC_HOTEL_ID,
+			    FAC_HOTEL_NAME,
+			    FAC_HOTEL_LOCATION,
+			    FAC_HOTEL_CONTENT,
+			    FAC_HOTEL_TIME,
+			    FAC_HOTEL_FAC,
+			    FAC_HOTEL_PHONE,
+			    FAC_HOTEL_DETAIL
 			FROM 
-			    FACILITIES_HOTEL fc, HOTEL_IMAGES img
+			    FACILITIES_HOTEL 
 			WHERE 
-			    fc.FAC_HOTEL_ID=#{FAC_HOTEL_ID}
-                and fc.FAC_HOTEL_ID=img.FAC_HOTEL_ID 
+			    FAC_HOTEL_ID=#{FAC_HOTEL_ID}
 			]]>	
 	</select>
 	
@@ -113,7 +110,7 @@
 			FROM 
 				HOTEL_IMAGES
 			WHERE
-				HOTEL_IMGS_ID=#{HOTEL_IMGS_ID}
+				HOTEL_IMGS_ID=#{FAC_HOTEL_ID}
 		]]>
 	
 	</select>
