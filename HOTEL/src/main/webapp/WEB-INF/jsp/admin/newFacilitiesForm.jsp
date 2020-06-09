@@ -25,7 +25,6 @@
 		<tr>
 		
 			<th>부대시설명</th>
-			<input type="hidden" id="FAC_HOTEL_ID" name="FAC_HOTEL_ID" value="${FAC_HOTEL_ID}">
 			<td>
 				<input type="text" id="FAC_HOTEL_NAME" name="FAC_HOTEL_NAME" size="70">
 			</td>

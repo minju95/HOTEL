@@ -4,13 +4,13 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
 import hotel.admin.dao.AdminNoticeDAO;
 
 @Service("AdminNoticeService")
-
 public class AdminNoticeServiceImpl implements AdminNoticeService{
 
 	@Resource(name="AdminNoticeDAO")
@@ -28,6 +28,10 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return adminNoticeDAO.adminNoticeDetail(map);
 	}
 	
-	
+	//등록
+	@Override
+	public void insertNewNotice(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		adminNoticeDAO.insertNewNotice(map);
+	}
 	
 }

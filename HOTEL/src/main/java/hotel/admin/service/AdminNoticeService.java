@@ -3,6 +3,7 @@ package hotel.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
@@ -14,5 +15,8 @@ public interface AdminNoticeService {
 		
 	//상세보기
 	Map<String, Object> adminNoticeDetail(Map<String, Object> map) throws Exception;
+	
+	//등록
+	void insertNewNotice (Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 }

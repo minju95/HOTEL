@@ -21,6 +21,11 @@ public class AdminNoticeDAO extends AbstractDAO {
 	public Map<String, Object> adminNoticeDetail(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("adminNotice.noticeDetail", map);
 	}
+	
+	//등록
+	public void insertNewNotice(Map<String, Object> map) throws Exception{
+		insert("adminNotice.insertNewNotice", map);
+	}
 }
 
 
