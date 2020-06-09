@@ -40,6 +40,8 @@ public class RoomController {
 	public ModelAndView selectTypeByRoom(CommandMap commandMap) 
 		throws Exception{
 		ModelAndView mv = new ModelAndView("room/room");
+		List<Map<String,Object>> list = roomService.selectRoom(commandMap.getMap());
+		mv.addObject("list", list);
 		
 		Map<String, Object> map = roomService.selectTypeByRoom(commandMap.getMap());
 		mv.addObject("map", map);

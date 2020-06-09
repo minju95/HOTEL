@@ -10,6 +10,7 @@
 <title>HOTEL</title>
 </head>
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 메인화면 입니다.<br/>
 <c:set var="ID" value="${USERID }" />
 <c:choose>
@@ -25,5 +26,6 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a href="
 <c:if test="${isAdmin == 'Y' }">
 <a href="/hotel/admin">호텔 관리</a>
 </c:if>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

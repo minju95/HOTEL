@@ -17,7 +17,8 @@ img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  max-width: 500px;
+ 
   position: relative;
   margin: auto;
 }
@@ -87,6 +88,18 @@ img {vertical-align: middle;}
   <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<table>
+	<tr>
+<c:forEach items="${list}" var="fac">
+		
+				<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
+				<td><a href='#this'  name="title" >| ${fac.FAC_HOTEL_NAME}  |</a>
+				<input type='hidden' name='id' value="${fac.FAC_HOTEL_ID }"></td>
+			
+		</c:forEach>
+		</tr>
+</table>
 <div class="div1">
 ${map.FAC_HOTEL_NAME}
 </div>
@@ -97,7 +110,7 @@ ${map.FAC_HOTEL_NAME}
 
 <div class="mySlides fade">
 
-  <img src="<c:url value='/image/${item}'/>" style="width:100%">
+  <img src="<c:url value='/image/${item}'/>" style="width:100%; height:500px;">
 
 </div>
 
@@ -145,8 +158,22 @@ function showSlides() {
     
     setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
+$(document).ready(function(){ 
+	  $("a[name='title']").on("click", function(e){ //제목
+		   e.preventDefault(); fn_facDetail($(this));
+		    });
+	     });
+
+
+
+		function fn_facDetail(obj){
+          var comSubmit = new ComSubmit();
+          comSubmit.setUrl("<c:url value='/facilities'/>");
+          comSubmit.addParam("FAC_HOTEL_ID", obj.parent().find("input[name='id']").val());
+          comSubmit.submit();
+      }
 </script>
 
-
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

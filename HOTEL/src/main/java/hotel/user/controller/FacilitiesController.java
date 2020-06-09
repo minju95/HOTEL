@@ -40,10 +40,12 @@ public class FacilitiesController {
 	public ModelAndView selectTypeByFacilities(CommandMap commandMap) 
 		throws Exception{
 		ModelAndView mv = new ModelAndView("facilities/facilitie");
-		
+		List<Map<String,Object>> list = facilitiesService.selectFacilities(commandMap.getMap());
+		mv.addObject("list", list);
 		Map<String, Object> map = facilitiesService.selectTypeByFacilities(commandMap.getMap());
 		mv.addObject("map", map);
 		System.out.println(mv);
+		
 		return mv;
 	}
 }

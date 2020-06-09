@@ -79,6 +79,9 @@ img {vertical-align: middle;}
 @media only screen and (max-width: 300px) {
   .text {font-size: 11px}
 }
+.p1{
+ text-align: center;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -87,9 +90,21 @@ img {vertical-align: middle;}
   <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <body>
-
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<table>
+	<tr>
+<c:forEach items="${list}" var="room">
+		
+				<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
+				<td><a href='#this'  name="title" >| ${room.ROOM_NAME}  |</a>
+				<input type='hidden' name='id' value="${room.ROOM_TYPE }"></td>
+			
+		</c:forEach>
+		</tr>
+</table>
+<br>
 <div class="div1">
-<%@ include file="/WEB-INF/jsp/room/roomList.jsp"%>
+
 ${map.ROOM_NAME}
 </div>
 <br>
@@ -111,7 +126,7 @@ ${map.ROOM_NAME}
 <div class="div1">
 ${map.ROOM_CONTENT}
 <div>ROOM SIZE:${map.ROOM_SIZE}   BED TYPE:${map.ROOM_BEDTYPE}</div><br>
-<input type="button" value="RESERVATION">
+<P class="p1"><input type="button" value="RESERVATION"></P>
 </div>
 <br>
 <div class="div1">
@@ -161,8 +176,22 @@ function showSlides() {
     
     setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
+$(document).ready(function(){ 
+	  $("a[name='title']").on("click", function(e){ //제목
+		   e.preventDefault(); fn_facDetail($(this));
+		    });
+	     });
+
+
+
+		function fn_facDetail(obj){
+          var comSubmit = new ComSubmit();
+          comSubmit.setUrl("<c:url value='/rooms'/>");
+          comSubmit.addParam("ROOM_TYPE", obj.parent().find("input[name='id']").val());
+          comSubmit.submit();
+      }
 </script>
 
-
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>
