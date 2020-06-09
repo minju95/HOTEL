@@ -85,7 +85,7 @@
 	<select id="facilitiesDetail" parameterType="hashmap" resultType="hashmap">
 			<![CDATA[			    
 			SELECT 
-			    FAC_HOTEL_ID,
+			    FAC_HwpTEL_ID,
 			    FAC_HOTEL_NAME,
 			    FAC_HOTEL_LOCATION,
 			    FAC_HOTEL_CONTENT,
