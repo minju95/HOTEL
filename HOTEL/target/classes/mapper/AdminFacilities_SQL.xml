@@ -110,10 +110,37 @@
 			FROM 
 				HOTEL_IMAGES
 			WHERE
-				HOTEL_IMGS_ID=#{FAC_HOTEL_ID}
+				FAC_HOTEL_ID=#{FAC_HOTEL_ID}
 		]]>
 	
 	</select>
 	
+	<update id="updateFacilities" parameterType="hashmap">
+	<![CDATA[
+	UPDATE
+		FACILITIES_HOTEL
+	SET
+		FAC_HOTEL_NAME = #{FAC_HOTEL_NAME},
+		FAC_HOTEL_CONTENT = #{FAC_HOTEL_CONTENT},
+		FAC_HOTEL_LOCATION = #{FAC_HOTEL_LOCATION},
+		FAC_HOTEL_TIME = #{FAC_HOTEL_TIME},
+		FAC_HOTEL_FAC = #{FAC_HOTEL_FAC},
+		FAC_HOTEL_PHONE = #{FAC_HOTEL_PHONE},
+		FAC_HOTEL_DETAIL= #{FAC_HOTEL_DETAIL}
+	WHERE
+		FAC_HOTEL_ID=#{FAC_HOTEL_ID}
+	]]>
+	</update>
 	
+	<update id="updateFacilitiesImage" parameterType="hashmap" >
+	<![CDATA[
+	UPDATE
+		HOTEL_IMAGES
+	SET
+		HOTEL_IMGS_FILE=#{HOTEL_IMGS_FILE}
+	WHERE
+		FAC_HOTEL_ID=#{FAC_HOTEL_ID}
+
+	]]>
+	</update>
 </mapper>

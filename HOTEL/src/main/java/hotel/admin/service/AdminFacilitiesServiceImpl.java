@@ -72,12 +72,13 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 	@Override
 	public Map<String, Object> adminFacDetail(Map<String, Object> map) throws Exception {
 			
-		Map<String, Object> resultMap =  new HashMap<String, Object>(); //상세정보 결과값을 map이라는 이름으로 resultMap에 저장
+		Map<String, Object> resultMap = adminFacilitiesDAO.adminFacDetail(map); //상세정보 결과값을 map이라는 이름으로 resultMap에 저장
 		Map<String, Object> tempMap = adminFacilitiesDAO.adminFacDetail(map);
 		resultMap.put("map", tempMap);
 		
 		List<Map<String, Object>> list = adminFacilitiesDAO.selectFileList(map); //selectFileList(): 게시글의 첨부파일 목록을 가져옴
 		resultMap.put("list", list); //그 목록을 resultMap에 "list"라는 이름으로 저장
+		System.out.println(resultMap);
 		
 		//resultMap에는 map과 list라는 이름의 키가 저장되어 있음을 알아둘 것!
 		//키는 Controller에서 map.get("map")과 map.get("list")라는 키로 사용됨
@@ -85,6 +86,15 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 		return resultMap;
 	}
 	
+	//수정
+	@Override
+	public void modifyFacilities(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		adminFacilitiesDAO.modifyFacilities(map);
+		adminFacilitiesDAO.modifyFacImg(map); //이미지 수정
+		
+	}
 	
+	//DEL_GB, IS_NEW 값을 이용하여 이게 수정된 파일인지 여부를 알려줌
+	//DEL_GB, IS_NEW 없이 파일을 변경 -> 쿼리문+FileUtils클래스 모두 코드 입력?
 	
 }

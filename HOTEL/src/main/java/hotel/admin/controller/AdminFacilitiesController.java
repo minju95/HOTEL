@@ -75,17 +75,28 @@ public class AdminFacilitiesController {
 		Map<String, Object> map = adminFacilitiesService.adminFacDetail(commandMap.getMap());
 		mv.addObject("map", map.get("map")); //기존의 게시글 상세정보
 		mv.addObject("list", map.get("list")); //첨부파일 목록
+		System.out.println(mv);
 		return mv;
 	}
 	
 	//부대시설 수정 "폼"(이 메소드 안에선 수정 처리 로직 X)	
 	@RequestMapping(value="admin/modifyFacilitiesForm")
-	public ModelAndView AdminNoticeModifyForm(CommandMap commandMap) throws Exception{
+	public ModelAndView adminFacModifyForm(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/modifyFacilitiesForm");
 		
 		Map<String, Object> map = adminFacilitiesService.adminFacDetail(commandMap.getMap());
 		mv.addObject("map", map);
+		mv.addObject("list", map.get("list"));
+		return mv;
+	}
+	
+	//부대시설 수정처리
+	@RequestMapping(value="/admin/modifyFacilities")
+	public ModelAndView modifyFac(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesDetail");
+		adminFacilitiesService.modifyFacilities(commandMap.getMap(), request);
 		
+		mv.addObject("FAC_HOTEL_ID", commandMap.get("FAC_HOTEL_ID"));
 		return mv;
 	}
 }

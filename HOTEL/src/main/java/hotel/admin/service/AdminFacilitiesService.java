@@ -21,5 +21,7 @@ public interface AdminFacilitiesService {
 	//상세보기
 	Map<String, Object> adminFacDetail(Map<String, Object> map) throws Exception;
 	
+	//수정
+	void modifyFacilities(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
 }

@@ -25,6 +25,7 @@
 				<th scope="row">위치</th>
 				<th scope="row">운영시간</th>
 				<th scope="row">전화번호</th>
+				<th scope="row">시설</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -33,29 +34,23 @@
 				<td align="center">${map.FAC_HOTEL_LOCATION}</td>
 				<td align="center">${map.FAC_HOTEL_TIME}</td>
 				<td align="center">${map.FAC_HOTEL_PHONE}</td>
+				<td align="center">${map.FAC_HOTEL_FAC}</td>
 			</tr>
 		</tbody>
 		<tbody>
 			<tr>
-					<td colspan="4" height="200" style="padding-left:50px;">
+					<td colspan="5" height="200" style="padding-left:50px;">
 						${fn:replace(map.FAC_HOTEL_CONTENT, cn, br)}
 					</td>
 			</tr>
 			<tr>
-					<td colspan="4" height="200" style="padding-left:50px;">
+					<td colspan="5" height="200" style="padding-left:50px;">
 						${fn:replace(map.FAC_HOTEL_DETAIL, cn, br)}
 					</td>
 			</tr>
 			<tr>
-					<td colspan="4" height="200" style="padding-left:50px;">
-						${fn:replace(map.HOTEL_IMGS_FILE, cn, br)}
-					</td>
-			</tr>
-			<tr>
-			<th scope="row">
-				첨부파일
-			</th>
-			<td colspan="3">
+			 <th scope="row">첨부파일</th>
+			<td colspan="4">
 				<c:forEach var="row" items="${list }">
 				<p>
 					<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
@@ -63,7 +58,6 @@
 				</p>
 				</c:forEach>
 			</td>
-				
 			</tr>
 
 		</tbody>
@@ -82,6 +76,7 @@
 			e.preventDefault();
 			fn_facList();
 		});
+		
 
 		$("#modify").on("click", function(e){ //수정하기 누르면
 			e.preventDefault();
@@ -97,10 +92,10 @@
 	}  
 	
 	function fn_facModifyForm(){
-		var ntc_num = "${map.FAC_HOTEL_ID}";
+		var FAC_HOTEL_ID = "${map.FAC_HOTEL_ID}";
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/admin/modifyFacilitiesForm' />");
-		comSubmit.addParam("FAC_HOTEL_ID", fac_hotel_id);
+		comSubmit.addParam("FAC_HOTEL_ID", FAC_HOTEL_ID);
 		comSubmit.submit();
 	}	  
 	</script>

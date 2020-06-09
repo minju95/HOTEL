@@ -27,6 +27,7 @@
 				<th>위치</th>
 				<th>운영시간</th>
 				<th>전화번호</th>
+				
 			</tr>
 		</thead>
 		<tbody>
