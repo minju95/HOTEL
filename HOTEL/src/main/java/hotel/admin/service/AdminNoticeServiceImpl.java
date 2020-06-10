@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import hotel.admin.dao.AdminNoticeDAO;
 
@@ -15,6 +16,7 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 
 	@Resource(name="AdminNoticeDAO")
 	private AdminNoticeDAO adminNoticeDAO;
+	
 	
 	//리스트
 	@Override
@@ -30,8 +32,21 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	
 	//등록
 	@Override
-	public void insertNewNotice(Map<String, Object> map, HttpServletRequest request) throws Exception {
+	public void insertNewNotice(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception {
 		adminNoticeDAO.insertNewNotice(map);
+	}
+	
+	//삭제
+	@Override
+	public void deleteNotice(Map<String, Object> map) throws Exception {
+		adminNoticeDAO.deleteNotice(map);
+	}
+
+	@Override
+	public void modifyNotice(Map<String, Object> map, MultipartHttpServletRequest request)
+			throws Exception {
+		adminNoticeDAO.modifyNotice(map);
+		
 	}
 	
 }

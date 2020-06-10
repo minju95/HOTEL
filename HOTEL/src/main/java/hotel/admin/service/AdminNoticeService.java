@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Service("AdminNoticeService")
 public interface AdminNoticeService {
@@ -17,6 +18,12 @@ public interface AdminNoticeService {
 	Map<String, Object> adminNoticeDetail(Map<String, Object> map) throws Exception;
 	
 	//등록
-	void insertNewNotice (Map<String, Object> map, HttpServletRequest request) throws Exception;
+	void insertNewNotice (Map<String, Object> map, MultipartHttpServletRequest request) throws Exception;
 	
+	//삭제
+	void deleteNotice(Map<String, Object> map) throws Exception;
+	
+	//수정
+	void modifyNotice(Map<String, Object> map, MultipartHttpServletRequest request) throws Exception;
+		
 }

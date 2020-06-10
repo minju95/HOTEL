@@ -5,7 +5,7 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 	<meta charset="UTF-8">
-	<title>부대시설 상세보기</title>
+	<title>부대시설 수정하기</title>
 	<!-- 부트스트랩 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
