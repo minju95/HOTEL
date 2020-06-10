@@ -102,7 +102,7 @@ background-size:100%;
    <br>
    <br>
    <br>
-   <h1>F A C I L I T I E</h1></div>
+   <h1>F A C I L I T I E S</h1></div>
    <br>
 <table align="center">
 	<tr>

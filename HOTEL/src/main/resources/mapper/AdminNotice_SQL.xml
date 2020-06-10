@@ -71,4 +71,28 @@
 	]]>	
 	</insert>
 	
+	<!-- 공지사항 삭제 -->
+	<delete id="deleteNotice" parameterType="hashmap">
+	<![CDATA[
+	DELETE
+		FROM NOTICE
+	WHERE
+    	NOTICE_ID=#{NOTICE_ID}
+	]]>	
+	</delete>
+	
+	<!-- 공지사항 수정 -->
+	<update id="updateNotice" parameterType="hashmap">
+	<![CDATA[
+	UPDATE
+		NOTICE
+	SET
+		NOTICE_TITLE=#{NOTICE_TITLE}, 
+		NOTICE_CONTENT=#{NOTICE_CONTENT}, 
+		NOTICE_ISVIEW=#{NOTICE_ISVIEW},
+		NOTICE_IMG=#{NOTICE_IMG}
+	WHERE
+		NOTICE_ID=#{NOTICE_ID}
+	]]>		
+	</update>
 </mapper>	

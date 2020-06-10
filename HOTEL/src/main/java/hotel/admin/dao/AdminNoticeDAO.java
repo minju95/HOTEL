@@ -24,7 +24,17 @@ public class AdminNoticeDAO extends AbstractDAO {
 	
 	//등록
 	public void insertNewNotice(Map<String, Object> map) throws Exception{
+		System.out.println(map.get("NOTICE_IMG"));
 		insert("adminNotice.insertNewNotice", map);
+	}
+	//삭제
+	public void deleteNotice(Map<String, Object> map) throws Exception{
+		delete("adminNotice.deleteNotice", map);
+	}
+	
+	// 수정
+	public void modifyNotice(Map<String, Object> map) throws Exception{
+		update("adminNotice.updateNotice", map);
 	}
 }
 

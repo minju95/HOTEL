@@ -7,7 +7,7 @@
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <meta charset="UTF-8">
 
-<title>부대시설 상세보기</title>
+<title>공지사항 상세보기</title>
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -16,13 +16,16 @@
 </head>
 
 <body>
-<h3>부대시설 상세보기</h3>
-	<form="frm">
+<h3>공지사항 상세보기</h3>
+	<form id="frm">
+	<input type="hidden" id="NOTICE_ID" name="NOTICE_ID" value="${map.NOTICE_ID }">
+	
 	<table name="noticeDetail" class="table table-striped" align="center" width="800">
 		<tbody>
 			<tr>
 				<th scope="row">제목</th>
 				<td align="center">${map.NOTICE_TITLE}</td>
+				
 			</tr>
 		 	<tr>
 				<th scope="row">작성일</th>
@@ -46,6 +49,7 @@
 	</form>
 	<center>
 		<a href="#this" class="btn" id="modify">수정하기</a>
+		<a href="#this" class="btn" id="delete">삭제하기</a>
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</center>
 	
@@ -63,6 +67,11 @@
 			e.preventDefault();
 			fn_facModifyForm();
 		});
+		
+		$("#delete").on("click", function(e){ //삭제하기 누르면
+			e.preventDefault();
+			fn_deleteNotice();
+		});
 	});   
     
 	function fn_facList(pageNo){ //리스트로 이동하는 함수
@@ -73,12 +82,26 @@
 	}  
 	
 	function fn_facModifyForm(){
-		var FAC_HOTEL_ID = "${map.FAC_HOTEL_ID}";
+		var NOTICE_ID = "${map.NOTICE_ID}";
 		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/modifyFacilitiesForm' />");
-		comSubmit.addParam("FAC_HOTEL_ID", FAC_HOTEL_ID);
+		comSubmit.setUrl("<c:url value='/admin/modifyNoticeForm' />");
+		comSubmit.addParam("NOTICE_ID", NOTICE_ID);
 		comSubmit.submit();
-	}	  
+	}
+
+	function fn_deleteNotice(){
+		if(confirm("삭제하시겠습니까?") == true){
+			alert("삭제되었습니다.");
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/admin/deleteNotice' />");
+		comSubmit.addParam("NOTICE_ID", $("#NOTICE_ID").val());
+		comSubmit.submit();
+		}else{
+			return;
+		}
+	}
+
+		  
 	</script>
 
 </body>

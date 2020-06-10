@@ -53,8 +53,6 @@
 
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
 <script>
-		var img_count = 1; //전역변수 선언(태그가 추가될 때마다 그 값을 1씩 증가시켜 name값이 계속 바뀜)
-
 		$(document).ready(function(){
 	  		$("#list").on("click", function(e){ //'목록으로'를 클릭하면
 	         	e.preventDefault();
@@ -75,27 +73,9 @@
 	    }
 
 		function fn_insertNotice(){
-			//유효성 검사
-			/* if($("#FAC_HOTEL_NAME").val() == "")
-				{
-				alert("부대시설명을 입력해주세요");
-			} else if($("#FAC_HOTEL_LOCATION").val() == "") {
-				alert("부대시설 위치를 입력해주세요");
-			} else if($("#FAC_HOTEL_TIME").val() == "") {
-				alert("운영시간을 입력해주세요");
-			} else if($("#FAC_HOTEL_PHONE").val() == "") {
-				alert("전화번호를 입력해주세요");
-			} else if($("#FAC_HOTEL_FAC").val() == "") {
-				alert("시설을 입력해주세요");
-			} else if($("#FAC_HOTEL_CONTENT").val() == "") {
-				alert("상세내용을 입력해주세요");
-			} 
-			else { */
-				//alert("공지사항이 등록되었습니다.")
 				var comSubmit = new ComSubmit("frm");
 				comSubmit.setUrl("<c:url value='/admin/newNotice' />");
 				comSubmit.submit();
-				/* } */
 		}
 	
 	</script>	
