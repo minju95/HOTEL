@@ -21,7 +21,21 @@
  <!-- 객실 정보 조회 -->
 <select id="selectTypeByRoom" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-      SELECT
+      SELECT 
+          ROWNUM,
+          ROOM_TYPE,
+          ROOM_NAME,
+          ROOM_FAC_NAME,
+          ROOM_CONTENT,
+          ROOM_SIZE,
+          ROOM_BEDTYPE,
+          ROOM_CHK_INTIME,
+          ROOM_CHK_OUTTIME,
+          ROOM_PRICE,
+        ROOM_IMGS_FILE
+      FROM
+      (SELECT
+     
           R.ROOM_TYPE,
           R.ROOM_NAME,
           R.ROOM_FAC_NAME,
@@ -30,7 +44,7 @@
           R.ROOM_BEDTYPE,
           R.ROOM_CHK_INTIME,
           R.ROOM_CHK_OUTTIME,
-          R.ROOM_PRICE,
+          MIN(R.ROOM_PRICE) ROOM_PRICE,
           regexp_replace(LISTAGG(M.ROOM_IMGS_FILE, ',') 
       WITHIN GROUP (ORDER BY M.ROOM_IMGS_FILE),'([^,]+)(,\1)+', '\1') ROOM_IMGS_FILE
       FROM
@@ -40,6 +54,7 @@
       AND 
           R.ROOM_TYPE = #{ROOM_TYPE}
       GROUP BY
+     
           R.ROOM_TYPE,
           R.ROOM_NAME,
           R.ROOM_FAC_NAME,
@@ -48,8 +63,7 @@
           R.ROOM_BEDTYPE,
           R.ROOM_CHK_INTIME,
           R.ROOM_CHK_OUTTIME,
-          R.ROOM_PRICE
-      
+          R.ROOM_PRICE) WHERE ROWNUM = 1
       
 ]]>
 </select>

@@ -15,19 +15,32 @@
 	#backbutton>button:hover {
 	color:white;border:1px solid gray;
 }
+
+	.div-about{
+ background-image:url(/hotel/image/hotel.jpg);
+height:250px;
+color: white;
+background-repeat:no-repeat;
+background-size:100%;
+}
 </style>
 <meta charset="UTF-8">
 <title>공지사항 상세보기</title>
 </head>
 <body>
-<br/> 
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>N O T I C E</h1></div>
+   <br>
 	<form id="frm">
 	<table class="notice_detail" align="center" width="800" >
 		<colgroup>
 			<col width="7%" />
 			<col width="70%" />
-			<col width="8%" />
-			<col width="15%" />
+			<col width="23%" />
 		</colgroup>
 		<thead>
 				<tr>
@@ -91,6 +104,6 @@
 		
 	</script>
 		
-
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>
