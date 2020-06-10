@@ -79,7 +79,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 	//첨부파일 수정
 	public  List<Map<String, Object>> parseUpdateFileInfo(Map<String, Object>
 	map, HttpServletRequest request) throws Exception {
-		String filePath = request.getSession().getServletContext().getRealPath("/image/");
+		String filePath = request.getSession().getServletContext().getRealPath("/image/");	
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
