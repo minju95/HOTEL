@@ -82,6 +82,13 @@ img {vertical-align: middle;}
 .p1{
  text-align: center;
 }
+.div-about{
+ background-image:url(/hotel/image/hotel.jpg);
+height:250px;
+color: white;
+background-repeat:no-repeat;
+background-size:100%;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -91,12 +98,20 @@ img {vertical-align: middle;}
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <body>
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<table>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>A C C O M M O D A T I O N</h1></div>
+   
+<br>
+<br>
+<table align="center">
 	<tr>
 <c:forEach items="${list}" var="room">
 		
 				<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
-				<td><a href='#this'  name="title" >| ${room.ROOM_NAME}  |</a>
+				<td><a href='#this'  name="title" > ${room.ROOM_NAME}  </a>&emsp;
 				<input type='hidden' name='id' value="${room.ROOM_TYPE }"></td>
 			
 		</c:forEach>

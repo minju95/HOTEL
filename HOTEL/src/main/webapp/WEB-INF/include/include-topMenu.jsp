@@ -153,9 +153,9 @@ header{
       </li> 
                 
     <li class="topMenuLi" style=" margin-top:10px;"> 
-    <a class="menuLink" href="">ABOUT</a> 
+    <a class="menuLink" href="/hotel/about">ABOUT</a> 
     <ul class="submenu"> 
-    <li style="margin-left: 824px;"><a href="#" class="submenuLink">About Hotel</a></li>
+    <li style="margin-left: 824px;"><a href="/hotel/about" class="submenuLink">About Hotel</a></li>
      
       </ul> 
       </li> 
