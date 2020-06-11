@@ -30,7 +30,8 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 	
 	public  List<Map<String, Object>> parseInsertFileInfo(Map<String, Object>
 	map, HttpServletRequest request) throws Exception {
-		String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\";
+		//String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원
+		String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //박민주
 		//본인 경로로 변경하여 사용할 것!
 		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
@@ -78,7 +79,8 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 	//첨부파일 수정
 	public  List<Map<String, Object>> parseUpdateFileInfo(Map<String, Object>
 	map, HttpServletRequest request) throws Exception {
-		String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\";
+		//String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원
+		String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //박민주
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
@@ -117,26 +119,29 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 				
 				multipartFile.transferTo(new File(filePath+originalFileName)); //multipartFile.transferTo(): 지정된 경로에 파일을 생성
 				
-				//위에서 만든 정보를 list에 추가
+				//위에서 만든 정보를 list에 map으로 추가
 				listMap = new HashMap<String, Object>();
 				
-				
-				
 				listMap.put("FAC_HOTEL_ID", FAC_HOTEL_ID);
-				listMap.put("HOTEL_IMGS_ID_0", HOTEL_IMGS_ID_0);
-				if((String) map.get("HOTEL_IMGS_ID_1") != null) {
+				/*
+				 * if((String) map.get("HOTEL_IMGS_ID_1") != null) { //이미지가 2개 등록되면
+				 * listMap.put("HOTEL_IMGS_ID_1", HOTEL_IMGS_ID_1);
+				 * listMap.put("HOTEL_IMGS_ID_0", HOTEL_IMGS_ID_0); } else { //이미지가 1개 등록되면
+				 * listMap.put("HOTEL_IMGS_ID_0", HOTEL_IMGS_ID_0); }
+				 */
+				
+				String idx0_last = idx.substring(idx.length()-1, idx.length());
+				
+				if(Integer.parseInt(idx0_last) == 0) {
+					listMap.put("HOTEL_IMGS_ID_0", HOTEL_IMGS_ID_0);
+				} else {
 					listMap.put("HOTEL_IMGS_ID_1", HOTEL_IMGS_ID_1);
 				}
 				
 				listMap.put("HOTEL_IMGS_FILE", originalFileName);
+				list.add(listMap);
+				System.out.println("리스트에 담긴 데이터 출력 : " +list);
 				
-				//idx = "IDX_"+requestName.substring(beginIndex)
-				idx.substring(idx.length()-1, idx.length()); //0
-				//listMap.
-				
-				
-				//System.out.println(listMap);
-				//SSystem.out.println("리스트 나와라: "+list);
 			}
 			else { //multipartFile이 비어있는 경우(=첨부파일이 없는 경우, 게시글에서 파일을 수정하지 않은 경우)
 				/*
