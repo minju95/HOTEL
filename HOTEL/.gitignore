@@ -10,6 +10,9 @@ local.properties
 .loadpath
 .recommenders
 
+*.properties
+#Created by https://www.gitignore.io/api/java
+
 # External tool builders
 .externalToolBuilders/
 
