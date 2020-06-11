@@ -14,6 +14,37 @@
           FACILITIES_HOTEL
 ]]>
 </select>
+  <!-- 메인 시설소개 -->
+ <select id="mainFacilities" parameterType="hashmap" resultType="hashmap" >
+<![CDATA[
+           SELECT
+          F.FAC_HOTEL_ID,
+          F.FAC_HOTEL_NAME,
+          F.FAC_HOTEL_CONTENT,
+          F.FAC_HOTEL_LOCATION,
+          F.FAC_HOTEL_TIME,
+          F.FAC_HOTEL_FAC,
+          F.FAC_HOTEL_PHONE,
+          F.FAC_HOTEL_DETAIL,
+      LISTAGG(M.HOTEL_IMGS_FILE, ',') 
+      WITHIN GROUP (ORDER BY M.HOTEL_IMGS_FILE)HOTEL_IMGS_FILE
+      FROM
+          FACILITIES_HOTEL F , HOTEL_IMAGES M
+      WHERE 
+          F.FAC_HOTEL_ID = M.FAC_HOTEL_ID
+      AND 
+          F.FAC_HOTEL_ID = 2
+      GROUP BY 
+          F.FAC_HOTEL_ID,
+          F.FAC_HOTEL_NAME,
+          F.FAC_HOTEL_CONTENT,
+          F.FAC_HOTEL_LOCATION,
+          F.FAC_HOTEL_TIME,
+          F.FAC_HOTEL_FAC,
+          F.FAC_HOTEL_PHONE,
+          F.FAC_HOTEL_DETAIL
+]]>
+</select>
  <!-- 호텔 부대시설 정보조회 -->
 <select id="selectTypeByFacilities" parameterType="hashmap" resultType="hashmap" >
 <![CDATA[

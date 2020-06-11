@@ -8,5 +8,7 @@ public interface FacilitiesService {
 
 	List<Map<String, Object>> selectFacilities(Map<String, Object> map) throws Exception;
 	
+	List<Map<String, Object>> mainFacilities(Map<String, Object> map) throws Exception;
+	
 	Map<String, Object> selectTypeByFacilities(Map<String, Object> map) throws Exception;
 }
