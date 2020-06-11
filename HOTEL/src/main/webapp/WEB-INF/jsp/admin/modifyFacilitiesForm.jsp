@@ -67,16 +67,18 @@
 				<th scope="row">첨부파일</th>
 				<td colspan="4">
 					<c:forEach var="row" items="${list }" varStatus="var">
+					<!-- varStatus: 상태용 변수로 for문이 돌아가는 상태를 알게 해주는 변수 -->
 					<p>
-						<input type="hidden" id="FAC_HOTEL_ID"  name="${row.FAC_HOTEL_ID }" value="${row.FAC_HOTEL_ID }">
-						<a href="#this" id="FAC_HOTEL_ID" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
-						<input type="file" id="" name=""><a></a>
+						<!-- 숨김 처리 -->
+						<input type="hidden" id="FAC_HOTEL_ID"  name="IDX_${var.index}" value="${row.FAC_HOTEL_ID }">
+						<input type="hidden" id="HOTEL_IMGS_ID"  name="HOTEL_IMGS_ID_${var.index}" value="${row.HOTEL_IMGS_ID }">
+						<!-- 파일명 출력  -->
+						<a href="#this" id="name_${var.index}" name="name_${var.index}">${row.HOTEL_IMGS_FILE}</a>
+						
+						<!-- 파일 등록 -->
+						<input type="file" id="file_${var.index}" name="file_${var.index}">
 					</p>
-					
-					<p>
-			 			<input type="hidden" id="IDX" name="IDX_${var.index}" value="${row.IDX }">
-						<a href="#this" id="name_${var.index}" name="name_${var.index }">${row.ORIGINAL_FILE_NAME}</a>
-			 		</p>
+
 					</c:forEach>
 				</td>
 			</tr>
@@ -120,7 +122,7 @@
 		var comSubmit = new ComSubmit("frm");
 		comSubmit.setUrl("<c:url value='/admin/modifyFacilities' />");
 		comSubmit.submit();
-		alert(comSubmit);
+		//alert(comSubmit);
 	}
 	 
 	function fn_facDelete(){

@@ -85,7 +85,7 @@ public class AdminFacilitiesController {
 		ModelAndView mv = new ModelAndView("/admin/modifyFacilitiesForm");
 		
 		Map<String, Object> map = adminFacilitiesService.adminFacDetail(commandMap.getMap());
-		mv.addObject("map", map);
+		mv.addObject("map", map.get("map"));
 		mv.addObject("list", map.get("list"));
 		return mv;
 	}
@@ -94,9 +94,13 @@ public class AdminFacilitiesController {
 	@RequestMapping(value="/admin/modifyFacilities")
 	public ModelAndView modifyFac(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesDetail");
+		System.out.println("11:43am"+commandMap.getMap());
 		adminFacilitiesService.modifyFacilities(commandMap.getMap(), request);
+	
 		
 		mv.addObject("FAC_HOTEL_ID", commandMap.get("FAC_HOTEL_ID"));
+		
+		
 		return mv;
 	}
 }

@@ -46,6 +46,7 @@ public class AdminFacilitiesDAO extends AbstractDAO{
 	
 	//게시글 이미지 수정
 	public void modifyFacImg(Map<String, Object> map) throws Exception{
+		System.out.println(map);
 		update("adminFac.updateFacilitiesImage", map);
 	}
 	

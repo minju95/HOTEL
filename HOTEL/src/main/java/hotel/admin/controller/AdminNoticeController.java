@@ -84,28 +84,32 @@ private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\
 		
 		MultipartFile file = request.getFile("NOTICE_IMG");
 
-		System.out.println("파일명 "+file);
+		System.out.println("파일명 : "+file);
 
-		System.out.println("파일명은 무엇인가요오오 " + file);
 
 		String fileName = file.getOriginalFilename();
-		System.out.println("원래 파일명은 무엇인가요오오 " + fileName);
-		if (fileName == "") {
-			fileName = "";
-			
-		} else {
-			System.out.println("원래 파일명은 무엇인가요오오3 " + fileName);
+		System.out.println("원래 파일명 :  " + fileName);
 
 			commandMap.put("NOTICE_IMG", fileName); // map에 파일명 집어넣기
 
 			File uploadFile = new File(uploadPath + fileName);
-			System.out.println("경로를 알려줘라 " + uploadFile);
+			System.out.println("업로드 경로 : " + uploadFile);
 
+			if(uploadFile.exists()) {  //파일 객체가 존재하면
+				fileName = new Date().getTime()+fileName;
+				System.out.println("파일 명(date 포함) : "+fileName);
+				uploadFile = new File(uploadPath + fileName); 
+			}
+			
+			try {
+				file.transferTo(uploadFile);
+			} catch(Exception e) {
+			}
 			// 업로드 경로에 파일 삽입
 			file.transferTo(uploadFile);
-		}
 		adminNoticeService.insertNewNotice(commandMap.getMap(), request);
 		return mv;
+		
 	}
 	//공지사항 삭제
 	@RequestMapping(value="admin/deleteNotice")
@@ -136,13 +140,14 @@ private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\
 		
 		String orgFileName = request.getParameter("orgFile");
 		MultipartFile newFile = request.getFile("newFile");
-		//System.out.println(newFile);
+		System.out.println(newFile);
 		String newFileName = newFile.getOriginalFilename();
 		
-		commandMap.getMap().put("orgFileName",orgFileName); //기존파일명을 map에 집어넣기
+		commandMap.getMap().put("NOTICE_IMG",orgFileName); //기존파일명을 map에 집어넣기
 		System.out.println("map에 들어간 데이터를 꺼내보자"+commandMap.getMap());
 		
 		if(newFile != null && !newFileName.equals("")) { //새로 등록된 파일이 있다면
+			
 			if(orgFileName != null || !orgFileName.equals("")) { //기존파일이 있다면
 				File removeFile = new File(uploadPath + orgFileName); //업로드 폴더 경로+파일명 가져와서
 				removeFile.delete(); //기존파일 삭제
@@ -153,14 +158,26 @@ private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+		
 			commandMap.getMap().put("NOTICE_IMG", newFileName); //새로운 파일을 map에 집어넣기(NOTICE_IMG라는 이름으로 MAP에 삽입)
 			System.out.println("map의 데이터를 다시 꺼내라"+commandMap.getMap());
 		}
 		
+		//새로 등록된 파일이 없고 기존 이미지를 없애려면?
 		adminNoticeService.modifyNotice(commandMap.getMap(), request);
 		mv.addObject("NOTICE_ID", commandMap.get("NOTICE_ID"));
 		System.out.println(mv);
 		
 		return mv;
+		
+		
+
+		
+		
+		
+		
+		
+		
+		
 	}
 }

@@ -37,11 +37,11 @@
 			</tr>
 			<tr>
 				<th>이미지</th>
-				<td align="center">${map.NOTICE_ISVIEW}</td>
+				<td align="center">${map.NOTICE_IMG}</td>
 			</tr>
 			<tr>
 				<th>공개여부</th>
-				<td align="center">${map.NOTICE_IMG}</td>
+				<td align="center">${map.NOTICE_ISVIEW}</td>
 			</tr>
 		</tbody>
 	

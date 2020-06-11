@@ -90,11 +90,20 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 	@Override
 	public void modifyFacilities(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		adminFacilitiesDAO.modifyFacilities(map);
-		adminFacilitiesDAO.modifyFacImg(map); //이미지 수정
 		
+			
+		
+		//FileUtils 클래스를 이용하여 파일을 저장하고 데이터를 가져온 후, DB에 저장
+		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(map, request);
+		System.out.println("이미지 파일명: 어어어얼ㅇㄹ언ㄹㅇ"+list);
+		
+		 for(int i=0, size=list.size(); i<size; i++) {
+			 System.out.println("ㅎㅎㅎㅎㅎㅎㅎㅎ" + list.get(i));
+		 adminFacilitiesDAO.modifyFacImg(list.get(i));
+		 }
+
 	}
+
 	
-	//DEL_GB, IS_NEW 값을 이용하여 이게 수정된 파일인지 여부를 알려줌
-	//DEL_GB, IS_NEW 없이 파일을 변경 -> 쿼리문+FileUtils클래스 모두 코드 입력?
 	
 }

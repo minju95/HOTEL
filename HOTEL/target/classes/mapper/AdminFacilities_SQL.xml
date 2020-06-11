@@ -85,7 +85,7 @@
 	<select id="facilitiesDetail" parameterType="hashmap" resultType="hashmap">
 			<![CDATA[			    
 			SELECT 
-			    FAC_HwpTEL_ID,
+			    FAC_HOTEL_ID,
 			    FAC_HOTEL_NAME,
 			    FAC_HOTEL_LOCATION,
 			    FAC_HOTEL_CONTENT,
@@ -139,9 +139,19 @@
 	SET
 		HOTEL_IMGS_FILE=#{HOTEL_IMGS_FILE}
 	WHERE
-		FAC_HOTEL_ID=#{FAC_HOTEL_ID}
-
 	]]>
+	<choose>
+		<when test="HOTEL_IMGS_ID_0 != null">
+			HOTEL_IMGS_ID=#{HOTEL_IMGS_ID_0}
+		</when>
+		
+		<when test="HOTEL_IMGS_ID_1 != null">
+			HOTEL_IMGS_ID=#{HOTEL_IMGS_ID_1}
+		</when>
+				
+		<otherwise>
+		</otherwise>
+	</choose>
 	</update>
 	
 	
