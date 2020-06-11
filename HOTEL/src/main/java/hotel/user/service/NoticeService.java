@@ -9,7 +9,7 @@ public interface NoticeService {
 
 	List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws Exception;
 
-	
+	List<Map<String, Object>> mainBoardList(Map<String, Object> map) throws Exception;
 
 	Map<String, Object> selectNextBoard(Map<String, Object> map) throws Exception;
 

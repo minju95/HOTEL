@@ -102,7 +102,7 @@ background-size:100%;
    <br>
    <br>
    <br>
-   <h1>A C C O M M O D A T I O N</h1></div>
+   <h1>A C C O M M O D A T I O N </h1></div>
    
 <br>
 <br>

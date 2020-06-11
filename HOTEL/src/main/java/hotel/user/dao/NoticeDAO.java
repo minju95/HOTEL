@@ -23,6 +23,11 @@ public class NoticeDAO extends AbstractDAO{
 
 
 
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> mainBoardList(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>)selectPagingList("notice.mainBoardList", map);
+	}
+
 	
 
 }

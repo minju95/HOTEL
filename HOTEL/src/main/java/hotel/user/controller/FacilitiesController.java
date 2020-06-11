@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import hotel.common.common.CommandMap;
-import hotel.user.service.FacilitiesService;
+
 import hotel.user.service.FacilitiesServiceImpl;
 
 
