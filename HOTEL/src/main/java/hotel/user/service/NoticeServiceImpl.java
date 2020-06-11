@@ -33,6 +33,12 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
+	public List<Map<String, Object>> mainBoardList(Map<String, Object> map) throws Exception {
+		return noticeDAO.mainBoardList(map);
+		
+	}
+	
+	@Override
 	public Map<String, Object> selectNextBoard(Map<String, Object> map) throws Exception{
 		
 		Map<String, Object> resultMap = noticeDAO.selectNextBoard(map);

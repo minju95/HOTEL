@@ -169,6 +169,8 @@ li {
 }
 </style>
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+
 <div>
 	<table>
 		<thead>

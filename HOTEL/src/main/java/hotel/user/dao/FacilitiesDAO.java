@@ -15,6 +15,10 @@ public class FacilitiesDAO extends AbstractDAO{
 		return (List<Map<String, Object>>)selectList("facilities.selectFacilities", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> mainFacilities(Map<String, Object> map) throws Exception{
+		return (List<Map<String, Object>>)selectList("facilities.mainFacilities", map);
+	}
 	
 	@SuppressWarnings("unchecked")
 	public Map<String, Object> selectTypeByFacilities(Map<String, Object> map) throws Exception{

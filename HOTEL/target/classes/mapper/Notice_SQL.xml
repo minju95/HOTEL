@@ -52,6 +52,36 @@
 
 
 </select>
+<!--메인 공지사항리스트 최신글5개 -->
+<select id="mainBoardList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+      SELECT 
+          RNUM, 
+          NOTICE_ID,
+          NOTICE_TITLE,
+          NOTICE_DATE
+      FROM
+       ( 
+      SELECT
+          ROW_NUMBER() OVER 
+       (  
+      ORDER BY 
+          NOTICE_ID DESC
+       )  
+          RNUM,
+          NOTICE_ID,
+          NOTICE_TITLE,
+          TO_CHAR(NOTICE_DATE,'YYYY-MM-DD') NOTICE_DATE
+      FROM
+        NOTICE
+      WHERE  
+          NOTICE_ISVIEW = 'Y')  
+      WHERE 
+          RNUM < 6
+
+
+]]>
+</select>
  <!-- 공지사항 검색 
 <select id="selectBoardSearchList" parameterType="hashmap" resultType="hashmap">
 

@@ -28,6 +28,12 @@ Logger log = Logger.getLogger(this.getClass());
 		return facilitiesDAO.selectFacilities(map);
 		
 	}
+	
+	@Override
+	public List<Map<String, Object>> mainFacilities(Map<String, Object> map) throws Exception {
+		return facilitiesDAO.mainFacilities(map);
+		
+	}
 
 	@Override
 	public Map<String, Object> selectTypeByFacilities(Map<String, Object> map) throws Exception {
