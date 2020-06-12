@@ -2,177 +2,278 @@
 <%@page import="java.util.Date" %>
 <jsp:useBean id="today" class="java.util.Date"/>
 
-<!-- Quest1 : From~To 유효성 검사 필요 (6/04) -->
-<!-- Quest2 : Ajax 검색기능 필요 (6/04) -->
+<!-- Quest1 : Ajax 검색기능 필요 (6/09) -->
 
 <!DOCTYPE html>
 <html>
 <head>
+<!-- include) include/include-header.jspf -->
 <%@include file="/WEB-INF/include/include-header.jspf"%>
-<title>RESERVATION</title>
 </head>
+
+<!-- 링크) jQuery 링크 -->
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
-<!-- 인원수 증감 -->
+
+<!-- 스크립트) 성인/아동 +- 버튼 기능 -->
 <script type="text/javascript">
 	$(function(){
 		$('#adultMinus').click(function(e){
 			e.preventDefault();
-			var stat = $('#adult').attr('value');
+			var stat = $('#person_adult').attr('value');
 			var num = parseInt(stat,10);
 			num--;
-			if(num<=0){
-				num = 0;
+			if(num<=1){
+				num = 1;
 			}
-			$('#adult').attr('value',num);
+			$('#person_adult').attr('value',num);
 		});
 		$('#adultPlus').click(function(e){
 			e.preventDefault();
-			var stat = $('#adult').attr('value');
+			var stat = $('#person_adult').attr('value');
 			var num = parseInt(stat,10);
 			num++;
 			if(num>10){
 				num=10;
 			}
-			$('#adult').attr('value',num);
+			$('#person_adult').attr('value',num);
 		});
 	});
 	$(function(){
 		$('#childMinus').click(function(e){
 			e.preventDefault();
-			var stat = $('#child').attr('value');
+			var stat = $('#person_child').attr('value');
 			var num = parseInt(stat,10);
 			num--;
 			if(num<=0){
 				num = 0;
 			}
-			$('#child').attr('value',num);
+			$('#person_child').attr('value',num);
 		});
 		$('#childPlus').click(function(e){
 			e.preventDefault();
-			var stat = $('#child').attr('value');
+			var stat = $('#person_child').attr('value');
 			var num = parseInt(stat,10);
 			num++;
 		
 			if(num>10){
 				num=10;
 			}
-			$('#child').attr('value',num);
+			$('#person_child').attr('value',num);
 		});
 	});
-	$(".mainLayerPopClose").click( function () {
-		mainLayerPopCloseAct();
-	});
-	
-	//팝업
-	$(document).ready(function(){
-        $("#contents").click(function(){
-            $("#popup").fadeIn();
-        });
-        $("#popup").click(function(){
-            $("#popup").fadeOut();
-        });
-	});
 </script>
 
-<!-- 달력 -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<link rel="stylesheet" href="/resources/demos/style.css">
+<!-- css) 입/퇴실 달력 css datepicker -->
+<link rel="stylesheet" href="<c:url value='/js/calendar.css'/>">
+
+<!-- 링크) datepicker 링크 -->
 <script src="<c:url value='/js/jquery-1.12.4.js'/>" charset="UTF-8"></script>
 <script src="<c:url value='/js/jquery-ui.js'/>" charset="UTF-8"></script>
+
+<!-- 스크립트) 입/퇴실 datepicker -->
 <script>
-	$( function() {
-		$( "#fromdate" ).datepicker();
-	} );
+$( function() {
+	$("#fromdate").datepicker({
+		showOn: "both",
+		buttonImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQzoSW0WNf23o6cUoLBL8K1ZHNkEeJmx_8f8ZGb-uOJLHpzQ4S4&usqp=CAU",
+		buttonImageOnly: true,
+		buttonText: "Select Date"
+	});
+});
+$( function() {
+	$("#todate").datepicker({
+		showOn: "both",
+		buttonImage: "https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQzoSW0WNf23o6cUoLBL8K1ZHNkEeJmx_8f8ZGb-uOJLHpzQ4S4&usqp=CAU",
+		buttonImageOnly: true,
+		buttonText: "Select Date"
+	});
+});
 </script>
+
+<!-- 스크립트) 입/퇴실 날짜 유효성 검사 -->
 <script>
-	$( function() {
-		$( "#todate" ).datepicker();
-	} );
+$( function() {
+	//입실 유효성 검사
+	$("#fromdate").on("change", function() {
+		//데이트 변수 선언
+		var fromdate = $("#fromdate").val(); //입실
+		var todate = $("#todate").val(); //퇴실
+		var currentdate = $("#currentdate").val(); //오늘
+		var beforefrom = $("#beforefrom").val(); //param입실
+		
+		//현재날짜 c로 date저장
+		var current = currentdate.split("-");
+		var c = new Date(current[0], current[1]-1, current[2], 0, 0, 0, 0);
+		
+		if (fromdate < currentdate) { // 입실 < 당일
+			
+			if (beforefrom != "" && beforefrom >= currentdate) { //param입실 !="" && param입실 >= 오늘
+				var before = beforefrom.split("-");
+				var b = new Date(before[0], before[1]-1, before[2], 0, 0, 0, 0);
+				alert('지난 날짜의 예약은 불가합니다.');
+				$("#fromdate").datepicker("setDate", b);
+				return false;
+			} else { //그 외
+				alert('지난 날짜의 예약은 불가합니다.');
+				$("#fromdate").datepicker("setDate", c);
+				return false;
+			}
+		}
+		
+		if (fromdate >= todate) { // 입실 >= 퇴실
+			
+			if (beforefrom != "" && beforefrom >= currentdate) { //param입실 !="" && param입실 >= 오늘
+				var before = beforefrom.split("-");
+				var b = new Date(before[0], before[1]-1, before[2], 0, 0, 0, 0);
+				alert('퇴실일 이후 날짜로 예약은 불가합니다.');
+				$("#fromdate").datepicker("setDate", b);
+				return false;
+			} else { //그 외
+				alert('퇴실일 이후 날짜로 예약은 불가합니다.');
+				$("#fromdate").datepicker("setDate", c);
+				return false;
+			}
+		}
+		fn_search();
+	});
+	//퇴실 유효성 검사
+	$("#todate").on("change", function() {
+		//데이트 변수 선언
+		var fromdate = $("#fromdate").val(); //입실
+		var todate = $("#todate").val(); //퇴실
+		var currentdate = $("#currentdate").val(); //오늘
+		var beforeto = $("#beforeto").val(); //param퇴실
+		
+		//현재+1날짜 c로 date저장
+		var current = currentdate.split("-");
+		var temp = new Date(current[0], current[1]-1, current[2], 0, 0, 0, 0);
+		var c = new Date(current[0], current[1]-1, temp.getDate()+1, 0, 0, 0, 0);
+		
+		//to
+		var to = todate.split("-");
+		var t = new Date(to[0], to[1]-1, to[2], 0, 0, 0, 0);
+
+		if (todate < currentdate) { // 퇴실 < 당일
+			
+			if (beforeto != "" && beforeto > currentdate) { // param퇴실 !="" && param퇴실 > 오늘
+				var before = beforeto.split("-");
+				var b = new Date(before[0], before[1]-1, before[2], 0, 0, 0, 0);
+				alert('지난 날짜의 예약은 불가합니다.');
+				$("#todate").datepicker("setDate", b);
+				return false;
+			} else { //그 외
+				alert('지난 날짜의 예약은 불가합니다.');
+				$("#fromdate").datepicker("setDate", c); // 내일날짜
+				return false;
+			}
+		}
+		
+		if (todate < fromdate) { // 퇴실 < 입실
+			
+			if (beforeto != "" && beforeto > currentdate) { // param퇴실 !="" && param퇴실 > 오늘
+				var before = beforeto.split("-");
+				var b = new Date(before[0], before[1]-1, before[2], 0, 0, 0, 0);
+				alert('입실일 이전 날짜로 예약은 불가합니다.');
+				$("#todate").datepicker("setDate", b);
+				return false;
+			} else { //그 외
+				alert('입실일 이전 날짜로 예약은 불가합니다.');
+				$("#todate").datepicker("setDate", c); // 내일날짜
+				return false;
+			}
+		}
+		fn_search();
+	});
+});
 </script>
 
-<!-- 입력 날짜 체크 -->
-<script>
-
+<!-- 스크립트) 검색 버튼 -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$("a[name='search']").on("click", function(e){
+		e.preventDefault();
+		fn_search();
+	});
+});
+function fn_search(){
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/reservation/main' />");
+	comSubmit.addParam("fromdate", $("#fromdate").val());
+	comSubmit.addParam("todate", $("#todate").val());
+	comSubmit.addParam("adult", $("#person_adult").val());
+	comSubmit.addParam("child", $("#person_child").val());
+	comSubmit.submit();
+}
 </script>
 
-<style>
-@charset "utf-8";
-@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
-
-/*RESET*/
-* {
-    margin: 0;
-    padding: 0;
+<!-- 스크립트) F5키 사용 불가 코드 -->
+<script type="text/javascript">
+function noEvent() {
+	if (event.keyCode == 116 || event.keyCode == 9) {
+	return false;
+	}
+	else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82)) {
+	return false;
+	}
 }
+document.onkeydown = noEvent;
+</script>
 
-body {
-    font: 17px 'Nanum Gothic', sans-serif;
+<!-- 스크립트) 예약하기 버튼 눌렀을 때 동작 -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$("a[name='rsvbtn']").on("click", function(e){
+		if ($("#MEM_USERID").val() == '') {
+			alert('로그인 후 이용 바랍니다.');
+			location = '/hotel/main';
+			return false;
+		}
+		e.preventDefault();
+		fn_nextStep($(this));
+	});
+});
+function fn_nextStep(obj){
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/reservation/writeForm' />");
+	comSubmit.addParam("MEM_USERID", $("#MEM_USERID").val());
+	comSubmit.addParam("fromdate", $("#fromdate").val());
+	comSubmit.addParam("todate", $("#todate").val());
+	comSubmit.addParam("adult", $("#adult").val());
+	comSubmit.addParam("child", $("#child").val());
+	comSubmit.addParam("ROOM_ID", obj.parent().find("#ROOM_ID").val());
+	comSubmit.addParam("ROOM_PRICE", obj.parent().find("#DC").val());
+	comSubmit.submit();
 }
+</script>
 
-a {
-    text-decoration: none;
-    color: #404040;
-}
 
-li {
-    list-style: none;
-}
+<!-- reservation/main css -->
+<link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
+<!-- 마우스 우클릭 방지 -->
+<body oncontextmenu="return false" ondragstart="return false">
+<div class="a_layer">
+<div class="a_layer_inner">
+<div class="a_content">
 
-/*BODY*/
+<div class="">
 
-/*팝업창*/
-#popup {
-    display: none; /*숨기기*/
-    /* position: fixed; */
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.9);
-}
+<!-- include) member/main -->
+<jsp:include page="/WEB-INF/jsp/common/main.jsp"  flush="true"/>
 
-#popmenu {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 300px;
-    height: 200px;
-    text-align: center;
-    background: #fff;
-}
+</div>
 
-#popmenu p {
-    margin-top: 80px;
-}
-
-.exit {
-    position: absolute;
-    left: 50%;
-    bottom: 10px;
-    transform: translate(-50%,0);
-    width: 60px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    background: #007AAE;
-    cursor: pointer;
-}
-
-/*본문내용*/
-#contents {
-    width: 300px;
-    height: 250px;
-    text-align: center;
-    line-height: 150px;
-    color: #fff;
-    background: #555;
-    cursor: pointer;
-}
-</style>
-<body>
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-
-<div>
-	<table>
+<!-- 검색 start -->
+<div class="top">
+<input type="hidden" class="date" id="currentdate" value="<fmt:formatDate value="${today}" type="DATE" pattern="yyyy-MM-dd" />">
+<input type="hidden" class="date" id="beforeto" value="${param.todate}">
+	<table style="width:950px; text-align:center; margin:20px;">
+		<colgroup>
+			<col width="25%" />
+			<col width="25%" />
+			<col width="20%" />
+			<col width="20%" />
+			<col width="*%" />
+		</colgroup>
 		<thead>
 			<tr>
 				<th>입실</th>
@@ -184,162 +285,310 @@ li {
 		</thead>
 		<tbody>
 		<form id="frm">
+		<input type="hidden" id="MEM_USERID" value="${USERID}"/>
 			<tr>
-				<td>
+				<td style="text-align:center;">
 				<c:choose>
 					<c:when test="${empty param.fromdate}">
-						<input type="text" id="fromdate" readonly value="<fmt:formatDate value="${today}" type="DATE" pattern="yyyy-MM-dd" />">
+						<input type="text" class="date" id="fromdate" readonly value="<fmt:formatDate value="${today}" type="DATE" pattern="yyyy-MM-dd" />">
 					</c:when>
 					<c:otherwise>
-						<input type="text" id="fromdate" readonly value="${param.fromdate}">
+						<input type="hidden" id="beforefrom" value="${param.fromdate}">
+						<input type="text" class="date" id="fromdate" readonly value="${param.fromdate}">
 					</c:otherwise>
 				</c:choose>
 				</td>
 				
-				<td>
+				<td style="text-align:center;">
 				<c:choose>
 					<c:when test="${empty param.todate}">
 						<c:set var="tomorrow" value="<%=new Date(new Date().getTime() + 60*60*24*1000)%>" />
-						<input type="text" id="todate" readonly value="<fmt:formatDate value="${tomorrow}" type="DATE" pattern="yyyy-MM-dd" />">
+						<input type="text" class="date" id="todate" readonly value="<fmt:formatDate value="${tomorrow}" type="DATE" pattern="yyyy-MM-dd" />">
 					</c:when>
 					<c:otherwise>
-						<input type="text" id="todate" readonly value="${param.todate}">
+						<input type="text" class="date" id="todate" readonly value="${param.todate}">
 					</c:otherwise>
 				</c:choose>
 				</td>
 				
-				<td>
-				<a href="#" id="adultPlus">+</a>
+				<td style="text-align:center;">
+				<a href="#" id="adultPlus" class="plma">+</a>
 				<c:choose>
 					<c:when test="${empty param.adult}">
-						<input type="text" id="adult" readonly value="1">
+						<input type="text" class="person" id="person_adult" readonly value="1">
+						<input type="hidden" id="adult" value="1">
 					</c:when>
 					<c:otherwise>
-						<input type="text" id="adult" readonly value="${param.adult}">
+						<input type="text" class="person" id="person_adult" readonly value="${param.adult}">
+						<input type="hidden" id="adult" value="${param.adult}">
 					</c:otherwise>
 				</c:choose>
-				<a href="#" id="adultMinus">-</a>
+				<a href="#" id="adultMinus" class="plma">-</a>
 				</td>
 				
-				<td>
-				<a href="#" id="childPlus">+</a>
+				<td style="text-align:center;">
+				<a href="#" id="childPlus" class="plma">+</a>
 				<c:choose>
 					<c:when test="${empty param.child}">
-						<input type="text" id="child" readonly value="0">
+						<input type="text" class="person" id="person_child" readonly value="0">
+						<input type="hidden" id="child" value="0">
 					</c:when>
 					<c:otherwise>
-						<input type="text" id="child" readonly value="${param.child}">
+						<input type="text" class="person" id="person_child" readonly value="${param.child}">
+						<input type="hidden" id="child" value="${param.child}">
 					</c:otherwise>
 				</c:choose>
-				<a href="#" id="childMinus">-</a>
+				<a href="#" id="childMinus" class="plma">-</a>
 				<td>
-					<a href="#this" name="search">Search</a>
+					<a href="#this" class="searchBtn" name="search">Search</a>
 					<%@include file="/WEB-INF/include/include-body.jspf"%>
 				</td>
 			</tr>
 			</form>
 		</tbody>
-	</table><br/><br/>
-	<script type="text/javascript">
-	$(document).ready(function(){
-		$("a[name='search']").on("click", function(e){
-			e.preventDefault();
-			fn_search();
-		});
-	});
-	function fn_search(){
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/reservation/main' />");
-		comSubmit.addParam("fromdate", $("#fromdate").val());
-		comSubmit.addParam("todate", $("#todate").val());
-		comSubmit.addParam("adult", $("#adult").val());
-		comSubmit.addParam("child", $("#child").val());
-		comSubmit.submit();
-	}
-	</script>
+	</table>
 </div>
+<!-- 검색 end -->
+
+<!-- List start -->
+<div class="bottom">
 <c:choose>
 	<c:when test="${fn:length(list) > 0}">
-		<c:forEach items="${list}" var="row">
-		<table style="width:800px;">
+		<c:forEach items="${list}" var="row" varStatus="status">
+		<table style="width:1000px; text-align:center; margin:10px;">
 			<colgroup>
 				<col width="*%" />
-				<col width="30%" />
-				<col width="30%" />
+				<col width="*%" />
+				<col width="*%" />
+				<col width="*%" />
 			</colgroup>
-			<tr>
+			<tr class="type">
 				<td>
 				<c:choose>
 					<c:when test="${empty row.ROOM_IMGS_FILE}">
-						이미지 준비 중
+						<div class="roomIMG">이미지 준비 중</div>
 					</c:when>
 					<c:otherwise>
-					<div id="contents">
-						<img alt="main" width="300" height="250" src="<spring:url value='/images/${row.ROOM_IMGS_FILE}'/>">
-					</div>
+						<div class="roomIMG"><img alt="main" width="300" height="250" src="<spring:url value='/image/${list[status.index].ROOM_IMGS_FILE}'/>"></div>
 					</c:otherwise>
 				</c:choose>
 				</td>
-				<td>
-				${row.ROOM_NAME}
-				<br>
-				(잔여객실 : ${row.CNT})
+				<td class="roomName">
+					${row.ROOM_NAME}<br>
+					<p class="cnt">( 잔여 객실 : ${row.CNT} )</p><br>
+					<a href="#" class="btn-example" onclick="layer_open('layer2');return false;">상세보기</a>
 				</td>
-				<td>
+				<td class="priceInfo">
 				<c:choose>
 					<c:when test="${row.DC eq row.ROOM_PRICE}">
 						${row.ROOM_PRICE}
 					</c:when>
 					<c:otherwise>
-						${row.DC}<br/>
-						<p style="color:red; text-decoration-line:line-through;">${row.ROOM_PRICE}</p>
+						<p style="color:red;">${row.DC}</p>
+						<p style="text-decoration-line:line-through;">${row.ROOM_PRICE}</p>
 					</c:otherwise>
 				</c:choose>
 				<br><br>
-				<a href="#this" name="rsvbtn">예약하기</a>
+				<a href="#this" name="rsvbtn" class="booking">예약하기</a>
+				<!-- 예약하기 hidden 전달 값 -->
 				<input type="hidden" id="ROOM_ID" value="${row.ROOM_ID}">
 				<input type="hidden" id="ROOM_NAME" value="${row.ROOM_NAME}">
 				<input type="hidden" id="DC" value="${row.DC}">
-				</td>
-				<td>
-				<div id="popup">
-					<div id="popmenu">
-						<p>안녕하세요!</p>
-						<div class="exit">닫기</div>
-					</div>
-				</div>
+				<input type="button" id="button_${status.index}" name="button_${status.index}" value="Button">
+				<!-- 상세보기 hidden 전달 값 -->
+				<input type="text" id="index_no" value="/hotel/image/${list[status.index].ROOM_IMGS_FILE}">
+				<input type="hidden" id="ROOM_ADULT" value="${row.ROOM_ADULT}">
+				<input type="hidden" id="ROOM_CHILD" value="${row.ROOM_CHILD}">
+				<input type="hidden" id="ROOM_FAC_NAME" value="${row.ROOM_FAC_NAME}">
+				<input type="hidden" id="ROOM_CHK_INTIME" value="${row.ROOM_CHK_INTIME}">
+				<input type="hidden" id="ROOM_CHK_OUTTIME" value="${row.ROOM_CHK_OUTTIME}">
 				</td>
 			</tr>
 		</table>
 		</c:forEach>
 	</c:when>
 	<c:otherwise>
-		<tr>
+		<tr style="text-align:center;">
 			<td colspan="4">조회된 결과가 없습니다.</td>
 		</tr>
 	</c:otherwise>
 </c:choose>
+</div>
+<!-- List end -->
+
+<!-- include) include/include-body.jspf -->
 <%@include file="/WEB-INF/include/include-body.jspf"%>
+
+<!-- 스크립트) 테스트 -->
 <script type="text/javascript">
-$(document).ready(function(){
-	$("a[name='rsvbtn']").on("click", function(e){
+$(function(){
+	$("input[name^='button']").on("click", function(e) {
 		e.preventDefault();
-		fn_nextStep($(this));
+		fn_indexNo($(this));
+		return false;
 	});
 });
-function fn_nextStep(obj){
-	var comSubmit = new ComSubmit();
-	comSubmit.setUrl("<c:url value='/reservation/writeForm' />");
-	comSubmit.addParam("MEM_USERID", "maaaal");
-	/* comSubmit.addParam("MEM_USERID", $("#MEM_USERID").val()); */
-	comSubmit.addParam("fromdate", $("#fromdate").val());
-	comSubmit.addParam("todate", $("#todate").val());
-	comSubmit.addParam("adult", $("#adult").val());
-	comSubmit.addParam("child", $("#child").val());
-	comSubmit.addParam("ROOM_ID", obj.parent().find("#ROOM_ID").val());
-	comSubmit.addParam("ROOM_PRICE", obj.parent().find("#DC").val());
-	comSubmit.submit();
+function fn_indexNo(obj) {
+	var index = obj.parent().find("#index_no").val();
+	var name = obj.parent().find("#ROOM_NAME").val();
+	var fac_detail = obj.parent().find("#ROOM_FAC_NAME").val().trim();
+	
+	fac_detail.replace(/(\n|\r\n)/g, '<br>');
+	
+	var adult = obj.parent().find("#ROOM_ADULT").val();
+	var child = obj.parent().find("#ROOM_CHILD").val();
+	var checkIn = obj.parent().find("#ROOM_CHK_INTIME").val();
+	var checkOut = obj.parent().find("#ROOM_CHK_OUTTIME").val();
+	$('#pop_img').attr('src',index);
+	$('#pop_name').attr('value',name);
+	$('#pop_fac').attr('value',fac_detail);
+	$('#pop_adult').attr('value',adult);
+	$('#pop_child').attr('value',child);
+	$('#pop_checkIn').attr('value',checkIn);
+	$('#pop_checkOut').attr('value',checkOut);
+
+	
+	var temp = $('#' + 'layer2');
+	var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
+	
+	if(bg){
+		$('.layer').fadeIn();   //'bg' 클래스가 존재하면 레이어가 나타나고 배경은 dimmed 된다. 
+	}else{
+		temp.fadeIn();
+	}
+	
+	// 화면의 중앙에 레이어를 띄운다.
+	if (temp.outerHeight() < $(document).height() )
+		temp.css('margin-top', '-'+temp.outerHeight()/2+'px');
+	else temp.css('top', '0px');
+	if (temp.outerWidth() < $(document).width() )
+		temp.css('margin-left', '-'+temp.outerWidth()/2+'px');
+	else temp.css('left', '0px');
+	
+	//cbtn 클릭하면 'bg' 클래스가 존재하면 레이어를 사라지게 한다.
+	temp.find("a[name='cbtn']").on("click", function(e){
+		e.preventDefault();
+		if(bg){
+			$('.layer').fadeOut();
+		}else{
+			temp.fadeOut();
+		}
+	});
+	
+	//배경을 클릭하면 레이어를 사라지게 하는 이벤트 핸들러
+	$('.layer .bg').click(function(e){
+		$('.layer').fadeOut();
+		e.preventDefault();
+	});
 }
 </script>
+
+<!-- 스크립트) 상세페이지 - 수정 필요 -->
+<script type="text/javascript">
+function layer_open(el){
+	var temp = $('#' + el);
+	var bg = temp.prev().hasClass('bg');    //dimmed 레이어를 감지하기 위한 boolean 변수
+	
+	if(bg){
+		$('.layer').fadeIn();   //'bg' 클래스가 존재하면 레이어가 나타나고 배경은 dimmed 된다. 
+	}else{
+		temp.fadeIn();
+	}
+	
+	// 화면의 중앙에 레이어를 띄운다.
+	if (temp.outerHeight() < $(document).height() )
+		temp.css('margin-top', '-'+temp.outerHeight()/2+'px');
+	else temp.css('top', '0px');
+	if (temp.outerWidth() < $(document).width() )
+		temp.css('margin-left', '-'+temp.outerWidth()/2+'px');
+	else temp.css('left', '0px');
+	
+	//cbtn 클릭하면 'bg' 클래스가 존재하면 레이어를 사라지게 한다.
+	temp.find("a[name='cbtn']").on("click", function(e){
+		e.preventDefault();
+		if(bg){
+			$('.layer').fadeOut();
+		}else{
+			temp.fadeOut();
+		}
+	});
+	
+	//배경을 클릭하면 레이어를 사라지게 하는 이벤트 핸들러
+	$('.layer .bg').click(function(e){
+		$('.layer').fadeOut();
+		e.preventDefault();
+	});
+}
+</script>
+
+<!-- 상세 페이지 - 수정 필요 -->
+<div class="layer">
+    <div class="bg"></div>
+    <div id="layer2" class="pop-layer">
+        <div class="pop-container">
+            <div class="pop-conts">
+                <!--content //-->
+                <div style="font-family: nanum -webkit-pictograph; font-size: 1rem; padding:5px;">
+                <p class="ctxt mb20">
+                	<img id="pop_img" alt="main" width="500" height="450" src=""><br>
+                	<div class="pop_div">객실명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
+                	<div class="pop_div">기준인원 : Adults: <input type="text" id="pop_adult" class="pop_person" readonly>, Children : <input type="text" id="pop_child" class="pop_person" readonly></div>
+                	<div class="pop_div">객실 편의 시설 : <br><input type="text" id="pop_fac" class="pop_fac" readonly></div>
+                	<div class="pop_div">체크인 : <input type="text" id="pop_checkIn" class="pop_tt" readonly>, 체크아웃 : <input type="text" id="pop_checkOut" class="pop_tt" readonly></div>
+                	<div class="pop_div">
+                		<div>취소 정책
+                			<div>체크인 1일 17시 까지 50% 환불</div>
+                			<div>체크인 2일 17시 까지 80% 환불</div>
+                			<div>체크인 3일 17시 까지 100% 환불</div>
+                		</div>
+                	</div>
+                </p>
+                </div>
+                <div class="btn-r">
+                    <a href="#" class="cbtn">Close</a>
+                </div>
+                <!--// content-->
+            </div>
+        </div>
+    </div>
+</div>
+
+</div>
+</div>
+</div>
 </body>
+<style>
+.pop_div {
+ margin: 5px 5px 5px 0;
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+}
+.pop_person {
+width: 30px;
+ border: none;
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ text-align: center;
+}
+.pop_ee {
+border: none;
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ text-align: center;
+}
+.pop_tt {
+width: 50px;
+ border: none;
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ text-align: center;
+}
+.pop_fac {
+ border: none;
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ text-align: left;
+ width: 490px;
+}
+</style>
 </html>

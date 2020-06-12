@@ -43,6 +43,24 @@ public class AdminRoomsServiceImpl implements AdminRoomsService{
 		return (List<Map<String, Object>>) adminRoomsDAO.selectRoomType(map);
 	}
 
+	//상세보기
+	@Override
+	public Map<String, Object> selectRoomsDetail(Map<String, Object> map) throws Exception {
+		
+		Map<String, Object> resultMap = adminRoomsDAO.selectRoomsDetail(map); //상세정보 결과값을 map이라는 이름으로 resultMap에 저장
+		Map<String, Object> tempMap = adminRoomsDAO.selectRoomsDetail(map);
+		resultMap.put("map", tempMap);
+		
+		List<Map<String, Object>> list = adminRoomsDAO.selectRoomImgs(map); //selectFileList(): 게시글의 첨부파일 목록을 가져옴
+		resultMap.put("list", list); //그 목록을 resultMap에 "list"라는 이름으로 저장
+		System.out.println(resultMap);
+		
+		//resultMap에는 map과 list라는 이름의 키가 저장되어 있음을 알아둘 것!
+		//키는 Controller에서 map.get("map")과 map.get("list")라는 키로 사용됨
+		
+		return resultMap;
+	}
+
 	@Override
 	public void insertNewRoom(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		adminRoomsDAO.insertNewRoom(map);

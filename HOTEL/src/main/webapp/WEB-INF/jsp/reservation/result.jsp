@@ -4,9 +4,8 @@
 <html>
 <head>
 <%@include file="/WEB-INF/include/include-header.jspf"%>
-<title>RESERVATION RESULT</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 <table style="border:1px solid #ccc">
 <c:choose>
 	<c:when test="${fn:length(list) > 0}">
@@ -64,10 +63,34 @@
 <%@include file="/WEB-INF/include/include-body.jspf"%>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 <script type="text/javascript">
+<!-- F5키 막는 방법 -->
+function noEvent() {
+	if (event.keyCode == 116 || event.keyCode == 9) {
+	return false;
+	}
+	else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82)) {
+	return false;
+	}
+}
+document.onkeydown = noEvent;
+
+function doNotReload(){
+    if( (event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) || (event.keyCode == 116) ) {
+        event.keyCode = 0;
+        event.cancelBubble = true;
+        event.returnValue = false;
+    } 
+}
+document.onkeydown = doNotReload;
+
+
 $(document).ready(function(){
 	$("a[name='cancel']").on("click", function(e){
-		e.preventDefault();
-		fn_cancel();
+		if (confirm("취소하시겠습니까?") == true){
+			e.preventDefault();
+			fn_cancel();
+		}
+		return false;
 	});
 });
 function fn_cancel(){

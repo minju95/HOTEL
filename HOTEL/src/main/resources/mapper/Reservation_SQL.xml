@@ -45,7 +45,8 @@
 	<select id="selectRooms" resultType="hashmap">
 		<![CDATA[
 		SELECT
-		    A.ROOM_ID, A.ROOM_NAME, A.CNT, TO_CHAR((TO_NUMBER((TO_DATE(sysdate+1) - TO_DATE(sysdate)) )*A.ROOM_PRICE),'999,999,999') ROOM_PRICE, B.ROOM_IMGS_FILE,
+		    A.ROOM_ID, A.ROOM_NAME, A.CNT, TO_CHAR((TO_NUMBER((TO_DATE(sysdate+1) - TO_DATE(sysdate)) )*A.ROOM_PRICE),'999,999,999') ROOM_PRICE, B.ROOM_IMGS_FILE, A.ROOM_TYPE,
+		    A.ROOM_ADULT, A.ROOM_CHILD, A.ROOM_FAC_NAME, A.ROOM_CONTENT, A.ROOM_SIZE, A.ROOM_BEDTYPE, A.ROOM_CHK_INTIME, A.ROOM_CHK_OUTTIME,
 		    TO_CHAR(((TO_NUMBER((TO_DATE(sysdate+1) - TO_DATE(sysdate)))*A.ROOM_PRICE)-A.DC),'999,999,999') DC
 		FROM
 			(SELECT
@@ -85,10 +86,12 @@
 		<![CDATA[
 		SELECT
 	         A.ROOM_ID, A.ROOM_NAME, A.CNT, B.ROOM_IMGS_FILE,
-	         TO_CHAR((TO_NUMBER((TO_DATE(#{todate}) - TO_DATE(#{fromdate})) )*A.ROOM_PRICE),'999,999,999') ROOM_PRICE,
+	         TO_CHAR((TO_NUMBER((TO_DATE(#{todate}) - TO_DATE(#{fromdate})) )*A.ROOM_PRICE),'999,999,999') ROOM_PRICE, A.ROOM_TYPE,
+	         A.ROOM_ADULT, A.ROOM_CHILD, A.ROOM_FAC_NAME, A.ROOM_CONTENT, A.ROOM_SIZE, A.ROOM_BEDTYPE, A.ROOM_CHK_INTIME, A.ROOM_CHK_OUTTIME,
 	         TO_CHAR(((TO_NUMBER((TO_DATE(#{todate}) - TO_DATE(#{fromdate})))*A.ROOM_PRICE)-A.DC),'999,999,999') DC
 	      FROM
-	          (SELECT A.ROOM_ID, A.ROOM_TYPE, A.ROOM_NAME, A.ROOM_PRICE, B.CNT, C.DC
+	          (SELECT A.ROOM_ID, A.ROOM_TYPE, A.ROOM_NAME, A.ROOM_PRICE, A.ROOM_ADULT, A.ROOM_CHILD, A.ROOM_FAC_NAME,
+	          		  A.ROOM_CONTENT, A.ROOM_SIZE, A.ROOM_BEDTYPE, A.ROOM_CHK_INTIME, A.ROOM_CHK_OUTTIME, B.CNT, C.DC
 	           FROM ROOM A, 
 	              (SELECT MIN(ROOM_ID) ROOM_ID, COUNT(ROOM_ID) CNT
 	               FROM ROOM 
@@ -133,32 +136,30 @@
 		]]>
 	</select>
 
+	<delete id="deleteReservation" parameterType="hashmap">
+		DELETE RESERVATION
+		WHERE RES_ID = #{RES_ID}
+	</delete>
 	
+	<delete id="deleteCard" parameterType="hashmap">
+		DELETE CARD
+		WHERE CAR_ID = #{CAR_ID}
+	</delete>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<select id="selectRoomView" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+		SELECT A.ROOM_ID, A.ROOM_TYPE, A.ROOM_NAME, A.ROOM_SIZE, A.ROOM_BEDTYPE, A.ROOM_CONTENT, B.ROOM_IMGS_FILE
+		FROM ROOM A,
+		    (SELECT ROOM_IMGS_ID, ROOM_TYPE, ROOM_IMGS_FILE FROM ROOM_IMAGES WHERE ROOM_IMGS_ID IN
+		        (SELECT MIN(ROOM_IMGS_ID)ROOM_IMGS_ID FROM ROOM_IMAGES WHERE ROOM_TYPE IN
+		            (SELECT MIN(ROOM_TYPE) ROOM_TYPE FROM ROOM WHERE ROOM_DATE <= sysdate GROUP BY ROOM_TYPE)
+		        GROUP BY ROOM_TYPE)
+		    )B
+		WHERE A.ROOM_TYPE = B.ROOM_TYPE(+)
+		AND ROOM_ID IN
+		    (SELECT MIN(ROOM_ID) ROOM_ID FROM ROOM WHERE ROOM_DATE <= sysdate GROUP BY ROOM_TYPE)
+		ORDER BY ROOM_TYPE
+		]]>
+	</select>
 	
 </mapper>

@@ -14,6 +14,8 @@ public interface AdminRoomsService {
 	
 	List<Map<String, Object>> selectRoomType(Map<String, Object> map) throws Exception;
 	
+	Map<String, Object> selectRoomsDetail(Map<String, Object> map) throws Exception;
+	
 	void insertNewRoom (Map<String, Object> map, HttpServletRequest request) throws Exception;
 	 /* 
 	 * void updateBoard(Map<String, Object> map) throws Exception;

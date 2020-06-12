@@ -30,7 +30,7 @@
 			</tr>
 		</thead>
 		<tbody>
-		 
+
 		</tbody>
 	</table>
 	<center>
@@ -56,53 +56,34 @@
    	</form> 
 	
 	
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>		
-	
+	<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  Launch demo modal
+</button>
 
 <!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-						<span aria-hidden="true">&times;</span>
-					</button>
-					<h4 class="modal-title" id="myModalLabel">ROOM_TYPE</h4>
-				</div>
-				<div class="modal-body">
-					<div>
-						ROOM_IMG_FILE
-					</div>
-					<div>
-						상품 : ROOM_NAME
-					</div>
-					<div>
-						기준인원 : ROOM_ADULT, ROOM_CHILD
-					</div>
-					<div>
-					<h5>객실 편의시설</h5>
-						ROOM_FAC_NAME
-					</div>
-					<div>
-					<h5>호텔 제공 시설/서비스</h5>
-						체크인: ROOM_CHK_INTIME/ 체크아웃: ROOM_CHK_OUTTIME<br>
-						조식: 12,000 1인(세금포함) <br>
-						※ 모든 금액에는 부가가치세 10%가 포함되어 있습니다.
-					</div>
-					<div>
-						<h5>취소 정책</h5>
-						취소수수료 체크인 1일 17시 까지 50% 환불 <br>
-						체크인 2일 17시 까지 80% 환불 <br>
-						체크인 3일 17시 까지 100% 환불
-					</div>
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="button" class="btn btn-primary">Save changes</button>
-				</div>
-			</div>
-		</div>
-	</div>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+	
+	
+	
+	
+	<%@ include file="/WEB-INF/include/include-body.jspf" %>		
 
 	<script>
 		$(document).ready(function() {
@@ -126,12 +107,13 @@
 			comSubmit.submit();
 		}
 
-		/* 	function fn_roomsDetail(obj){ //부대시설명 클릭시
-		 var comSubmit = new ComSubmit();
-		 comSubmit.setUrl("<c:url value='/admin/roomsDetail' />");
-		 comSubmit.addParam("ROOM_ID", obj.parent().find("input[name='title']").val());
-		 comSubmit.submit();
-		 } */
+		 function fn_roomsDetail(obj){ //부대시설명 클릭시
+	        var comSubmit = new ComSubmit();
+	        comSubmit.setUrl("<c:url value='/admin/roomsDetail' />");
+	        comSubmit.addParam("ROOM_ID", obj.parent().find("input[name='title']").val());
+	        comSubmit.addParam("ROOM_TYPE", obj.parent().find("input[name='type']").val());
+	        comSubmit.submit();
+		 }
 
 		function fn_roomsList(pageNo) { //페이징 함수
 			var comAjax = new ComAjax();
@@ -172,24 +154,25 @@
 											+ value.RNUM
 											+ "</td>"
 											+ "<td>"
-											+ value.ROOM_TYPE
-											+ "<input type='hidden' name='title' value=" + value.ROOM_ID + ">"
+											+ value.ROOM_TYPE_NAME
 											+ "</td>"
 											+ "<td>"
-											+ "<a href='#this' name='title' data-toggle='modal' data-target='#myModal'>"
+											+ "<a href='#this' name='title'>"
+											+ "<input type='hidden' name='title' value=" + value.ROOM_ID + ">"
+											+ "<input type='hidden' name='type' value=" + value.ROOM_TYPE + ">"
 											+ value.ROOM_NAME + "</a></td>"
-											+ "<td>" + value.ROOM_ID + "</td>"
+											+ "<td id='id'>" + value.ROOM_ID + "</td>"
 											+ "<td>" + value.ROOM_PRICE
 											+ "</td>" + "</tr>";
 								});
+				
 				//이거 넣어야 데이터 들어감
 				body.append(str);
-
-				/* 			$("a[name='title']").on("click", function(e){
-				 e.preventDefault();
-				 fn_roomsDetail($(this));
-				 }); */
-
+				
+				$("a[name='title']").on("click", function(e){
+					e.preventDefault();
+					fn_roomsDetail($(this));
+				});
 			}
 		}
 	</script>

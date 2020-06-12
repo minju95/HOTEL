@@ -41,7 +41,7 @@ public class ReservationController {
 	}
 	
 	// RESERVATION Select > writeFrom
-	@RequestMapping(value="/reservation/writeForm")
+	@RequestMapping(value="/reservation/writeForm", method = RequestMethod.POST)
 	public ModelAndView select() throws Exception {
 		ModelAndView mv = new ModelAndView("/reservation/writeForm");
 		int RES_ID = reservationService.selectResId();
@@ -51,7 +51,8 @@ public class ReservationController {
 		return mv;
 	}
 	
-	@RequestMapping(value = "/reservation/pay")
+	// RESERVATION Select > pay
+	@RequestMapping(value = "/reservation/pay", method = RequestMethod.POST)
 	public ModelAndView next(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/reservation/result");
 		List<Map<String, Object>> list = reservationService.insert(commandMap.getMap());
@@ -61,4 +62,24 @@ public class ReservationController {
 		return mv;
 	}
 
+	// RESERVATION result > cancel
+	@RequestMapping(value = "/reservation/cancel", method = RequestMethod.POST)
+	public ModelAndView cancel(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/common/main");
+		
+		reservationService.cancelReservation(commandMap.getMap());
+		reservationService.cancelCard(commandMap.getMap());
+		return mv;
+	}
+	
+	// Room_view
+		@RequestMapping(value = "/RoomView")
+		public ModelAndView roomView(CommandMap commandMap) throws Exception {
+			ModelAndView mv = new ModelAndView("/reservation/room_view");
+			
+			List<Map<String, Object>> list = reservationService.roomView(commandMap.getMap());
+			mv.addObject("list", list);
+			return mv;
+		}
+	
 }

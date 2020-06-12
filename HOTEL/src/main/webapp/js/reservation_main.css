@@ -1,0 +1,200 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic');
+
+/*reservation.main*/
+/*RESET*/
+* {margin: 0; padding: 0;}
+body {font-family: nanum -webkit-pictograph;}
+a {text-decoration: none; color: #404040;}
+li {list-style: none;}
+
+
+/*BODY*/
+.a_layer {height: auto;}
+.a_layer_inner {display: flex; justify-content: center; align-items: center;}
+.a_content {display: inline-block; color: black;}
+
+/*BODY - Search*/
+.top {background: #fff; margin-top: 10px; padding: 10px; display: flex; justify-content: center; align-items: center;}
+.date   {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 10px; margin: 10px; width: 100px; border: none;}
+.person {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 10px; margin: 10px; width: 50px; border: none;}
+
+
+/*BODY - List*/
+.bottom {margin-top: 10px;}
+.priceInfo {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 15px 0; margin: 4px; width:120px; background-color: #fff; color:black; text-decoration: none; display: inline-block; cursor: pointer; border-radius:10px; margin-top: 30px; border-top: 2px solid black; border-bottom: 2px solid black}
+.roomName {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1.5rem; word-spacing: 10px;}
+.cnt {font-family: nanum -webkit-pictograph; font-size: 0.8rem; word-spacing: normal;}
+
+/*BODY - Image*/
+.roomIMG {width: 200px; margin-left: 20px;}
+.type {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 15px 0; margin: 4px; width: 100%; border: 5px dashed #cee; color:black; text-decoration: none; display: inline-table; font-size: 1rem; cursor: pointer; border-radius:10px;}
+
+/*BODY - Button*/
+.booking {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; margin: 4px; width:100px; background-color: #fff; color:black; text-decoration: none; display: inline-block; cursor: pointer; border-radius:10px;  padding: 10px 0;}
+.booking:hover {border-radius:10px; background-color: #cee; color: black;}
+.searchBtn {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 15px 0; margin: 4px; width:100px; background-color: #f8585b; border: none; color:#fff; text-decoration: none; display: inline-block; font-size: 15px; cursor: pointer; border-radius:10px;}
+.searchBtn:hover {background-color: #87ceeb; color: black;}
+.plma {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 1px; margin: 4px; width: 20px; height: 23px; background-color: #f8585b; border: none; color: #fff; text-decoration: none; display: inline-block; font-size: 15px; cursor: pointer; border-radius: 50%;}
+.plma:hover {background-color: #87ceeb; color: black;}
+
+/*POPUP*/
+.layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}
+.layer .bg {position:absolute; top:0; left:0; width:100%; height:100%; background:#000; opacity:.5; filter:alpha(opacity=50);}
+.layer .pop-layer {display:block;}
+.pop-layer {display:none; position: absolute; top: 50%; left: 50%; width: 550px; height:auto;  background-color:#fff; border: 5px solid #3571B5; z-index: 10;}
+.pop-layer .pop-container {padding: 20px 25px;}
+.pop-layer p.ctxt {color: #666; line-height: 25px;}
+.pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
+a.cbtn {display:inline-block; height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px;}
+a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;}
+
+/*reservation.writeForm*/
+.write_date {
+ border: none;
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ font-weight: bold;
+ text-align: center;
+ height: 60px;
+}
+.write_title {
+ font-family: nanum -webkit-pictograph;
+ font-size: 1.5rem;
+ font-weight: bold;
+ text-align: center;
+ height: 60px;
+ /* background-color: #ceed; */
+ padding: 10px;
+}
+.write_midlleTitle {
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ font-weight: bold;
+ text-align: center;
+ height: 60px;
+ /* border: 2px solid #ceed; */
+ background-color: #eee;
+ 
+}
+.write_person {
+ border: none;
+ font-family: nanum -webkit-pictograph;
+ font-size: 0.8rem;
+ font-weight: bold;
+ text-align: center;
+ height: 60px;
+}
+.write_comments {
+ border: none;
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ font-weight: bold;
+ text-align: left;
+ height: 40px;
+ width: 700px;
+ padding: 10px;
+ border-bottom: 1px solid black;
+}
+.write_carNum {
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ /* font-weight: bold; */
+ text-align: left;
+ height: 10px;
+ width: 50px;
+ padding: 10px;
+ border-bottom: 1px solid black;
+ border-radius: 5px;
+ text-align: center;
+}
+.write_val {
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ /* font-weight: bold; */
+ text-align: left;
+ height: 10px;
+ width: 50px;
+ padding: 10px;
+ border-bottom: 1px solid black;
+ border-radius: 5px;
+ text-align: center;
+}
+.write_cvc {
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ /* font-weight: bold; */
+ text-align: left;
+ height: 10px;
+ width: 50px;
+ padding: 10px;
+ border-bottom: 1px solid black;
+ border-radius: 5px;
+ text-align: center;
+}
+.write_name {
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ /* font-weight: bold; */
+ text-align: left;
+ height: 10px;
+ width: 100px;
+ padding: 10px;
+ border-bottom: 1px solid black;
+ border-radius: 5px;
+ text-align: center;
+}
+.write_company {
+ font-family: nanum -webkit-pictograph;
+ font-size: 1rem;
+ /* font-weight: bold; */
+ text-align: left;
+ height: 10px;
+ width: 150px;
+ padding: 10px;
+ border-bottom: 1px solid black;
+ border-radius: 5px;
+ text-align: center;
+}
+.write_check {
+ font-family: nanum -webkit-pictograph;
+ color: red;
+ font-weight: bold;
+ font-size: 0.8rem;
+ padding: 5px;
+}
+.write_tdbox {
+ text-align:left;
+ padding:10px;
+ height: 60px;
+ width: 250px;
+}
+.write_btn {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 15px 0; margin: 4px; width:100px; background-color: #f8585b; border: none; color:#fff; text-decoration: none; display: inline-block; font-size: 15px; cursor: pointer; border-radius:10px;}
+.write_btn:hover {background-color: #87ceeb; color: black;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

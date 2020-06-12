@@ -8,54 +8,49 @@
 	<select id="selectRoomsList" parameterType="hashmap" resultType="hashmap">
 <include refid="common.pagingPre"/>
 	<![CDATA[
-   SELECT
-	    ROWNUM RNUM,
-	    ROOM_ID,
-	    DECODE(ROOM_TYPE,'1','Business Double',
-	    	DECODE(ROOM_TYPE,'2','Business Twin',
-	    		DECODE(ROOM_TYPE,'3','Superior Double',
-	    			DECODE(ROOM_TYPE,'4','Superior Twin',
-	    				DECODE(ROOM_TYPE,'5','Drama Suite',
-	    					DECODE(ROOM_TYPE,'6','Deluxe Suite',
-	    						DECODE(ROOM_TYPE,'7','Premium Suite',
-	    							DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE,
-	    ROOM_NAME,
-	    ROOM_ADULT,
-	    ROOM_CHILD,
-	    ROOM_FAC_NAME,
-	    ROOM_CONTENT,
-	    ROOM_SIZE,
-	    ROOM_BEDTYPE,
-	    ROOM_CHK_INTIME,
-	    ROOM_CHK_OUTTIME,
-	    ROOM_DATE,
-	    ROOM_PRICE,
-	    ROOM_IMGS_ID,
-	    ROOM_IMGS_FILE
-    FROM
-	    (
-	    SELECT 
-			a.ROOM_ID,
-			a.ROOM_TYPE,
-			a.ROOM_NAME,
-			a.ROOM_ADULT,
-			a.ROOM_CHILD,
-			a.ROOM_FAC_NAME,
-			a.ROOM_CONTENT,
-			a.ROOM_SIZE,
-			a.ROOM_BEDTYPE,
-			a.ROOM_CHK_INTIME,
-			a.ROOM_CHK_OUTTIME,
-			a.ROOM_DATE,
-			a.ROOM_PRICE,
-			b.ROOM_IMGS_ID,
-			b.ROOM_IMGS_FILE
-		FROM
-			ROOM a, ROOM_IMAGES b
-		WHERE
-			a.ROOM_TYPE = b.ROOM_TYPE
-	        ORDER BY a.ROOM_ID asc
-	    ) A
+	SELECT
+		    ROWNUM RNUM,
+		    ROOM_ID,
+		    ROOM_TYPE,
+		    DECODE(ROOM_TYPE,'1','Business Double',
+		    	DECODE(ROOM_TYPE,'2','Business Twin',
+		    		DECODE(ROOM_TYPE,'3','Superior Double',
+		    			DECODE(ROOM_TYPE,'4','Superior Twin',
+		    				DECODE(ROOM_TYPE,'5','Drama Suite',
+		    					DECODE(ROOM_TYPE,'6','Deluxe Suite',
+		    						DECODE(ROOM_TYPE,'7','Premium Suite',
+		    							DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE_NAME,
+		    ROOM_NAME,
+		    ROOM_ADULT,
+		    ROOM_CHILD,
+		    ROOM_FAC_NAME,
+		    ROOM_CONTENT,
+		    ROOM_SIZE,
+		    ROOM_BEDTYPE,
+		    ROOM_CHK_INTIME,
+		    ROOM_CHK_OUTTIME,
+		    ROOM_DATE,
+		    ROOM_PRICE
+	    FROM
+		    (
+		    SELECT 
+				ROOM_ID,
+				ROOM_TYPE,
+				ROOM_NAME,
+				ROOM_ADULT,
+				ROOM_CHILD,
+				ROOM_FAC_NAME,
+				ROOM_CONTENT,
+				ROOM_SIZE,
+				ROOM_BEDTYPE,
+				ROOM_CHK_INTIME,
+				ROOM_CHK_OUTTIME,
+				ROOM_DATE,
+				ROOM_PRICE
+			FROM
+				ROOM
+		        ORDER BY ROOM_ID asc
+		    ) A
     ]]>	
     <choose>
 	<when test="searchOption == 'ROOM_NAME'">
@@ -133,6 +128,50 @@
 		#{ROOM_IMGS_FILE}
 	)
 	</insert>
+	
+	<!-- 객실 상세보기 -->
+	<select id="selectRoomsDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT
+	    ROOM_ID, 
+	    DECODE(ROOM_TYPE,'1','Business Double',
+		    	DECODE(ROOM_TYPE,'2','Business Twin',
+		    		DECODE(ROOM_TYPE,'3','Superior Double',
+		    			DECODE(ROOM_TYPE,'4','Superior Twin',
+		    				DECODE(ROOM_TYPE,'5','Drama Suite',
+		    					DECODE(ROOM_TYPE,'6','Deluxe Suite',
+		    						DECODE(ROOM_TYPE,'7','Premium Suite',
+		    							DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE,
+	    ROOM_NAME,
+	    ROOM_ADULT,
+	    ROOM_CHILD,
+	    ROOM_FAC_NAME,
+	    ROOM_CONTENT,
+	    ROOM_SIZE,
+	    ROOM_BEDTYPE,
+	    ROOM_CHK_INTIME,
+	    ROOM_CHK_OUTTIME,
+	    ROOM_DATE,
+	    ROOM_PRICE
+	FROM
+	    ROOM
+	WHERE
+	    ROOM_ID = #{ROOM_ID}
+	</select>
+	
+	<!-- 객실 첨부파일 목록 -->
+	<select id="selectRoomImgs" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+				ROOM_IMGS_ID,
+				ROOM_TYPE,
+				ROOM_IMGS_FILE 
+			FROM 
+				ROOM_IMAGES
+			WHERE
+				ROOM_TYPE=#{ROOM_TYPE}
+		]]>
+	
+	</select>
 	
  	<!-- 등록 객실 수정 (updateRoom) -->
 	<update id="updateRoom" parameterType="hashmap">

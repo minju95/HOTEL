@@ -31,7 +31,19 @@ public class AdminRoomsDAO extends AbstractDAO{
 	
 	//이미지 등록
 	public void insertNewRoomImg(Map<String, Object> map) throws Exception{
-		System.out.println(map);
 		insert("AdminRooms.insertNewRoomImg", map);
+	}
+	
+	//객실 상세보기
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectRoomsDetail(Map<String, Object> map) throws Exception{
+		
+		return (Map<String, Object>)selectOne("AdminRooms.selectRoomsDetail", map);
+	}
+	//객실 상세보기 - 이미지
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectRoomImgs(Map<String, Object> map) throws Exception{
+		
+		return (List<Map<String, Object>>)selectList("AdminRooms.selectRoomImgs", map);
 	}
 }
