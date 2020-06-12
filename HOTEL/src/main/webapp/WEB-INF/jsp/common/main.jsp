@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,13 +20,17 @@ background-size:100%;
 .div-reservation{
 weith:100%;
 height:850px;
-border:1px solid black ;
+/*border:1px solid black ;*/
+/*background-image:url(/hotel/image/mainHotel.jpg);
+ background-repeat:no-repeat;
+background-size:100%;*/
 }
 
 .div-fac{
 weith:100%;
-height:650px;
+height:700px;
 /*border:1px solid black ;*/
+ 
 }
 
 .div-notice{
@@ -62,6 +66,7 @@ top:268%;
 }
 .a1{
 color: white;
+text-decoration: none;
 }
 
 
@@ -78,7 +83,7 @@ img {vertical-align: middle;}
 position: absolute;
 /*bottom:70%;*/
 left:10%;
-top:180%;
+top:190%;
 }
 
 .fac-name{
@@ -88,27 +93,29 @@ font-size: 22px;
 position: absolute;
 /*bottom:70%;*/
 left:60%;
-top:180%;
+top:190%;
 /*border:1px solid black ;*/
 }
 .fac-content{
+font-size: 18px;
  height: 220px;
   width: 500px;
 position: absolute;
 /*bottom:70%;*/
 left:60%;
-top:188%;
+top:198%;
 /*border:1px solid black ;*/
-font-size: 16px;
+
 }
 
 .fac-all{
+
  height: 190px;
   width: 500px;
 position: absolute;
 /*bottom:70%;*/
 left:60%;
-top:218%;
+top:228%;
 /*border:1px solid black ;*/
 }
 /* Caption text */
@@ -201,8 +208,9 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a href="
 <div class="div-reservation">
 </div>
 <div class="div-fac">
-<br>
 <center><h1 >시설소개</h1></center>
+<br>
+
 <c:forEach items="${list2}" var="fac">
 <div class="fac-name">
 <b>${fac.FAC_HOTEL_NAME}</b>
@@ -224,7 +232,8 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a href="
 
 <br>
 <div class="fac-content">
-${fn:replace(fac.FAC_HOTEL_CONTENT, cn, br)}
+
+${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 </div>
 <br>
 <div class="fac-all">

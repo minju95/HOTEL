@@ -15,9 +15,13 @@
 	.div-about{
  background-image:url(/hotel/image/hotel.jpg);
 height:250px;
-color: white;
+color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
+}
+a{
+text-decoration: none;
+color: black;
 }
 </style>
 <title>공지 사항 뷰</title>

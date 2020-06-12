@@ -82,7 +82,7 @@ body.en .sub_txt_bg dl{ font-size: 14px;}
 .about_bottom ul li img{ width: 55%; margin: 50px auto 0;}
 .about_bottom ul li .title{ width: 100%; float: left; margin: 40px 0; font-size: 1.375em; color: #5d5d5d}
 .about_bottom ul li .txt{ width: 100%; padding: 0 20px 50px; float: left; font-size: 0.875em; color: #5d5d5d; text-align: justify; line-height: 26px;}
-.about_bottom .location{ width: 100%; height: auto; float: left}
+.about_bottom .location{ width: 100%; height: auto; float: left }
 .about_bottom .location dl{ width: 100%; height: auto; float: left; border-top: solid 1px #242424; padding: 20px 30px 20px 180px; position: relative; line-height: 26px; color: #5b5b5b}
 .about_bottom .location dl:last-child{ border-bottom: solid 1px #242424;}
 .about_bottom .location dl dt{ width: 120px; word-break: keep-all; float: left; position: absolute; left: 30px; top: 50%; transform:translate(0,-50%); font-size: 1.125em; font-weight: bold}
@@ -90,14 +90,15 @@ body.en .sub_txt_bg dl{ font-size: 14px;}
 /*about hotel 끝*/
 
 
-
 .div-about{
+
  background-image:url(/hotel/image/hotel.jpg);
 height:250px;
-color: white;
+color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
 }
+
 </style>
     </head>
 <body>
@@ -152,6 +153,8 @@ background-size:100%;
                     </p>
                 </li>
             </ul>
+       
+            
             <div class="location">
                 <h3 data-i18n="about.loc-title">오시는 길</h3>
                 <dl>
@@ -188,6 +191,7 @@ background-size:100%;
                     </dd>
                 </dl>
             </div>
+            
         </div>
     </div>
 </div>

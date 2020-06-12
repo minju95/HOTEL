@@ -1,15 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+    <% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <style>
 .div1{
-border:1px solid black ;
-border-collapse: collapse;
- text-align: center;
+width: 300px;
+  height:80px;
+ background-color:  white;
+position: absolute;
+/*bottom:70%;*/
+left:45%;
+top:60%;
+font-size: 22px;
+}
+.div2{
+width: 1000px;
 
+ background-color:  white;
+/*border:1px solid black ;*/
+font-size: 20px;
+margin-left: 250px;
+}
+
+.div3{
+width: 1000px;
+
+ background-color:  white;
+/*border:1px solid black ;*/
+font-size: 20px;
+margin-left: 250px;
+}
+.p1{
+color:red;
+font-size: 14px;
 }
 
 * {box-sizing: border-box;}
@@ -19,7 +44,7 @@ img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 500px;
+  max-width: 1000px;
  
   position: relative;
   margin: auto;
@@ -85,10 +110,23 @@ img {vertical-align: middle;}
 .div-about{
  background-image:url(/hotel/image/hotel.jpg);
 height:250px;
-color: white;
+color:   #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
 }
+.aa{
+text-decoration: none;
+font-size: 18px;
+ color:white;
+}
+.aa:hover { text-decoration: underline; }
+
+.fac-list{
+ background-color: #0f1927;
+ height:50px;
+
+}
+
 </style>
 
 <meta charset="UTF-8">
@@ -103,30 +141,34 @@ background-size:100%;
    <br>
    <br>
    <h1>F A C I L I T I E S</h1></div>
-   <br>
+
+   <div class="fac-list">
 <table align="center">
+<br>
 	<tr>
 <c:forEach items="${list}" var="fac">
 		
 				<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
-				<td ><a href='#this'  name="title" >${fac.FAC_HOTEL_NAME}</a>&emsp;
+				<td ><a class="aa" href='#this'  name="title" >${fac.FAC_HOTEL_NAME}</a>&emsp;
 				<input type='hidden' name='id' value="${fac.FAC_HOTEL_ID }"></td>
 			
 		</c:forEach>
 		</tr>
 </table>
-<br>
-<div class="div1">
-${map.FAC_HOTEL_NAME}
 </div>
 <br>
-
+<br>
+<div class="div1">
+<b>${map.FAC_HOTEL_NAME}</b>
+</div>
+<br>
+<br>
 <c:forTokens items="${map.HOTEL_IMGS_FILE }" delims="," var="item">
    <div class="slideshow-container">
 
 <div class="mySlides fade">
 
-  <img src="<c:url value='/image/${item}'/>" style="width:100%; height:500px;">
+  <img src="<c:url value='/image/${item}'/>" style="width:1000px; height:600px;">
 
 </div>
 
@@ -135,18 +177,26 @@ ${map.FAC_HOTEL_NAME}
 </c:forTokens>
 
 <br>
-<div class="div1">
-${map.FAC_HOTEL_CONTENT}
+<div class="div2">
+<br>
+${fn:replace(map.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 </div>
 <br>
-<div class="div1">
-${map.FAC_HOTEL_LOCATION}<br>
-${map.FAC_HOTEL_TIME}<br>
-${map.FAC_HOTEL_FAC}<br>
-${map.FAC_HOTEL_PHONE}<br>
+<div class="div3">
+
+<pre><b>위치</b>               ${map.FAC_HOTEL_LOCATION}</pre><br>
+<pre><b>운영시간</b>           ${map.FAC_HOTEL_TIME}</pre><br>
+<c:choose>
+	<c:when test="${map.FAC_HOTEL_FAC != null}">
+<pre><b>시설 </b>              ${map.FAC_HOTEL_FAC}</pre><br>
+</c:when>
+		<c:otherwise>
+		</c:otherwise>
+		</c:choose>
+<pre><b>대표번호</b>           ${map.FAC_HOTEL_PHONE}</pre>
 <c:choose>
 	<c:when test="${map.FAC_HOTEL_DETAIL != null}">
-${map.FAC_HOTEL_DETAIL}<br>
+<p class="p1">*${map.FAC_HOTEL_DETAIL}</p>
 	</c:when>
 		<c:otherwise>
 		</c:otherwise>
@@ -172,7 +222,7 @@ function showSlides() {
     }
     slides[slideIndex-1].style.display = "block";  
     
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
+    setTimeout(showSlides, 4000); // Change image every 2 seconds
 }
 $(document).ready(function(){ 
 	  $("a[name='title']").on("click", function(e){ //제목

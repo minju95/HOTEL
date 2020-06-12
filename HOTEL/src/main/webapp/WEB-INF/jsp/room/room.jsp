@@ -6,8 +6,31 @@
 <head>
 <style>
 .div1{
-border:1px solid black ;
-border-collapse: collapse;
+width: 300px;
+  height:80px;
+ background-color:  white;
+position: absolute;
+/*bottom:70%;*/
+left:45%;
+top:60%;
+font-size: 22px;
+}
+.div2{
+width: 1000px;
+
+ background-color:  white;
+/*border:1px solid black ;*/
+font-size: 20px;
+margin-left: 250px;
+}
+
+.div3{
+width: 1000px;
+
+ background-color:  white;
+/*border:1px solid black ;*/
+font-size: 20px;
+margin-left: 250px;
 }
 
 * {box-sizing: border-box;}
@@ -76,7 +99,7 @@ img {vertical-align: middle;}
 }
 
 /* On smaller screens, decrease text size */
-@media only screen and (max-width: 300px) {
+@media only screen and (max-width: 1000px) {
   .text {font-size: 11px}
 }
 .p1{
@@ -85,9 +108,25 @@ img {vertical-align: middle;}
 .div-about{
  background-image:url(/hotel/image/hotel.jpg);
 height:250px;
-color: white;
+color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
+}
+.aa{
+text-decoration: none;
+font-size: 18px;
+ color:white;
+}
+.aa:hover { text-decoration: underline; }
+
+.room-list{
+ background-color: #0f1927;
+ height:50px;
+
+}
+.p1{
+color:red;
+font-size: 14px;
 }
 </style>
 
@@ -104,23 +143,25 @@ background-size:100%;
    <br>
    <h1>A C C O M M O D A T I O N </h1></div>
    
-<br>
+<div class="room-list">
 <br>
 <table align="center">
 	<tr>
 <c:forEach items="${list}" var="room">
 		
 				<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
-				<td><a href='#this'  name="title" > ${room.ROOM_NAME}  </a>&emsp;
+				<td><a class="aa" href='#this'  name="title" > ${room.ROOM_NAME}  </a>&emsp;
 				<input type='hidden' name='id' value="${room.ROOM_TYPE }"></td>
 			
 		</c:forEach>
 		</tr>
 </table>
+</div>
+<br>
 <br>
 <div class="div1">
 
-${map.ROOM_NAME}
+<b>${map.ROOM_NAME}</b>
 </div>
 <br>
 
@@ -128,8 +169,8 @@ ${map.ROOM_NAME}
    <div class="slideshow-container">
 
 <div class="mySlides fade">
-
-  <img src="<c:url value='/image/${item}'/>" style="width:100%">
+<br>
+  <img src="<c:url value='/image/${item}'/>" style="width:1000px; height:600px;">
 
 </div>
 
@@ -138,13 +179,13 @@ ${map.ROOM_NAME}
 </c:forTokens>
 
 <br>
-<div class="div1">
+<div class="div2">
 ${map.ROOM_CONTENT}
 <div>ROOM SIZE:${map.ROOM_SIZE}   BED TYPE:${map.ROOM_BEDTYPE}</div><br>
 <P class="p1"><input type="button" value="RESERVATION"></P>
 </div>
 <br>
-<div class="div1">
+<div class="div3">
 <table>
 <colgroup>
 			<col width="20%"/>
@@ -152,15 +193,15 @@ ${map.ROOM_CONTENT}
 			<col width="20%"/>
 		</colgroup>
 <tr>
-<td>이용요금</td><td><fmt:formatNumber value="${map.ROOM_PRICE}" pattern="#,###"/></td>
+<td><b>이용요금</b></td><td><fmt:formatNumber value="${map.ROOM_PRICE}" pattern="#,###"/></td>
 </tr>
 <tr>
-<td>어메니티</td><td>${map.ROOM_FAC_NAME}</td>
+<td><b>어메니티</b></td><td>${map.ROOM_FAC_NAME}</td>
 </tr>
 <tr>
-<td>이용안내</td><td>${map.ROOM_CHK_INTIME}|${map.ROOM_CHK_OUTTIME}<br>
+<td><b>이용안내</b></td><td>${map.ROOM_CHK_INTIME}|${map.ROOM_CHK_OUTTIME}<br>
 조식 : 12,000 1인(세금포함)<br>
-※ 모든 금액에는 부가가치세 10%가 포함되어 있습니다.</td>
+<font style="color:red; font-size:14px;">※ 모든 금액에는 부가가치세 10%가 포함되어 있습니다.</font></td>
 </tr>
 </table>
          
@@ -189,7 +230,7 @@ function showSlides() {
     }
     slides[slideIndex-1].style.display = "block";  
     
-    setTimeout(showSlides, 2000); // Change image every 2 seconds
+    setTimeout(showSlides, 4000); // Change image every 2 seconds
 }
 $(document).ready(function(){ 
 	  $("a[name='title']").on("click", function(e){ //제목
