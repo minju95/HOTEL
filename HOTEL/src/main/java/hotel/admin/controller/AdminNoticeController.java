@@ -164,20 +164,14 @@ private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\
 		}
 		
 		//새로 등록된 파일이 없고 기존 이미지를 없애려면?
+		
+		
 		adminNoticeService.modifyNotice(commandMap.getMap(), request);
+		
 		mv.addObject("NOTICE_ID", commandMap.get("NOTICE_ID"));
 		System.out.println(mv);
 		
 		return mv;
-		
-		
-
-		
-		
-		
-		
-		
-		
 		
 	}
 }

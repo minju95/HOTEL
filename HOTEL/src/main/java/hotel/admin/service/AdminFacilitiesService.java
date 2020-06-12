@@ -24,4 +24,7 @@ public interface AdminFacilitiesService {
 	//수정
 	void modifyFacilities(Map<String, Object> map, HttpServletRequest request) throws Exception;
 	
+	//삭제
+	void deleteFacilities(Map<String, Object> map) throws Exception;
+		
 }

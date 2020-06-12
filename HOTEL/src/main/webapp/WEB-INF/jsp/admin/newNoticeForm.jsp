@@ -3,9 +3,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ include file="/WEB-INF/include/include-header.jspf" %>
+
+<%@ include file="/WEB-INF/include/include-header.jspf" %>
 	
-	<meta charset="UTF-8">
+<meta charset="UTF-8">
+<style>
+    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	h2{width: 800px;  display: block; text-align: center;}
+	
+	#PAGE_NAVI{text-align: center;margin-top:10%}
+
+	.div-about{
+ 	background-image:url(/hotel/image/hotel.jpg);
+	height:250px;
+	color: #e5a880;
+	background-repeat:no-repeat;
+	background-size:100%;
+	}
+a{
+text-decoration: none;
+color: black;
+}
+</style>
 	<!-- 부트스트랩 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -14,8 +33,19 @@
 </head>
 
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>N O T I C E </h1></div>
+
+<h3 align="center">공지사항 등록</h3>
+<br>
+
 <form id="frm"  name="frm" enctype="multipart/form-data">
-<table name="noticeWrite" class="" border="1" cellspacing="0" cellpadding="0">
+
+<table name="noticeWrite" border="1" cellspacing="0" cellpadding="0">
 	<colgroup>
 		<col width="15%"/>
 		<col width="85%"/>

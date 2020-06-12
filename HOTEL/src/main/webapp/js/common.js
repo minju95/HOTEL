@@ -109,27 +109,29 @@ function gfn_renderPaging(params){
 	var prev = (parseInt((currentIndex-1)/10)*10)-9 > 0 ? (parseInt((currentIndex-1)/10)*10)-9 : 1;
 	var next = (parseInt((currentIndex-1)/10)+1)*10+1 < totalIndexCount ? (parseInt((currentIndex-1)/10)+1) *10+1 : totalIndexCount;
 	
-	if(totalIndexCount > 10){
-		preStr += "<a herf='#this' class='pad_5' onclick='_movePage(1)'>[<<]</a>"+
-			"<a href='#this' class='pad_5' onclick='_movePage("+prev+")'>[<]</a>";
-	}else if(totalIndexCount <=10 && totalIndexCount > 1){
-		preStr += "<a href='#this' class='pad_5' onclick='_movePage(1)'>[<<]</a>";
+	if(totalIndexCount > 10){ //페이지수가 10개 이상인 경우
+		preStr += "<a herf='#this' class='pad_1' onclick='_movePage(1)'> [<<] </a>" +
+			"<a href='#this' class='pad_1' onclick='_movePage("+ prev +")'>[<] </a>";
+		
+	}else if(totalIndexCount <=10 && totalIndexCount > 1){ //페이지수가 10개보다 작은 경우
+		preStr += "<a href='#this' class='pad_1' onclick='_movePage(1)'> [<<] </a>";
 	}
-	if(totalIndexCount > 10){
-		postStr += "<a href='#this' class='pad_5' onclick='_movePage("+next+")'>[>]</a>"+
-			"<a href='#this' class='pad_5' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
-	}else if(totalIndexCount <=10 && totalIndexCount > 1){
-		postStr+= "<a href='#this' class='pad_5' onclick='_movePage("+totalIndexCount+")'>[>>]</a>";
+	
+	if(totalIndexCount > 10){ //페이지수가 10개 이상인 경우
+		postStr += "<a href='#this' class='pad_1' onclick='_movePage("+ next +")'> [>] </a>"+
+			"<a href='#this' class='pad_1' onclick='_movePage("+ totalIndexCount +")'> [>>] </a>";
+	}else if(totalIndexCount <=10 && totalIndexCount > 1){ //페이지수가 10개보다 작은 경우
+		postStr+= "<a href='#this' class='pad_1' onclick='_movePage("+ totalIndexCount +")'> [>>] </a>";
 	}
 	
 	for(var i=first; i<(first+last); i++){
 		if(i != currentIndex){
-			str += "<a href='#this' class='pad_5' onclick='_movePage("+i+")'>"+i+"</a>";
+			str += "<a href='#this' class='pad_1' onclick='_movePage("+i+")'>"+i+"</a>";
 		}else{
-			str += "<b><a href='#this' class='pad_5' onclick='_movePage("+i+")'>"+i+"</a></b>"
+			str += "<b><a href='#this' class='pad_1' onclick='_movePage("+i+")'>"+i+"</a></b>"
 		}
 	}
-	$("#"+divId).append(preStr+str+postStr);
+	$("#"+divId).append(preStr + str + postStr);
 }
 function _movePage(value){
 	$("#"+gfv_pageIndex).val(value);

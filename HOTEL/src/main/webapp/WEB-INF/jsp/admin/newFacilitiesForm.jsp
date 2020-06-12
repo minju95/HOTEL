@@ -3,24 +3,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header.jspf" %>
 	
-	<meta charset="UTF-8">
-	<!-- 부트스트랩 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<title>부대시설 등록</title>
+<meta charset="UTF-8">
+<style>
+    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	h2{width: 800px;  display: block; text-align: center;}
+	
+	#PAGE_NAVI{text-align: center;margin-top:10%}
+
+	.div-about{
+ 	background-image:url(/hotel/image/hotel.jpg);
+	height:250px;
+	color: #e5a880;
+	background-repeat:no-repeat;
+	background-size:100%;
+	}
+a{
+text-decoration: none;
+color: black;
+}
+</style>
+
+<!-- 부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<title>부대시설 등록</title>
 </head>
 
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>F A C I L I T I E S </h1></div>
+   
+<h3 align="center">부대시설 등록</h3>
+<br>
+
 <form id="frm"  name="frm" enctype="multipart/form-data">
-<table name="facWrite" class="" border="1" cellspacing="0" cellpadding="0">
+<table name="facWrite" border="1" cellspacing="0" cellpadding="0" align="center">
 	<colgroup>
 		<col width="15%"/>
 		<col width="85%"/>
 	</colgroup>
-	<caption>부대시설 등록</caption>
 	<tbody>
 		<tr>
 		
@@ -143,7 +173,7 @@
 					var str = "<tr><td><input type='file' name='HOTEL_IMGS_FILE_"+(img_count++)+"'></td></tr>";
 					$("#fileDiv").append(str);
 				}
-			}
+		}
 		
 	</script>	
 </body>

@@ -167,18 +167,20 @@ header{
   
       </ul> 
       </li> 
-      <c:set var="isAdmin" value="${ADMIN }" />
-      <c:if test="${isAdmin == 'Y' }">
+    <c:set var="isAdmin" value="${ADMIN}" />
+    	<c:if test="${isAdmin == 'Y'}">
        <li class="topMenuLi" style=" margin-top:10px;"> 
-    <a class="menuLink" href="/hotel/board/list">HOTEL MANAGER</a> 
-    <ul class="submenu"> 
-    <li style="margin-left: 440px;"><a href="/hotel/board/list" class="submenuLink">객실관리</a></li>
-    <li ><a href="/hotel/board/list" class="submenuLink">객실목록조회</a></li>
-    <li ><a href="/hotel/board/list" class="submenuLink">객실현황</a></li>
-    <li ><a href="/hotel/board/list" class="submenuLink">부대시설관리</a></li>
-    <li ><a href="/hotel/board/list" class="submenuLink">공지사항관리</a></li>
-    <li><a href="/hotel/board/list" class="submenuLink">매출관리</a></li>
-      </ul> 
+    <a class="menuLink" href="/hotel/admin/roomsList">HOTEL MANAGER</a> 
+	    <ul class="submenu"> 
+		    <li style="margin-left: 350px;"><a href="/hotel/board/list" class="submenuLink">객실관리</a></li>
+		    <li><a href="/hotel/admin/roomsList" class="submenuLink">객실목록조회</a></li>
+		    <li><a href="/hotel/admin/facilitiesList" class="submenuLink">부대시설관리</a></li>
+		    <li><a href="/hotel/admin/noticeList" class="submenuLink">공지사항관리</a></li>
+		    <li><a href="/hotel/admin/reservationList" class="submenuLink">예약자 조회</a></li>
+		    <li><a href="/hotel/admin/resDayList" class="submenuLink">일별 객실 예약 현황</a></li>
+		    <li><a href="#" class="submenuLink">일별 매출관리</a></li>
+		    <li><a href="#" class="submenuLink">월별 매출관리</a></li>
+	     </ul> 
       </li> 
       </c:if>
      </ul>

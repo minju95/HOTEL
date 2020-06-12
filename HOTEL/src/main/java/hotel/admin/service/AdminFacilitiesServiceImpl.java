@@ -98,12 +98,14 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 		System.out.println("이미지 파일명: 어어어얼ㅇㄹ언ㄹㅇ"+list);
 		
 		 for(int i=0, size=list.size(); i<size; i++) {
-			 System.out.println("ㅎㅎㅎㅎㅎㅎㅎㅎ" + list.get(i));
+			 //System.out.println("ㅎㅎㅎㅎㅎㅎㅎㅎ" + list.get(i));
 		 adminFacilitiesDAO.modifyFacImg(list.get(i));
 		 }
-
 	}
-
 	
-	
+	//삭제
+	@Override
+	public void deleteFacilities(Map<String, Object> map) throws Exception {
+		adminFacilitiesDAO.deleteFacilities(map);
+	}
 }
