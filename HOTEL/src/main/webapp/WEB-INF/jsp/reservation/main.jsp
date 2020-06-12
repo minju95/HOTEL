@@ -251,14 +251,20 @@ function fn_nextStep(obj){
 <link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
 <!-- 마우스 우클릭 방지 -->
 <body oncontextmenu="return false" ondragstart="return false">
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>R E S E R V A T I O N</h1></div>
 <div class="a_layer">
 <div class="a_layer_inner">
 <div class="a_content">
 
 <div class="">
 
-<!-- include) member/main -->
-<jsp:include page="/WEB-INF/jsp/common/main.jsp"  flush="true"/>
+
+
 
 </div>
 
@@ -556,6 +562,7 @@ function layer_open(el){
 </div>
 </div>
 </div>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 <style>
 .pop_div {
@@ -589,6 +596,13 @@ width: 50px;
  font-size: 1rem;
  text-align: left;
  width: 490px;
+}
+.div-about{
+ background-image:url(/hotel/image/hotel.jpg);
+height:250px;
+color: #e5a880;
+background-repeat:no-repeat;
+background-size:100%;
 }
 </style>
 </html>
