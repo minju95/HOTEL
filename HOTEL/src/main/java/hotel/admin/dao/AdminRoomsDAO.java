@@ -46,4 +46,25 @@ public class AdminRoomsDAO extends AbstractDAO{
 		
 		return (List<Map<String, Object>>)selectList("AdminRooms.selectRoomImgs", map);
 	}
+	
+	//객실 수정
+	public void updateRoom(Map<String, Object> map) throws Exception{
+		update("AdminRooms.updateRoom", map);
+	}
+	
+	//객실 이미지 수정
+	public void updateRoomImg(Map<String, Object> map) throws Exception{
+		update("AdminRooms.updateRoomImg", map);
+	}
+	
+	//객실 삭제
+	public void deleteRoom(Map<String, Object> map) throws Exception{
+		delete("AdminRooms.deleteRoom", map);
+	}
+	
+	//객실 이미지 삭제
+	public void deleteRoomImg(Map<String, Object> map) throws Exception{
+		delete("AdminRooms.deleteRoomImg", map);
+	}
+	
 }

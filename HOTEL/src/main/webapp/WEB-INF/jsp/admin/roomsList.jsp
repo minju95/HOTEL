@@ -20,32 +20,32 @@
 .pop_div {
  margin: 5px 5px 5px 0;
  font-family: nanum -webkit-pictograph;
- font-size: 1rem;
+ font-size: 15px;
 }
 .pop_person {
 width: 30px;
  border: none;
  font-family: nanum -webkit-pictograph;
- font-size: 1rem;
+ font-size: 20px;
  text-align: center;
 }
 .pop_ee {
 border: none;
  font-family: nanum -webkit-pictograph;
- font-size: 1rem;
+ font-size: 20px;
  text-align: center;
 }
 .pop_tt {
 width: 50px;
  border: none;
  font-family: nanum -webkit-pictograph;
- font-size: 1rem;
+ font-size: 20px;
  text-align: center;
 }
 .pop_fac {
  border: none;
  font-family: nanum -webkit-pictograph;
- font-size: 1rem;
+ font-size: 20px;
  text-align: left;
  width: 490px;
 }
@@ -67,7 +67,7 @@ width: 50px;
 			</tr>
 		</thead>
 		<tbody>
-
+		
 		</tbody>
 	</table>
 	<center>
@@ -106,7 +106,9 @@ width: 50px;
 				<!--content //-->
 				<div>
 					<p class="ctxt mb20">
-						<img id="pop_img" alt="main" width="500" height="450" src=""><br>
+					<div style="width:100%; text-align:center;">
+						<img id="pop_img" alt="main" width="500" height="450" src="">
+					</div>
 					<div class="pop_div">
 						객실명 : <input type="text" id="pop_name" class="pop_ee" readonly>
 					</div>
@@ -116,8 +118,8 @@ width: 50px;
 							type="text" id="pop_child" class="pop_person" readonly>
 					</div>
 					<div class="pop_div">
-						객실 편의 시설 : <br> <input type="text" id="pop_fac"
-							class="pop_fac" readonly>
+						객실 편의 시설 : <br>
+						<textarea id="pop_fac" class="pop_fac" cols="20" rows="11" readonly></textarea>
 					</div>
 					<div class="pop_div">
 						체크인 : <input type="text" id="pop_checkIn" class="pop_tt" readonly>,
@@ -136,6 +138,8 @@ width: 50px;
 				</div>
 				<!--// content-->
 				<div class="modal-footer">
+					<input type="hidden" id="room_id">
+					<button type="button" class="btn btn-primary" id="Modify">Modify</button>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
@@ -148,6 +152,8 @@ width: 50px;
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>		
 
 	<script>
+	var room_id; //수정클릭 시 방 호수 가져오기위해 전역변수 선언
+	
 		$(document).ready(function() {
 			fn_roomsList(1);
 
@@ -170,24 +176,28 @@ width: 50px;
 		}
 
 		 function fn_roomsDetail(obj){ //부대시설명 클릭시
-	    	var index = obj.parent().find("#ROOM_ID").val();
+			room_id = obj.parent().find("#ROOM_ID").val();
+	    	var index = obj.parent().find("#ROOM_IMGS_FILE").val();
+	    	alert(index);
+	    	var index_0 = index.split(',');
 	    	var name = obj.parent().find("#ROOM_TYPE_NAME").val();
-	    	var fac_detail = obj.parent().find("#ROOM_FAC_NAME").val();
-	    	
-	    	fac_detail.replace(/(\n|\r\n)/g, '<br>');
-	    	
+	    	var fac_detail = obj.parent().find("#ROOM_FAC_NAME").val().replace(/br/g,'\r\n');
 	    	var adult = obj.parent().find("#ROOM_ADULT").val();
 	    	var child = obj.parent().find("#ROOM_CHILD").val();
 	    	var checkIn = obj.parent().find("#ROOM_CHK_INTIME").val();
 	    	var checkOut = obj.parent().find("#ROOM_CHK_OUTTIME").val();
 	    	$('#pop_type').attr('value',name);
-	    	$('#pop_img').attr('src',index);
+	    	$('#pop_img').attr('src',"/hotel/image/"+index_0[0]);
 	    	$('#pop_name').attr('value',name);
-	    	$('#pop_fac').attr('value',fac_detail);
+	    	$('#pop_fac').val(fac_detail);
 	    	$('#pop_adult').attr('value',adult);
 	    	$('#pop_child').attr('value',child);
 	    	$('#pop_checkIn').attr('value',checkIn);
 	    	$('#pop_checkOut').attr('value',checkOut);
+	    	$('#room_id').attr('value',room_id);
+	    	
+
+	    	
 		 }
 
 		function fn_roomsList(pageNo) { //페이징 함수
@@ -241,6 +251,7 @@ width: 50px;
 											+ "<input type='hidden' id='ROOM_CHILD' name='type' value=\"" + value.ROOM_CHILD + "\">"
 											+ "<input type='hidden' id='ROOM_CHK_INTIME' name='type' value=\"" + value.ROOM_CHK_INTIME + "\">"
 											+ "<input type='hidden' id='ROOM_CHK_OUTTIME' name='type' value=\"" + value.ROOM_CHK_OUTTIME + "\">"
+											+ "<input type='hidden' id='ROOM_IMGS_FILE' name='type' value=\"" + value.ROOM_IMGS_FILE + "\">"
 											+ value.ROOM_NAME + "</a></td>"
 											+ "<td id='id'>" + value.ROOM_ID + "</td>"
 											+ "<td>" + value.ROOM_PRICE
@@ -256,6 +267,14 @@ width: 50px;
 				});
 			}
 		}
+    	$("#Modify").on("click", function(e){
+			e.preventDefault();
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/admin/modifyRoomForm' />");
+			comSubmit.addParam("ROOM_ID", room_id);
+			comSubmit.submit();
+		});
+	  
 	</script>
 
 </body>
