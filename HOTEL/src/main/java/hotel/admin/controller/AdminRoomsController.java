@@ -203,7 +203,7 @@ public class AdminRoomsController {
 		@RequestMapping(value="admin/deleteRoom")
 		public ModelAndView deleteRoom(CommandMap commandMap) throws Exception{
 			ModelAndView mv = new ModelAndView("redirect:/admin/roomsList");
-			System.out.println("삭제컨트롤러"+commandMap.getMap());
+			//System.out.println("삭제컨트롤러"+commandMap.getMap());
 			adminRoomsService.deleteRoom(commandMap.getMap());
 				
 			return mv;

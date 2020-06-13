@@ -101,7 +101,7 @@ public class FileUtils2 { //파일을 특정 폴더에 저장하고 DB에 입력
 		else if ((String) map.get("ROOM_IMGS_ID_2") != null) ROOM_IMGS_ID_2 = (String) map.get("ROOM_IMGS_ID_2");
 		else if ((String) map.get("ROOM_IMGS_ID_3") != null) ROOM_IMGS_ID_3 = (String) map.get("ROOM_IMGS_ID_3");
 		
-		//수정하기 전 기존 파일이 있으면 이름값 받아오기
+		//수정하기 전 기존 파일이 있으면 이름값 받아오기 -> 업데이트시 기존파일 삭제하기 위해서(아직 미구현)
 		List<String> oldFileName = new ArrayList<String>();
 		for(int i=0; i<=3; i++) { // 등록할수 있는 최대 이미지 개수 4개
 			if((String)map.get("OLD_FILE_NAME_"+i) != null) {
@@ -183,7 +183,7 @@ public class FileUtils2 { //파일을 특정 폴더에 저장하고 DB에 입력
 			}
 		}
 		
-		//수정하기 전 기존 파일이 있으면 이름값 받아오기
+		//기존 파일 이름 받아오기
 		List<String> oldFileName = new ArrayList<String>();
 		for(int i=0; i<=3; i++) { // 등록할수 있는 최대 이미지 개수 4개
 			if((String)map.get("OLD_FILE_NAME_"+i) != null) {
