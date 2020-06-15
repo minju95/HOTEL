@@ -28,8 +28,7 @@
  <!-- 공지사항 상세보기 -->
 <select id="selectNextBoard" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-      
-      SELECT * 
+         SELECT * 
       FROM 
        (
       SELECT
@@ -46,8 +45,10 @@
           TO_CHAR( lag( NOTICE_DATE, 1, '') over(order by NOTICE_DATE),'YYYY-MM-DD') pre_DATE
       FROM 
         NOTICE
+        WHERE NOTICE_ISVIEW = 'Y'
         )
-      WHERE 
+      
+      WHERE
         NOTICE_ID = #{NOTICE_ID}
 
 ]]>
