@@ -40,7 +40,8 @@ color: black;
    <br>
    <br>
    <br>
-   <h1>F A C I L I T I E S </h1></div>
+   <h1>F A C I L I T I E S </h1>
+</div>
    
 <h3 align="center">부대시설 등록</h3>
 <br>
@@ -48,7 +49,7 @@ color: black;
 <form id="frm"  name="frm" enctype="multipart/form-data">
 <table name="facWrite" border="1" cellspacing="0" cellpadding="0" align="center">
 	<colgroup>
-		<col width="15%"/>
+		<col width="20%"/>
 		<col width="85%"/>
 	</colgroup>
 	<tbody>
@@ -80,17 +81,17 @@ color: black;
 		<tr>
 			<th>시설</th>
 			<td>
-				<textarea rows="5" cols="100" title="내용" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC"></textarea>
+				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<th>상세내용1</th>
+			<th>내용</th>
 			<td>
 				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT"></textarea>
 			</td>
 		</tr>
 		<tr>
-			<th>상세내용2</th>
+			<th>세부사항</th>
 			<td>
 				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL"></textarea>
 			</td>
@@ -106,10 +107,9 @@ color: black;
 		
 		
 	</tbody>
+
 	
 </table>
-
-
 <center>
 	<a href="#this" class="btn" id="write">등록하기</a>
 	<a href="#this" class="btn" id="addFile">파일추가</a>
@@ -155,8 +155,6 @@ color: black;
 				alert("운영시간을 입력해주세요");
 			} else if($("#FAC_HOTEL_PHONE").val() == "") {
 				alert("전화번호를 입력해주세요");
-			} else if($("#FAC_HOTEL_FAC").val() == "") {
-				alert("시설을 입력해주세요");
 			} else if($("#FAC_HOTEL_CONTENT").val() == "") {
 				alert("상세내용을 입력해주세요");
 			} 

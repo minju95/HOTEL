@@ -9,10 +9,10 @@
 
 <title>공지사항 리스트</title>
 <style>
-    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+    #notice{margin-left: calc(50% - 400px);width: 800px;} 
 	h2{width: 800px;  display: block; text-align: center;}
 	
-	#PAGE_NAVI{text-align: center;margin-top:10%} /*페이징 처리*/
+	#PAGE_NAVI{text-align: center;} /*페이징 처리*/
 	
 	.pad_1 { /*페이징 처리*/
 	font-size: 15px;
@@ -30,8 +30,6 @@
 	text-decoration: none;
 	color: black;	
 	}
-	
-	
 </style>
 
 <!-- 부트스트랩 -->
@@ -50,36 +48,37 @@
    	
 <h3 align="center">공지사항 관리</h3>
 <br>
-	
+	<form id="notice">
 	<table name="noticeList" class="table table-striped" align="center" style="width: 800px;" >
 		<colgroup>
 			<col width="10%"/>
-			<col width="50%"/>
-			<col width="20%"/>
+			<col width="70%"/>
+			<col width="10%"/>
 			<col width="10%"/>
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">순번</th>
-				<th scope="col">제목</th>
-				<th scope="col">공개여부</th>
-				<th scope="col">작성일</th>
+				<td scope="col" >순번</td>
+				<td scope="col" >제목</td>
+				<td scope="col" >공개여부</td>
+				<td scope="col">작성일</td>
 			</tr>
 		</thead>
 		<tbody>
 		 
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="4" align="center"><a href="#this" class="btn" id="write" >등록</a>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
-	<center>
-		<a href="#this" class="btn" id="write" >등록</a>
-	</center>
 	
-	<center>
-		<div id="PAGE_NAVI"></div>
+	<div id="PAGE_NAVI">
 		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-	</center>
-	
-	<form  id="search"  method="post" >
+	</div>
+	<br>
             <select id="searchOption" size="1">
                 <option id="NOTICE_TITLE" value="NOTICE_TITLE" selected="selected">제목</option>
             </select>

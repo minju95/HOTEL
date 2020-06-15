@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<% 
+	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +18,6 @@
 	
 	#PAGE_NAVI{text-align: center;margin-top:10%}
 
-	
 	.div-about{
  	background-image:url(/hotel/image/hotel.jpg);
 	height:250px;
@@ -23,10 +25,10 @@
 	background-repeat:no-repeat;
 	background-size:100%;
 	}
-a{
-text-decoration: none;
-color: black;
-}
+	a{
+	text-decoration: none;
+	color: black;
+	}
 </style>
 
 <!-- 부트스트랩 -->
@@ -47,54 +49,61 @@ color: black;
 
 <h3 align="center">부대시설 상세보기</h3>
 <br>
-	<form="frm">
-	<table name="facDetail" class="table table-striped" align="center" style="width: 800px;" >
+	<form id="frm">
+	<table name="facDetail" class="table table-striped" align="center" style="width: 1000px;" >
+		
 		<thead>
 			<tr>
-				<th scope="row">부대시설명</th>
-				<th scope="row">위치</th>
-				<th scope="row">운영시간</th>
-				<th scope="row">전화번호</th>
-				<th scope="row">시설</th>
+				<th width="20%" scope="row">부대시설명</th>
+				<th width="20%" scope="row">위치</th>
+				<th width="20%" scope="row">운영시간</th>
+				<th width="20%" scope="row">전화번호</th>
+				<th width="20%" scope="row">시설</th>
 			</tr>
 		</thead>
 		<tbody>
 		 	<tr>
-				<td align="center">${map.FAC_HOTEL_NAME}</td>
-				<td align="center">${map.FAC_HOTEL_LOCATION}</td>
-				<td align="center">${map.FAC_HOTEL_TIME}</td>
-				<td align="center">${map.FAC_HOTEL_PHONE}</td>
-				<td align="center">${map.FAC_HOTEL_FAC}</td>
+				<td>${map.FAC_HOTEL_NAME}</td>
+				<td>${map.FAC_HOTEL_LOCATION}</td>
+				<td>${map.FAC_HOTEL_TIME}</td>
+				<td>${map.FAC_HOTEL_PHONE}</td>
+				<td>${map.FAC_HOTEL_FAC}</td>
 			</tr>
 		</tbody>
 		<tbody>
 			<tr>
-					<td colspan="5" height="200" style="padding-left:50px;">
-						${fn:replace(map.FAC_HOTEL_CONTENT, cn, br)}
-					</td>
+				<th>내용</th>
 			</tr>
 			<tr>
-					<td colspan="5" height="200" style="padding-left:50px;">
-						${fn:replace(map.FAC_HOTEL_DETAIL, cn, br)}
-					</td>
+				<td colspan="5" height="100" style="padding-left:50px;">
+					${fn:replace(map.FAC_HOTEL_CONTENT, cn, br)}
+				</td>
+			</tr>
+			
+			<tr>
+				<th>세부사항</th>
 			</tr>
 			<tr>
-			 <th scope="row">첨부파일</th>
+				<td colspan="5" height="100" style="padding-left:50px;">${fn:replace(map.FAC_HOTEL_DETAIL, cn, br)}
+				</td>
+			</tr>
+			<tr>
+			 <th scope="row">이미지</th>
 			<td colspan="4">
 				<c:forEach var="row" items="${list }">
-				<p>
+					<p>
 					<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
-					
-					<!-- 이미지 파일명 -->
-					<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
-					
-					<!-- 이미지_절대경로 -->
-					<%-- <img src= "C:/Users/학생용/git/HOTEL/HOTEL/src/main/webapp/resources/${row.HOTEL_IMGS_FILE}"
-						style = "width:200px; heigth:120px;"> --%>
 						
 					<!-- 이미지_상대경로 -->
 					<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}"
-						style = "width:200px; heigth:120px;">
+						style = "width:600px; heigth:600px;">
+					<br>
+					<!-- 이미지 파일명 -->
+					<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
+					</p>
+					<!-- 이미지_절대경로 -->
+					<%-- <img src= "C:/Users/학생용/git/HOTEL/HOTEL/src/main/webapp/resources/${row.HOTEL_IMGS_FILE}"
+						style = "width:200px; heigth:120px;"> --%>
 				</c:forEach>
 			</td>
 			</tr>

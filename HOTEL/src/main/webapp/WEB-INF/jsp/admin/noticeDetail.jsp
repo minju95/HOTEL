@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<% 
+	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,11 +21,12 @@
 	color: #e5a880;
 	background-repeat:no-repeat;
 	background-size:100%;
-}
-a{
-text-decoration: none;
-color: black;
-}
+	}
+	
+	a{
+	text-decoration: none;
+	color: black;
+	}
 </style>
 
 <title>공지사항 상세보기</title>
@@ -49,28 +53,31 @@ color: black;
 	<input type="hidden" id="NOTICE_ID" name="NOTICE_ID" value="${map.NOTICE_ID }">
 	
 	<table name="noticeDetail" class="table table-striped" align="center" style="width: 800px;" >
-		<tbody>
+		
 			<tr>
-				<th scope="row">제목</th>
-				<td align="center">${map.NOTICE_TITLE}</td>
+				<th width="15%">제목</th>
+				<td width="85%">${map.NOTICE_TITLE}</td>
 				
 			</tr>
 		 	<tr>
-				<th scope="row">작성일</th>
-				<td align="center">${map.NOTICE_DATE}</td>
+				<th>작성일</th>
+				<td>${map.NOTICE_DATE}</td>
 			</tr>
 			<tr>
 				<th>내용</th>
-				<td align="center">${map.NOTICE_CONTENT}</td>
+				<td colspan="5" height="100">${fn:replace(map.NOTICE_CONTENT, cn, br)}</td>
 			</tr>
 			<tr>
 				<th>이미지</th>
 						<c:choose>
 							<c:when test="${map.NOTICE_IMG != NULL}">
-								<td align="center">${map.NOTICE_IMG}
-									<!-- 이미지_상대경로 -->
-									<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:200px; heigth:120px;">
-								</td>
+							<td>
+								<!-- 이미지_상대경로 -->
+								<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
+								<br>
+								<!-- 이미지명 -->
+								${map.NOTICE_IMG}
+							</td>
 									</c:when>
 									<c:otherwise>
 										<td>업로드된 이미지가 없습니다.</td>
@@ -85,7 +92,7 @@ color: black;
 			
 			<tr>
 				<th>공개여부</th>
-				<td align="center">${map.NOTICE_ISVIEW}</td>
+				<td>${map.NOTICE_ISVIEW}</td>
 			</tr>
 		</tbody>
 	

@@ -55,4 +55,8 @@ public class AdminFacilitiesDAO extends AbstractDAO{
 		delete("adminFac.deleteFacilities", map);
 	}
 	
+	//부대시설 이미지 삭제
+	public void deleteFacImg(Map<String, Object> map) throws Exception{
+		delete("adminFac.deleteFacImg", map);
+	}
 }

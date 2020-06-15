@@ -9,10 +9,10 @@
 
 <title>예약자 리스트</title>
 <style>
-    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
-	h2{width: 800px;  display: block; text-align: center;}
+    #reservation{margin-left: calc(50% - 400px); width: 800px;} 
+	h2{width: 800px;  display: block;}
 	
-	#PAGE_NAVI{text-align: center;margin-top:10%}
+	#PAGE_NAVI{text-align: center;}
 
 	.div-about{
  	background-image:url(/hotel/image/hotel.jpg);
@@ -21,10 +21,11 @@
 	background-repeat:no-repeat;
 	background-size:100%;
 	}
-a{
-text-decoration: none;
-color: black;
-}
+	
+	a{
+	text-decoration: none;
+	color: black;
+	}
 </style>
 
 <!-- 부트스트랩 -->
@@ -45,7 +46,7 @@ color: black;
 
 	<h3 align="center">예약자 목록</h3>
 	<br>
-
+	<form id="reservation">
 	<table name="resList" class="table table-striped" align="center" style="width: 1200px;" >
 		<thead>
 			<tr>
@@ -67,23 +68,19 @@ color: black;
 		</tbody>
 	</table>
 	
-	 <center>
-		<div id="PAGE_NAVI"></div>
+	<div id="PAGE_NAVI">
 		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-	</center>
-	
-	<form id="search" class="form-inline" method="post">
-	  <div class="form-group">
+	</div>
+	<br>
 		<select id="searchOption" size="1">
 			<option id="ROOM_ID" value="ROOM_ID" selected="selected">객실번호</option>
 			<option id="RES_NO" value="RES_NO">예약번호</option>
 			<option id="MEM_NAME" value="MEM_NAME">예약자명</option>
 		</select>
-	    <input type="text" name="keyword" value="${keyword}" placeholder=""
-	    	class="form-control" id="exampleInputName2" onkeyup="enteryKey()">
+		
+	    <input type="text" size="16" name="keyword" value="${keyword}" placeholder="" onkeyup="enteryKey()">
 	    <input type="text" style="display: none;" />
-	  </div>
-  		<button type="button" class="btn btn-default" onclick="fn_resList(1)">검색</button>
+  		<button type="button" onclick="fn_resList(1)">검색</button>
 	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>

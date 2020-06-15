@@ -9,11 +9,10 @@
 
 <title>부대시설 리스트</title>
 <style>
-    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+    #facilities{margin-left: calc(50% - 400px);width: 800px;} 
 	h2{width: 800px;  display: block; text-align: center;}
 	
-	#PAGE_NAVI{text-align: center;margin-top:10%}
-
+	#PAGE_NAVI{text-align: center;}
 	
 	.div-about{
  	background-image:url(/hotel/image/hotel.jpg);
@@ -22,11 +21,13 @@
 	background-repeat:no-repeat;
 	background-size:100%;
 	}
-a{
-text-decoration: none;
-color: black;
-}
+	
+	a{
+	text-decoration: none;
+	color: black;
+	}
 </style>
+
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -41,35 +42,35 @@ color: black;
    <br>
    <br>
    <h1>F A C I L I T I E S </h1></div>
-	
+<form id="facilities">
 <h3 align="center">부대시설 관리</h3>
-<br>
-	
+<br>	
 	<table name="facList" class="table table-striped" align="center" style="width: 800px;" >
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>부대시설명</th>
-				<th>위치</th>
-				<th>운영시간</th>
-				<th>전화번호</th>
-				
+				<td>번호</td>
+				<td>부대시설명</td>
+				<td>위치</td>
+				<td>운영시간</td>
+				<td>전화번호</td>
 			</tr>
 		</thead>
 		<tbody>
-		 
 		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="5" align="center">
+				<a href="#this" class="btn" id="write" >등록</a>
+				</td>
+			</tr>
+		</tfoot>
 	</table>
-	<center>
-		<a href="#this" class="btn" id="write" >등록</a>
-	</center>
 	
-	<center>
-		<div id="PAGE_NAVI"></div>
+	
+	<div id="PAGE_NAVI">
 		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-	</center>
-	
-	<form  id="search"  method="post" >
+	</div>
+	<br>
             <select id="searchOption" size="1">
                 <option id="FAC_HOTEL_NAME" value="FAC_HOTEL_NAME" selected="selected">부대시설명</option>
             </select>
@@ -79,7 +80,7 @@ color: black;
                  <input type="text" style="display: none;" />
                  <!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
                  <input type="button" value="검 색" onClick="fn_facList(1)">
-   	</form> 
+   	</form>
 	
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>		

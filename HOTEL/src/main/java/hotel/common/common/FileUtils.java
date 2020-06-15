@@ -19,19 +19,11 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 @Component("fileUtils") // 이 객체의 관리를 스프링이 담당하도록 함
 public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력될 정보를 반환하도록 구성한 클래스
 	
-	
-	//HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-	
-	//private static final String filePath ="C:\\Users\\UploadFile\\"; //파일이 저장될 위치 선언
-	//private static String filePath = request.getSession().getServletContext().getRealPath("")+"\\resources\\"; //파일이 저장될 위치 선언
-
-	//String imagePath = request.getSession().getServletContext().getRealPath("")+"\\resources\\";
-
-	
+	//이미지 삽입
 	public  List<Map<String, Object>> parseInsertFileInfo(Map<String, Object>
 	map, HttpServletRequest request) throws Exception {
-		//String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원
-		String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //박민주
+		String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; 
+		//String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; 
 		//본인 경로로 변경하여 사용할 것!
 		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
@@ -76,11 +68,11 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 	}
 	
 	
-	//첨부파일 수정
+	//이미지 수정
 	public  List<Map<String, Object>> parseUpdateFileInfo(Map<String, Object>
 	map, HttpServletRequest request) throws Exception {
-		//String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원
-		String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //박민주
+		String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\";
+		//String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; 
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		
 		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
@@ -146,6 +138,43 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 				 * HashMap<String, Object>(); listMap.put("FILE_IDX", map.get(idx));
 				 * list.add(listMap); }
 				 */
+			}
+		}
+		return list;
+	}
+	
+	//이미지 삭제
+	public  List<Map<String, Object>> parseDeleteFileInfo(Map<String, Object>
+	map) throws Exception {
+		
+		String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; 		
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		
+		Map<String, Object> listMap = null;
+
+		for(int i=0; i<=1; i++) {
+			if((String)map.get("HOTEL_IMGS_ID_"+i) != null) {
+				listMap = new HashMap<String, Object>();
+				listMap.put("HOTEL_IMGS_ID", (String)map.get("HOTEL_IMGS_ID_"+i));
+				list.add(listMap);
+			}
+		}
+		
+		//기존 파일 이름 받아오기
+		List<String> oldFileName = new ArrayList<String>();
+		for(int i=0; i<=3; i++) { // 등록할수 있는 최대 이미지 개수 2개
+			if((String)map.get("OLD_FILE_NAME_"+i) != null) {
+				oldFileName.add((String)map.get("OLD_FILE_NAME_"+i));
+			}
+		} // 출력 : ex) -> [businesstwin01.jpg, businesstwin02.jpg]
+		Iterator<String> iterator = oldFileName.iterator();
+		
+		//System.out.println("iterator 에 있는 기존파일이름"+iterator.next());
+		while (iterator.hasNext()) {
+			File file = new File(filePath+iterator.next());
+			//System.out.println("기존파일들의 경로 : "+file.getPath());
+			if(file.exists()) {
+				file.delete();
 			}
 		}
 		return list;

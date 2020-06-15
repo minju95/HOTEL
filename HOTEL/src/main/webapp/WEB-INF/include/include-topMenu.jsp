@@ -126,7 +126,7 @@ header{
    <a href="/hotel/rooms?ROOM_TYPE=6" class="submenuLink longLink">Deluxe Suite</a>
    </li> 
    <li>
-   <a href="/hotel/rooms?ROOM_TYPE=7" class="submenuLink longLink">Premium Suite</a>
+   <a href="/hotel/rooms?ROOM_TYPE=7" class="submenuLink lon gLink">Premium Suite</a>
    </li> 
    <li>
    <a href="/hotel/rooms?ROOM_TYPE=8" class="submenuLink longLink">Sienna Suite</a>

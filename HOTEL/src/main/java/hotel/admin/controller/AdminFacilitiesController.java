@@ -50,7 +50,7 @@ public class AdminFacilitiesController {
 		return mv;
 	}
 	
-	//부대시설 등록 "폼"(이 메소드 안에선 등록 처리 로직 X)
+	//부대시설 등록폼(이 메소드 안에선 등록 처리 로직 X)
 	@RequestMapping(value="/admin/newFacilitiesForm")
 	public ModelAndView insertFacilities(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/newFacilitiesForm");
@@ -94,13 +94,9 @@ public class AdminFacilitiesController {
 	@RequestMapping(value="/admin/modifyFacilities")
 	public ModelAndView modifyFac(CommandMap commandMap, HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesDetail");
-		System.out.println("11:43am"+commandMap.getMap());
+		//System.out.println("11:43am"+commandMap.getMap());
 		adminFacilitiesService.modifyFacilities(commandMap.getMap(), request);
-	
-		
 		mv.addObject("FAC_HOTEL_ID", commandMap.get("FAC_HOTEL_ID"));
-		
-		
 		return mv;
 	}
 	
@@ -109,7 +105,6 @@ public class AdminFacilitiesController {
 	public ModelAndView deleteNotice(CommandMap commandMap) throws Exception{
 		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesList");
 		adminFacilitiesService.deleteFacilities(commandMap.getMap());
-			
 		return mv;
 	}
 }

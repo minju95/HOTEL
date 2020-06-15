@@ -107,5 +107,12 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 	@Override
 	public void deleteFacilities(Map<String, Object> map) throws Exception {
 		adminFacilitiesDAO.deleteFacilities(map);
+		List<Map<String, Object>> list = fileUtils.parseDeleteFileInfo(map);
+		
+		for (int i = 0, size = list.size(); i < size; i++) {
+			
+			adminFacilitiesDAO.deleteFacImg(list.get(i));
+		}
+		
 	}
 }

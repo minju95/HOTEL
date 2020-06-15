@@ -8,11 +8,9 @@
 	
 <meta charset="UTF-8">
 <style>
-    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+    #noticeWrite{margin-left: calc(50% - 400px);width: 800px;} 
 	h2{width: 800px;  display: block; text-align: center;}
 	
-	#PAGE_NAVI{text-align: center;margin-top:10%}
-
 	.div-about{
  	background-image:url(/hotel/image/hotel.jpg);
 	height:250px;
@@ -20,16 +18,17 @@
 	background-repeat:no-repeat;
 	background-size:100%;
 	}
-a{
-text-decoration: none;
-color: black;
-}
+	
+	a{
+	text-decoration: none;
+	color: black;
+	}
 </style>
 	<!-- 부트스트랩 -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-	<title>공지사항 등록</title>
+<title>공지사항 등록</title>
 </head>
 
 <body>
@@ -43,17 +42,16 @@ color: black;
 <h3 align="center">공지사항 등록</h3>
 <br>
 
-<form id="frm"  name="frm" enctype="multipart/form-data">
+<form id="noticeWrite"  name="noticeWrite" enctype="multipart/form-data">
 
-<table name="noticeWrite" border="1" cellspacing="0" cellpadding="0">
+<table name="noticeWrite" border="0" cellspacing="0" cellpadding="0">
 	<colgroup>
 		<col width="15%"/>
 		<col width="85%"/>
 	</colgroup>
-	<caption>공지사항 등록</caption>
+	
 	<tbody>
 		<tr>
-		
 			<th>제목</th>
 			<td>
 				<input type="text" id="NOTICE_TITLE" name="NOTICE_TITLE" size="70">
@@ -62,7 +60,7 @@ color: black;
 		<tr>
 			<th>내용</th>
 			<td>
-				<textarea rows="10" cols="100" title="내용" id="NOTICE_CONTENT" name="NOTICE_CONTENT"></textarea>
+				<textarea rows="30" cols="100" title="내용" id="NOTICE_CONTENT" name="NOTICE_CONTENT"></textarea>
 			</td>
 		</tr>
 		 <tr>
@@ -72,7 +70,6 @@ color: black;
 			</td>
 		</tr>
 	</tbody>
-	
 </table>
 
 <center>
@@ -82,6 +79,7 @@ color: black;
 </form>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
+	
 <script>
 		$(document).ready(function(){
 	  		$("#list").on("click", function(e){ //'목록으로'를 클릭하면
@@ -103,7 +101,7 @@ color: black;
 	    }
 
 		function fn_insertNotice(){
-				var comSubmit = new ComSubmit("frm");
+				var comSubmit = new ComSubmit("noticeWrite");
 				comSubmit.setUrl("<c:url value='/admin/newNotice' />");
 				comSubmit.submit();
 		}
