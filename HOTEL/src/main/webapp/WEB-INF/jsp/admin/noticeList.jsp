@@ -10,32 +10,13 @@
 
 <title>공지사항 리스트</title>
 <style>
-<<<<<<< HEAD
     #notice{margin-left: calc(50% - 400px);width: 800px;} 
 	h2{width: 800px;  display: block; text-align: center;}
 	
 	#PAGE_NAVI{text-align: center;} /*페이징 처리*/
 	
 	.pad_1 { /*페이징 처리*/
-=======
-#notice {
-	margin-left: calc(50% - 400px);
-	width: 800px;
-	text-align: center
-}
 
-h2 {
-	width: 800px;
-	display: block;
-	text-align: center;
-}
-
-#PAGE_NAVI {
-	text-align: center;
-	margin-top: 10%
-} /*페이징 처리*/
-.pad_1 { /*페이징 처리*/
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 	font-size: 15px;
 }
 
@@ -49,13 +30,9 @@ h2 {
 
 a {
 	text-decoration: none;
-<<<<<<< HEAD
 	color: black;	
 	}
-=======
-	color: black;
-}
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 </style>
 
 <!-- 부트스트랩 -->
@@ -68,42 +45,23 @@ a {
 </head>
 
 <body>
-<<<<<<< HEAD
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="div-about" align="center" >
    <br>
    <br>
    <br>
    <h1>N O T I C E</h1></div>
-   	
+ <%@ include file="/WEB-INF/include/include-admin.jspf"%>  	
 <h3 align="center">공지사항 관리</h3>
 <br>
 	<form id="notice">
 	<table name="noticeList" class="table table-striped" align="center" style="width: 800px;" >
-=======
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>N O T I C E</h1>
-	</div>
-<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-<h3 align="center">공지사항 관리</h3> <br>
 	
-	<table name="noticeList" class="table table-striped" align="center"
-						style="width: 800px;">
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 		<colgroup>
-<<<<<<< HEAD
 			<col width="10%"/>
 			<col width="70%"/>
 			<col width="10%"/>
 			<col width="10%"/>
-=======
-			<col width="10%" />
-			<col width="50%" />
-			<col width="20%" />
-			<col width="10%" />
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 		</colgroup>
 		<thead>
 			<tr>
@@ -123,23 +81,11 @@ a {
 			</tr>
 		</tfoot>
 	</table>
-<<<<<<< HEAD
-=======
-	<center>
-		<a href="#this" class="btn" id="write">등록</a>
-	</center>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
-	
 	<div id="PAGE_NAVI">
 		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-<<<<<<< HEAD
 	</div>
 	<br>
-=======
-	</center>
-	
-	<form id="search" method="post">
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
             <select id="searchOption" size="1">
                 <option id="NOTICE_TITLE" value="NOTICE_TITLE"
 								selected="selected">제목</option>

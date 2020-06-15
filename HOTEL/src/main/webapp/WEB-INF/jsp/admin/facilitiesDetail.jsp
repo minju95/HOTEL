@@ -1,13 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% 
 	pageContext.setAttribute("br", "<br/>");
 	pageContext.setAttribute("cn", "\n");
 %>
-=======
-	pageEncoding="UTF-8"%>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +14,6 @@
 <title>부대시설 상세보기</title>
 
 <style>
-<<<<<<< HEAD
     #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
 	h2{width: 800px;  display: block; text-align: center;}
 	
@@ -35,38 +30,6 @@
 	text-decoration: none;
 	color: black;
 	}
-=======
-#notice {
-	margin-left: calc(50% - 400px);
-	width: 800px;
-	text-align: center
-}
-
-h2 {
-	width: 800px;
-	display: block;
-	text-align: center;
-}
-
-#PAGE_NAVI {
-	text-align: center;
-	margin-top: 10%
-}
-
-.div-about {
-	background-image: url(/hotel/image/hotel.jpg);
-	height: 250px;
-	color: #e5a880;
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 </style>
 
 <!-- 부트스트랩 -->
@@ -80,32 +43,16 @@ a {
 </head>
 
 <body>
-<<<<<<< HEAD
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="div-about" align="center" >
-   <br>
-   <br>
-   <br>
+   <br><br><br>
    <h1>F A C I L I T I E S </h1>
 </div>
-
+	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
 <h3 align="center">부대시설 상세보기</h3>
 <br>
 	<form id="frm">
 	<table name="facDetail" class="table table-striped" align="center" style="width: 1000px;" >
-		
-=======
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>F A C I L I T I E S</h1>
-	</div>
-	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-	<h3 align="center">부대시설 상세보기</h3> <br>
-	<form="frm">
-	<table name="facDetail" class="table table-striped" align="center"
-							style="width: 800px;">
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 		<thead>
 			<tr>
 				<th width="20%" scope="row">부대시설명</th>
@@ -149,7 +96,6 @@ a {
 					<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
 						
 					<!-- 이미지_상대경로 -->
-<<<<<<< HEAD
 					<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}"
 						style = "width:600px; heigth:600px;">
 					<br>
@@ -160,12 +106,7 @@ a {
 					<%-- <img src= "C:/Users/학생용/git/HOTEL/HOTEL/src/main/webapp/resources/${row.HOTEL_IMGS_FILE}"
 						style = "width:200px; heigth:120px;"> --%>
 				</c:forEach>
-=======
-					<img src="/hotel/image/${row.HOTEL_IMGS_FILE}"
-													style="width:200px; heigth:120px;">
-				
-										</c:forEach>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 			</td>
 			</tr>
 
@@ -227,5 +168,5 @@ a {
 	</script>
 
 
-				</body>
+	</body>
 </html>

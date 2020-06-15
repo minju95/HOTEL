@@ -33,11 +33,8 @@
       WHERE 
           F.FAC_HOTEL_ID = M.FAC_HOTEL_ID
       AND 
-<<<<<<< HEAD
-          F.FAC_HOTEL_ID = 145
-=======
-          F.FAC_HOTEL_ID = 41
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+          F.FAC_HOTEL_ID = 2
+
       GROUP BY 
           F.FAC_HOTEL_ID,
           F.FAC_HOTEL_NAME,

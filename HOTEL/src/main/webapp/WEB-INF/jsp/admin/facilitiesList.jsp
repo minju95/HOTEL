@@ -10,7 +10,6 @@
 
 <title>부대시설 리스트</title>
 <style>
-<<<<<<< HEAD
     #facilities{margin-left: calc(50% - 400px);width: 800px;} 
 	h2{width: 800px;  display: block; text-align: center;}
 	
@@ -19,30 +18,8 @@
 	.div-about{
  	background-image:url(/hotel/image/hotel.jpg);
 	height:250px;
-=======
-#notice {
-	margin-left: calc(50% - 400px);
-	width: 800px;
-	text-align: center
-}
 
-h2 {
-	width: 800px;
-	display: block;
-	text-align: center;
-}
-
-#PAGE_NAVI {
-	text-align: center;
-	margin-top: 10%
-}
-
-.div-about {
-	background-image: url(/hotel/image/hotel.jpg);
-	height: 250px;
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 	color: #e5a880;
-<<<<<<< HEAD
 	background-repeat:no-repeat;
 	background-size:100%;
 	}
@@ -51,16 +28,7 @@ h2 {
 	text-decoration: none;
 	color: black;
 	}
-=======
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
 
-a {
-	text-decoration: none;
-	color: black;
-}
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 </style>
 
 <!-- 부트스트랩 -->
@@ -74,29 +42,19 @@ a {
 </head>
 
 <body>
-<<<<<<< HEAD
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="div-about" align="center" >
    <br>
    <br>
    <br>
    <h1>F A C I L I T I E S </h1></div>
+    <%@ include file="/WEB-INF/include/include-admin.jspf"%>  	
+   
 <form id="facilities">
 <h3 align="center">부대시설 관리</h3>
 <br>	
 	<table name="facList" class="table table-striped" align="center" style="width: 800px;" >
-=======
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>F A C I L I T I E S</h1>
-	</div>
-	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-<h3 align="center">부대시설 관리</h3> <br>
-	
-	<table name="facList" class="table table-striped" align="center"
-						style="width: 800px;">
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 		<thead>
 			<tr>
 				<td>번호</td>
@@ -116,24 +74,14 @@ a {
 			</tr>
 		</tfoot>
 	</table>
-<<<<<<< HEAD
-=======
-	<center>
-		<a href="#this" class="btn" id="write">등록</a>
-	</center>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 	
 	
 	<div id="PAGE_NAVI">
 		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-<<<<<<< HEAD
 	</div>
 	<br>
-=======
-	</center>
-	
-	<form id="search" method="post">
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
             <select id="searchOption" size="1">
                 <option id="FAC_HOTEL_NAME" value="FAC_HOTEL_NAME"
 								selected="selected">부대시설명</option>
@@ -144,14 +92,9 @@ a {
                  <!--검색어를 쓰고 엔터키를 누르면 먹지를 않기때문에 onkeyup="enterkey();를 주는 고 밑이 function으로 연결-->
                  <input type="text" style="display: none;" />
                  <!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
-<<<<<<< HEAD
                  <input type="button" value="검 색" onClick="fn_facList(1)">
    	</form>
-=======
-                 <input type="button" value="검 색"
-							onClick="fn_facList(1)">
-   	</form> 
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 	
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>		

@@ -10,18 +10,11 @@
 
 <title>예약자 리스트</title>
 <style>
-<<<<<<< HEAD
     #reservation{margin-left: calc(50% - 400px); width: 800px;} 
 	h2{width: 800px;  display: block;}
 	
 	#PAGE_NAVI{text-align: center;}
-=======
-#notice {
-	margin-left: calc(50% - 400px);
-	width: 800px;
-	text-align: center
-}
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 
 h2 {
 	width: 800px;
@@ -38,7 +31,6 @@ h2 {
 	background-image: url(/hotel/image/hotel.jpg);
 	height: 250px;
 	color: #e5a880;
-<<<<<<< HEAD
 	background-repeat:no-repeat;
 	background-size:100%;
 	}
@@ -47,16 +39,7 @@ h2 {
 	text-decoration: none;
 	color: black;
 	}
-=======
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
 
-a {
-	text-decoration: none;
-	color: black;
-}
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 </style>
 
 <!-- 부트스트랩 -->
@@ -78,15 +61,10 @@ a {
 <%@ include file="/WEB-INF/include/include-admin.jspf"%>
 	<h3 align="center">예약자 목록</h3> <br>
 
-<<<<<<< HEAD
-	<h3 align="center">예약자 목록</h3>
 	<br>
 	<form id="reservation">
 	<table name="resList" class="table table-striped" align="center" style="width: 1200px;" >
-=======
-	<table name="resList" class="table table-striped" align="center"
-						style="width: 1200px;">
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 		<thead>
 			<tr>
 				<th>객실번호</th>
@@ -116,22 +94,11 @@ a {
 			<option id="RES_NO" value="RES_NO">예약번호</option>
 			<option id="MEM_NAME" value="MEM_NAME">예약자명</option>
 		</select>
-<<<<<<< HEAD
 		
 	    <input type="text" size="16" name="keyword" value="${keyword}" placeholder="" onkeyup="enteryKey()">
-=======
-	    <input type="text" name="keyword" value="${keyword}" placeholder=""
-								class="form-control" id="exampleInputName2"
-								onkeyup="enteryKey()">
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 	    <input type="text" style="display: none;" />
-<<<<<<< HEAD
   		<button type="button" onclick="fn_resList(1)">검색</button>
-=======
-	  </div>
-  		<button type="button" class="btn btn-default"
-							onclick="fn_resList(1)">검색</button>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 	</form>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>

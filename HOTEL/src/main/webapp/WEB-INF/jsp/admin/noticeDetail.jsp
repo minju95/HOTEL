@@ -1,14 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-<<<<<<< HEAD
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <% 
 	pageContext.setAttribute("br", "<br/>");
 	pageContext.setAttribute("cn", "\n");
 %> 
-=======
-	pageEncoding="UTF-8"%>
 
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +11,6 @@
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
 <meta charset="UTF-8">
 <style>
-<<<<<<< HEAD
     #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
 	h2{width: 800px;  display: block; text-align: center;}
 	#PAGE_NAVI{text-align: center;margin-top:10%}
@@ -33,37 +27,7 @@
 	text-decoration: none;
 	color: black;
 	}
-=======
-#notice {
-	margin-left: calc(50% - 400px);
-	width: 800px;
-	text-align: center
-}
 
-h2 {
-	width: 800px;
-	display: block;
-	text-align: center;
-}
-
-#PAGE_NAVI {
-	text-align: center;
-	margin-top: 10%
-}
-
-.div-about {
-	background-image: url(/hotel/image/hotel.jpg);
-	height: 250px;
-	color: #e5a880;
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 </style>
 
 <title>공지사항 상세보기</title>
@@ -88,7 +52,6 @@ a {
 	<br>
 
 	<form id="frm">
-<<<<<<< HEAD
 	<input type="hidden" id="NOTICE_ID" name="NOTICE_ID" value="${map.NOTICE_ID }">
 	
 	<table name="noticeDetail" class="table table-striped" align="center" style="width: 800px;" >
@@ -123,46 +86,11 @@ a {
 									</c:otherwise>	
 						</c:choose>
 					
-=======
-		<input type="hidden" id="NOTICE_ID" name="NOTICE_ID"
-			value="${map.NOTICE_ID }">
 
-		<table name="noticeDetail" class="table table-striped" align="center"
-			style="width: 800px;">
-			<tbody>
-				<tr>
-					<th scope="row">제목</th>
-					<td align="center">${map.NOTICE_TITLE}</td>
-
-				</tr>
-				<tr>
-					<th scope="row">작성일</th>
-					<td align="center">${map.NOTICE_DATE}</td>
-				</tr>
-				<tr>
-					<th>내용</th>
-					<td align="center">${map.NOTICE_CONTENT}</td>
-				</tr>
-				<tr>
-					<th>이미지</th>
-					<c:choose>
-						<c:when test="${map.NOTICE_IMG != NULL}">
-							<td align="center">${map.NOTICE_IMG}<!-- 이미지_상대경로 --> <img
-								src="/hotel/image/${map.NOTICE_IMG}"
-								style="width: 200px; heigth: 120px;">
-							</td>
-						</c:when>
-						<c:otherwise>
-							<td>업로드된 이미지가 없습니다.</td>
-						</c:otherwise>
-					</c:choose>
-
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 					<%-- <td align="center">
 						${map.NOTICE_IMG}
 						<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:200px; heigth:120px;">
 					</td> --%>
-<<<<<<< HEAD
 			</tr>
 			
 			<tr>
@@ -172,17 +100,7 @@ a {
 		</tbody>
 	
 	</table>
-=======
-				</tr>
 
-				<tr>
-					<th>공개여부</th>
-					<td align="center">${map.NOTICE_ISVIEW}</td>
-				</tr>
-			</tbody>
-
-		</table>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 	</form>
 	<center>
 		<a href="#this" class="btn" id="modify">수정하기</a> <a href="#this"

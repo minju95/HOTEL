@@ -52,7 +52,6 @@ a {
 <body>
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 
-<<<<<<< HEAD
 <div class="div-about" align="center" >
    <br>
    <br>
@@ -62,26 +61,13 @@ a {
    
 <h3 align="center">부대시설 등록</h3>
 <br>
-=======
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>F A C I L I T I E S</h1>
-	</div>
-<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-<h3 align="center">부대시설 등록</h3> <br>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 
 <form id="frm" name="frm" enctype="multipart/form-data">
-<table name="facWrite" border="1" cellspacing="0" cellpadding="0"
-							align="center">
+<table name="facWrite" border="1" cellspacing="0" cellpadding="0" align="center">
 	<colgroup>
-<<<<<<< HEAD
 		<col width="20%"/>
-		<col width="85%"/>
-=======
-		<col width="15%" />
-		<col width="85%" />
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+		<col width="80%"/>
 	</colgroup>
 	<tbody>
 		<tr>
@@ -116,12 +102,8 @@ a {
 		<tr>
 			<th>시설</th>
 			<td>
-<<<<<<< HEAD
 				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC"></textarea>
-=======
-				<textarea rows="5" cols="100" title="내용" id="FAC_HOTEL_FAC"
-											name="FAC_HOTEL_FAC"></textarea>
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
+
 			</td>
 		</tr>
 		<tr>
@@ -143,9 +125,8 @@ a {
 			<td>
 				<div id="fileDiv">
 					<p>
-												<input type="file" id="HOTEL_IMGS_FILE"
-													name="HOTEL_IMGS_FILE_0">
-											</p>
+						<input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE_0">
+					</p>
 				</div>
 			</td>
 		</tr>
@@ -172,7 +153,6 @@ a {
 			fn_facList(); //fn_facList()함수 호출
 		});
 
-<<<<<<< HEAD
 		function fn_insertFac(){
 			//유효성 검사
 			if($("#FAC_HOTEL_NAME").val() == "")
@@ -193,44 +173,7 @@ a {
 				comSubmit.setUrl("<c:url value='/admin/newFacilities' />");
 				comSubmit.submit();
 				}
-=======
-		$("#write").on("click", function(e) { //'등록하기'를 클릭하면
-			e.preventDefault();
-			fn_insertFac();//fn_insertFac()함수 호출
-		});
 
-		$("#addFile").on("click", function(e) { //파일추가 버튼
-			e.preventDefault();
-			fn_addFile();
-		});
-	})
-
-	function fn_facList() {
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/facilitiesList'/>"); //리스트 페이지로 이동
-		comSubmit.submit();
-	}
-
-	function fn_insertFac() {
-		//유효성 검사
-		if ($("#FAC_HOTEL_NAME").val() == "") {
-			alert("부대시설명을 입력해주세요");
-		} else if ($("#FAC_HOTEL_LOCATION").val() == "") {
-			alert("부대시설 위치를 입력해주세요");
-		} else if ($("#FAC_HOTEL_TIME").val() == "") {
-			alert("운영시간을 입력해주세요");
-		} else if ($("#FAC_HOTEL_PHONE").val() == "") {
-			alert("전화번호를 입력해주세요");
-		} else if ($("#FAC_HOTEL_FAC").val() == "") {
-			alert("시설을 입력해주세요");
-		} else if ($("#FAC_HOTEL_CONTENT").val() == "") {
-			alert("상세내용을 입력해주세요");
-		} else {
-			alert("새 부대시설이 등록되었습니다.")
-			var comSubmit = new ComSubmit("frm");
-			comSubmit.setUrl("<c:url value='/admin/newFacilities' />");
-			comSubmit.submit();
->>>>>>> branch 'master' of https://github.com/mikye911/HOTEL.git
 		}
 	}
 
