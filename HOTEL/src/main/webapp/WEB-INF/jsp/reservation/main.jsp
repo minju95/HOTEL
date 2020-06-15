@@ -567,7 +567,7 @@ function layer_open(el){
 					<img id="pop_img" alt="main" width="100%" src="">
 				</div><br>
 				<div style="margin-top:280px;">
-					<div class="pop_div">객실　명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
+					<div class="pop_div" style="border-bottom: 1px solid black;">객실　명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
 					<div class="pop_div">기준인원 : Adults: <input type="text" id="pop_adult" class="pop_person" readonly>, Children : <input type="text" id="pop_child" class="pop_person" readonly></div>
 					<div class="pop_div">객실 편의 시설 : <br>
 						<div style="width: 400px; height: 200px; overflow: hidden; float: left;">
@@ -599,9 +599,7 @@ function layer_open(el){
 </div>
 </div>
 
-<div>
 <!-- include) 푸터 -->
 <%@ include file="/WEB-INF/include/include-footer.jsp"%>
-</div>
 </body>
 </html>

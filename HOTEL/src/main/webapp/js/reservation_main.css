@@ -11,8 +11,8 @@ li {list-style: none;}
 
 /*BODY*/
 .a_layer {height: auto;}
-.a_layer_inner {display: flex; justify-content: center; align-items: center; margin-right: 10%;}
-.a_content {display: inline-block; color: black;}
+.a_layer_inner {display: flex; justify-content: center; align-items: center;}
+.a_content {display: inline-block; color: black; margin-bottom: 20px;}
 
 /*BODY - Search*/
 .top {background: #fff; margin-top: 10px; padding: 10px; display: flex; justify-content: center; align-items: center;}
@@ -50,11 +50,11 @@ li {list-style: none;}
 .pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
 a.cbtn {display:inline-block; height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px;}
 a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;}
-.pop_div {margin: 5px 5px 5px 0; font-family: nanum -webkit-pictograph; font-size: 1rem;}
+.pop_div {margin: 5px 5px 5px 0; font-family: nanum -webkit-pictograph; font-size: 1rem; padding: 5px;}
 .pop_person {width: 30px; border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; text-align: center; letter-spacing: 1px;}
-.pop_ee {border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; text-align: center;}
+.pop_ee {border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; text-align: center; font-weight: bold;}
 .pop_tt {width: 50px; border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; text-align: center; letter-spacing: 1px;}
-.pop_fac {border: none; font-family: nanum -webkit-pictograph; font-size: 0.8rem; text-align: left; width: 490px; margin-left:20px; letter-spacing: 1px;}
+.pop_fac {border: none; font-family: nanum -webkit-pictograph; font-size: 0.8rem; text-align: left; width: 350px; margin-left:20px; margin-top:10px; letter-spacing: 1px;}
 .pop_can {font-family: nanum -webkit-pictograph; font-size: 0.8rem; text-align: left; width: 490px; margin-left:20px; letter-spacing: 1px;}
 
 /*reservation.writeForm*/
