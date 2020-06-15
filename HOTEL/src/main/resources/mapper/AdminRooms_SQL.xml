@@ -8,7 +8,7 @@
 	<select id="selectRoomsList" parameterType="hashmap" resultType="hashmap">
 <include refid="common.pagingPre"/>
 	<![CDATA[
-	SELECT
+SELECT
 		    ROWNUM RNUM,
 		    ROOM_ID,
 		    ROOM_TYPE,
@@ -30,25 +30,43 @@
 		    ROOM_CHK_INTIME,
 		    ROOM_CHK_OUTTIME,
 		    ROOM_DATE,
-		    ROOM_PRICE
+		    ROOM_PRICE,
+		    ROOM_IMGS_FILE
 	    FROM
 		    (
 		    SELECT 
-				ROOM_ID,
-				ROOM_TYPE,
-				ROOM_NAME,
-				ROOM_ADULT,
-				ROOM_CHILD,
-				ROOM_FAC_NAME,
-				ROOM_CONTENT,
-				ROOM_SIZE,
-				ROOM_BEDTYPE,
-				ROOM_CHK_INTIME,
-				ROOM_CHK_OUTTIME,
-				ROOM_DATE,
-				ROOM_PRICE
+				a.ROOM_ID,
+				a.ROOM_TYPE,
+				a.ROOM_NAME,
+				a.ROOM_ADULT,
+				a.ROOM_CHILD,
+				a.ROOM_FAC_NAME,
+				a.ROOM_CONTENT,
+				a.ROOM_SIZE,
+				a.ROOM_BEDTYPE,
+				a.ROOM_CHK_INTIME,
+				a.ROOM_CHK_OUTTIME,
+				a.ROOM_DATE,
+				a.ROOM_PRICE,
+                LISTAGG(b.ROOM_IMGS_FILE,',') WITHIN GROUP (ORDER BY ROOM_IMGS_FILE) AS ROOM_IMGS_FILE
 			FROM
-				ROOM
+				ROOM a, ROOM_IMAGES b
+            WHERE
+                a.ROOM_TYPE = b.ROOM_TYPE
+                GROUP BY
+                a.ROOM_ID,
+				a.ROOM_TYPE,
+				a.ROOM_NAME,
+				a.ROOM_ADULT,
+				a.ROOM_CHILD,
+				a.ROOM_FAC_NAME,
+				a.ROOM_CONTENT,
+				a.ROOM_SIZE,
+				a.ROOM_BEDTYPE,
+				a.ROOM_CHK_INTIME,
+				a.ROOM_CHK_OUTTIME,
+				a.ROOM_DATE,
+				a.ROOM_PRICE
 		        ORDER BY ROOM_ID asc
 		    ) A
     ]]>	
@@ -162,13 +180,16 @@
 	<select id="selectRoomImgs" parameterType="hashmap" resultType="hashmap">
 		<![CDATA[
 			SELECT 
-				ROOM_IMGS_ID,
-				ROOM_TYPE,
-				ROOM_IMGS_FILE 
+                a.ROOM_ID,
+				b.ROOM_IMGS_ID,
+				b.ROOM_TYPE,
+				b.ROOM_IMGS_FILE 
 			FROM 
-				ROOM_IMAGES
-			WHERE
-				ROOM_TYPE=#{ROOM_TYPE}
+				ROOM a, ROOM_IMAGES b
+            WHERE
+                a.ROOM_TYPE = b.ROOM_TYPE
+                and
+                a.ROOM_ID = #{ROOM_ID}
 		]]>
 	
 	</select>
@@ -198,10 +219,24 @@
 	UPDATE 
 		ROOM_IMAGES
 	SET
-		ROOM_TYPE = #{ROOM_TYPE},
 		ROOM_IMGS_FILE = #{ROOM_IMGS_FILE}
 	WHERE
-		ROOM_IMGS_ID = #{ROOM_IMGS_ID}
+		<choose>
+			<when test="ROOM_IMGS_ID_0 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_0}
+			</when>
+			<when test="ROOM_IMGS_ID_1 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_1}
+			</when>
+			<when test="ROOM_IMGS_ID_2 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_2}
+			</when>
+			<when test="ROOM_IMGS_ID_3 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_3}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
 	</update>
 
  	<!-- 객실 삭제 (deleteRoom)  -->
@@ -209,6 +244,14 @@
 	DELETE FROM
 		ROOM
 	WHERE
-		ROOM_TYPE = #{ROOM_TYPE}
+		ROOM_ID = #{ROOM_ID}
+	</delete>
+	
+	<!-- 객실 이미지 삭제 -->
+	<delete id="deleteRoomImg" parameterType="hashmap">
+	DELETE FROM
+		ROOM_IMAGES
+	WHERE
+		ROOM_IMGS_ID = #{ROOM_IMGS_ID}
 	</delete>
 </mapper>

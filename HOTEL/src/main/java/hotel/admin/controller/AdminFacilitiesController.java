@@ -103,4 +103,13 @@ public class AdminFacilitiesController {
 		
 		return mv;
 	}
+	
+	//부대시설 삭제
+	@RequestMapping(value="admin/deleteFacilities")
+	public ModelAndView deleteNotice(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesList");
+		adminFacilitiesService.deleteFacilities(commandMap.getMap());
+			
+		return mv;
+	}
 }

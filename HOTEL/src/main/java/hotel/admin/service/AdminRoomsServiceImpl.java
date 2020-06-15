@@ -53,12 +53,16 @@ public class AdminRoomsServiceImpl implements AdminRoomsService{
 		
 		List<Map<String, Object>> list = adminRoomsDAO.selectRoomImgs(map); //selectFileList(): 게시글의 첨부파일 목록을 가져옴
 		resultMap.put("list", list); //그 목록을 resultMap에 "list"라는 이름으로 저장
-		System.out.println(resultMap);
 		
 		//resultMap에는 map과 list라는 이름의 키가 저장되어 있음을 알아둘 것!
 		//키는 Controller에서 map.get("map")과 map.get("list")라는 키로 사용됨
 		
 		return resultMap;
+	}
+	
+	public List<Map<String, Object>> selectRoomImgs(Map<String, Object> map) throws Exception{
+		
+		return adminRoomsDAO.selectRoomImgs(map);
 	}
 
 	@Override
@@ -72,7 +76,31 @@ public class AdminRoomsServiceImpl implements AdminRoomsService{
 		}
 	}
 	
-	
+	// 수정
+	@Override
+	public void modifyRoom(Map<String, Object> map, HttpServletRequest request) throws Exception {
+		adminRoomsDAO.updateRoom(map);
+
+		// FileUtils2 클래스를 이용하여 파일을 저장하고 데이터를 가져온 후, DB에 저장
+		List<Map<String, Object>> list = fileUtils2.parseUpdateFileInfo(map, request);
+		System.out.println("이미지 파일명: 어어어얼ㅇㄹ언ㄹㅇ" + list);
+
+		for (int i = 0, size = list.size(); i < size; i++) {
+			adminRoomsDAO.updateRoomImg(list.get(i));
+		}
+	}
+
+	@Override
+	public void deleteRoom(Map<String, Object> map) throws Exception {
+		adminRoomsDAO.deleteRoom(map);
+		
+		List<Map<String, Object>> list = fileUtils2.parseDeleteFileInfo(map);
+		
+		for (int i = 0, size = list.size(); i < size; i++) {
+			
+			adminRoomsDAO.deleteRoomImg(list.get(i));
+		}
+	}
 	
 	
 }

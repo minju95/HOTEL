@@ -24,7 +24,7 @@
 #ROOM_CHK_INTIME, #ROOM_CHK_OUTTIME {
 	width : 120px;
 }
-#fileDiv>#ROOM_IMGS_FILE {
+#fileDiv>input {
 	display:block; 
 	margin-bottom:10px;
 }
@@ -38,14 +38,19 @@
 	    <label for="ROOM_TYPE">객실 유형</label>
 	 	<select class="form-control" id="ROOM_TYPE" name="ROOM_TYPE" size="1">
 	 			<option value="">선택하세요</option>
-			<c:forEach var="TYPE" items="${list}">
-				<option id="ROOM_TYPE" value="${TYPE.ROOM_TYPE }">${TYPE.ROOM_TYPE_NAME }</option>
-			</c:forEach>
+				<option id="ROOM_TYPE" value="1">Business Double</option>
+				<option id="ROOM_TYPE" value="2">Business Twin</option>
+				<option id="ROOM_TYPE" value="3">Superior Double</option>
+				<option id="ROOM_TYPE" value="4">Superior Twin</option>
+				<option id="ROOM_TYPE" value="5">Drama Suite</option>
+				<option id="ROOM_TYPE" value="6">Deluxe Suite</option>
+				<option id="ROOM_TYPE" value="7">Premium Suite</option>
+				<option id="ROOM_TYPE" value="8">Sienna Suite</option>
 		</select>
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_NAME">객실 호수</label>
-	    <input type="text" class="form-control" id="ROOM_ID" name="ROOM_ID" placeholder="101">
+	    <input type="text" class="form-control" id="ROOM_ID" name="ROOM_ID" placeholder="ex)101">
 	  </div>
 	    <label>기준 인원</label><br>
 	    성인
@@ -58,7 +63,7 @@
 	   아동
 	    <select class="form-control" id="ROOM_CHILD" name="ROOM_CHILD" size="1">
 	    	<option value="">선택하세요</option>
-	    	<c:forEach var="i" begin="1" end="10">
+	    	<c:forEach var="i" begin="0" end="10">
 	    		<option id="ROOM_CHILD" value="${i }">${i }</option>
 	    	</c:forEach>
 	    </select>
@@ -66,7 +71,7 @@
 	
 	  <div class="form-group">
 	    <label>편의 시설</label><br>
-	      <input type="checkbox" id="fac1" name="fac1" value="유,무선 인터넷 무료 제공"> 유,무선 인터넷 무료 제공<br>
+	      <input type="checkbox" id="fac1" name="fac1" value="유/무선 인터넷 무료 제공"> 유/무선 인터넷 무료 제공<br>
 	      <input type="checkbox" id="fac2" name="fac2" value="순면 목욕가운"> 순면 목욕가운<br>
 	      <input type="checkbox" id="fac3" name="fac3" value="슬리퍼 및 헤어드라이기"> 슬리퍼 및 헤어드라이기<br>
 	      <input type="checkbox" id="fac4" name="fac4" value="최고급 수입 라텍스 베개 및 린넨"> 최고급 수입 라텍스 베개 및 린넨<br>
@@ -86,7 +91,7 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_SIZE">객실 크기</label>
-	    <input type="text" class="form-control" id="ROOM_SIZE" name="ROOM_SIZE" placeholder="15평">
+	    <input type="text" class="form-control" id="ROOM_SIZE" name="ROOM_SIZE" placeholder="ex)15평">
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_BEDTYPE">침대 유형</label>
@@ -122,7 +127,7 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_PRICE">예약 금액</label>
-	    <input type="text" class="form-control" id="ROOM_PRICE" name="ROOM_PRICE" placeholder="예약 금액">
+	    <input type="text" class="form-control" id="ROOM_PRICE" name="ROOM_PRICE" placeholder="ex)50000">
 	  </div>
 	  <div id="fileDiv" class="form-group">
 	    <label>객실 이미지 업로드</label>&nbsp;&nbsp;&nbsp;<input type="button" id="addFile" value="파일추가">

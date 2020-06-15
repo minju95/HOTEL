@@ -8,6 +8,25 @@
 <meta charset="UTF-8">
 
 <title>예약자 리스트</title>
+<style>
+    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	h2{width: 800px;  display: block; text-align: center;}
+	
+	#PAGE_NAVI{text-align: center;margin-top:10%}
+
+	.div-about{
+ 	background-image:url(/hotel/image/hotel.jpg);
+	height:250px;
+	color: #e5a880;
+	background-repeat:no-repeat;
+	background-size:100%;
+	}
+a{
+text-decoration: none;
+color: black;
+}
+</style>
+
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -16,10 +35,18 @@
 </head>
 
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>R E S E R V A T I O N</h1>
+</div>
 
-<h3>예약자 리스트</h3>
-	
-	<table name="resList" class="table table-striped">
+	<h3 align="center">예약자 목록</h3>
+	<br>
+
+	<table name="resList" class="table table-striped" align="center" style="width: 1200px;" >
 		<thead>
 			<tr>
 				<th>객실번호</th>
@@ -89,7 +116,7 @@
 		
 	   function fn_resListCallback(data){
 		   var total = data.TOTAL;
-		   alert(total);
+		   //alert(total);//총 게시글 개수
 			var body = $("table[name='resList'] > tbody");
 			
 			body.empty();

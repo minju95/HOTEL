@@ -105,7 +105,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 		
 		while(iterator.hasNext()) { 
 			multipartFile = multipartHttpServletRequest.getFile(iterator.next());
-			if(multipartFile.isEmpty()==false) { //multipartFile이 비어있지 않은 경우(=첨부파일이 있는 경우)
+			if(multipartFile.isEmpty()==false) { //첨부파일이 있는 경우
 				
 				requestName = multipartFile.getName();
 				//System.out.println("helllllo "+requestName); //출력: file_
@@ -123,12 +123,6 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 				listMap = new HashMap<String, Object>();
 				
 				listMap.put("FAC_HOTEL_ID", FAC_HOTEL_ID);
-				/*
-				 * if((String) map.get("HOTEL_IMGS_ID_1") != null) { //이미지가 2개 등록되면
-				 * listMap.put("HOTEL_IMGS_ID_1", HOTEL_IMGS_ID_1);
-				 * listMap.put("HOTEL_IMGS_ID_0", HOTEL_IMGS_ID_0); } else { //이미지가 1개 등록되면
-				 * listMap.put("HOTEL_IMGS_ID_0", HOTEL_IMGS_ID_0); }
-				 */
 				
 				String idx0_last = idx.substring(idx.length()-1, idx.length());
 				
@@ -144,6 +138,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 				
 			}
 			else { //multipartFile이 비어있는 경우(=첨부파일이 없는 경우, 게시글에서 파일을 수정하지 않은 경우)
+				
 				/*
 				 * requestName = multipartFile.getName(); //html태그에서 file태그의 name값(file_숫자)을 가져옴
 				 * idx = "FAC_HOTEL_ID_"+requestName.substring(requestName.indexOf("_")+1);

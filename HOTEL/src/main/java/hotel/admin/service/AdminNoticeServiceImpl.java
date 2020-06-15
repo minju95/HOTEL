@@ -41,7 +41,8 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	public void deleteNotice(Map<String, Object> map) throws Exception {
 		adminNoticeDAO.deleteNotice(map);
 	}
-
+	
+	//수정
 	@Override
 	public void modifyNotice(Map<String, Object> map, MultipartHttpServletRequest request)
 			throws Exception {

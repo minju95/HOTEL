@@ -9,8 +9,6 @@
 <head>
 <!-- include) include/include-header.jspf -->
 <%@include file="/WEB-INF/include/include-header.jspf"%>
-<!-- include) include/include-topMenu.jsp -->
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 </head>
 
 <!-- 링크) jQuery 링크 -->
@@ -284,6 +282,9 @@ function fn_nextStep(obj){
 <link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
 <!-- 마우스 우클릭 방지 -->
 <body oncontextmenu="return false" ondragstart="return false">
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br><br><br><h1>R E S E R V A T I O N</h1></div>
 <div class="a_layer">
 <div class="a_layer_inner">
 <div class="a_content">
@@ -596,6 +597,11 @@ function layer_open(el){
 
 </div>
 </div>
+</div>
+
+<div>
+<!-- include) 푸터 -->
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </div>
 </body>
 </html>

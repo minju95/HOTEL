@@ -11,7 +11,7 @@ li {list-style: none;}
 
 /*BODY*/
 .a_layer {height: auto;}
-.a_layer_inner {display: flex; justify-content: center; align-items: center;}
+.a_layer_inner {display: flex; justify-content: center; align-items: center; margin-right: 10%;}
 .a_content {display: inline-block; color: black;}
 
 /*BODY - Search*/
@@ -44,140 +44,47 @@ li {list-style: none;}
 .layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}
 .layer .bg {position:absolute; top:0; left:0; width:100%; height:100%; background:#000; opacity:.5; filter:alpha(opacity=50);}
 .layer .pop-layer {display:block;}
-.pop-layer {display:none; position: absolute; top: 50%; left: 50%; width: 550px; height:auto;  background-color:#fff; border: 5px solid #3571B5; z-index: 10;}
+.pop-layer {display:none; position: absolute; top: 50%; left: 50%; width: 460px; height:auto;  background-color:#fff; border: 5px solid #3571B5; z-index: 10;}
 .pop-layer .pop-container {padding: 20px 25px;}
 .pop-layer p.ctxt {color: #666; line-height: 25px;}
 .pop-layer .btn-r {width: 100%; margin:10px 0 20px; padding-top: 10px; border-top: 1px solid #DDD; text-align:right;}
 a.cbtn {display:inline-block; height:25px; padding:0 14px 0; border:1px solid #304a8a; background-color:#3f5a9d; font-size:13px; color:#fff; line-height:25px;}
 a.cbtn:hover {border: 1px solid #091940; background-color:#1f326a; color:#fff;}
+.pop_div {margin: 5px 5px 5px 0; font-family: nanum -webkit-pictograph; font-size: 1rem;}
+.pop_person {width: 30px; border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; text-align: center; letter-spacing: 1px;}
+.pop_ee {border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; text-align: center;}
+.pop_tt {width: 50px; border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; text-align: center; letter-spacing: 1px;}
+.pop_fac {border: none; font-family: nanum -webkit-pictograph; font-size: 0.8rem; text-align: left; width: 490px; margin-left:20px; letter-spacing: 1px;}
+.pop_can {font-family: nanum -webkit-pictograph; font-size: 0.8rem; text-align: left; width: 490px; margin-left:20px; letter-spacing: 1px;}
 
 /*reservation.writeForm*/
-.write_date {
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- font-weight: bold;
- text-align: center;
- height: 60px;
-}
-.write_title {
- font-family: nanum -webkit-pictograph;
- font-size: 1.5rem;
- font-weight: bold;
- text-align: center;
- height: 60px;
- /* background-color: #ceed; */
- padding: 10px;
-}
-.write_midlleTitle {
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- font-weight: bold;
- text-align: center;
- height: 60px;
- /* border: 2px solid #ceed; */
- background-color: #eee;
- 
-}
-.write_person {
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 0.8rem;
- font-weight: bold;
- text-align: center;
- height: 60px;
-}
-.write_comments {
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- font-weight: bold;
- text-align: left;
- height: 40px;
- width: 700px;
- padding: 10px;
- border-bottom: 1px solid black;
-}
-.write_carNum {
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- /* font-weight: bold; */
- text-align: left;
- height: 10px;
- width: 50px;
- padding: 10px;
- border-bottom: 1px solid black;
- border-radius: 5px;
- text-align: center;
-}
-.write_val {
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- /* font-weight: bold; */
- text-align: left;
- height: 10px;
- width: 50px;
- padding: 10px;
- border-bottom: 1px solid black;
- border-radius: 5px;
- text-align: center;
-}
-.write_cvc {
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- /* font-weight: bold; */
- text-align: left;
- height: 10px;
- width: 50px;
- padding: 10px;
- border-bottom: 1px solid black;
- border-radius: 5px;
- text-align: center;
-}
-.write_name {
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- /* font-weight: bold; */
- text-align: left;
- height: 10px;
- width: 100px;
- padding: 10px;
- border-bottom: 1px solid black;
- border-radius: 5px;
- text-align: center;
-}
-.write_company {
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- /* font-weight: bold; */
- text-align: left;
- height: 10px;
- width: 150px;
- padding: 10px;
- border-bottom: 1px solid black;
- border-radius: 5px;
- text-align: center;
-}
-.write_check {
- font-family: nanum -webkit-pictograph;
- color: red;
- font-weight: bold;
- font-size: 0.8rem;
- padding: 5px;
-}
-.write_tdbox {
- text-align:left;
- padding:10px;
- height: 60px;
- width: 250px;
-}
+.write_date {border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; font-weight: bold; text-align: center; height: 60px;}
+.write_title {font-family: nanum -webkit-pictograph; font-size: 1.5rem; font-weight: bold; text-align: center; height: 60px; /* background-color: #ceed; */ padding: 10px;}
+.write_midlleTitle {font-family: nanum -webkit-pictograph; font-size: 1rem; font-weight: bold; text-align: center; height: 60px; /* border: 2px solid #ceed; */ background-color: #eee; }
+.write_person {border: none; font-family: nanum -webkit-pictograph; font-size: 0.8rem; font-weight: bold; text-align: center; height: 60px;}
+.write_comments {border: none; font-family: nanum -webkit-pictograph; font-size: 1rem; font-weight: bold; text-align: left; height: 40px; width: 700px; padding: 10px; border-bottom: 1px solid black;}
+.write_carNum {font-family: nanum -webkit-pictograph; font-size: 1rem; /* font-weight: bold; */ text-align: left; height: 10px; width: 50px; padding: 10px; border-bottom: 1px solid black; border-radius: 5px; text-align: center;}
+.write_val {font-family: nanum -webkit-pictograph; font-size: 1rem; /* font-weight: bold; */ text-align: left; height: 10px; width: 50px; padding: 10px; border-bottom: 1px solid black; border-radius: 5px; text-align: center;}
+.write_cvc {font-family: nanum -webkit-pictograph; font-size: 1rem; /* font-weight: bold; */ text-align: left; height: 10px; width: 50px; padding: 10px; border-bottom: 1px solid black; border-radius: 5px; text-align: center;}
+.write_name {font-family: nanum -webkit-pictograph; font-size: 1rem; /* font-weight: bold; */ text-align: left; height: 10px; width: 100px; padding: 10px; border-bottom: 1px solid black; border-radius: 5px; text-align: center;}
+.write_company {font-family: nanum -webkit-pictograph; font-size: 1rem; /* font-weight: bold; */ text-align: left; height: 10px; width: 150px; padding: 10px; border-bottom: 1px solid black; border-radius: 5px; text-align: center;}
+.write_check {font-family: nanum -webkit-pictograph; color: red; font-weight: bold; font-size: 0.8rem; padding: 5px;}
+.write_tdbox {text-align:left; padding:10px; height: 60px; width: 250px;}
 .write_btn {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 15px 0; margin: 4px; width:100px; background-color: #f8585b; border: none; color:#fff; text-decoration: none; display: inline-block; font-size: 15px; cursor: pointer; border-radius:10px;}
 .write_btn:hover {background-color: #87ceeb; color: black;}
 
+/*main_roomShow*/
+.view_title {font-family: nanum -webkit-pictograph; font-weight: bold; text-align: center; margin-bottom: 30px; font-size: 3rem; word-spacing: 2px;}
+.view_button {position: absolute; top: 0; bottom: 0; left: 0; width: 15%; font-size: 20px; color: black; text-align: center; text-shadow: 0 1px 2px rgba(0,0,0,.6); background-color: rgba(0,0,0,0); filter: alpha(opacity=50); opacity: .5; margin-top: 27%;}
+.view_button.right {right: 0; left: auto; background-repeat: repeat-x;}
+.view_button.left {background-repeat: repeat-x;}
+.view_type {font-family: nanum -webkit-pictograph; font-size: 1.5rem; margin: 5px; word-spacing: 2px;}
+.view_name {font-family: nanum -webkit-pictograph; font-size: 2rem; margin: 5px; word-spacing: 2px;}
+.view_content {margin: 10px; word-spacing: 2px;}
+.reserBtn {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 15px 0; margin: 4px; width:100px; background-color: #f8585b; border: none; color:#fff; text-decoration: none; display: inline-block; font-size: 15px; cursor: pointer; border-radius:10px; float: right;}
+.reserBtn:hover {background-color: #87ceeb; color: black; text-decoration: none;}
 
-
-
-
+.div-about {background-image:url(/hotel/image/hotel.jpg); height:250px; color: #e5a880; background-repeat:no-repeat; background-size:100%;}
 
 
 

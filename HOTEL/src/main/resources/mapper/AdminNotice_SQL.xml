@@ -15,7 +15,7 @@
 		            WHEN NOTICE_ISVIEW='N' THEN '비공개'
 					WHEN NOTICE_ISVIEW='Y' THEN '공개'
 				ELSE 'Others' END AS NOTICE_ISVIEW,
-				NOTICE_DATE
+				TO_CHAR(NOTICE_DATE,'YYYY/MM/DD') NOTICE_DATE
 			FROM NOTICE
 			]]>	
 			<choose>

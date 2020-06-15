@@ -8,6 +8,25 @@
 <meta charset="UTF-8">
 
 <title>부대시설 리스트</title>
+<style>
+    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	h2{width: 800px;  display: block; text-align: center;}
+	
+	#PAGE_NAVI{text-align: center;margin-top:10%}
+
+	
+	.div-about{
+ 	background-image:url(/hotel/image/hotel.jpg);
+	height:250px;
+	color: #e5a880;
+	background-repeat:no-repeat;
+	background-size:100%;
+	}
+a{
+text-decoration: none;
+color: black;
+}
+</style>
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -16,10 +35,17 @@
 </head>
 
 <body>
-
-<h3>부대시설 리스트</h3>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>F A C I L I T I E S </h1></div>
 	
-	<table name="facList" class="table table-striped" align="center" width="800">
+<h3 align="center">부대시설 관리</h3>
+<br>
+	
+	<table name="facList" class="table table-striped" align="center" style="width: 800px;" >
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -100,7 +126,7 @@
 	
 	  function fn_facListCallback(data){ //콜백함수
 		var total = data.TOTAL;
-		alert(total);
+		//alert(total); //총 게시글 개수
 		var body = $("table[name='facList'] > tbody");
 		//alert(body);
 		body.empty();

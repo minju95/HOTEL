@@ -3,12 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<% pageContext.setAttribute("replaceChar", "\n"); %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>HOTEL</title>
+<!-- include) 부트스트랩.슬라이드 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- reservation/main css -->
+<link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
 <style type="text/css">
 .div-about{
  background-image:url(/hotel/image/hotel.jpg);
@@ -20,13 +27,17 @@ background-size:100%;
 .div-reservation{
 weith:100%;
 height:850px;
-border:1px solid black ;
+/*border:1px solid black ;*/
+/*background-image:url(/hotel/image/mainHotel.jpg);
+ background-repeat:no-repeat;
+background-size:100%;*/
 }
 
 .div-fac{
 weith:100%;
-height:650px;
+height:700px;
 /*border:1px solid black ;*/
+ 
 }
 
 .div-notice{
@@ -62,6 +73,7 @@ top:268%;
 }
 .a1{
 color: white;
+text-decoration: none;
 }
 
 
@@ -78,7 +90,7 @@ img {vertical-align: middle;}
 position: absolute;
 /*bottom:70%;*/
 left:10%;
-top:180%;
+top:190%;
 }
 
 .fac-name{
@@ -88,27 +100,29 @@ font-size: 22px;
 position: absolute;
 /*bottom:70%;*/
 left:60%;
-top:180%;
+top:190%;
 /*border:1px solid black ;*/
 }
 .fac-content{
+font-size: 18px;
  height: 220px;
   width: 500px;
 position: absolute;
 /*bottom:70%;*/
 left:60%;
-top:188%;
+top:198%;
 /*border:1px solid black ;*/
-font-size: 16px;
+
 }
 
 .fac-all{
+
  height: 190px;
   width: 500px;
 position: absolute;
 /*bottom:70%;*/
 left:60%;
-top:218%;
+top:228%;
 /*border:1px solid black ;*/
 }
 /* Caption text */
@@ -198,11 +212,70 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a href="
 <a href="/hotel/admin">호텔 관리</a>
 </c:if>
 </div>
+
+<!-- 객실 소개 s -->
 <div class="div-reservation">
+<div class="a_layer">
+<div class="a_layer_inner" style="margin: 0px;">
+<div class="a_content">
+	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 80%; margin-left: 10%; margin-top: 50px;">
+	<!-- Indicators -->
+	<ol class="carousel-indicators" style="bottom: 200px;">
+	<c:choose>
+		<c:when test="${fn:length(roomView) > 0}">
+			<c:forEach items="${roomView}" var="row" varStatus="status">
+				<li data-target="#myCarousel" data-slide-to="${status.index}" <c:if test="${status.index eq 0}">class="active"</c:if>></li>
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+		</c:otherwise>
+	</c:choose>
+	</ol>
+	
+	<!-- Wrapper for slides -->
+	<div class="view_title">객실 소개</div>
+	<div class="carousel-inner" role="listbox" style="width: 80%; margin-left: 10%;">
+	<c:choose>
+		<c:when test="${fn:length(roomView) > 0}">
+			<c:forEach items="${roomView}" var="row" varStatus="status">
+				<div class="item <c:if test="${status.index eq 0}">active</c:if>" style="background-color: #fff;">
+					<img class="" alt="${row.ROOM_TYPE}" src="<spring:url value='/image/${row.ROOM_IMGS_FILE}'/>">
+					<div style="margin-top: 10px; padding: 10px;">
+						<span class="view_name">${row.ROOM_NAME}</span><br/><br/>
+						<span class="view_content">${row.ROOM_CONTENT}</span><br/><br/>
+						<span class="view_type">ROOM SIZE 약 ${row.ROOM_SIZE}</span><br/>
+						<span class="view_type">BED TYPE ${row.ROOM_BEDTYPE}</span>
+						<a href="/hotel/reservation/main" class="reserBtn" name="search">예약하기</a>
+					</div>
+				</div>
+			</c:forEach>
+		</c:when>
+		<c:otherwise>
+			<h2>조회된 결과가 없습니다.</h2>
+		</c:otherwise>
+	</c:choose>
+	</div>
+	  <!-- Left and right controls -->
+	  <a class="left view_button" href="#myCarousel" role="button" data-slide="prev">
+	    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+	    <span class="sr-only">Previous</span>
+	  </a>
+	  <a class="right view_button" href="#myCarousel" role="button" data-slide="next">
+	    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+	    <span class="sr-only">Next</span>
+	  </a>
+	</div>
 </div>
+</div>
+</div>
+</div>
+<!-- 객실 소개 e -->
+
 <div class="div-fac">
-<br>
 <center><h1 >시설소개</h1></center>
+<br>
+
 <c:forEach items="${list2}" var="fac">
 <div class="fac-name">
 <b>${fac.FAC_HOTEL_NAME}</b>
@@ -224,7 +297,8 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a href="
 
 <br>
 <div class="fac-content">
-${fn:replace(fac.FAC_HOTEL_CONTENT, cn, br)}
+
+${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 </div>
 <br>
 <div class="fac-all">

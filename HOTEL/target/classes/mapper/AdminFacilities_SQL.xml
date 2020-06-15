@@ -115,6 +115,7 @@
 	
 	</select>
 	
+	<!-- 부대시설 수정 -->
 	<update id="updateFacilities" parameterType="hashmap">
 	<![CDATA[
 	UPDATE
@@ -132,6 +133,7 @@
 	]]>
 	</update>
 	
+	<!-- 부대시설 이미지 수정 -->
 	<update id="updateFacilitiesImage" parameterType="hashmap" >
 	<![CDATA[
 	UPDATE
@@ -154,7 +156,16 @@
 	</choose>
 	</update>
 	
-	
+	<!-- 부대시설 삭제 -->
+	<delete id="deleteFacilities" parameterType="hashmap">
+	<![CDATA[
+	DELETE FROM
+    	FACILITIES_HOTEL
+	WHERE
+   		FAC_HOTEL_ID=#{FAC_HOTEL_ID}
+
+	]]>	
+	</delete>
 	
 	
 </mapper>

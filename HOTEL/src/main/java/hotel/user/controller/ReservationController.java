@@ -72,14 +72,15 @@ public class ReservationController {
 		return mv;
 	}
 	
-	// Room_view
-		@RequestMapping(value = "/RoomView")
-		public ModelAndView roomView(CommandMap commandMap) throws Exception {
-			ModelAndView mv = new ModelAndView("/reservation/room_view");
-			
-			List<Map<String, Object>> list = reservationService.roomView(commandMap.getMap());
-			mv.addObject("list", list);
-			return mv;
-		}
+	// Room_view -- maincontoller 에 기재
+	/*
+	 * @RequestMapping(value = "/reservation/view") public ModelAndView
+	 * roomView(CommandMap commandMap) throws Exception { ModelAndView mv = new
+	 * ModelAndView("/reservation/view");
+	 * 
+	 * List<Map<String, Object>> list =
+	 * reservationService.roomView(commandMap.getMap()); mv.addObject("list", list);
+	 * return mv; }
+	 */
 	
 }

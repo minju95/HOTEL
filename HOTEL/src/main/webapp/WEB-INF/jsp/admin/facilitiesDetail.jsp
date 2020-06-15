@@ -8,6 +8,27 @@
 <meta charset="UTF-8">
 
 <title>부대시설 상세보기</title>
+
+<style>
+    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	h2{width: 800px;  display: block; text-align: center;}
+	
+	#PAGE_NAVI{text-align: center;margin-top:10%}
+
+	
+	.div-about{
+ 	background-image:url(/hotel/image/hotel.jpg);
+	height:250px;
+	color: #e5a880;
+	background-repeat:no-repeat;
+	background-size:100%;
+	}
+a{
+text-decoration: none;
+color: black;
+}
+</style>
+
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
@@ -16,9 +37,18 @@
 </head>
 
 <body>
-<h3>부대시설 상세보기</h3>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>F A C I L I T I E S </h1>
+</div>
+
+<h3 align="center">부대시설 상세보기</h3>
+<br>
 	<form="frm">
-	<table name="facDetail" class="table table-striped" align="center" width="800">
+	<table name="facDetail" class="table table-striped" align="center" style="width: 800px;" >
 		<thead>
 			<tr>
 				<th scope="row">부대시설명</th>
@@ -54,8 +84,17 @@
 				<c:forEach var="row" items="${list }">
 				<p>
 					<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
+					
+					<!-- 이미지 파일명 -->
 					<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
-				</p>
+					
+					<!-- 이미지_절대경로 -->
+					<%-- <img src= "C:/Users/학생용/git/HOTEL/HOTEL/src/main/webapp/resources/${row.HOTEL_IMGS_FILE}"
+						style = "width:200px; heigth:120px;"> --%>
+						
+					<!-- 이미지_상대경로 -->
+					<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}"
+						style = "width:200px; heigth:120px;">
 				</c:forEach>
 			</td>
 			</tr>
@@ -65,6 +104,7 @@
 	</form>
 	<center>
 		<a href="#this" class="btn" id="modify">수정하기</a>
+		<a href="#this" class="btn" id="delete">삭제하기</a>
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</center>
 	
@@ -82,6 +122,10 @@
 			e.preventDefault();
 			fn_facModifyForm();
 		});
+		$("#delete").on("click", function(e){ //'삭제하기' 누르면
+			e.preventDefault();
+			fn_facDelete();
+		});
 	});   
     
 	function fn_facList(pageNo){ //리스트로 이동하는 함수
@@ -97,7 +141,20 @@
 		comSubmit.setUrl("<c:url value='/admin/modifyFacilitiesForm' />");
 		comSubmit.addParam("FAC_HOTEL_ID", FAC_HOTEL_ID);
 		comSubmit.submit();
-	}	  
+	}
+	
+	function fn_facDelete(){
+		if(confirm("삭제하시겠습니까?") == true){
+			alert("삭제되었습니다.");
+			
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/admin/deleteFacilities' />");
+		comSubmit.addParam("FAC_HOTEL_ID", $("#FAC_HOTEL_ID").val());
+		comSubmit.submit();
+		}else{
+			return;
+		}
+	}
 	</script>
 
 </body>

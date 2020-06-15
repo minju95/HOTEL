@@ -27,6 +27,7 @@ public class AdminNoticeDAO extends AbstractDAO {
 		System.out.println(map.get("NOTICE_IMG"));
 		insert("adminNotice.insertNewNotice", map);
 	}
+	
 	//삭제
 	public void deleteNotice(Map<String, Object> map) throws Exception{
 		delete("adminNotice.deleteNotice", map);

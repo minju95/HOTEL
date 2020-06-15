@@ -19,7 +19,7 @@
 	.div-about{
  background-image:url(/hotel/image/hotel.jpg);
 height:250px;
-color: white;
+color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
 }

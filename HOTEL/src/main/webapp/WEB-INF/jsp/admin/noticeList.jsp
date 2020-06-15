@@ -8,24 +8,62 @@
 <meta charset="UTF-8">
 
 <title>공지사항 리스트</title>
+<style>
+    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
+	h2{width: 800px;  display: block; text-align: center;}
+	
+	#PAGE_NAVI{text-align: center;margin-top:10%} /*페이징 처리*/
+	
+	.pad_1 { /*페이징 처리*/
+	font-size: 15px;
+	}
+	
+	.div-about{ /*상단 메뉴 아래 사진*/
+ 	background-image:url(/hotel/image/hotel.jpg);
+	height:250px;
+	color: #e5a880;
+	background-repeat:no-repeat;
+	background-size:100%;
+	}
+	
+	a{
+	text-decoration: none;
+	color: black;	
+	}
+	
+	
+</style>
+
 <!-- 부트스트랩 -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 </head>
 
 <body>
-
-<h3>공지사항 리스트</h3>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="div-about" align="center" >
+   <br>
+   <br>
+   <br>
+   <h1>N O T I C E</h1></div>
+   	
+<h3 align="center">공지사항 관리</h3>
+<br>
 	
-	<table name="noticeList" class="table table-striped" align="center" width="800">
+	<table name="noticeList" class="table table-striped" align="center" style="width: 800px;" >
+		<colgroup>
+			<col width="10%"/>
+			<col width="50%"/>
+			<col width="20%"/>
+			<col width="10%"/>
+		</colgroup>
 		<thead>
 			<tr>
-				<th>순번</th>
-				<th>제목</th>
-				<th>공개여부</th>
-				<th>작성일</th>
+				<th scope="col">순번</th>
+				<th scope="col">제목</th>
+				<th scope="col">공개여부</th>
+				<th scope="col">작성일</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -98,7 +136,7 @@
 	
 	  function fn_noticeListCallback(data){ //콜백함수
 		var total = data.TOTAL;
-		alert(total);
+		//alert(total);//총 게시글 개수
 		var body = $("table[name='noticeList'] > tbody");
 		//alert(body);
 		body.empty();

@@ -51,7 +51,7 @@
 		</tr>
 		<tr>
 			<td class="write_midlleTitle">한줄 요청사항</td>
-			<td colspan="3"><input class="write_comments" type="text" id="RES_ANOTHER" maxlength="200"></td>
+			<td colspan="3"><input class="write_comments" type="text" id="RES_ANOTHER" maxlength="30"></td>
 		</tr>
 		<tr>
 			<td colspan="4" style="text-align:right; padding:20px;">
