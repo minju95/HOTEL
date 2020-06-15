@@ -50,7 +50,7 @@
 			FAC_HOTEL_DETAIL
 		)
 	VALUES(
-			1}, 
+			#{FAC_HOTEL_ID}, 
 			#{FAC_HOTEL_NAME}, 
 			#{FAC_HOTEL_CONTENT}, 
 			#{FAC_HOTEL_LOCATION}, 

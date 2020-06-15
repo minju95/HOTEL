@@ -1,7 +1,7 @@
 <%@ page language="java" pageEncoding="utf-8"%>
 <style>
 #footer {
-	border-top: 4px solid #FF4F00;
+ 	border-top: 4px solid #FF4F00;
 	position: relative;
 	clear: both;
 	zoom: 1;

@@ -152,6 +152,17 @@ a {
 			e.preventDefault();
 			fn_facList(); //fn_facList()함수 호출
 		});
+		
+		$("#write").on("click", function(e) { //'등록하기'를 클릭하면
+			e.preventDefault();
+			fn_insertFac();//fn_insertFac()함수 호출
+		});
+		
+		$("#addFile").on("click", function(e) { //파일추가 버튼
+			e.preventDefault();
+			fn_addFile();
+		});
+	});
 
 		function fn_insertFac(){
 			//유효성 검사
@@ -175,6 +186,9 @@ a {
 				}
 
 		}
+
+	function fn_facList() {
+		location.href = "<c:url value='/admin/facilitiesList'/>";
 	}
 
 	function fn_addFile() {
