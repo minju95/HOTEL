@@ -285,7 +285,7 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a href="
 <c:forTokens items="${fac.HOTEL_IMGS_FILE }" delims="," var="item">
    <div class="slideshow-container">
 
-<div class="mySlides fade">
+<div class="mySlides ">
 
   <img src="<c:url value='/image/${item}'/>" style="width:700px; height:480px;">
 
