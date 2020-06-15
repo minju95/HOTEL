@@ -74,6 +74,9 @@ SELECT
 	<when test="searchOption == 'ROOM_NAME'">
 		WHERE ROOM_NAME LIKE '%${keyword}%' 
 	</when>
+	<when test="searchOption == 'ROOM_ID'">
+		WHERE ROOM_ID LIKE '%${keyword}%' 
+	</when>
 	<otherwise>
 	</otherwise>
 	</choose>

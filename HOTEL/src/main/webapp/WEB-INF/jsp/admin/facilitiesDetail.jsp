@@ -1,54 +1,68 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
 <meta charset="UTF-8">
 
 <title>부대시설 상세보기</title>
 
 <style>
-    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
-	h2{width: 800px;  display: block; text-align: center;}
-	
-	#PAGE_NAVI{text-align: center;margin-top:10%}
-
-	
-	.div-about{
- 	background-image:url(/hotel/image/hotel.jpg);
-	height:250px;
-	color: #e5a880;
-	background-repeat:no-repeat;
-	background-size:100%;
-	}
-a{
-text-decoration: none;
-color: black;
+#notice {
+	margin-left: calc(50% - 400px);
+	width: 800px;
+	text-align: center
 }
+
+h2 {
+	width: 800px;
+	display: block;
+	text-align: center;
+}
+
+#PAGE_NAVI {
+	text-align: center;
+	margin-top: 10%
+}
+
+.div-about {
+	background-image: url(/hotel/image/hotel.jpg);
+	height: 250px;
+	color: #e5a880;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+
+a {
+	text-decoration: none;
+	color: black;
+}
+
 </style>
 
 <!-- 부트스트랩 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 </head>
 
 <body>
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center" >
-   <br>
-   <br>
-   <br>
-   <h1>F A C I L I T I E S </h1>
-</div>
-
-<h3 align="center">부대시설 상세보기</h3>
-<br>
+	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+	<div class="div-about" align="center">
+		<br> <br> <br>
+		<h1>F A C I L I T I E S</h1>
+	</div>
+	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
+	<h3 align="center">부대시설 상세보기</h3> <br>
 	<form="frm">
-	<table name="facDetail" class="table table-striped" align="center" style="width: 800px;" >
+	<table name="facDetail" class="table table-striped" align="center"
+							style="width: 800px;">
 		<thead>
 			<tr>
 				<th scope="row">부대시설명</th>
@@ -93,9 +107,10 @@ color: black;
 						style = "width:200px; heigth:120px;"> --%>
 						
 					<!-- 이미지_상대경로 -->
-					<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}"
-						style = "width:200px; heigth:120px;">
-				</c:forEach>
+					<img src="/hotel/image/${row.HOTEL_IMGS_FILE}"
+													style="width:200px; heigth:120px;">
+				
+										</c:forEach>
 			</td>
 			</tr>
 
@@ -108,54 +123,54 @@ color: black;
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</center>
 	
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>		
+	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
 	
 	<script>
-	$(document).ready(function(){
-		$("#list").on("click", function(e){  //목록으로 누르면
-			e.preventDefault();
-			fn_facList();
-		});
-		
+		$(document).ready(function() {
+			$("#list").on("click", function(e) { //목록으로 누르면
+				e.preventDefault();
+				fn_facList();
+			});
 
-		$("#modify").on("click", function(e){ //수정하기 누르면
-			e.preventDefault();
-			fn_facModifyForm();
+			$("#modify").on("click", function(e) { //수정하기 누르면
+				e.preventDefault();
+				fn_facModifyForm();
+			});
+			$("#delete").on("click", function(e) { //'삭제하기' 누르면
+				e.preventDefault();
+				fn_facDelete();
+			});
 		});
-		$("#delete").on("click", function(e){ //'삭제하기' 누르면
-			e.preventDefault();
-			fn_facDelete();
-		});
-	});   
-    
-	function fn_facList(pageNo){ //리스트로 이동하는 함수
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/facilitiesList' />");
-		comSubmit.submit();
-		
-	}  
-	
-	function fn_facModifyForm(){
-		var FAC_HOTEL_ID = "${map.FAC_HOTEL_ID}";
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/modifyFacilitiesForm' />");
-		comSubmit.addParam("FAC_HOTEL_ID", FAC_HOTEL_ID);
-		comSubmit.submit();
-	}
-	
-	function fn_facDelete(){
-		if(confirm("삭제하시겠습니까?") == true){
-			alert("삭제되었습니다.");
-			
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/deleteFacilities' />");
-		comSubmit.addParam("FAC_HOTEL_ID", $("#FAC_HOTEL_ID").val());
-		comSubmit.submit();
-		}else{
-			return;
+
+		function fn_facList(pageNo) { //리스트로 이동하는 함수
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/admin/facilitiesList' />");
+			comSubmit.submit();
+
 		}
-	}
+
+		function fn_facModifyForm() {
+			var FAC_HOTEL_ID = "${map.FAC_HOTEL_ID}";
+			var comSubmit = new ComSubmit();
+			comSubmit.setUrl("<c:url value='/admin/modifyFacilitiesForm' />");
+			comSubmit.addParam("FAC_HOTEL_ID", FAC_HOTEL_ID);
+			comSubmit.submit();
+		}
+
+		function fn_facDelete() {
+			if (confirm("삭제하시겠습니까?") == true) {
+				alert("삭제되었습니다.");
+
+				var comSubmit = new ComSubmit();
+				comSubmit.setUrl("<c:url value='/admin/deleteFacilities' />");
+				comSubmit.addParam("FAC_HOTEL_ID", $("#FAC_HOTEL_ID").val());
+				comSubmit.submit();
+			} else {
+				return;
+			}
+		}
 	</script>
 
-</body>
+
+				</body>
 </html>

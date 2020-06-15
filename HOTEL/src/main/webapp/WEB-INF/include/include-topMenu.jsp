@@ -6,96 +6,110 @@
 <head>
 <style>
 #topMenu {
-            height: 119px;  
-            width: 100%;       /* [변경] 하위 메뉴와 동일하게 맞춤 */
-            position: relative;
+	height: 119px;
+	width: 100%; /* [변경] 하위 메뉴와 동일하게 맞춤 */
+	position: relative;
+	background-color: #0f1927; /* [추가] 늘어난만큼 배경색도 보이도록 수정 */
+}
 
+#topMenu ul { /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */
+	list-style-type: none;
+	margin: 0px;
+	padding: 0px;
+}
 
-           background-color:  #0f1927; /* [추가] 늘어난만큼 배경색도 보이도록 수정 */
-    }
-    #topMenu ul {           /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */
-        list-style-type: none;  
-        margin: 0px;            
-        padding: 0px;           
-    }
-    #topMenu ul li {            /* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */
-        color: white;               
-        background-color:  #0f1927; 
-        float: left;                
-        line-height: 80px;          
-        vertical-align: middle;     
-        text-align: center;         
-        -position: relative;  
-             /*margin-left:80px;*/
-            /* margin-top:5px;*/
-    }
- 
-    .menuLink, .submenuLink {           /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
-        text-decoration:none;               
-        display: block;                     
-        width: 180px;                       
-        font-size: 15px;                    
-        font-weight: bold;                  
-        font-family: "Trebuchet MS", Dotum; 
-        
-       
-    }
-    .menuLink {     /* 상위 메뉴의 글씨색을 흰색으로 설정 */
-        color: white;
-    }
-    .topMenuLi:hover .menuLink {    /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
-        color: red;                 
-        background-color: #4d4d4d;
-    }
-    .longLink {     /* 좀 더 긴 메뉴 스타일 설정 */
-        width: 150px;   
-    }
-.submenuLink {          /* 하위 메뉴의 a 태그 스타일 설정 */
-        color:  #0f1927;             
-        background-color: #DDD;      /* [변경] 배경색 변경 */
-        -border: solid 1px black;    /* [삭제] 테두리 삭제 */
-        -margin-right: -1px;         /* [삭제] 공백 보정 삭제 */
-        
-    }
-    .submenu {              /* 하위 메뉴 스타일 설정 */
-        position: absolute;     
-        height: 0px;            
-        overflow: hidden;       
-        transition: height .2s; 
-        -webkit-transition: height .2s; 
-        -moz-transition: height .2s; 
-        -o-transition: height .2s; 
-        width: 100%;           
-        left: 0;                
-        
+#topMenu ul li { /* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */
+	color: white;
+	background-color: #0f1927;
+	float: left;
+	line-height: 80px;
+	vertical-align: middle;
+	text-align: center;
+	-position: relative;
+	/*margin-left:80px;*/
+	/* margin-top:5px;*/
+}
 
-        background-color: #DDD; /* [추가] 하위 메뉴 전체에 배경색 설정 */
-    }
-    .submenu li {
-        display: inline-block;
+.menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
+	text-decoration: none;
+	display: block;
+	width: 180px;
+	font-size: 15px;
+	font-weight: bold;
+	font-family: "Trebuchet MS", Dotum;
+}
 
+.menuLink { /* 상위 메뉴의 글씨색을 흰색으로 설정 */
+	color: white;
+}
 
-    }
-    .topMenuLi:hover .submenu { 
-        height: 50px; 
-        margin-top:15px;          
-    }
-    .submenuLink:hover {        
-        color: red;                 
-        background-color: #dddddd;  
-    }
-header{
-      font-size: 30px; color: red; position: relative;
-      text-align: center;
-      }
-      
+.topMenuLi:hover .menuLink { /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
+	color: red;
+	background-color: #4d4d4d;
+}
 
+.longLink { /* 좀 더 긴 메뉴 스타일 설정 */
+	width: 150px;
+}
 
+.submenuLink { /* 하위 메뉴의 a 태그 스타일 설정 */
+	color: #0f1927;
+	background-color: #DDD; /* [변경] 배경색 변경 */
+	-border: solid 1px black; /* [삭제] 테두리 삭제 */
+	-margin-right: -1px; /* [삭제] 공백 보정 삭제 */
+}
+
+.submenu { /* 하위 메뉴 스타일 설정 */
+	position: absolute;
+	height: 0px;
+	overflow: hidden;
+	transition: height .2s;
+	-webkit-transition: height .2s;
+	-moz-transition: height .2s;
+	-o-transition: height .2s;
+	width: 100%;
+	left: 0;
+	background-color: #DDD; /* [추가] 하위 메뉴 전체에 배경색 설정 */
+}
+
+.submenu li {
+	display: inline-block;
+}
+
+.topMenuLi:hover .submenu {
+	height: 50px;
+	margin-top: 15px;
+}
+
+.submenuLink:hover {
+	color: red;
+	background-color: #dddddd;
+}
+
+header {
+	font-size: 30px;
+	color: red;
+	position: relative;
+	text-align: center;
+}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
+	<div style="text-align:right;">
+		<c:set var="ID" value="${USERID }" />
+		<c:choose>
+			<c:when test="${ID != NULL}">
+${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a
+					href="/hotel/modifyMemForm">회원정보 수정</a>
+			</c:when>
+			<c:otherwise>
+				<a href="/hotel/loginForm">로그인</a> | <a href="/hotel/signUpForm">회원가입</a>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	<c:set var="isAdmin" value="${ADMIN }" />
 <nav id="topMenu" > 
 <ul>
 <li  style=" margin-top:5px;">
@@ -108,7 +122,6 @@ header{
   <ul class="submenu">
    <li style="margin-left: 150px;">
    <a href="/hotel/rooms?ROOM_TYPE=1" class="submenuLink longLink">Business Double</a>
-   
    </li> 
    <li>
    <a href="/hotel/rooms?ROOM_TYPE=2" class="submenuLink longLink">Business Twin</a>
@@ -135,7 +148,7 @@ header{
     </li> 
             
     <li class="topMenuLi"  style=" margin-top:10px;"> 
-    <a class="menuLink" href="/hotel/facilities?FAC_HOTEL_ID=1">FACILITIES</a> 
+    <a class="menuLink" href="/hotel/facilities?FAC_HOTEL_ID=41">FACILITIES</a> 
     <ul class="submenu"> 
     <li style="margin-left: 455px;"><a href="/hotel/facilities?FAC_HOTEL_ID=1" class="submenuLink">Buffet Lennon</a></li>
      <li><a href="/hotel/facilities?FAC_HOTEL_ID=2" class="submenuLink">Cafe Lennon</a></li> 
@@ -170,16 +183,12 @@ header{
     <c:set var="isAdmin" value="${ADMIN}" />
     	<c:if test="${isAdmin == 'Y'}">
        <li class="topMenuLi" style=" margin-top:10px;"> 
-    <a class="menuLink" href="/hotel/admin/roomsList">HOTEL MANAGER</a> 
+    <a class="menuLink" href="/hotel/admin/roomsList">MANAGEMENT</a> 
 	    <ul class="submenu"> 
-		    <li style="margin-left: 350px;"><a href="/hotel/board/list" class="submenuLink">객실관리</a></li>
-		    <li><a href="/hotel/admin/roomsList" class="submenuLink">객실목록조회</a></li>
+		    <li style="margin-left: 350px;"><a href="/hotel/admin/roomsList" class="submenuLink">객실관리</a></li>
 		    <li><a href="/hotel/admin/facilitiesList" class="submenuLink">부대시설관리</a></li>
 		    <li><a href="/hotel/admin/noticeList" class="submenuLink">공지사항관리</a></li>
 		    <li><a href="/hotel/admin/reservationList" class="submenuLink">예약자 조회</a></li>
-		    <li><a href="/hotel/admin/resDayList" class="submenuLink">일별 객실 예약 현황</a></li>
-		    <li><a href="#" class="submenuLink">일별 매출관리</a></li>
-		    <li><a href="#" class="submenuLink">월별 매출관리</a></li>
 	     </ul> 
       </li> 
       </c:if>

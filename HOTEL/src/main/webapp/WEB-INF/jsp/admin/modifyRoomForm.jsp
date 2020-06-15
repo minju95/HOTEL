@@ -1,131 +1,153 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+	pageEncoding="UTF-8"%>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>객실 수정</title>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
 <!-- 부트스트랩 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
 <style>
 .form-group {
-	width : 300px;
+	width: 300px;
 }
+
 #ROOM_TYPE, #ROOM_NAME {
-	width : 300px;
+	width: 300px;
 }
+
 #ROOM_ADULT, #ROOM_CHILD {
-	width : 120px;
+	width: 120px;
 }
+
 #ROOM_CHK_INTIME, #ROOM_CHK_OUTTIME {
-	width : 120px;
+	width: 120px;
 }
+
 #fileDiv>input {
-	display:block; 
-	margin-bottom:10px;
+	display: block;
+	margin-bottom: 10px;
+}
+
+.div-about {
+	background-image: url(/hotel/image/hotel.jpg);
+	height: 250px;
+	color: #e5a880;
+	background-repeat: no-repeat;
+	background-size: 100%;
 }
 </style>
 <body>
-
-<form id="frm"  name="frm" action="/hotel/admin/modifyRoom" enctype="multipart/form-data" method="post">
+	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+	<div class="div-about" align="center">
+		<br> <br> <br>
+		<h1>A D M I N R O O M S</h1>
+	</div>
+<%@ include file="/WEB-INF/include/include-admin.jspf"%>
+<h3 align="center">객실정보 수정</h3>
+					<form id="frm" name="frm" action="/hotel/admin/modifyRoom"
+						enctype="multipart/form-data" method="post">
 <div style="width:700px;">
 	<div style="display:inline;">
 	  <div class="form-group">
 	    <label for="ROOM_TYPE">객실 유형</label>
 	 	<select class="form-control" id="ROOM_TYPE" name="ROOM_TYPE" size="1">
 	 			<option value="">선택하세요</option>
-	 		<c:set var="room_type" value="${map.ROOM_TYPE}"/>
+	 		<c:set var="room_type" value="${map.ROOM_TYPE}" />
 			<c:forEach var="TYPE" items="${type}">
-				<option id="ROOM_TYPE" value="${TYPE.ROOM_TYPE }" <c:if test="${TYPE.ROOM_TYPE_NAME == room_type}">selected</c:if>>${TYPE.ROOM_TYPE_NAME }</option>
+				<option id="ROOM_TYPE" value="${TYPE.ROOM_TYPE }"
+												<c:if test="${TYPE.ROOM_TYPE_NAME == room_type}">selected</c:if>>${TYPE.ROOM_TYPE_NAME }</option>
 			</c:forEach>
 		</select>
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_NAME">객실 호수</label>
-	    <input type="text" class="form-control" id="ROOM_ID" name="ROOM_ID" placeholder="ex)101" value="${map.ROOM_ID }">
+	    <input type="text" class="form-control" id="ROOM_ID" name="ROOM_ID"
+										placeholder="ex)101" value="${map.ROOM_ID }">
 	  </div>
 	    <label>기준 인원</label><br>
 	    성인
-	    <select class="form-control" id="ROOM_ADULT" name="ROOM_ADULT" size="1">
+	    <select class="form-control" id="ROOM_ADULT" name="ROOM_ADULT"
+									size="1">
 	    	<option value="">선택하세요</option>
-	    	<c:set var="room_adult" value="${map.ROOM_ADULT }"/>
+	    	<c:set var="room_adult" value="${map.ROOM_ADULT }" />
 	    	<c:forEach var="i" begin="1" end="10">
-	    		<option id="ROOM_ADULT" value="${i }" <c:if test="${i == room_adult}">selected</c:if>>${i }</option>
+	    		<option id="ROOM_ADULT" value="${i }"
+											<c:if test="${i == room_adult}">selected</c:if>>${i }</option>
 	    	</c:forEach>
 	    </select>
 	   아동
-	    <select class="form-control" id="ROOM_CHILD" name="ROOM_CHILD" size="1">
+	    <select class="form-control" id="ROOM_CHILD" name="ROOM_CHILD"
+									size="1">
 	    	<option value="">선택하세요</option>
-	    	<c:set var="room_child" value="${map.ROOM_CHILD }"/>
+	    	<c:set var="room_child" value="${map.ROOM_CHILD }" />
 	    	<c:forEach var="i" begin="0" end="10">
-	    		<option id="ROOM_CHILD" value="${i }" <c:if test="${i == room_child}">selected</c:if>>${i }</option>
+	    		<option id="ROOM_CHILD" value="${i }"
+											<c:if test="${i == room_child}">selected</c:if>>${i }</option>
 	    	</c:forEach>
 	    </select>
 	  </div>
 	
 	  <div class="form-group">
-	  	<c:set var="fac" value="${map.ROOM_FAC_NAME}"/>
+	  	<c:set var="fac" value="${map.ROOM_FAC_NAME}" />
 	    <label>편의 시설</label><br>
 	   
-	      <input type="checkbox" id="fac1" name="fac1" value="유/무선 인터넷 무료 제공" 
-	      <c:forTokens var="fac_name" items="${fac }" delims=",">
+	      <input type="checkbox" id="fac1" name="fac1"
+									value="유/무선 인터넷 무료 제공"
+									<c:forTokens var="fac_name" items="${fac }" delims=",">
 	      <c:if test="${fac_name eq '유/무선 인터넷 무료 제공'}">checked</c:if>
-	      </c:forTokens>
-	      >유/무선 인터넷 무료 제공<br>
+	      </c:forTokens>>유/무선 인터넷 무료 제공<br>
 	      <input type="checkbox" id="fac2" name="fac2" value="순면 목욕가운"
-	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '순면 목욕가운'}">checked</c:if>
-	      </c:forTokens>
-	      >순면 목욕가운<br>
+	      </c:forTokens>>순면 목욕가운<br>
 	      <input type="checkbox" id="fac3" name="fac3" value="슬리퍼 및 헤어드라이기"
-	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '슬리퍼 및 헤어드라이기'}">checked</c:if>
-	      </c:forTokens>
-	      >슬리퍼 및 헤어드라이기<br>
-	      <input type="checkbox" id="fac4" name="fac4" value="최고급 수입 라텍스 베개 및 린넨"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+	      </c:forTokens>>슬리퍼 및 헤어드라이기<br>
+	      <input type="checkbox" id="fac4" name="fac4"
+									value="최고급 수입 라텍스 베개 및 린넨"
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '최고급 수입 라텍스 베개 및 린넨'}">checked</c:if>
-	      </c:forTokens>
-	      >최고급 수입 라텍스 베개 및 린넨<br>
-	      <input type="checkbox" id="fac5" name="fac5" value="생수 2병 제공 및 각종 티 서비스"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+	      </c:forTokens>>최고급 수입 라텍스 베개 및 린넨<br>
+	      <input type="checkbox" id="fac5" name="fac5"
+									value="생수 2병 제공 및 각종 티 서비스"
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '생수 2병 제공 및 각종 티 서비스'}">checked</c:if>
-	      </c:forTokens>
-	      >생수 2병 제공 및 각종 티 서비스<br>
+	      </c:forTokens>>생수 2병 제공 및 각종 티 서비스<br>
 	      <input type="checkbox" id="fac6" name="fac6" value="최고급 비데 설치"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '최고급 비데 설치'}">checked</c:if>
-	      </c:forTokens>
-	      >최고급 비데 설치<br>
+	      </c:forTokens>>최고급 비데 설치<br>
 	      <input type="checkbox" id="fac7" name="fac7" value="럭셔리 1회용 어메니티"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '럭셔리 1회용 어메니티'}">checked</c:if>
-	      </c:forTokens>
-	      >럭셔리 1회용 어메니티<br>
+	      </c:forTokens>>럭셔리 1회용 어메니티<br>
 	      <input type="checkbox" id="fac8" name="fac8" value="1회용 어메니티"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '1회용 어메니티'}">checked</c:if>
-	      </c:forTokens>
-	      >1회용 어메니티<br>
-	      <input type="checkbox" id="fac9" name="fac9" value="전 객실 냉난방 시설 구비"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+	      </c:forTokens>>1회용 어메니티<br>
+	      <input type="checkbox" id="fac9" name="fac9"
+									value="전 객실 냉난방 시설 구비"
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '전 객실 냉난방 시설 구비'}">checked</c:if>
-	      </c:forTokens>
-	      >전 객실 냉난방 시설 구비<br>
+	      </c:forTokens>>전 객실 냉난방 시설 구비<br>
 	      <input type="checkbox" id="fac10" name="fac10" value="객실 내 안전금고"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '객실 내 안전금고'}">checked</c:if>
-	      </c:forTokens>
-	      >객실 내 안전금고<br>
+	      </c:forTokens>>객실 내 안전금고<br>
 	      <input type="checkbox" id="fac11" name="fac11" value="대형 원형욕조 구비"
-  	      <c:forTokens var="fac_name" items="${fac }" delims=","> 
+									<c:forTokens var="fac_name" items="${fac }" delims=","> 
 	      <c:if test="${fac_name eq '대형 원형욕조 구비'}">checked</c:if>
-	      </c:forTokens>
-	      >대형 원형욕조 구비<br>
+	      </c:forTokens>>대형 원형욕조 구비<br>
 	    
 	  </div>
 	</div>
@@ -136,43 +158,61 @@
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_SIZE">객실 크기</label>
-	    <input type="text" class="form-control" id="ROOM_SIZE" name="ROOM_SIZE" placeholder="ex)15평" value="${map.ROOM_SIZE}">
+	    <input type="text" class="form-control" id="ROOM_SIZE"
+									name="ROOM_SIZE" placeholder="ex)15평" value="${map.ROOM_SIZE}">
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_BEDTYPE">침대 유형</label>
-	 	<select class="form-control" id="ROOM_BEDTYPE" name="ROOM_BEDTYPE" size="1">
+	 	<select class="form-control" id="ROOM_BEDTYPE" name="ROOM_BEDTYPE"
+									size="1">
 	 			<option value="">선택하세요</option>
-				<option id="ROOM_BEDTYPE" value="1 DOUBLE BED" <c:if test="${map.ROOM_BEDTYPE eq '1 DOUBLE BED'}">selected</c:if>>1 DOUBLE BED</option>
-				<option id="ROOM_BEDTYPE" value="2 SINGLE BED" <c:if test="${map.ROOM_BEDTYPE eq '2 SINGLE BED'}">selected</c:if>>2 SINGLE BED</option>
-				<option id="ROOM_BEDTYPE" value="1 QUEEN SIZE BED" <c:if test="${map.ROOM_BEDTYPE eq '1 QUEEN SIZE BED'}">selected</c:if>>1 QUEEN SIZE BED</option>
-				<option id="ROOM_BEDTYPE" value="1 DOUBLE BED + 1 SINGLE BED" <c:if test="${map.ROOM_BEDTYPE eq '1 DOUBLE BED + 1 SINGLE BED'}">selected</c:if>>1 DOUBLE BED + 1 SINGLE BED</option>
+				<option id="ROOM_BEDTYPE" value="1 DOUBLE BED"
+										<c:if test="${map.ROOM_BEDTYPE eq '1 DOUBLE BED'}">selected</c:if>>1 DOUBLE BED</option>
+				<option id="ROOM_BEDTYPE" value="2 SINGLE BED"
+										<c:if test="${map.ROOM_BEDTYPE eq '2 SINGLE BED'}">selected</c:if>>2 SINGLE BED</option>
+				<option id="ROOM_BEDTYPE" value="1 QUEEN SIZE BED"
+										<c:if test="${map.ROOM_BEDTYPE eq '1 QUEEN SIZE BED'}">selected</c:if>>1 QUEEN SIZE BED</option>
+				<option id="ROOM_BEDTYPE" value="1 DOUBLE BED + 1 SINGLE BED"
+										<c:if test="${map.ROOM_BEDTYPE eq '1 DOUBLE BED + 1 SINGLE BED'}">selected</c:if>>1 DOUBLE BED + 1 SINGLE BED</option>
 		</select>
 	  </div>
 	  <div class="form-group">
 	  	<div style="display:inline;">
 		    <label for="ROOM_CHK_INTIME">체크인</label>
-		 	<select class="form-control" id="ROOM_CHK_INTIME" name="ROOM_CHK_INTIME" size="1">
+		 	<select class="form-control" id="ROOM_CHK_INTIME"
+										name="ROOM_CHK_INTIME" size="1">
 		 			<option value="">선택하세요</option>
-					<option id="ROOM_CHK_INTIME" value="15:00" <c:if test="${map.ROOM_CHK_INTIME eq '15:00'}">selected</c:if>>15:00</option>
-					<option id="ROOM_CHK_INTIME" value="16:00" <c:if test="${map.ROOM_CHK_INTIME eq '16:00'}">selected</c:if>>16:00</option>
-					<option id="ROOM_CHK_INTIME" value="17:00" <c:if test="${map.ROOM_CHK_INTIME eq '17:00'}">selected</c:if>>17:00</option>
-					<option id="ROOM_CHK_INTIME" value="18:00" <c:if test="${map.ROOM_CHK_INTIME eq '18:00'}">selected</c:if>>18:00</option>
+					<option id="ROOM_CHK_INTIME" value="15:00"
+											<c:if test="${map.ROOM_CHK_INTIME eq '15:00'}">selected</c:if>>15:00</option>
+					<option id="ROOM_CHK_INTIME" value="16:00"
+											<c:if test="${map.ROOM_CHK_INTIME eq '16:00'}">selected</c:if>>16:00</option>
+					<option id="ROOM_CHK_INTIME" value="17:00"
+											<c:if test="${map.ROOM_CHK_INTIME eq '17:00'}">selected</c:if>>17:00</option>
+					<option id="ROOM_CHK_INTIME" value="18:00"
+											<c:if test="${map.ROOM_CHK_INTIME eq '18:00'}">selected</c:if>>18:00</option>
 			</select>
 		</div>
 		<div>
 			<label for="ROOM_CHK_OUTTIME">체크아웃</label>
-		 	<select class="form-control" id="ROOM_CHK_OUTTIME" name="ROOM_CHK_OUTTIME" size="1">
+		 	<select class="form-control" id="ROOM_CHK_OUTTIME"
+										name="ROOM_CHK_OUTTIME" size="1">
 		 			<option value="">선택하세요</option>
-					<option id="ROOM_CHK_OUTTIME" value="11:00" <c:if test="${map.ROOM_CHK_OUTTIME eq '11:00'}">selected</c:if>>11:00</option>
-					<option id="ROOM_CHK_OUTTIME" value="12:00" <c:if test="${map.ROOM_CHK_OUTTIME eq '12:00'}">selected</c:if>>12:00</option>
-					<option id="ROOM_CHK_OUTTIME" value="13:00" <c:if test="${map.ROOM_CHK_OUTTIME eq '13:00'}">selected</c:if>>13:00</option>
-					<option id="ROOM_CHK_OUTTIME" value="14:00" <c:if test="${map.ROOM_CHK_OUTTIME eq '14:00'}">selected</c:if>>14:00</option>
+					<option id="ROOM_CHK_OUTTIME" value="11:00"
+											<c:if test="${map.ROOM_CHK_OUTTIME eq '11:00'}">selected</c:if>>11:00</option>
+					<option id="ROOM_CHK_OUTTIME" value="12:00"
+											<c:if test="${map.ROOM_CHK_OUTTIME eq '12:00'}">selected</c:if>>12:00</option>
+					<option id="ROOM_CHK_OUTTIME" value="13:00"
+											<c:if test="${map.ROOM_CHK_OUTTIME eq '13:00'}">selected</c:if>>13:00</option>
+					<option id="ROOM_CHK_OUTTIME" value="14:00"
+											<c:if test="${map.ROOM_CHK_OUTTIME eq '14:00'}">selected</c:if>>14:00</option>
 			</select>
 		</div>
 	  </div>
 	  <div class="form-group">
 	    <label for="ROOM_PRICE">예약 금액</label>
-	    <input type="text" class="form-control" id="ROOM_PRICE" name="ROOM_PRICE" placeholder="ex)50000" value="${map.ROOM_PRICE }">
+	    <input type="text" class="form-control" id="ROOM_PRICE"
+									name="ROOM_PRICE" placeholder="ex)50000"
+									value="${map.ROOM_PRICE }">
 	  </div>
 	  <div id="fileDiv" class="form-group">
 	    <label>객실 이미지 업로드</label>
@@ -180,9 +220,13 @@
 					<!-- varStatus: 상태용 변수로 for문이 돌아가는 상태를 알게 해주는 변수 -->
 					<p>
 						<!-- 숨김 처리 -->
-						<input type="hidden" id="ROOM_ID"  name="IDX_${var.index}" value="${row.ROOM_ID }">
-						<input type="hidden" id="ROOM_IMGS_ID"  name="ROOM_IMGS_ID_${var.index}" value="${row.ROOM_IMGS_ID }">
-						<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
+						<input type="hidden" id="ROOM_ID" name="IDX_${var.index}"
+											value="${row.ROOM_ID }">
+						<input type="hidden" id="ROOM_IMGS_ID"
+											name="ROOM_IMGS_ID_${var.index}" value="${row.ROOM_IMGS_ID }">
+						<input type="hidden" id="OLD_FILE_NAME"
+											name="OLD_FILE_NAME_${var.index}"
+											value="${row.ROOM_IMGS_FILE}">
 						<!-- 파일명 출력  -->
 						<a href="#this" id="name_${var.index}" name="name_${var.index}">${row.ROOM_IMGS_FILE}</a>
 						
@@ -202,32 +246,32 @@
 </div>
   
 </form>
-
+	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
 
 <script type="text/javascript">
-$(document).ready(function(){
-	// select checked 를 위한 ',' 나누기
- 	var fac = "${map.ROOM_FAC_NAME}";
-	var fac_name = fac.split(",");
-	
-	$("#list").on("click", function(e){  //'목록으로' 누르면
-		e.preventDefault();
-		location.href="<c:url value='/admin/roomsList'/>";
+	$(document).ready(function() {
+		// select checked 를 위한 ',' 나누기
+		var fac = "${map.ROOM_FAC_NAME}";
+		var fac_name = fac.split(",");
+
+		$("#list").on("click", function(e) { //'목록으로' 누르면
+			e.preventDefault();
+			location.href = "<c:url value='/admin/roomsList'/>";
+		});
+
+		$("#modify").on("click", function(e) { //'수정하기' 누르면
+			e.preventDefault();
+			fn_roomModify();
+		});
+		$("#delete").on("click", function(e) { //'삭제하기' 누르면
+			e.preventDefault();
+			fn_roomDelete();
+		});
 	});
 
-	$("#modify").on("click", function(e){ //'수정하기' 누르면
-		e.preventDefault();
-		fn_roomModify();
-	});
-	$("#delete").on("click", function(e){ //'삭제하기' 누르면
-		e.preventDefault();
-		fn_roomDelete();
-	});
-});   
+	function fn_roomModify() {
 
-function fn_roomModify(){
-
-	//유효성 검사
+		//유효성 검사
 		if ($("#ROOM_TYPE").val() == "") {
 			alert("객실 유형을 선택해주세요");
 		} else if ($("#ROOM_NAME").val() == "") {
@@ -274,5 +318,6 @@ function fn_roomModify(){
 		}
 	}
 </script>
-</body>
+
+				</body>
 </html>
