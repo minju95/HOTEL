@@ -37,6 +37,8 @@ li {list-style: none;}
 .searchBtn:hover {background-color: #87ceeb; color: black;}
 .plma {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 1px; margin: 4px; width: 20px; height: 23px; background-color: #f8585b; border: none; color: #fff; text-decoration: none; display: inline-block; font-size: 15px; cursor: pointer; border-radius: 50%;}
 .plma:hover {background-color: #87ceeb; color: black;}
+.detailBtn {font-family: nanum -webkit-pictograph; font-weight: bold; font-size: 1rem; text-align: center; padding: 15px 0; margin: 4px; width:100px; background-color: #f8585b; border: none; color:#fff; text-decoration: none; display: inline-block; font-size: 15px; cursor: pointer; border-radius:10px;}
+.detailBtn:hover {background-color: #87ceeb; color: black;}
 
 /*POPUP*/
 .layer {display:none; position:fixed; _position:absolute; top:0; left:0; width:100%; height:100%; z-index:100;}

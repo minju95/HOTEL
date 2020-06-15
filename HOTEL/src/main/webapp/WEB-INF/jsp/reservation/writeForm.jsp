@@ -6,7 +6,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- include) include/include-header.jspf -->
 <%@include file="/WEB-INF/include/include-header.jspf"%>
+<!-- include) include/include-topMenu.jsp -->
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 </head>
 <!-- reservation/main css -->
 <link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
@@ -20,13 +23,6 @@
 <div class="a_layer">
 <div class="a_layer_inner">
 <div class="a_content">
-
-<div class="">
-
-<!-- include) member/main -->
-<jsp:include page="/WEB-INF/jsp/common/main.jsp"  flush="true"/>
-
-</div>
 
 <div class="top">
 <table style="width:1000px; text-align:center; margin:10px;">

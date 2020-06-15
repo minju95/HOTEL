@@ -7,8 +7,8 @@
     <bean id="dataSourceSpied" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
         <property name="url" value="jdbc:oracle:thin:@localhost:1521:orcl" />
-	<property name="username" value="HOTEL" />
-	<property name="password" value="1234" />
+	<property name="username" value="TeamPj" />
+	<property name="password" value="oracle" />
     </bean>
     
     <!-- 로그 -->

@@ -3,7 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
+<!-- include) include/include-header.jspf -->
 <%@include file="/WEB-INF/include/include-header.jspf"%>
+<!-- include) include/include-topMenu.jsp -->
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 </head>
 <body oncontextmenu="return false" ondragstart="return false">
 <table style="border:1px solid #ccc">
