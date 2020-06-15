@@ -1,62 +1,97 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <title>객실목록 리스트</title>
-<!-- 부트스트랩 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
 .pop_type {
- border: none;
- font-family: nanum -webkit-pictograph;
+	border: none;
+	font-family: nanum -webkit-pictograph;
 }
+
+.pop_div_name {
+	border-bottom: 1px #ebebeb;
+	font-size: 25px;
+	background-color: #ebebeb;
+}
+
 .pop_div {
- margin: 5px 5px 5px 0;
- font-family: nanum -webkit-pictograph;
- font-size: 15px;
+	border-bottom: 1px #ebebeb;
+	margin: 5px 5px 5px 0;
+	font-family: nanum -webkit-pictograph;
+	font-size: 25px;
+	font-weight: 700;
 }
+
 .pop_person {
-width: 30px;
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 20px;
- text-align: center;
+	width: 30px;
+	border: none;
+	font-family: nanum -webkit-pictograph;
+	font-size: 20px;
+	text-align: center;
 }
+
 .pop_ee {
-border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 20px;
- text-align: center;
+	border: none;
+	background-color: #ebebeb;
+	font-family: nanum -webkit-pictograph;
+	font-size: 20px;
+	text-align: center;
 }
+
 .pop_tt {
-width: 50px;
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 20px;
- text-align: center;
+	width: 50px;
+	border: none;
+	font-family: nanum -webkit-pictograph;
+	font-size: 20px;
+	text-align: center;
 }
+
 .pop_fac {
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 20px;
- text-align: left;
- width: 490px;
+	border: none;
+	font-family: nanum -webkit-pictograph;
+	font-size: 20px;
+	text-align: left;
+	width: 490px;
+}
+
+.div-about {
+	background-image: url(/hotel/image/hotel.jpg);
+	height: 250px;
+	color: #e5a880;
+	background-repeat: no-repeat;
+	background-size: 100%;
+}
+body {
+	font-family: Verdana, sans-serif;
 }
 </style>
 </head>
 
 <body>
+	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+	<div class="div-about" align="center">
+		<br> <br> <br>
+		<h1>A D M I N R O O M S</h1>
+	</div>
+<%@ include file="/WEB-INF/include/include-admin.jspf"%>
+	<h3 align="center">객실목록 리스트</h3>
 
-<h3>객실목록 리스트</h3>
-	
-	<table name="roomsList" class="table table-striped" align="center" width="800">
+	<table name="roomsList" class="table table-striped" align="center"
+		width="800">
 		<thead>
 			<tr>
 				<th>번호</th>
@@ -67,33 +102,33 @@ width: 50px;
 			</tr>
 		</thead>
 		<tbody>
-		
+
 		</tbody>
 	</table>
 	<center>
-		<a href="#this" class="btn" id="write" >등록</a>
+		<a href="#this" class="btn" id="write">등록</a>
 	</center>
-	
+
 	<center>
 		<div id="PAGE_NAVI"></div>
 		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
 	</center>
-	
-	<form  id="search"  method="post" >
-            <select id="searchOption" size="1">
-                <option id="ROOM_NAME" value="ROOM_NAME" selected="selected">객실이름</option>
-                <option id="ROOM_ID" value="ROOM_ID">객실호수</option>
-            </select>
-            
-                 <input type="text" size="16" name="keyword" value="${keyword}" placeholder="검색어 입력" onkeyup="enterkey();">
-                 <!--검색어를 쓰고 엔터키를 누르면 먹지를 않기때문에 onkeyup="enterkey();를 주는 고 밑이 function으로 연결-->
-                 <input type="text" style="display: none;" />
-                 <!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
-                 <input type="button" value="검 색" onClick="fn_roomsList(1)">
-   	</form> 
+
+	<form id="search" method="post">
+		<select id="searchOption" size="1">
+			<option id="ROOM_NAME" value="ROOM_NAME" selected="selected">객실이름</option>
+			<option id="ROOM_ID" value="ROOM_ID">객실호수</option>
+		</select> <input type="text" size="16" name="keyword" value="${keyword}"
+			placeholder="검색어 입력" onkeyup="enterkey();">
+		<!--검색어를 쓰고 엔터키를 누르면 먹지를 않기때문에 onkeyup="enterkey();를 주는 고 밑이 function으로 연결-->
+		<input type="text" style="display: none;" />
+		<!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
+		<input type="button" value="검 색" onClick="fn_roomsList(1)">
+	</form>
 
 	<!-- Modal -->
-	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+		aria-labelledby="myModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -101,15 +136,17 @@ width: 50px;
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title" id="myModalLabel"><input type="text" id="pop_type" class="pop_type" readonly></h4>
+					<h4 class="modal-title" id="myModalLabel">
+						<input type="text" id="pop_type" class="pop_type" readonly>
+					</h4>
 				</div>
 				<!--content //-->
 				<div>
 					<p class="ctxt mb20">
-					<div style="width:100%; text-align:center;">
-						<img id="pop_img" alt="main" width="500" height="450" src="">
+					<div style="width: 100%; text-align: center;">
+						<img id="pop_img" alt="main" width="590" height="450" src="">
 					</div>
-					<div class="pop_div">
+					<div class="pop_div_name">
 						객실명 : <input type="text" id="pop_name" class="pop_ee" readonly>
 					</div>
 					<div class="pop_div">
@@ -119,7 +156,8 @@ width: 50px;
 					</div>
 					<div class="pop_div">
 						객실 편의 시설 : <br>
-						<textarea id="pop_fac" class="pop_fac" cols="20" rows="11" readonly></textarea>
+						<textarea id="pop_fac" class="pop_fac" cols="20" rows="11"
+							readonly></textarea>
 					</div>
 					<div class="pop_div">
 						체크인 : <input type="text" id="pop_checkIn" class="pop_tt" readonly>,
@@ -149,7 +187,7 @@ width: 50px;
 
 
 
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>		
+	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 
 	<script>
 	var room_id; //수정클릭 시 방 호수 가져오기위해 전역변수 선언
@@ -178,7 +216,6 @@ width: 50px;
 		 function fn_roomsDetail(obj){ //부대시설명 클릭시
 			room_id = obj.parent().find("#ROOM_ID").val();
 	    	var index = obj.parent().find("#ROOM_IMGS_FILE").val();
-	    	alert(index);
 	    	var index_0 = index.split(',');
 	    	var name = obj.parent().find("#ROOM_TYPE_NAME").val();
 	    	var fac_detail = obj.parent().find("#ROOM_FAC_NAME").val().replace(/br/g,'\r\n');
@@ -195,9 +232,6 @@ width: 50px;
 	    	$('#pop_checkIn').attr('value',checkIn);
 	    	$('#pop_checkOut').attr('value',checkOut);
 	    	$('#room_id').attr('value',room_id);
-	    	
-
-	    	
 		 }
 
 		function fn_roomsList(pageNo) { //페이징 함수
@@ -206,8 +240,7 @@ width: 50px;
 			comAjax.setCallback("fn_roomsListCallback"); //ajax요청 후 호출될 함수의 이름 지정
 			comAjax.addParam("PAGE_INDEX", pageNo);
 			comAjax.addParam("PAGE_ROW", 10);
-			comAjax.addParam("searchOption", $(
-					"#searchOption > option:selected").val());
+			comAjax.addParam("searchOption", $("#searchOption > option:selected").val());
 			comAjax.addParam("keyword", $("input[name='keyword']").val());
 			comAjax.ajax(); //실질적인 ajax기능 수행
 		}
@@ -276,7 +309,7 @@ width: 50px;
 		});
 	  
 	</script>
-
+	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 
 </html>

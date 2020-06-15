@@ -1,0 +1,25 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<div class="admin-list">
+		<table align="center">
+			<br>
+			<tr>
+				<td><a class="aa" href='/hotel/admin/roomsList'>객실관리</a>&emsp;
+					<td><a class="aa" href='/hotel/admin/facilitiesList'>부대시설관리</a>&emsp;
+					
+				<td><a class="aa" href='/hotel/admin/noticeList'>공지사항관리</a>&emsp;
+					
+				<td><a class="aa" href='/hotel/admin/reservationList'>예약자조회</a>&emsp;
+			
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

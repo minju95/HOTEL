@@ -40,11 +40,13 @@ public class FacilitiesController {
 	public ModelAndView selectTypeByFacilities(CommandMap commandMap) 
 		throws Exception{
 		ModelAndView mv = new ModelAndView("facilities/facilitie");
+		System.out.println("ㅍ편의"+commandMap.getMap());
 		List<Map<String,Object>> list = facilitiesService.selectFacilities(commandMap.getMap());
 		mv.addObject("list", list);
 		Map<String, Object> map = facilitiesService.selectTypeByFacilities(commandMap.getMap());
+		//System.out.println("편의시설 이미지"+map);
 		mv.addObject("map", map);
-		System.out.println(mv);
+		//System.out.println("편의ㅏ시설"+mv);
 		
 		return mv;
 	}

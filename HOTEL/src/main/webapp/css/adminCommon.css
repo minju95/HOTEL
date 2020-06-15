@@ -1,0 +1,15 @@
+.aa {
+	text-decoration: none;
+	font-size: 18px;
+	color: white;
+}
+
+.aa:hover {
+	text-decoration: underline;
+	color: white;
+}
+
+.admin-list {
+	background-color: #0f1927;
+	height: 50px;
+}

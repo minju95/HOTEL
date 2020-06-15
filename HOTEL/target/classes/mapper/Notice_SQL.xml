@@ -28,8 +28,7 @@
  <!-- 공지사항 상세보기 -->
 <select id="selectNextBoard" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-   
-   SELECT * 
+         SELECT * 
       FROM 
        (
       SELECT
@@ -40,12 +39,16 @@
           NOTICE_IMG,
           lead(NOTICE_ID, 1, '') over(order by NOTICE_ID) next_idx,
           lead( NOTICE_TITLE, 1, '다음글이 없습니다') over(order by NOTICE_DATE) next_title,
+           TO_CHAR(lead( NOTICE_DATE, 1, '') over(order by NOTICE_DATE),'YYYY-MM-DD') next_DATE,
           lag(NOTICE_ID, 1, '') over(order by NOTICE_ID) pre_idx,
-          lag( NOTICE_TITLE, 1, '이전글이 없습니다') over(order by NOTICE_DATE) pre_title
+          lag( NOTICE_TITLE, 1, '이전글이 없습니다') over(order by NOTICE_DATE) pre_title,
+          TO_CHAR( lag( NOTICE_DATE, 1, '') over(order by NOTICE_DATE),'YYYY-MM-DD') pre_DATE
       FROM 
         NOTICE
+        WHERE NOTICE_ISVIEW = 'Y'
         )
-      WHERE 
+      
+      WHERE
         NOTICE_ID = #{NOTICE_ID}
 
 ]]>

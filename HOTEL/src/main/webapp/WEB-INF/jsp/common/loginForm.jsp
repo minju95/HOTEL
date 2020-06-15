@@ -1,18 +1,54 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<!-- 부트스트랩 -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
+#loginform {
+	width: 648px;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 100px
+}
 
-#loginform{width:648px; margin:0 auto;text-align:center;margin-bottom:100px}
-.logintable{padding-top: 50px;padding-left: 0;}
-.logintable>li{list-style: none;text-align: center;}
-.logintable>li>a{float:right;}
-.logintable>li>p{padding-right: 0;}
- .logintable>li>input{width: 100%;height: 50px; border:1px solid #e0e0e0;margin-bottom:20px} 
- 
- p>a{color:blue}
- 
- button{width:100%; height: 50px;background-color:#ffd014; display: block; border:none;margin-top: 10px;font-size: 20px;}
+.logintable {
+	padding-top: 50px;
+	padding-left: 0;
+}
 
+.logintable>li {
+	list-style: none;
+	text-align: center;
+}
+
+.logintable>li>a {
+	float: right;
+}
+
+.logintable>li>p {
+	padding-right: 0;
+}
+
+.logintable>li>input {
+	width: 100%;
+	height: 50px;
+	border: 1px solid #e0e0e0;
+	margin-bottom: 20px
+}
+
+button {
+	width: 100%;
+	height: 50px;
+	background-color: #ffd014;
+	display: block;
+	border: none;
+	margin-top: 10px;
+	font-size: 20px;
+}
 </style>
 <script type="text/javascript">
 
@@ -34,25 +70,28 @@
 	 }
 		
 </script>
-	<form  action="/hotel/login" method="post" id="frm" onsubmit="return fn_login();">
-		<div id="loginform">
-			<h1>로그인</h1>
-			<ul class="logintable">
-				<li><input type="text" name="MEM_USERID" id="MEM_USERID" placeholder="아이디">
-				</li>
-				<li><input type="password" name="MEM_PW" id="MEM_PW" placeholder="비밀번호">
-				</li>
-				<li><a href="/hotel/idSearchForm">아이디 찾기</a><br></li>
-				<li><a href="/hotel/passwordResetForm">비밀번호 재설정</a><br></li>
-				<li>
-					<button type="submit" id="submit">로그인</button>
+<form action="/hotel/login" method="post" id="frm"
+	onsubmit="return fn_login();">
+	<div id="loginform">
+		<h1>로그인</h1>
+		<ul class="logintable">
+			<li><input type="text" class="form-control" name="MEM_USERID"
+				id="MEM_USERID" placeholder="아이디"></li>
+			<li><input type="password" class="form-control" name="MEM_PW"
+				id="MEM_PW" placeholder="비밀번호"></li>
+			<li><a class="btn btn-link" href="/hotel/passwordResetForm">비밀번호
+					재설정</a></li>
+			<li><a class="btn btn-link" href="/hotel/idSearchForm">아이디
+					찾기</a></li>
+			<li>
+				<button type="submit" class="btn btn-primary" id="submit">로그인</button>
 
-				</li>
-			</ul>
-			<p>
-				아직 회원이 아니신가요? <a href="/hotel/signUpForm">회원가입하기</a>
+			</li>
+		</ul>
+		<p>
+			아직 회원이 아니신가요? <a class="btn btn-link" href="/hotel/signUpForm">회원가입하기</a>
 
-			</p>
-		</div>
-	</form>
-	<label></label>
+		</p>
+	</div>
+</form>
+<label></label>

@@ -148,11 +148,42 @@ $( function() {
 		var current = currentdate.split("-");
 		var temp = new Date(current[0], current[1]-1, current[2], 0, 0, 0, 0);
 		var c = new Date(current[0], current[1]-1, temp.getDate()+1, 0, 0, 0, 0);
-		
-		//to
+		//선택한 퇴실일
 		var to = todate.split("-");
 		var t = new Date(to[0], to[1]-1, to[2], 0, 0, 0, 0);
+		//오늘기준 90일 뒤 날짜 가져오기
+		var maxDate = temp;
+		maxDate.setDate(maxDate.getDate() + 90);
+		
+		if (t > maxDate) { //퇴실 > 오늘+90일
+			if (beforeto != "" && beforeto > currentdate) { // param퇴실 !="" && param퇴실 > 오늘
+				var before = beforeto.split("-");
+				var b = new Date(before[0], before[1]-1, before[2], 0, 0, 0, 0);
+				alert('퇴실일로 설정할 수 없는 날짜입니다.');
+				$("#todate").datepicker("setDate", b);
+				return false;
+			} else { //그 외
+				alert('퇴실일로 설정할 수 없는 날짜입니다.');
+				$("#todate").datepicker("setDate", c); // 내일날짜
+				return false;
+			}
+		}
 
+		if (todate == currentdate || todate == fromdate) { // 퇴실 == 당일 or 퇴실 == 입실
+			
+			if (beforeto != "" && beforeto > currentdate) { // param퇴실 !="" && param퇴실 > 오늘
+				var before = beforeto.split("-");
+				var b = new Date(before[0], before[1]-1, before[2], 0, 0, 0, 0);
+				alert('퇴실일로 설정할 수 없는 날짜입니다.');
+				$("#todate").datepicker("setDate", b);
+				return false;
+			} else { //그 외
+				alert('퇴실일로 설정할 수 없는 날짜입니다.');
+				$("#todate").datepicker("setDate", c); // 내일날짜
+				return false;
+			}
+		}
+		
 		if (todate < currentdate) { // 퇴실 < 당일
 			
 			if (beforeto != "" && beforeto > currentdate) { // param퇴실 !="" && param퇴실 > 오늘
@@ -163,7 +194,7 @@ $( function() {
 				return false;
 			} else { //그 외
 				alert('지난 날짜의 예약은 불가합니다.');
-				$("#fromdate").datepicker("setDate", c); // 내일날짜
+				$("#todate").datepicker("setDate", c); // 내일날짜
 				return false;
 			}
 		}
@@ -253,20 +284,11 @@ function fn_nextStep(obj){
 <body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="div-about" align="center" >
-   <br>
-   <br>
-   <br>
-   <h1>R E S E R V A T I O N</h1></div>
+   <br><br><br><h1>R E S E R V A T I O N</h1></div>
 <div class="a_layer">
 <div class="a_layer_inner">
 <div class="a_content">
 
-<div class="">
-
-
-
-
-</div>
 
 <!-- 검색 start -->
 <div class="top">
@@ -375,16 +397,24 @@ function fn_nextStep(obj){
 						<div class="roomIMG">이미지 준비 중</div>
 					</c:when>
 					<c:otherwise>
-						<div class="roomIMG"><img alt="main" width="300" height="250" src="<spring:url value='/image/${list[status.index].ROOM_IMGS_FILE}'/>"></div>
+						<div class="roomIMG"><a href="#this" name="atag_${status.index}" id="atag_${status.index}"><img alt="main" width="300" height="250" src="<spring:url value='/image/${list[status.index].ROOM_IMGS_FILE}'/>"></a></div>
 					</c:otherwise>
 				</c:choose>
 				</td>
 				<td class="roomName">
 					${row.ROOM_NAME}<br>
 					<p class="cnt">( 잔여 객실 : ${row.CNT} )</p><br>
-					<a href="#" class="btn-example" onclick="layer_open('layer2');return false;">상세보기</a>
+					<input type="button" id="button_${status.index}" name="button_${status.index}" class="detailBtn" value="상세보기">
+					<!-- 상세보기 hidden 전달 값 -->
+				<input type="hidden" id="index_no" value="/hotel/image/${list[status.index].ROOM_IMGS_FILE}">
+				<input type="hidden" id="R_NAME" value="${row.ROOM_NAME}">
+				<input type="hidden" id="ROOM_ADULT" value="${row.ROOM_ADULT}">
+				<input type="hidden" id="ROOM_CHILD" value="${row.ROOM_CHILD}">
+				<input type="hidden" id="ROOM_FAC_NAME" value="${fn:replace(fn:trim(row.ROOM_FAC_NAME),',','br')}">
+				<input type="hidden" id="ROOM_CHK_INTIME" value="${row.ROOM_CHK_INTIME}">
+				<input type="hidden" id="ROOM_CHK_OUTTIME" value="${row.ROOM_CHK_OUTTIME}">
 				</td>
-				<td class="priceInfo">
+				<td class="priceInfo" <c:if test="${row.DC eq row.ROOM_PRICE}"> style="margin-top:60px;"</c:if>>
 				<c:choose>
 					<c:when test="${row.DC eq row.ROOM_PRICE}">
 						${row.ROOM_PRICE}
@@ -400,14 +430,6 @@ function fn_nextStep(obj){
 				<input type="hidden" id="ROOM_ID" value="${row.ROOM_ID}">
 				<input type="hidden" id="ROOM_NAME" value="${row.ROOM_NAME}">
 				<input type="hidden" id="DC" value="${row.DC}">
-				<input type="button" id="button_${status.index}" name="button_${status.index}" value="Button">
-				<!-- 상세보기 hidden 전달 값 -->
-				<input type="text" id="index_no" value="/hotel/image/${list[status.index].ROOM_IMGS_FILE}">
-				<input type="hidden" id="ROOM_ADULT" value="${row.ROOM_ADULT}">
-				<input type="hidden" id="ROOM_CHILD" value="${row.ROOM_CHILD}">
-				<input type="hidden" id="ROOM_FAC_NAME" value="${row.ROOM_FAC_NAME}">
-				<input type="hidden" id="ROOM_CHK_INTIME" value="${row.ROOM_CHK_INTIME}">
-				<input type="hidden" id="ROOM_CHK_OUTTIME" value="${row.ROOM_CHK_OUTTIME}">
 				</td>
 			</tr>
 		</table>
@@ -428,6 +450,13 @@ function fn_nextStep(obj){
 <!-- 스크립트) 테스트 -->
 <script type="text/javascript">
 $(function(){
+	$("a[name^='atag']").on("click", function(e) {
+		e.preventDefault();
+		fn_indexNo($(this));
+		return false;
+	});
+});
+$(function(){
 	$("input[name^='button']").on("click", function(e) {
 		e.preventDefault();
 		fn_indexNo($(this));
@@ -436,18 +465,16 @@ $(function(){
 });
 function fn_indexNo(obj) {
 	var index = obj.parent().find("#index_no").val();
-	var name = obj.parent().find("#ROOM_NAME").val();
-	var fac_detail = obj.parent().find("#ROOM_FAC_NAME").val().trim();
-	
-	fac_detail.replace(/(\n|\r\n)/g, '<br>');
-	
+	var name = obj.parent().find("#R_NAME").val();
+	var fac_detail = obj.parent().find("#ROOM_FAC_NAME").val().replace(/br/g, '\r\n');
 	var adult = obj.parent().find("#ROOM_ADULT").val();
 	var child = obj.parent().find("#ROOM_CHILD").val();
 	var checkIn = obj.parent().find("#ROOM_CHK_INTIME").val();
 	var checkOut = obj.parent().find("#ROOM_CHK_OUTTIME").val();
+
 	$('#pop_img').attr('src',index);
 	$('#pop_name').attr('value',name);
-	$('#pop_fac').attr('value',fac_detail);
+	$("#pop_fac").val(fac_detail);
 	$('#pop_adult').attr('value',adult);
 	$('#pop_child').attr('value',child);
 	$('#pop_checkIn').attr('value',checkIn);
@@ -527,82 +554,52 @@ function layer_open(el){
 }
 </script>
 
-<!-- 상세 페이지 - 수정 필요 -->
+<!-- 상세보기 버튼 s -->
 <div class="layer">
-    <div class="bg"></div>
-    <div id="layer2" class="pop-layer">
-        <div class="pop-container">
-            <div class="pop-conts">
-                <!--content //-->
-                <div style="font-family: nanum -webkit-pictograph; font-size: 1rem; padding:5px;">
-                <p class="ctxt mb20">
-                	<img id="pop_img" alt="main" width="500" height="450" src=""><br>
-                	<div class="pop_div">객실명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
-                	<div class="pop_div">기준인원 : Adults: <input type="text" id="pop_adult" class="pop_person" readonly>, Children : <input type="text" id="pop_child" class="pop_person" readonly></div>
-                	<div class="pop_div">객실 편의 시설 : <br><input type="text" id="pop_fac" class="pop_fac" readonly></div>
-                	<div class="pop_div">체크인 : <input type="text" id="pop_checkIn" class="pop_tt" readonly>, 체크아웃 : <input type="text" id="pop_checkOut" class="pop_tt" readonly></div>
-                	<div class="pop_div">
-                		<div>취소 정책
-                			<div>체크인 1일 17시 까지 50% 환불</div>
-                			<div>체크인 2일 17시 까지 80% 환불</div>
-                			<div>체크인 3일 17시 까지 100% 환불</div>
-                		</div>
-                	</div>
-                </p>
-                </div>
-                <div class="btn-r">
-                    <a href="#" class="cbtn">Close</a>
-                </div>
-                <!--// content-->
-            </div>
-        </div>
-    </div>
+	<div class="bg"></div>
+	<div id="layer2" class="pop-layer">
+		<div class="pop-container">
+			<div class="pop-conts">
+				<!--content //-->
+				<div style="font-family: nanum -webkit-pictograph; font-size: 1rem; padding:5px;">
+				<p class="ctxt mb20">
+				<div style="width: 400px; height: auto; overflow: hidden; float: left;">
+					<img id="pop_img" alt="main" width="100%" src="">
+				</div><br>
+				<div style="margin-top:280px;">
+					<div class="pop_div" style="border-bottom: 1px solid black;">객실　명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
+					<div class="pop_div">기준인원 : Adults: <input type="text" id="pop_adult" class="pop_person" readonly>, Children : <input type="text" id="pop_child" class="pop_person" readonly></div>
+					<div class="pop_div">객실 편의 시설 : <br>
+						<div style="width: 400px; height: 200px; overflow: hidden; float: left;">
+							<textarea id="pop_fac" class="pop_fac" cols="20" rows="11" readonly></textarea>
+						</div>
+					</div>
+					<div class="pop_div">체크인 : <input type="text" id="pop_checkIn" class="pop_tt" readonly>, 체크아웃 : <input type="text" id="pop_checkOut" class="pop_tt" readonly></div>
+					<div class="pop_div">
+					<div>호텔 취소 정책
+						<div class="pop_can">체크인 1일 17시 까지 50% 환불</div>
+						<div class="pop_can">체크인 2일 17시 까지 80% 환불</div>
+						<div class="pop_can">체크인 3일 17시 까지 100% 환불</div>
+ 					</div>
+					</div>
+				</div>
+				</p>
+				</div>
+				<div class="btn-r">
+					<a href="#" name="cbtn" class="cbtn">Close</a>
+				</div>
+				<!--// content-->
+			</div>
+		</div>
+	</div>
 </div>
+<!-- 상세보기 버튼 e-->
 
 </div>
 </div>
 </div>
+
+<!-- include) 푸터 -->
 <%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
-<style>
-.pop_div {
- margin: 5px 5px 5px 0;
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
-}
-.pop_person {
-width: 30px;
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- text-align: center;
-}
-.pop_ee {
-border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- text-align: center;
-}
-.pop_tt {
-width: 50px;
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- text-align: center;
-}
-.pop_fac {
- border: none;
- font-family: nanum -webkit-pictograph;
- font-size: 1rem;
- text-align: left;
- width: 490px;
-}
-.div-about{
- background-image:url(/hotel/image/hotel.jpg);
-height:250px;
-color: #e5a880;
-background-repeat:no-repeat;
-background-size:100%;
-}
-</style>
 </html>

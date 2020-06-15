@@ -132,31 +132,30 @@ font-size: 18px;
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-  <%@ include file="/WEB-INF/include/include-header.jspf" %>
+  <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <body>
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center" >
-   <br>
-   <br>
-   <br>
-   <h1>F A C I L I T I E S</h1></div>
+	<div class="div-about" align="center">
+		<br> <br> <br>
+		<h1>F A C I L I T I E S</h1>
+	</div>
 
-   <div class="fac-list">
-<table align="center">
-<br>
-	<tr>
-<c:forEach items="${list}" var="fac">
-		
-				<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
-				<td ><a class="aa" href='#this'  name="title" >${fac.FAC_HOTEL_NAME}</a>&emsp;
-				<input type='hidden' name='id' value="${fac.FAC_HOTEL_ID }"></td>
-			
-		</c:forEach>
-		</tr>
-</table>
-</div>
-<br>
+	<div class="fac-list">
+		<table align="center">
+			<br>
+			<tr>
+				<c:forEach items="${list}" var="fac">
+
+					<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
+					<td><a class="aa" href='#this' name="title">${fac.FAC_HOTEL_NAME}</a>&emsp;
+						<input type='hidden' name='id' value="${fac.FAC_HOTEL_ID }"></td>
+
+				</c:forEach>
+			</tr>
+		</table>
+	</div>
+	<br>
 <br>
 <div class="div1">
 <b>${map.FAC_HOTEL_NAME}</b>

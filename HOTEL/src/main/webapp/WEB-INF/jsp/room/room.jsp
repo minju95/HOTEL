@@ -133,7 +133,7 @@ font-size: 14px;
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-  <%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header.jspf" %>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <body>
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
@@ -145,18 +145,19 @@ font-size: 14px;
    
 <div class="room-list">
 <br>
-<table align="center">
-	<tr>
-<c:forEach items="${list}" var="room">
-		
-				<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
-				<td><a class="aa" href='#this'  name="title" > ${room.ROOM_NAME}  </a>&emsp;
-				<input type='hidden' name='id' value="${room.ROOM_TYPE }"></td>
-			
-		</c:forEach>
-		</tr>
-</table>
-</div>
+		<table align="center">
+			<tr>
+				<c:forEach items="${list}" var="room">
+
+					<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
+					<td><a class="aa" href='#this' name="title">
+							${room.ROOM_NAME} </a>&emsp; <input type='hidden' name='id'
+						value="${room.ROOM_TYPE }"></td>
+
+				</c:forEach>
+			</tr>
+		</table>
+	</div>
 <br>
 <br>
 <div class="div1">
@@ -164,7 +165,6 @@ rotolrlemf whffk wkwmddsk
 <b>${map.ROOM_NAME}</b>
 </div>
 <br>
-
 <c:forTokens items="${map.ROOM_IMGS_FILE }" delims="," var="item">
    <div class="slideshow-container">
 
