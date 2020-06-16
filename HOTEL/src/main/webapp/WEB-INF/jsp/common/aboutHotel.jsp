@@ -5,10 +5,6 @@
 <head>
 <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <style type="text/css">
-/*기본 설정 시작*/
-:visited,p,a,div,span,ul,li,strong,em, h1, h2 ,h3, h4, h5, h6,dl,dt,dd,select,option{ color: inherit; box-sizing: border-box; font-family: inherit; }
-body,html{ width:100%; height:100%; overflow-x: hidden; -webkit-overflow-scrolling: touch; font-size: 16px; word-break: break-all; font-family: 'Noto Sans', sans-serif; position: relative}
-/*기본 설정 끝*/
 
 
 
@@ -88,7 +84,9 @@ body.en .sub_txt_bg dl{ font-size: 14px;}
 .about_bottom .location dl dt{ width: 120px; word-break: keep-all; float: left; position: absolute; left: 30px; top: 50%; transform:translate(0,-50%); font-size: 1.125em; font-weight: bold}
 .about_bottom .location dl dd{ width: 100%; float: left; text-align: left; margin: 5px 0}
 /*about hotel 끝*/
-
+.about_bottom{
+font-size:16px;
+}
 
 .div-about{
 

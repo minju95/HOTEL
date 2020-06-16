@@ -19,7 +19,7 @@ color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
 }
-td>a{
+td>#a1{
 text-decoration: none;
 color: black;
 }
@@ -149,7 +149,7 @@ color: black;
 					var str = "";
 					$.each(data.list, function(key, value){
 						str += "<tr>" + "<td>" + value.NOTICE_ID + "</td>" + "<td class='title'>" 
-						+ "<a href='#this' name='title'>" + value.NOTICE_TITLE + "</a>" 
+						+ "<a id='a1' href='#this' name='title'>" + value.NOTICE_TITLE + "</a>" 
 						+ "<input type='hidden' name='title' value=" + value.NOTICE_ID + ">" 
 						+ "</td>" + "<td>" + value.NOTICE_DATE + "</td>"+ "</tr>";
 						

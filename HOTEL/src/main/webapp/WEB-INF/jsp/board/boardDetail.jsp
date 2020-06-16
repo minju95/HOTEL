@@ -24,7 +24,7 @@ color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
 }
-.a1{
+#a111{
 color: #0f1927;
 text-decoration: none;
 
@@ -120,7 +120,7 @@ color:gray;
 	<br>
 		<c:choose>
 		<c:when test="${map.PRE_IDX != null}">
-	<a class="a1" href='/hotel/board/boardDetail?NOTICE_ID=${map.PRE_IDX }'  ><font style="color:#e5a880; font-weight: bold;">▲&nbsp;이전글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.PRE_TITLE}</a>
+	<a id="a111" href='/hotel/board/boardDetail?NOTICE_ID=${map.PRE_IDX }'  ><font style="color:#e5a880; font-weight: bold;">▲&nbsp;이전글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.PRE_TITLE}</a>
 	<div class="board_date">${map.PRE_DATE }</div>
 		</c:when>
 		<c:otherwise>
@@ -132,7 +132,7 @@ color:gray;
 	<br>
 	<c:choose>
 		<c:when test="${map.NEXT_IDX != null}">
-	<a class="a1" href='/hotel/board/boardDetail?NOTICE_ID=${map.NEXT_IDX}'  ><font style="color:#e5a880; font-weight: bold;">▼&nbsp;다음글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.NEXT_TITLE}</a>
+	<a id="a111" href='/hotel/board/boardDetail?NOTICE_ID=${map.NEXT_IDX}'  ><font style="color:#e5a880; font-weight: bold;">▼&nbsp;다음글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.NEXT_TITLE}</a>
 	<div class="board_date">${map.NEXT_DATE }</div>
 	</c:when>
 		<c:otherwise>

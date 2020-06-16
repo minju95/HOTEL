@@ -148,7 +148,7 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a
     </li> 
             
     <li class="topMenuLi"  style=" margin-top:10px;"> 
-    <a class="menuLink" href="/hotel/facilities?FAC_HOTEL_ID=41">FACILITIES</a> 
+    <a class="menuLink" href="/hotel/facilities?FAC_HOTEL_ID=2">FACILITIES</a> 
     <ul class="submenu"> 
     <li style="margin-left: 455px;"><a href="/hotel/facilities?FAC_HOTEL_ID=1" class="submenuLink">Buffet Lennon</a></li>
      <li><a href="/hotel/facilities?FAC_HOTEL_ID=2" class="submenuLink">Cafe Lennon</a></li> 
@@ -160,8 +160,10 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a
     <li class="topMenuLi" style=" margin-top:10px;"> 
     <a class="menuLink" href="/hotel/reservation/main">RESERVATION</a> 
     <ul class="submenu"> 
-    <li style="margin-left: 638px;"><a href="/hotel/reservation/main" class="submenuLink">Reservation</a></li>
- 
+    <li style="margin-left: 638px;"><a href="/hotel/reservation/main" class="submenuLink">Reservation</a>
+    </li>
+ <li><a href="/hotel/reservation/" class="submenuLink">?????</a>
+ </li> 
       </ul> 
       </li> 
                 

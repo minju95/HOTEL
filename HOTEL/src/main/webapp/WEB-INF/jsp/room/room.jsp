@@ -125,10 +125,10 @@ font-size: 18px;
 
 }
 .p1{
-color:red;
+
 font-size: 14px;
 }
-.res-go{
+#res-go{
  width: 200px;
  height:50px;
  font-size:20px;
@@ -180,7 +180,7 @@ font-size: 14px;
 <c:forTokens items="${map.ROOM_IMGS_FILE }" delims="," var="item">
    <div class="slideshow-container">
 
-<div class="mySlides fade">
+<div class="mySlides ">
 <br>
   <img src="<c:url value='/image/${item}'/>" style="width:1000px; height:600px;">
 
@@ -189,14 +189,23 @@ font-size: 14px;
 
 </div>
 </c:forTokens>
-
 <br>
+<br>
+
 <div class="div2">
 ${map.ROOM_CONTENT}
-<div>ROOM SIZE:${map.ROOM_SIZE}   BED TYPE:${map.ROOM_BEDTYPE}</div><br>
-<P class="p1"><input class="res-go" type="button" value="RESERVATION"  onclick="location.href='/hotel/reservation/main'"></P>
+<div>ROOM SIZE:${map.ROOM_SIZE}   BED TYPE:${map.ROOM_BEDTYPE}</div>
+<br>
+<br>
+<br>
+
+
+<P class="p1"><input id="res-go" type="button" value="RESERVATION"  onclick="location.href='/hotel/reservation/main'"></P>
 </div>
 <br>
+<br>
+<br>
+
 <div class="div3">
 <table>
 <colgroup>
@@ -244,11 +253,17 @@ function showSlides() {
     
     setTimeout(showSlides, 4000); // Change image every 2 seconds
 }
+
+
+
+
+
 $(document).ready(function(){ 
 	  $("a[name='title']").on("click", function(e){ //제목
 		   e.preventDefault(); fn_facDetail($(this));
 		    });
 	     });
+
 
 
 
