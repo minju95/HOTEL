@@ -352,7 +352,7 @@ ${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 			</tbody>
 		</table>
 		</form>
-
+<br>
 </div>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <script type="text/javascript">
