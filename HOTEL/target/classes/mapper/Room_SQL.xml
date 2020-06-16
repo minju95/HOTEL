@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="room">
+  <!-- 객실 정보 조회 -->
+<select id="selectRoom" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+      SELECT
+          ROOM_TYPE, 
+          ROOM_NAME
+      FROM
+        ROOM
+      GROUP BY 
+            ROOM_TYPE, 
+            ROOM_NAME
+
+]]>
+</select>
+
+ <!-- 객실 정보 조회 -->
+<select id="selectTypeByRoom" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+      SELECT 
+          ROWNUM,
+          ROOM_TYPE,
+          ROOM_NAME,
+          ROOM_FAC_NAME,
+          ROOM_CONTENT,
+          ROOM_SIZE,
+          ROOM_BEDTYPE,
+          ROOM_CHK_INTIME,
+          ROOM_CHK_OUTTIME,
+          ROOM_PRICE,
+        ROOM_IMGS_FILE
+      FROM
+      (SELECT
+     
+          R.ROOM_TYPE,
+          R.ROOM_NAME,
+          R.ROOM_FAC_NAME,
+          R.ROOM_CONTENT,
+          R.ROOM_SIZE,
+          R.ROOM_BEDTYPE,
+          R.ROOM_CHK_INTIME,
+          R.ROOM_CHK_OUTTIME,
+          MIN(R.ROOM_PRICE) ROOM_PRICE,
+          regexp_replace(LISTAGG(M.ROOM_IMGS_FILE, ',') 
+      WITHIN GROUP (ORDER BY M.ROOM_IMGS_FILE),'([^,]+)(,\1)+', '\1') ROOM_IMGS_FILE
+      FROM
+          ROOM R , ROOM_IMAGES M
+      WHERE 
+          R.ROOM_TYPE = M.ROOM_TYPE
+      AND 
+          R.ROOM_TYPE = #{ROOM_TYPE}
+      GROUP BY
+     
+          R.ROOM_TYPE,
+          R.ROOM_NAME,
+          R.ROOM_FAC_NAME,
+          R.ROOM_CONTENT,
+          R.ROOM_SIZE,
+          R.ROOM_BEDTYPE,
+          R.ROOM_CHK_INTIME,
+          R.ROOM_CHK_OUTTIME,
+          R.ROOM_PRICE) WHERE ROWNUM = 1
+      
+]]>
+</select>
+
+</mapper>
+ 

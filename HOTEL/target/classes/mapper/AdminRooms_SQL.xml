@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="AdminRooms">
+ 
+ 	<!-- 등록된 객실의 전체 정보 (메인페이지 객실 소개, 객실 현황_목록 조회) selectRoomList,TOP -->
+	<select id="selectRoomsList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/>
+	<![CDATA[
+SELECT
+		    ROWNUM RNUM,
+		    ROOM_ID,
+		    ROOM_TYPE,
+		    DECODE(ROOM_TYPE,'1','Business Double',
+		    	DECODE(ROOM_TYPE,'2','Business Twin',
+		    		DECODE(ROOM_TYPE,'3','Superior Double',
+		    			DECODE(ROOM_TYPE,'4','Superior Twin',
+		    				DECODE(ROOM_TYPE,'5','Drama Suite',
+		    					DECODE(ROOM_TYPE,'6','Deluxe Suite',
+		    						DECODE(ROOM_TYPE,'7','Premium Suite',
+		    							DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE_NAME,
+		    ROOM_NAME,
+		    ROOM_ADULT,
+		    ROOM_CHILD,
+		    ROOM_FAC_NAME,
+		    ROOM_CONTENT,
+		    ROOM_SIZE,
+		    ROOM_BEDTYPE,
+		    ROOM_CHK_INTIME,
+		    ROOM_CHK_OUTTIME,
+		    ROOM_DATE,
+		    ROOM_PRICE,
+		    ROOM_IMGS_FILE
+	    FROM
+		    (
+		    SELECT 
+				a.ROOM_ID,
+				a.ROOM_TYPE,
+				a.ROOM_NAME,
+				a.ROOM_ADULT,
+				a.ROOM_CHILD,
+				a.ROOM_FAC_NAME,
+				a.ROOM_CONTENT,
+				a.ROOM_SIZE,
+				a.ROOM_BEDTYPE,
+				a.ROOM_CHK_INTIME,
+				a.ROOM_CHK_OUTTIME,
+				a.ROOM_DATE,
+				a.ROOM_PRICE,
+                LISTAGG(b.ROOM_IMGS_FILE,',') WITHIN GROUP (ORDER BY ROOM_IMGS_FILE) AS ROOM_IMGS_FILE
+			FROM
+				ROOM a, ROOM_IMAGES b
+            WHERE
+                a.ROOM_TYPE = b.ROOM_TYPE
+                GROUP BY
+                a.ROOM_ID,
+				a.ROOM_TYPE,
+				a.ROOM_NAME,
+				a.ROOM_ADULT,
+				a.ROOM_CHILD,
+				a.ROOM_FAC_NAME,
+				a.ROOM_CONTENT,
+				a.ROOM_SIZE,
+				a.ROOM_BEDTYPE,
+				a.ROOM_CHK_INTIME,
+				a.ROOM_CHK_OUTTIME,
+				a.ROOM_DATE,
+				a.ROOM_PRICE
+		        ORDER BY ROOM_ID asc
+		    ) A
+    ]]>	
+    <choose>
+	<when test="searchOption == 'ROOM_NAME'">
+		WHERE ROOM_NAME LIKE '%${keyword}%' 
+	</when>
+	<when test="searchOption == 'ROOM_ID'">
+		WHERE ROOM_ID LIKE '%${keyword}%' 
+	</when>
+	<otherwise>
+	</otherwise>
+	</choose>
+<include refid="common.pagingPost"/>
+	</select>
+	
+	<!-- 객실 유형 번호, 객실 유형의 이름 가져오기 -->
+	<select id="selectRoomType" parameterType="hashmap" resultType="hashmap">
+	SELECT 
+		ROOM_TYPE,
+	        DECODE(ROOM_TYPE,'1','Business Double',
+		    	DECODE(ROOM_TYPE,'2','Business Twin',
+		    		DECODE(ROOM_TYPE,'3','Superior Double',
+		    			DECODE(ROOM_TYPE,'4','Superior Twin',
+		    				DECODE(ROOM_TYPE,'5','Drama Suite',
+		    					DECODE(ROOM_TYPE,'6','Deluxe Suite',
+		    						DECODE(ROOM_TYPE,'7','Premium Suite',
+		    							DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE_NAME
+	FROM ROOM
+	GROUP BY ROOM_TYPE
+	ORDER BY ROOM_TYPE asc
+	
+	
+	</select>
+	
+ 	<!-- 객실 등록 (insertNewRoom) -->
+	<insert id="insertNewRoom" parameterType="hashmap">
+	INSERT INTO 
+	ROOM(
+		ROOM_ID,
+		ROOM_TYPE,
+		ROOM_NAME,
+		ROOM_ADULT,
+		ROOM_CHILD,
+		ROOM_FAC_NAME,
+		ROOM_CONTENT,
+		ROOM_SIZE,
+		ROOM_BEDTYPE,
+		ROOM_CHK_INTIME,
+		ROOM_CHK_OUTTIME,
+		ROOM_PRICE
+	)
+	VALUES(
+		#{ROOM_ID},
+		#{ROOM_TYPE},
+		#{ROOM_NAME},
+		#{ROOM_ADULT},
+		#{ROOM_CHILD},
+		#{ROOM_FAC_NAME},
+		#{ROOM_CONTENT},
+		#{ROOM_SIZE},
+		#{ROOM_BEDTYPE},
+		#{ROOM_CHK_INTIME},
+		#{ROOM_CHK_OUTTIME},
+		#{ROOM_PRICE}
+	)
+	</insert>
+
+ 	<!-- 객실 이미지 등록 (insertNewRoomImg) -->
+	<insert id="insertNewRoomImg" parameterType="hashmap">
+	INSERT INTO 
+	ROOM_IMAGES(
+		ROOM_IMGS_ID,
+		ROOM_TYPE,
+		ROOM_IMGS_FILE
+	)
+	VALUES(
+		SEQ_ROOM_IMGS_ID.NEXTVAL,
+		#{ROOM_TYPE},
+		#{ROOM_IMGS_FILE}
+	)
+	</insert>
+	
+	<!-- 객실 상세보기 -->
+	<select id="selectRoomsDetail" parameterType="hashmap" resultType="hashmap">
+	SELECT
+	    ROOM_ID, 
+	    DECODE(ROOM_TYPE,'1','Business Double',
+		    	DECODE(ROOM_TYPE,'2','Business Twin',
+		    		DECODE(ROOM_TYPE,'3','Superior Double',
+		    			DECODE(ROOM_TYPE,'4','Superior Twin',
+		    				DECODE(ROOM_TYPE,'5','Drama Suite',
+		    					DECODE(ROOM_TYPE,'6','Deluxe Suite',
+		    						DECODE(ROOM_TYPE,'7','Premium Suite',
+		    							DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE,
+	    ROOM_NAME,
+	    ROOM_ADULT,
+	    ROOM_CHILD,
+	    ROOM_FAC_NAME,
+	    ROOM_CONTENT,
+	    ROOM_SIZE,
+	    ROOM_BEDTYPE,
+	    ROOM_CHK_INTIME,
+	    ROOM_CHK_OUTTIME,
+	    ROOM_DATE,
+	    ROOM_PRICE
+	FROM
+	    ROOM
+	WHERE
+	    ROOM_ID = #{ROOM_ID}
+	</select>
+	
+	<!-- 객실 첨부파일 목록 -->
+	<select id="selectRoomImgs" parameterType="hashmap" resultType="hashmap">
+		<![CDATA[
+			SELECT 
+                a.ROOM_ID,
+				b.ROOM_IMGS_ID,
+				b.ROOM_TYPE,
+				b.ROOM_IMGS_FILE 
+			FROM 
+				ROOM a, ROOM_IMAGES b
+            WHERE
+                a.ROOM_TYPE = b.ROOM_TYPE
+                and
+                a.ROOM_ID = #{ROOM_ID}
+		]]>
+	
+	</select>
+	
+ 	<!-- 등록 객실 수정 (updateRoom) -->
+	<update id="updateRoom" parameterType="hashmap">
+	UPDATE 
+		ROOM
+	SET
+		ROOM_TYPE = #{ROOM_TYPE},
+		ROOM_NAME = #{ROOM_NAME},
+		ROOM_ADULT = #{ROOM_ADULT},
+		ROOM_CHILD = #{ROOM_CHILD},
+		ROOM_FAC_NAME = #{ROOM_FAC_NAME},
+		ROOM_CONTENT = #{ROOM_CONTENT},
+		ROOM_SIZE = #{ROOM_SIZE},
+		ROOM_BEDTYPE = #{ROOM_BEDTYPE},
+		ROOM_CHK_INTIME = #{ROOM_CHK_INTIME},
+		ROOM_CHK_OUTTIME = #{ROOM_CHK_OUTTIME},
+		ROOM_PRICE = #{ROOM_PRICE}
+	WHERE
+		ROOM_ID = #{ROOM_ID}
+	</update>
+	
+ 	<!-- 등록 객실 이미지 수정 (updateRoomImg) -->
+	<update id="updateRoomImg" parameterType="hashmap">
+	UPDATE 
+		ROOM_IMAGES
+	SET
+		ROOM_IMGS_FILE = #{ROOM_IMGS_FILE}
+	WHERE
+		<choose>
+			<when test="ROOM_IMGS_ID_0 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_0}
+			</when>
+			<when test="ROOM_IMGS_ID_1 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_1}
+			</when>
+			<when test="ROOM_IMGS_ID_2 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_2}
+			</when>
+			<when test="ROOM_IMGS_ID_3 != null">
+				ROOM_IMGS_ID=#{ROOM_IMGS_ID_3}
+			</when>
+			<otherwise>
+			</otherwise>
+		</choose>
+	</update>
+
+ 	<!-- 객실 삭제 (deleteRoom)  -->
+	<delete id="deleteRoom" parameterType="hashmap">
+	DELETE FROM
+		ROOM
+	WHERE
+		ROOM_ID = #{ROOM_ID}
+	</delete>
+	
+	<!-- 객실 이미지 삭제 -->
+	<delete id="deleteRoomImg" parameterType="hashmap">
+	DELETE FROM
+		ROOM_IMAGES
+	WHERE
+		ROOM_IMGS_ID = #{ROOM_IMGS_ID}
+	</delete>
+</mapper>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+ <mapper namespace="notice">
+ <!-- 공지사항 목록 -->
+<select id="selectBoardList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/>
+<![CDATA[
+      SELECT
+          ROW_NUMBER() OVER (ORDER BY NOTICE_ID DESC) RNUM,
+          NOTICE_ID,
+          NOTICE_TITLE,
+          NOTICE_IMG,
+          TO_CHAR(NOTICE_DATE,'YYYY-MM-DD') NOTICE_DATE
+      FROM
+        NOTICE
+      WHERE  
+          NOTICE_ISVIEW = 'Y' 
+          ]]>		
+	<include refid="search.notice" />	
+		<![CDATA[
+			order by NOTICE_ID desc
+		   
+]]>
+<include refid="common.pagingPost"/> 
+</select>
+ <!-- 공지사항 상세보기 -->
+<select id="selectNextBoard" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+         SELECT * 
+      FROM 
+       (
+      SELECT
+          NOTICE_ID,
+          NOTICE_TITLE,
+          NOTICE_CONTENT,
+          TO_CHAR(NOTICE_DATE,'YYYY-MM-DD') NOTICE_DATE,
+          NOTICE_IMG,
+          lead(NOTICE_ID, 1, '') over(order by NOTICE_ID) next_idx,
+          lead( NOTICE_TITLE, 1, '다음글이 없습니다') over(order by NOTICE_DATE) next_title,
+           TO_CHAR(lead( NOTICE_DATE, 1, '') over(order by NOTICE_DATE),'YYYY-MM-DD') next_DATE,
+          lag(NOTICE_ID, 1, '') over(order by NOTICE_ID) pre_idx,
+          lag( NOTICE_TITLE, 1, '이전글이 없습니다') over(order by NOTICE_DATE) pre_title,
+          TO_CHAR( lag( NOTICE_DATE, 1, '') over(order by NOTICE_DATE),'YYYY-MM-DD') pre_DATE
+      FROM 
+        NOTICE
+        WHERE NOTICE_ISVIEW = 'Y'
+        )
+      
+      WHERE
+        NOTICE_ID = #{NOTICE_ID}
+
+]]>
+
+
+</select>
+<!--메인 공지사항리스트 최신글5개 -->
+<select id="mainBoardList" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+      SELECT 
+          RNUM, 
+          NOTICE_ID,
+          NOTICE_TITLE,
+          NOTICE_DATE
+      FROM
+       ( 
+      SELECT
+          ROW_NUMBER() OVER 
+       (  
+      ORDER BY 
+          NOTICE_ID DESC
+       )  
+          RNUM,
+          NOTICE_ID,
+          NOTICE_TITLE,
+          TO_CHAR(NOTICE_DATE,'YYYY-MM-DD') NOTICE_DATE
+      FROM
+        NOTICE
+      WHERE  
+          NOTICE_ISVIEW = 'Y')  
+      WHERE 
+          RNUM < 6
+
+
+]]>
+</select>
+ <!-- 공지사항 검색 
+<select id="selectBoardSearchList" parameterType="hashmap" resultType="hashmap">
+
+      SELECT 
+          ROWNUM NOTICE_NUM, 
+          NOTICE_ID, 
+          NOTICE_TITLE, 
+          NOTICE_CONTENT, 
+          NOTICE_ISVIEW, 
+          TO_CHAR(NOTICE_DATE,'YYYY-MM-DD') NOTICE_DATE
+      FROM
+        (
+      SELECT 
+          NOTICE_ID, 
+          NOTICE_TITLE, 
+          NOTICE_CONTENT, 
+          NOTICE_ISVIEW, 
+          NOTICE_DATE 
+      FROM 
+        NOTICE 
+      WHERE
+      <if test="searchOption == 'NOTICE_TITLE'">
+          NOTICE_TITLE
+      LIKE #{keyword} ORDER BY NOTICE_DATE DESC)
+         </if>
+            <if test="searchOption == 'NOTICE_CONTENT'">
+         NOTICE_CONTENT
+      LIKE #{keyword} ORDER BY NOTICE_DATE DESC);
+          </if>
+          <if test="searchOption == 'ALL'">
+      (NOTICE_TITLE || NOTICE_CONTENT) LIKE '%${keyword}%' 
+      ORDER BY NOTICE_DATE DESC)
+      </if>
+</select>
+-->
+
+</mapper>

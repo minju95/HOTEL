@@ -35,15 +35,13 @@ background-size:100%;*/
 
 .div-fac{
 weith:100%;
-
 /*border:1px solid black ;*/
- 
 }
 
 .div-notice{
 weith:100%;
 
-/*border:1px solid black ;*/
+border:1px solid black ;
  background-image:url(/hotel/image/main-notice.jpg);
  background-repeat:no-repeat;
  background-position:center;
@@ -81,6 +79,21 @@ color:red;
 font-size: 14px;
 }
 
+
+.div-fac_2{
+font-size: 22px;
+height:500px;
+width: 1500px;
+position: relative;
+margin: 0 auto;
+/*bottom:70%;*/
+/*left:60%;
+top:190%;*/
+/*border:1px solid red ;*/
+}
+
+
+
 <!-- 이미지슬라이드-->
 * {box-sizing: border-box;}
 body {font-family: Verdana, sans-serif;}
@@ -89,20 +102,36 @@ img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 700px;
-   margin: auto;
- position: relative;
+margin-top: 15px;
+max-width: 700px;
+position: relative;
+/*margin-left: 5%;*/
+float: left;
 /*bottom:70%;*/
 /*left:10%;*/
 /*top:190%;*/
 }
 
+.fac-text{
+font-size: 22px;
+height: 450px;
+width: 700px;
+position: relative;
+float:left;
+margin-left: 80px;
+/*bottom:70%;*/
+/*left:60%;
+top:190%;*/
+/*border:1px solid black;*/
+}
+
+
 .fac-name{
 font-size: 22px;
- height: 50px;
-  width: 200px;
- position: relative;
-    margin: auto;
+height: 50px;
+width: 200px;
+position: relative;
+margin: auto;
 /*bottom:70%;*/
 /*left:60%;
 top:190%;*/
@@ -110,10 +139,10 @@ top:190%;*/
 }
 .fac-content{
 font-size: 18px;
- height: 220px;
-  width: 700px;
- position: relative;
-    margin: auto;
+height: 120px;
+width: 700px;
+position: relative;
+margin: auto;
 /*bottom:70%;*/
 /*left:60%;
 top:198%;*/
@@ -122,16 +151,19 @@ top:198%;*/
 }
 
 .fac-all{
-
- height: 190px;
-  width: 700px;
- position: relative;
-    margin: auto;
+height: 190px;
+width: 700px;
+position: relative;
+margin: auto;
 /*bottom:70%;*/
 /*left:60%;
 top:228%;*/
 /*border:1px solid black ;*/
 }
+
+
+
+
 /* Caption text */
 .text {
   color: #000000;
@@ -264,61 +296,62 @@ background-size:100%;
 </div>
 </div>
 </div>
-<!-- 객실 소개 e -->
+<br>
+<!-- 시설 소개-->
 
 <div class="div-fac">
-<center><h1 >시설소개</h1></center>
-<br>
+	<center><h1 >시설소개</h1></center>
+	
+<div class="div-fac_2">
+	<c:forEach items="${list2}" var="fac">
+	<c:forTokens items="${fac.HOTEL_IMGS_FILE }" delims="," var="item">		
+	<div class="slideshow-container">
+		<div class="mySlides ">
+		  <img src="<c:url value='/image/${item}'/>" style="width:700px; height:480px;">
+		</div>
+	</div>
+	</c:forTokens><br>
+	
+	
+	<div class="fac-text">
+		<div class="fac-name">
+			<b>${fac.FAC_HOTEL_NAME}</b>
+		</div>
+		<br>
+		
+		<div class="fac-content">
+		${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
+		</div>
 
-<c:forEach items="${list2}" var="fac">
-
-<br>
-
-<c:forTokens items="${fac.HOTEL_IMGS_FILE }" delims="," var="item">
-   <div class="slideshow-container">
-
-<div class="mySlides ">
-
-  <img src="<c:url value='/image/${item}'/>" style="width:700px; height:480px;">
-
+		
+		<div class="fac-all">
+		위치: ${fac.FAC_HOTEL_LOCATION}<br><br>
+		이용시간: ${fac.FAC_HOTEL_TIME}<br><br>
+		<c:choose>
+			<c:when test="${fac.FAC_HOTEL_FAC != null}">
+		시설: ${fac.FAC_HOTEL_FAC}<br><br>
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+			</c:choose>
+		대표전화: ${fac.FAC_HOTEL_PHONE}<br>
+		<c:choose>
+			<c:when test="${fac.FAC_HOTEL_DETAIL != null}">
+		<p id="p1">* ${fac.FAC_HOTEL_DETAIL}</p>
+			</c:when>
+			<c:otherwise>
+			</c:otherwise>
+			</c:choose>
+		</div>
+	</div>
+	</c:forEach>		
+</div>	
 </div>
+<br><br>
 
 
-</div>
-</c:forTokens>
-<br>
-<div class="fac-name">
-<b>${fac.FAC_HOTEL_NAME}</b>
-</div>
-<br>
-<div class="fac-content">
-
-${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
-</div>
-<br>
-<div class="fac-all">
-위치: ${fac.FAC_HOTEL_LOCATION}<br><br>
-이용시간: ${fac.FAC_HOTEL_TIME}<br><br>
-<c:choose>
-	<c:when test="${fac.FAC_HOTEL_FAC != null}">
-시설: ${fac.FAC_HOTEL_FAC}<br><br>
-</c:when>
-		<c:otherwise>
-		</c:otherwise>
-		</c:choose>
-대표전화: ${fac.FAC_HOTEL_PHONE}<br><br>
-<c:choose>
-	<c:when test="${fac.FAC_HOTEL_DETAIL != null}">
-<p id="p1">* ${fac.FAC_HOTEL_DETAIL}</p>
-	</c:when>
-		<c:otherwise>
-		</c:otherwise>
-		</c:choose>
-</div>
-</c:forEach>
-</div>
 <div class="div-notice">
-<br>
+
 
 <center><h1 class="h1" >NOTICE</h1></center>
 <!--  <div class="div-notice-son">-->
@@ -352,8 +385,8 @@ ${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 			</tbody>
 		</table>
 		</form>
+	</div>
 <br>
-</div>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <script type="text/javascript">
 
