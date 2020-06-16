@@ -99,6 +99,7 @@ a {
                  <input type="button" value="검 색"
 							onClick="fn_noticeList(1)">
    	</form> 
+   	<br>
 	
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
@@ -194,7 +195,6 @@ a {
 			}
 		}
 	</script>
-
-
-				</body>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+</body>
 </html>

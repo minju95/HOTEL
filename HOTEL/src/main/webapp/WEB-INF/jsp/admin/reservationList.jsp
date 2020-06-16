@@ -10,24 +10,12 @@
 
 <title>예약자 리스트</title>
 <style>
-    #reservation{margin-left: calc(50% - 400px); width: 800px;} 
+    #reservation{margin-left: calc(50% - 400px); width: 1200px;} 
 	h2{width: 800px;  display: block;}
 	
 	#PAGE_NAVI{text-align: center;}
 
-
-h2 {
-	width: 800px;
-	display: block;
-	text-align: center;
-}
-
-#PAGE_NAVI {
-	text-align: center;
-	margin-top: 10%
-}
-
-.div-about {
+	.div-about {
 	background-image: url(/hotel/image/hotel.jpg);
 	height: 250px;
 	color: #e5a880;
@@ -39,7 +27,11 @@ h2 {
 	text-decoration: none;
 	color: black;
 	}
-
+	
+	#resDiv {
+	display: flex;
+	margin-right: 15%;
+	}
 </style>
 
 <!-- 부트스트랩 -->
@@ -58,12 +50,14 @@ h2 {
 		<br> <br> <br>
 		<h1>R E S E R V A T I O N</h1>
 	</div>
+	
 <%@ include file="/WEB-INF/include/include-admin.jspf"%>
-	<h3 align="center">예약자 목록</h3> <br>
-
+<h3 align="center">예약자 목록</h3> <br>
+<form id="reservation">	
 	<br>
-	<form id="reservation">
-	<table name="resList" class="table table-striped" align="center" style="width: 1200px;" >
+	<div id="resDiv">
+	
+	<table name="resList" class="table table-striped" align="center" >
 
 		<thead>
 			<tr>
@@ -81,10 +75,10 @@ h2 {
 			</tr>
 		</thead>
 		<tbody>
-	
 		</tbody>
 	</table>
 	
+	</div>
 	<div id="PAGE_NAVI">
 		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
 	</div>
@@ -98,9 +92,8 @@ h2 {
 	    <input type="text" size="16" name="keyword" value="${keyword}" placeholder="" onkeyup="enteryKey()">
 	    <input type="text" style="display: none;" />
   		<button type="button" onclick="fn_resList(1)">검색</button>
-
 	</form>
-	
+	<br>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 	
 <script>
@@ -163,10 +156,10 @@ h2 {
 			});
 			//이거 넣어야 데이터 들어감
 			body.append(str);
-
 		}
 	}
 </script>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 
-				</body>
+</body>
 </html>

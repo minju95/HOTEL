@@ -94,8 +94,7 @@
                  <!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
                  <input type="button" value="검 색" onClick="fn_facList(1)">
    	</form>
-
-	
+	<br>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
 	
@@ -192,7 +191,6 @@
 			}
 		}
 	</script>
-
-
-				</body>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+</body>
 </html>

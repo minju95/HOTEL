@@ -177,7 +177,9 @@ a {
 				alert("전화번호를 입력해주세요");
 			} else if($("#FAC_HOTEL_CONTENT").val() == "") {
 				alert("상세내용을 입력해주세요");
-			} 
+			} else if($("#HOTEL_IMGS_FILE").val() == "") {
+				alert("이미지를 1개 이상 업로드해주세요.");
+			}
 			else {
 				alert("새 부대시설이 등록되었습니다.")
 				var comSubmit = new ComSubmit("frm");
@@ -199,6 +201,7 @@ a {
 		}
 	}
 </script>	
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 
-				</body>
+</body>
 </html>

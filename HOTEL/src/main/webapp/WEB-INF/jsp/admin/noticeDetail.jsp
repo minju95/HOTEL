@@ -74,6 +74,7 @@
 						<c:choose>
 							<c:when test="${map.NOTICE_IMG != NULL}">
 							<td>
+								<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
 								<!-- 이미지_상대경로 -->
 								<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
 								<br>
@@ -86,7 +87,6 @@
 									</c:otherwise>	
 						</c:choose>
 					
-
 					<%-- <td align="center">
 						${map.NOTICE_IMG}
 						<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:200px; heigth:120px;">
@@ -107,7 +107,7 @@
 			class="btn" id="delete">삭제하기</a> <a href="#this" class="btn"
 			id="list">목록으로</a>
 	</center>
-
+	<br>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>
 
 	<script>
@@ -145,6 +145,7 @@
 
 		function fn_deleteNotice() {
 			if (confirm("삭제하시겠습니까?") == true) {
+				
 				alert("삭제되었습니다.");
 				var comSubmit = new ComSubmit();
 				comSubmit.setUrl("<c:url value='/admin/deleteNotice' />");
@@ -155,6 +156,6 @@
 			}
 		}
 	</script>
-
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

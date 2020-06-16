@@ -146,11 +146,12 @@
 		<when test="HOTEL_IMGS_ID_0 != null">
 			HOTEL_IMGS_ID=#{HOTEL_IMGS_ID_0}
 		</when>
-		
 		<when test="HOTEL_IMGS_ID_1 != null">
 			HOTEL_IMGS_ID=#{HOTEL_IMGS_ID_1}
 		</when>
-				
+		<when test="HOTEL_IMGS_ID_2 != null">
+			HOTEL_IMGS_ID=#{HOTEL_IMGS_ID_2}
+		</when>
 		<otherwise>
 		</otherwise>
 	</choose>

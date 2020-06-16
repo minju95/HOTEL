@@ -67,15 +67,49 @@
 			</tr>
 			<tr>
 				<th>이미지</th>
-				<td>
-					<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
-					<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
-					<br>
-					업로드된 파일명 : ${map.NOTICE_IMG}
-					<br>
-					<input type="file" name="newFile" id="newFile">
-
-				</td>
+				<%-- <c:choose>
+					<c:when test="${map.NOTICE_IMG != NULL}">
+					 <td>
+						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
+						<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
+						<br>
+						업로드된 파일명 : ${map.NOTICE_IMG}
+						<br>
+						<input type="file" name="newFile" id="newFile">
+					</td>
+				</c:when>
+				<c:otherwise>
+					<td>
+					업로드된 이미지가 없습니다.<br>
+					**파일 추가를 원하시면 아래 '파일 선택' 버튼을 클릭하여 이미지를 업로드해주세요.<br><br>
+						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
+						<input type="file" name="newFile" id="newFile">
+					</td>
+				</c:otherwise>
+				</c:choose> --%>
+				
+				<c:choose>
+					<c:when test="${map.NOTICE_IMG != NULL}">
+					 <td>
+						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
+						<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
+						<br>
+						업로드된 파일명 : ${map.NOTICE_IMG}
+						<br>
+						<input type="file" name="newFile" id="newFile">
+						<br>
+						<a href="#this" class="btn" id="removeImg">이미지 삭제</a>
+					</td>
+				</c:when>
+				<c:otherwise>
+					<td>
+					업로드된 이미지가 없습니다.<br>
+					**파일 추가를 원하시면 아래 '파일 선택' 버튼을 클릭하여 이미지를 업로드해주세요.<br><br>
+						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
+						<input type="file" name="newFile" id="newFile">
+					</td>
+				</c:otherwise>
+				</c:choose>
 			</tr>
 			<tr>
 				<th>공개여부</th>
@@ -93,28 +127,28 @@
 		<a href="#this" class="btn" id="modify">수정하기</a>
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</center>
-	
+	<br>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
 	
 	<script>
 		$(document).ready(function() {
-			$("#list").on("click", function(e) { //'목록으로' 누르면
+			$("#list").on("click", function(e) { //'목록으로' 클릭시
 				e.preventDefault();
 				fn_noticeList();
 			});
 
-			$("#modify").on("click", function(e) { //'수정하기' 누르면
+			$("#modify").on("click", function(e) { //'수정하기' 클릭시
 				e.preventDefault();
 				fn_noticeModify();
 			});
+			
+			$("#modify").on("click", function(e) { //'이미지 삭제' 클릭시
+				e.preventDefault();
+				fn_removeImg();
+			});
+			
 		});
 
-		$("#modify").on("click", function(e){ //'수정하기' 누르면
-			e.preventDefault();
-			fn_noticeModify();
-		});
-	});   
-    
 	function fn_noticeList(pageNo){ //리스트로 이동하는 함수
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/admin/noticeList' />");
@@ -128,9 +162,13 @@
 		comSubmit.submit();
 	}
 
+	function fn_removeImg() {
+		var comSubmit = new ComSubmit("removeImg");
+		comSubmit.setUrl = ("<c:url value='/admin/removeImg'/>");
+		comSubmit.submit();
+	}
 	</script>
-	
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 
-
-				</body>
+	</body>
 </html>

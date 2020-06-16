@@ -87,11 +87,19 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 		Map<String, Object> listMap = null;
 		
 		String FAC_HOTEL_ID = (String) map.get("FAC_HOTEL_ID"); //ServiceImpl에서 전달해준 map에서 신규 생성되는 게시글의 번호를 받아오도록 함
+		String HOTEL_IMGS_ID_2 = "";
 		String HOTEL_IMGS_ID_1 = "";
 		String HOTEL_IMGS_ID_0 = (String) map.get("HOTEL_IMGS_ID_0");
+		
+		
 		if((String) map.get("HOTEL_IMGS_ID_1") != null) {
 			HOTEL_IMGS_ID_1 = (String) map.get("HOTEL_IMGS_ID_1");
 		}
+		
+		if((String) map.get("HOTEL_IMGS_ID_2") != null) {
+			HOTEL_IMGS_ID_2 = (String) map.get("HOTEL_IMGS_ID_2");
+		}
+		
 		String requestName = null;
 		String idx = null;
 		
@@ -120,8 +128,10 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 				
 				if(Integer.parseInt(idx0_last) == 0) {
 					listMap.put("HOTEL_IMGS_ID_0", HOTEL_IMGS_ID_0);
-				} else {
+				} else if(Integer.parseInt(idx0_last) == 1) {
 					listMap.put("HOTEL_IMGS_ID_1", HOTEL_IMGS_ID_1);
+				} else if(Integer.parseInt(idx0_last) == 2) {
+					listMap.put("HOTEL_IMGS_ID_2", HOTEL_IMGS_ID_2);
 				}
 				
 				listMap.put("HOTEL_IMGS_FILE", originalFileName);
@@ -143,11 +153,12 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 		return list;
 	}
 	
-	//이미지 삭제
+	//부대시설 이미지 삭제
 	public  List<Map<String, Object>> parseDeleteFileInfo(Map<String, Object>
 	map) throws Exception {
 		
-		String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; 		
+		String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc
+		//String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; 		
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		
 		Map<String, Object> listMap = null;
@@ -159,7 +170,6 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 				list.add(listMap);
 			}
 		}
-		
 		//기존 파일 이름 받아오기
 		List<String> oldFileName = new ArrayList<String>();
 		for(int i=0; i<=3; i++) { // 등록할수 있는 최대 이미지 개수 2개

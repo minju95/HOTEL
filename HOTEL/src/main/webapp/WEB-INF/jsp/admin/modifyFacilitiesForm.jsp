@@ -46,6 +46,7 @@
    <br>
    <h1>F A C I L I T I E S </h1>
 </div>	
+<%@ include file="/WEB-INF/include/include-admin.jspf"%>
 <h3 align="center">부대시설 수정하기</h3>
 <br>
 	<form id="facModify" name="facModify" enctype="multipart/form-data">
@@ -92,13 +93,13 @@
 		 	<tr>
 		 		<td>내용</td>
 					<td colspan="4" class="view_text">
-						<textarea rows="10" cols="80" title="내용" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT">${map.FAC_HOTEL_CONTENT}</textarea>
+						<textarea rows="5" cols="80" title="내용" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT">${map.FAC_HOTEL_CONTENT}</textarea>
 					</td>
 			</tr>
 			<tr>
 				<td>세부사항</td>
 					<td colspan="4" class="view_text">
-						<textarea rows="10" cols="80" title="내용" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL">${map.FAC_HOTEL_DETAIL}</textarea>
+						<textarea rows="5" cols="80" title="내용" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL">${map.FAC_HOTEL_DETAIL}</textarea>
 					</td>
 			</tr>
 			<tr>
@@ -110,15 +111,20 @@
 						<!-- 숨김 처리 -->
 						<input type="hidden" id="FAC_HOTEL_ID"  name="IDX_${var.index}" value="${row.FAC_HOTEL_ID }">
 						<input type="hidden" id="HOTEL_IMGS_ID"  name="HOTEL_IMGS_ID_${var.index}" value="${row.HOTEL_IMGS_ID }">
-
-						<!-- 파일명 출력  -->
-						<a href="#this" id="name_${var.index}" name="name_${var.index}">${row.HOTEL_IMGS_FILE}</a>
-						<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}" style = "width:600px; heigth:600px;">
+						<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
 						
-						<!-- 파일 등록 -->
+						<!-- 이미지 출력 -->
+						<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}" style = "width:600px; heigth:600px;">
 						<input type="file" id="file_${var.index}" name="file_${var.index}">
+						
+						<!-- 파일명 출력  -->
+						
+						<a href="#this" id="name_${var.index}" name="name_${var.index}">${row.HOTEL_IMGS_FILE}</a>
 					</p>
 					</c:forEach>
+					<div id="fileDiv">
+						<input type="hidden" id="FAC_HOTEL_ID"  name="IDX_${var.index}" value="${row.FAC_HOTEL_ID }">
+					</div>
 				</td>
 			</tr>
 		</tfoot>
@@ -126,21 +132,32 @@
 	
 	<center>
 		<a href="#this" class="btn" id="modify">수정하기</a>
+		<a href="#this" class="btn" id="addFile">이미지 추가</a>
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</center>
 	</form>
+	<br>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
 	
 	<script>
 		var img_count = 1;
+		
 		$(document).ready(function() {
 			$("#modify").on("click", function(e) { //'수정하기' 누르면
 				e.preventDefault();
 				fn_facModify();
 			});
+			$("#addFile").on("click", function(e) { //파일추가 버튼
+				e.preventDefault();
+				fn_addFile();
+			});
+			$("#list").on("click", function(e) { //'목록으로'를 클릭하면
+				e.preventDefault();
+				fn_facList(); //fn_facList()함수 호출
+			});
 	});   
-    
+   
 	function fn_facList(pageNo){ //리스트로 이동하는 함수
 		var comSubmit = new ComSubmit();
 		comSubmit.setUrl("<c:url value='/admin/facilitiesList' />");
@@ -150,8 +167,7 @@
 	
 	function fn_facModify(){
 		//유효성 검사
-		if($("#FAC_HOTEL_NAME").val() == "")
-		{
+		if($("#FAC_HOTEL_NAME").val() == "") {
 			alert("부대시설명을 입력해주세요");
 		} else if($("#FAC_HOTEL_LOCATION").val() == "") {
 			alert("부대시설 위치를 입력해주세요");
@@ -163,12 +179,33 @@
 			alert("상세내용을 입력해주세요");
 		} 
 		else {
-			alert("부대시설 수정이 완료되었습니다.")
+			alert("부대시설 수정이 완료되었습니다.");
 			var comSubmit = new ComSubmit("facModify");
 			comSubmit.setUrl("<c:url value='/admin/modifyFacilities' />");
 			comSubmit.submit();
 		}
 	}
+
+	function fn_addFile() {
+		//alert(img_count); //1 -> 3
+		while (img_count <= 2) { //이미지 개수 제한
+
+			var str = "<tr><td><input type='file' name='HOTEL_IMGS_FILE_"
+					+ (img_count) + "'></td></tr>";
+			img_count++; //숫자올리고
+			//alert(img_count); //2
+		}
+		$("#fileDiv").append(str);
+	}
+
+	function fn_facList(pageNo) { //리스트로 이동하는 함수
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/admin/facilitiesList' />");
+		comSubmit.submit();
+
+	}
 </script>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+
 </body>
 </html>

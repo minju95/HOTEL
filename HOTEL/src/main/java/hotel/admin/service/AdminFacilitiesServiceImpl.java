@@ -91,8 +91,6 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 	public void modifyFacilities(Map<String, Object> map, HttpServletRequest request) throws Exception {
 		adminFacilitiesDAO.modifyFacilities(map);
 		
-			
-		
 		//FileUtils 클래스를 이용하여 파일을 저장하고 데이터를 가져온 후, DB에 저장
 		List<Map<String, Object>> list = fileUtils.parseUpdateFileInfo(map, request);
 		System.out.println("이미지 파일명: 어어어얼ㅇㄹ언ㄹㅇ"+list);

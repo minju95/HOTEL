@@ -37,8 +37,7 @@
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -93,14 +92,14 @@
 			<td colspan="4">
 				<c:forEach var="row" items="${list }">
 					<p>
-					<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
-						
-					<!-- 이미지_상대경로 -->
-					<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}"
-						style = "width:600px; heigth:600px;">
-					<br>
-					<!-- 이미지 파일명 -->
-					<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
+						<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
+							
+						<!-- 이미지_상대경로 -->
+						<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}"
+							style = "width:600px; heigth:600px;">
+						<br>
+						<!-- 이미지 파일명 -->
+						<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
 					</p>
 					<!-- 이미지_절대경로 -->
 					<%-- <img src= "C:/Users/학생용/git/HOTEL/HOTEL/src/main/webapp/resources/${row.HOTEL_IMGS_FILE}"
@@ -118,6 +117,7 @@
 		<a href="#this" class="btn" id="delete">삭제하기</a>
 		<a href="#this" class="btn" id="list">목록으로</a>
 	</center>
+	<br>
 	
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
 	
@@ -127,11 +127,12 @@
 				e.preventDefault();
 				fn_facList();
 			});
-
+			
 			$("#modify").on("click", function(e) { //수정하기 누르면
 				e.preventDefault();
 				fn_facModifyForm();
 			});
+			
 			$("#delete").on("click", function(e) { //'삭제하기' 누르면
 				e.preventDefault();
 				fn_facDelete();
@@ -156,7 +157,6 @@
 		function fn_facDelete() {
 			if (confirm("삭제하시겠습니까?") == true) {
 				alert("삭제되었습니다.");
-
 				var comSubmit = new ComSubmit();
 				comSubmit.setUrl("<c:url value='/admin/deleteFacilities' />");
 				comSubmit.addParam("FAC_HOTEL_ID", $("#FAC_HOTEL_ID").val());
@@ -166,7 +166,7 @@
 			}
 		}
 	</script>
-
-
+	
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 	</body>
 </html>

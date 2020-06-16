@@ -14,7 +14,7 @@
           FACILITIES_HOTEL
 ]]>
 </select>
-  <!-- 메인 시설소개 -->
+  <!-- 메인 시설소개(CAFE LENNON으로 고정) -->
  <select id="mainFacilities" parameterType="hashmap" resultType="hashmap" >
 <![CDATA[
            SELECT
@@ -33,7 +33,7 @@
       WHERE 
           F.FAC_HOTEL_ID = M.FAC_HOTEL_ID
       AND 
-          F.FAC_HOTEL_ID = 2
+          F.FAC_HOTEL_ID = 145
 
       GROUP BY 
           F.FAC_HOTEL_ID,

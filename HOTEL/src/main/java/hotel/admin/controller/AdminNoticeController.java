@@ -140,8 +140,15 @@ private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\
 		
 		String orgFileName = request.getParameter("orgFile");
 		MultipartFile newFile = request.getFile("newFile");
+		
+		
+		
 		System.out.println(newFile);
+		
+		
 		String newFileName = newFile.getOriginalFilename();
+		
+		
 		
 		commandMap.getMap().put("NOTICE_IMG",orgFileName); //기존파일명을 map에 집어넣기
 		System.out.println("map에 들어간 데이터를 꺼내보자"+commandMap.getMap());
@@ -174,4 +181,7 @@ private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\
 		return mv;
 		
 	}
+	
+	
+	
 }

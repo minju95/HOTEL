@@ -26,13 +26,12 @@
 	    RES_CHILD,
 	    TO_CHAR(RES_CHK_SDAY, 'YYYY/MM/DD') RES_CHK_SDAY,
 	    TO_CHAR(RES_CHK_EDAY, 'YYYY/MM/DD') RES_CHK_EDAY,
-	   	TO_CHAR( (TRUNC(RES_CHK_EDAY)-TRUNC(RES_CHK_SDAY)) *RES_PRICE, '999,999,999') RES_PRICE,
+	   	TO_CHAR(RES_PRICE, '999,999,999') RES_PRICE,
 	    RES_ANOTHER
 	FROM RESERVATION rsv, ROOM rm, MEMBER m
 	    WHERE m.mem_id=rsv.mem_id
 	    and rsv.room_id=rm.room_id
-	    and SYSDATE < RES_CHK_SDAY
-	    
+	    and TO_CHAR(SYSDATE, 'YYYY/MM/DD') <= TO_CHAR(RES_CHK_SDAY, 'YYYY/MM/DD')
  ]]>
  <choose>
  	<when test="searchOption == 'ROOM_ID'">
