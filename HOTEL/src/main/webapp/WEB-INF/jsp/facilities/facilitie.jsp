@@ -1,38 +1,40 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% pageContext.setAttribute("replaceChar", "\n"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <style>
-.div1{
+#div1{
 width: 300px;
   height:80px;
  background-color:  white;
-position: absolute;
+position: relative;
 /*bottom:70%;*/
 left:45%;
 top:60%;
 font-size: 22px;
 }
-.div2{
+#div2{
 width: 1000px;
-
+position: relative;
  background-color:  white;
-/*border:1px solid black ;*/
+border:1px solid black ;
 font-size: 20px;
-margin-left: 250px;
+  margin: auto;
 }
 
-.div3{
+#div3{
 width: 1000px;
-
+position: relative;
  background-color:  white;
-/*border:1px solid black ;*/
+border:1px solid black ;
 font-size: 20px;
-margin-left: 250px;
+  margin: auto;
 }
-.p1{
+
+#p1{
 color:red;
 font-size: 14px;
 }
@@ -134,7 +136,7 @@ font-size: 18px;
 </head>
   <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<div class="div-about" align="center">
 		<br> <br> <br>
@@ -157,7 +159,7 @@ font-size: 18px;
 	</div>
 	<br>
 <br>
-<div class="div1">
+<div id="div1">
 <b>${map.FAC_HOTEL_NAME}</b>
 </div>
 <br>
@@ -165,7 +167,7 @@ font-size: 18px;
 <c:forTokens items="${map.HOTEL_IMGS_FILE }" delims="," var="item">
    <div class="slideshow-container">
 
-<div class="mySlides fade">
+<div class="mySlides ">
 
   <img src="<c:url value='/image/${item}'/>" style="width:1000px; height:600px;">
 
@@ -176,26 +178,27 @@ font-size: 18px;
 </c:forTokens>
 
 <br>
-<div class="div2">
+<div id="div2">
 <br>
 ${fn:replace(map.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 </div>
 <br>
-<div class="div3">
+<div id="div3">
 
-<pre><b>위치</b>               ${map.FAC_HOTEL_LOCATION}</pre><br>
-<pre><b>운영시간</b>           ${map.FAC_HOTEL_TIME}</pre><br>
+
+<b>위치</b>     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;          ${map.FAC_HOTEL_LOCATION}<br><br>
+<b>운영시간</b>  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;        ${map.FAC_HOTEL_TIME}<br><br>
 <c:choose>
 	<c:when test="${map.FAC_HOTEL_FAC != null}">
-<pre><b>시설 </b>              ${map.FAC_HOTEL_FAC}</pre><br>
+<b>시설 </b>       &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;       ${map.FAC_HOTEL_FAC}<br><br>
 </c:when>
 		<c:otherwise>
 		</c:otherwise>
 		</c:choose>
-<pre><b>대표번호</b>           ${map.FAC_HOTEL_PHONE}</pre>
+<b>대표번호</b>     &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;     ${map.FAC_HOTEL_PHONE}
 <c:choose>
 	<c:when test="${map.FAC_HOTEL_DETAIL != null}">
-<p class="p1">*${map.FAC_HOTEL_DETAIL}</p>
+<p id="p1">*${map.FAC_HOTEL_DETAIL}</p>
 	</c:when>
 		<c:otherwise>
 		</c:otherwise>

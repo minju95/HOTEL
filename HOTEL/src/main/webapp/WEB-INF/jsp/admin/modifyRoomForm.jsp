@@ -55,6 +55,7 @@
 <h3 align="center">객실정보 수정</h3>
 					<form id="frm" name="frm" action="/hotel/admin/modifyRoom"
 						enctype="multipart/form-data" method="post">
+						<div style="width:100%; margin-top:50px;" align="center">
 <div style="width:700px;">
 	<div style="display:inline;">
 	  <div class="form-group">
@@ -244,7 +245,7 @@
   <button type="button" id="modify" class="btn">수정하기</button>
   <button type="button" id="delete" class="btn">삭제하기</button>
 </div>
-  
+  </div>
 </form>
 	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
 

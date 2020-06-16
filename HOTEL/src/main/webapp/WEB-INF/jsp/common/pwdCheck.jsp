@@ -1,19 +1,51 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<!-- 부트스트랩 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style type="text/css">
+#mypageform {
+	width: 648px;
+	margin: 0 auto;
+	text-align: center;
+	margin-bottom: 10px;
+}
 
-/* 적용할부분 */
-h1{	margin-bottom:30px;}
-#mypageform {width: 100%;}
-/* 정보수정비밀번호입력란 */
-#pwdcheck {	width: 400px;margin: 0 auto;text-align: center;border: 1px solid #ccc;}
-.pwdchecktable {margin: 10px;padding-left: 0;padding-bottom: 20px;}
-.pwdchecktable>li {	list-style: none;text-align: center;}
-.pwdchecktable>ul>li>a {	float: right}
-.pwdchecktable>li>p {	padding-right: 0;}
-.pwdchecktable>li>input {width: 100%;height: 50px;border: 1px solid #e0e0e0;}
-h5 {margin-top: 10px;}
-button {width: 100%;height: 50px;background-color: #ffd014;	display: block;	border: none;margin-top: 10px;font-size: 20px;}
+.pwdchecktable {
+	padding-top: 30px;
+	padding-left: 0;
+}
+
+.pwdchecktable>li {
+	list-style: none;
+	text-align: center;
+}
+
+.pwdchecktable>li>a {
+	float: right;
+}
+
+.pwdchecktable>li>p {
+	padding-right: 0;
+}
+
+.pwdchecktable>li>input {
+	width: 100%;
+	height: 50px;
+	border: 1px solid #e0e0e0;
+	margin-bottom: 20px
+}
+
+button {
+	width: 100%;
+	height: 50px;
+	background-color: #ffd014;
+	display: block;
+	border: none;
+	margin-top: 10px;
+	font-size: 20px;
+}
 </style>
 
 <input type="hidden" name="alert" value="${alert}"/>
@@ -26,11 +58,11 @@ button {width: 100%;height: 50px;background-color: #ffd014;	display: block;	bord
 			비밀번호를 입력해주세요</h5>
 			<ul class="pwdchecktable">
 				<li>
-					<input type="password" name="MEM_PW" id="MEM_PW"
+					<input type="password" class="form-control" name="MEM_PW" id="MEM_PW"
 						placeholder="비밀번호를 입력해주세요.">
 				</li>
 				<li>
-					<button type="submit">확인</button>
+					<button class="btn btn-primary" type="submit">확인</button>
 				</li>
 			</ul>
 		</div>

@@ -24,7 +24,7 @@ color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
 }
-.a1{
+#a111{
 color: #0f1927;
 text-decoration: none;
 
@@ -56,7 +56,7 @@ text-align:left;
   max-width: 100%;
   height: auto;
 }
-.date{
+.board_date{
 float: right;
 width: 200px;
 text-align:right;
@@ -66,7 +66,7 @@ color:gray;
 <meta charset="UTF-8">
 <title>공지사항 상세보기</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="div-about" align="center" >
    <br>
@@ -120,8 +120,8 @@ color:gray;
 	<br>
 		<c:choose>
 		<c:when test="${map.PRE_IDX != null}">
-	<a class="a1" href='/hotel/board/boardDetail?NOTICE_ID=${map.PRE_IDX }'  ><font style="color:#e5a880; font-weight: bold;">▲&nbsp;이전글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.PRE_TITLE}</a>
-	<div class="date">${map.PRE_DATE }</div>
+	<a id="a111" href='/hotel/board/boardDetail?NOTICE_ID=${map.PRE_IDX }'  ><font style="color:#e5a880; font-weight: bold;">▲&nbsp;이전글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.PRE_TITLE}</a>
+	<div class="board_date">${map.PRE_DATE }</div>
 		</c:when>
 		<c:otherwise>
 		<font style="color:#e5a880; font-weight: bold;">▲&nbsp;이전글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.PRE_TITLE}
@@ -132,8 +132,8 @@ color:gray;
 	<br>
 	<c:choose>
 		<c:when test="${map.NEXT_IDX != null}">
-	<a class="a1" href='/hotel/board/boardDetail?NOTICE_ID=${map.NEXT_IDX}'  ><font style="color:#e5a880; font-weight: bold;">▼&nbsp;다음글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.NEXT_TITLE}</a>
-	<div class="date">${map.NEXT_DATE }</div>
+	<a id="a111" href='/hotel/board/boardDetail?NOTICE_ID=${map.NEXT_IDX}'  ><font style="color:#e5a880; font-weight: bold;">▼&nbsp;다음글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.NEXT_TITLE}</a>
+	<div class="board_date">${map.NEXT_DATE }</div>
 	</c:when>
 		<c:otherwise>
 		<font style="color:#e5a880; font-weight: bold;">▼&nbsp;다음글</font>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${map.NEXT_TITLE}

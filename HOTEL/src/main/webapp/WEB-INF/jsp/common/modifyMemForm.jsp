@@ -40,14 +40,15 @@
 p {
 	text-align : right;
 }
-p>a {
-	color : blue;
+#signUpBtn {
+	width : 400px;
+	height : 40px;
 }
 </style>
 <form id="signUp" action="/hotel/modifyMem">
 <h3 class="contents">회원 정보 수정</h3>
 <div class="myForm-group">
-<p>회원을 그만두시겠습니까?<a href="/hotel/deleteMemPage">회원탈퇴 하기</a></p>
+<p>회원을 그만두시겠습니까?<a class="btn btn-link" href="/hotel/deleteMemPage">회원탈퇴 하기</a></p>
 	<div class="form-group">
 	  <label for="MEM_USERID">아이디</label>
 	  <input type="text" class="form-control" id="MEM_USERID" name="MEM_USERID" value="${MemberInfo.MEM_USERID }" readonly>
@@ -87,7 +88,7 @@ p>a {
 		  <input type="hidden" id="isEmailAuth" value="0">
 	  </div>
 	</div>
-	<button type="button" class="btn btn-default btn-lg btn-block" id="signUpBtn">수정 하기</button>
+	<button type="button" class="btn btn-primary" id="signUpBtn">수정 하기</button>
 </div>
 </form>
 

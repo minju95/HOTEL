@@ -9,28 +9,28 @@
 width: 300px;
   height:80px;
  background-color:  white;
-position: absolute;
+position: relative;
 /*bottom:70%;*/
-left:45%;
-top:60%;
+
 font-size: 22px;
+  margin: auto;
 }
 .div2{
 width: 1000px;
-
+position: relative;
  background-color:  white;
 /*border:1px solid black ;*/
 font-size: 20px;
-margin-left: 250px;
+  margin: auto;
 }
 
 .div3{
 width: 1000px;
-
+position: relative;
  background-color:  white;
 /*border:1px solid black ;*/
 font-size: 20px;
-margin-left: 250px;
+  margin: auto;
 }
 
 * {box-sizing: border-box;}
@@ -125,8 +125,18 @@ font-size: 18px;
 
 }
 .p1{
-color:red;
+
 font-size: 14px;
+}
+#res-go{
+ width: 200px;
+ height:50px;
+ font-size:20px;
+}
+
+.hotel{
+ width: 100%;
+ height:2350px;
 }
 </style>
 
@@ -135,8 +145,10 @@ font-size: 14px;
 </head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
+
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="hotel">
 <div class="div-about" align="center" >
    <br>
    <br>
@@ -161,14 +173,14 @@ font-size: 14px;
 <br>
 <br>
 <div class="div1">
-rotolrlemf whffk wkwmddsk
+<br>
 <b>${map.ROOM_NAME}</b>
 </div>
 <br>
 <c:forTokens items="${map.ROOM_IMGS_FILE }" delims="," var="item">
    <div class="slideshow-container">
 
-<div class="mySlides fade">
+<div class="mySlides ">
 <br>
   <img src="<c:url value='/image/${item}'/>" style="width:1000px; height:600px;">
 
@@ -177,14 +189,23 @@ rotolrlemf whffk wkwmddsk
 
 </div>
 </c:forTokens>
-
 <br>
+<br>
+
 <div class="div2">
 ${map.ROOM_CONTENT}
-<div>ROOM SIZE:${map.ROOM_SIZE}   BED TYPE:${map.ROOM_BEDTYPE}</div><br>
-<P class="p1"><input type="button" value="RESERVATION"></P>
+<div>ROOM SIZE:${map.ROOM_SIZE}   BED TYPE:${map.ROOM_BEDTYPE}</div>
+<br>
+<br>
+<br>
+
+
+<P class="p1"><input id="res-go" type="button" value="RESERVATION"  onclick="location.href='/hotel/reservation/main'"></P>
 </div>
 <br>
+<br>
+<br>
+
 <div class="div3">
 <table>
 <colgroup>
@@ -232,11 +253,17 @@ function showSlides() {
     
     setTimeout(showSlides, 4000); // Change image every 2 seconds
 }
+
+
+
+
+
 $(document).ready(function(){ 
 	  $("a[name='title']").on("click", function(e){ //제목
 		   e.preventDefault(); fn_facDetail($(this));
 		    });
 	     });
+
 
 
 
@@ -247,7 +274,8 @@ $(document).ready(function(){
           comSubmit.submit();
       }
 </script>
-
+</div>
 <%@ include file="/WEB-INF/include/include-footer.jsp"%>
+
 </body>
 </html>
