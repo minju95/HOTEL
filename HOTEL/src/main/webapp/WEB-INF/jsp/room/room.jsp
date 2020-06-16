@@ -145,7 +145,7 @@ font-size: 14px;
 </head>
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="hotel">

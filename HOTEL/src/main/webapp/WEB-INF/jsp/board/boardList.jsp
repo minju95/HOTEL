@@ -26,7 +26,7 @@ color: black;
 </style>
 <title>공지 사항 뷰</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="div-about" align="center" >
    <br>

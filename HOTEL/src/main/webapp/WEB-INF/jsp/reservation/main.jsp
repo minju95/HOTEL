@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@page contentType="text/html;  charset=UTF-8" %>
 <%@page import="java.util.Date" %>
 <jsp:useBean id="today" class="java.util.Date"/>
 
@@ -8,7 +8,11 @@
 <html>
 <head>
 <!-- include) include/include-header.jspf -->
-<%@include file="/WEB-INF/include/include-header.jspf"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 </head>
 
 <!-- 링크) jQuery 링크 -->

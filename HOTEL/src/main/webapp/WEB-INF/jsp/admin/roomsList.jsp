@@ -75,9 +75,7 @@
 	background-repeat: no-repeat;
 	background-size: 100%;
 }
-body {
-	font-family: Verdana, sans-serif;
-}
+
 </style>
 </head>
 

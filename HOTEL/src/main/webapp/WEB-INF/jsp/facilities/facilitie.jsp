@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <% pageContext.setAttribute("replaceChar", "\n"); %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -135,7 +136,7 @@ font-size: 18px;
 </head>
   <%@ include file="/WEB-INF/include/include-header.jspf"%>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<div class="div-about" align="center">
 		<br> <br> <br>

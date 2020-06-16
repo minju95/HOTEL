@@ -66,7 +66,7 @@ color:gray;
 <meta charset="UTF-8">
 <title>공지사항 상세보기</title>
 </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="div-about" align="center" >
    <br>

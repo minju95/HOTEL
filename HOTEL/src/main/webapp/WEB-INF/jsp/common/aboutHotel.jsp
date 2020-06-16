@@ -99,7 +99,7 @@ background-size:100%;
 
 </style>
     </head>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <!--서브 컨텐츠 시작-->
 <div class="contents_wrap sub">

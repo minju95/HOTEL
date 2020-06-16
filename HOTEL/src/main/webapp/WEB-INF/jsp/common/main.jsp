@@ -76,6 +76,10 @@ color: white;
 text-decoration: none;
 }
 
+#p1{
+color:red;
+font-size: 14px;
+}
 
 <!-- 이미지슬라이드-->
 * {box-sizing: border-box;}
@@ -197,7 +201,7 @@ background-size:100%;
 
 </head>
   <%@ include file="/WEB-INF/include/include-header.jspf" %>
-<body>
+<body oncontextmenu="return false" ondragstart="return false">
 
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="hotel">
@@ -298,7 +302,7 @@ ${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 대표전화: ${fac.FAC_HOTEL_PHONE}<br><br>
 <c:choose>
 	<c:when test="${fac.FAC_HOTEL_DETAIL != null}">
-* ${fac.FAC_HOTEL_DETAIL}
+<p id="p1">* ${fac.FAC_HOTEL_DETAIL}</p>
 	</c:when>
 		<c:otherwise>
 		</c:otherwise>
