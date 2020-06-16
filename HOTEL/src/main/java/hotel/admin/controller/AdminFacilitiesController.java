@@ -19,7 +19,7 @@ import hotel.common.logger.LoggerAspect;
 @Controller
 public class AdminFacilitiesController {
 	Logger log = Logger.getLogger(this.getClass());
-	
+	ㅂㅏㄱㅁㅣㄴㅈㅜ
 	@Resource(name="AdminFacilitiesService")
 	private AdminFacilitiesService adminFacilitiesService;
 	
