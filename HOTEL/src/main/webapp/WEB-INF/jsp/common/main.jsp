@@ -26,7 +26,7 @@ background-size:100%;
 }
 .div-reservation{
 weith:100%;
-height:850px;
+
 /*border:1px solid black ;*/
 /*background-image:url(/hotel/image/mainHotel.jpg);
  background-repeat:no-repeat;
@@ -35,14 +35,14 @@ background-size:100%;*/
 
 .div-fac{
 weith:100%;
-height:700px;
+
 /*border:1px solid black ;*/
  
 }
 
 .div-notice{
 weith:100%;
-height:500px;
+
 /*border:1px solid black ;*/
  background-image:url(/hotel/image/main-notice.jpg);
  background-repeat:no-repeat;
@@ -52,9 +52,9 @@ background-size:cover;
 }
 .div-notice-son{
 width: 850px;
-  height:300px;
+
  background-color:  white;
-position: absolute;
+position: relative;
 /*bottom:70%;*/
 left:22%;
 top:268%;
@@ -90,31 +90,33 @@ img {vertical-align: middle;}
 /* Slideshow container */
 .slideshow-container {
   max-width: 700px;
- 
-position: absolute;
+   margin: auto;
+ position: relative;
 /*bottom:70%;*/
-left:10%;
-top:190%;
+/*left:10%;*/
+/*top:190%;*/
 }
 
 .fac-name{
 font-size: 22px;
  height: 50px;
   width: 200px;
-position: absolute;
+ position: relative;
+    margin: auto;
 /*bottom:70%;*/
-left:60%;
-top:190%;
+/*left:60%;
+top:190%;*/
 /*border:1px solid black ;*/
 }
 .fac-content{
 font-size: 18px;
  height: 220px;
-  width: 500px;
-position: absolute;
+  width: 700px;
+ position: relative;
+    margin: auto;
 /*bottom:70%;*/
-left:60%;
-top:198%;
+/*left:60%;
+top:198%;*/
 /*border:1px solid black ;*/
 
 }
@@ -122,11 +124,12 @@ top:198%;
 .fac-all{
 
  height: 190px;
-  width: 500px;
-position: absolute;
+  width: 700px;
+ position: relative;
+    margin: auto;
 /*bottom:70%;*/
-left:60%;
-top:228%;
+/*left:60%;
+top:228%;*/
 /*border:1px solid black ;*/
 }
 /* Caption text */
@@ -134,7 +137,7 @@ top:228%;
   color: #000000;
   font-size: 15px;
   padding: 8px 12px;
-  position: absolute;
+ position: relative;
   bottom: 8px;
   width: 100%;
   text-align: center;
@@ -193,10 +196,7 @@ color: white;
 background-repeat:no-repeat;
 background-size:100%;
 }
-.hotel{
- width: 100%;
- height:2250px;
-}
+
 </style>
 
 </head>
@@ -204,7 +204,7 @@ background-size:100%;
 <body oncontextmenu="return false" ondragstart="return false">
 
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="hotel">
+
 <div class="div-about" align="center" ></div>
 
 <!-- 객실 소개 s -->
@@ -271,9 +271,7 @@ background-size:100%;
 <br>
 
 <c:forEach items="${list2}" var="fac">
-<div class="fac-name">
-<b>${fac.FAC_HOTEL_NAME}</b>
-</div>
+
 <br>
 
 <c:forTokens items="${fac.HOTEL_IMGS_FILE }" delims="," var="item">
@@ -288,7 +286,10 @@ background-size:100%;
 
 </div>
 </c:forTokens>
-
+<br>
+<div class="fac-name">
+<b>${fac.FAC_HOTEL_NAME}</b>
+</div>
 <br>
 <div class="fac-content">
 
@@ -298,7 +299,13 @@ ${fn:replace(fac.FAC_HOTEL_CONTENT, replaceChar, "<br/>")}
 <div class="fac-all">
 위치: ${fac.FAC_HOTEL_LOCATION}<br><br>
 이용시간: ${fac.FAC_HOTEL_TIME}<br><br>
+<c:choose>
+	<c:when test="${fac.FAC_HOTEL_FAC != null}">
 시설: ${fac.FAC_HOTEL_FAC}<br><br>
+</c:when>
+		<c:otherwise>
+		</c:otherwise>
+		</c:choose>
 대표전화: ${fac.FAC_HOTEL_PHONE}<br><br>
 <c:choose>
 	<c:when test="${fac.FAC_HOTEL_DETAIL != null}">
@@ -385,7 +392,7 @@ function showSlides() {
     setTimeout(showSlides, 7000); // Change image every 2 seconds
 }
 </script>
-</div>
+
 <%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

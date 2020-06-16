@@ -9,28 +9,28 @@
 width: 300px;
   height:80px;
  background-color:  white;
-position: absolute;
+position: relative;
 /*bottom:70%;*/
-left:45%;
-top:60%;
+
 font-size: 22px;
+  margin: auto;
 }
 .div2{
 width: 1000px;
-
+position: relative;
  background-color:  white;
 /*border:1px solid black ;*/
 font-size: 20px;
-margin-left: 250px;
+  margin: auto;
 }
 
 .div3{
 width: 1000px;
-
+position: relative;
  background-color:  white;
 /*border:1px solid black ;*/
 font-size: 20px;
-margin-left: 250px;
+  margin: auto;
 }
 
 * {box-sizing: border-box;}
