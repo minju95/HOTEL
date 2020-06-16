@@ -19,7 +19,7 @@ color: #e5a880;
 background-repeat:no-repeat;
 background-size:100%;
 }
-a{
+td>a{
 text-decoration: none;
 color: black;
 }

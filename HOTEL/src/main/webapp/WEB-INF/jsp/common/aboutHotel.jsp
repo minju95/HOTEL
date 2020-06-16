@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <style type="text/css">
 /*기본 설정 시작*/
-:link{ text-decoration: none; color: inherit; }
 :visited,p,a,div,span,ul,li,strong,em, h1, h2 ,h3, h4, h5, h6,dl,dt,dd,select,option{ color: inherit; box-sizing: border-box; font-family: inherit; }
 body,html{ width:100%; height:100%; overflow-x: hidden; -webkit-overflow-scrolling: touch; font-size: 16px; word-break: break-all; font-family: 'Noto Sans', sans-serif; position: relative}
 /*기본 설정 끝*/
