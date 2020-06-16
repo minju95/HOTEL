@@ -189,12 +189,18 @@ color: white;
 background-repeat:no-repeat;
 background-size:100%;
 }
+.hotel{
+ width: 100%;
+ height:2250px;
+}
 </style>
 
 </head>
   <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <body>
+
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="hotel">
 <div class="div-about" align="center" ></div>
 
 <!-- 객실 소개 s -->
@@ -375,6 +381,7 @@ function showSlides() {
     setTimeout(showSlides, 7000); // Change image every 2 seconds
 }
 </script>
+</div>
 <%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

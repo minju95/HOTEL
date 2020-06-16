@@ -133,6 +133,11 @@ font-size: 14px;
  height:50px;
  font-size:20px;
 }
+
+.hotel{
+ width: 100%;
+ height:2350px;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -141,7 +146,9 @@ font-size: 14px;
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <body>
+
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+<div class="hotel">
 <div class="div-about" align="center" >
    <br>
    <br>
@@ -166,7 +173,7 @@ font-size: 14px;
 <br>
 <br>
 <div class="div1">
-rotolrlemf whffk wkwmddsk
+<br>
 <b>${map.ROOM_NAME}</b>
 </div>
 <br>
@@ -252,7 +259,8 @@ $(document).ready(function(){
           comSubmit.submit();
       }
 </script>
-
+</div>
 <%@ include file="/WEB-INF/include/include-footer.jsp"%>
+
 </body>
 </html>
