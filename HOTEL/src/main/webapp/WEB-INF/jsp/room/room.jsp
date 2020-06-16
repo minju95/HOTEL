@@ -128,6 +128,11 @@ font-size: 18px;
 color:red;
 font-size: 14px;
 }
+.res-go{
+ width: 200px;
+ height:50px;
+ font-size:20px;
+}
 </style>
 
 <meta charset="UTF-8">
@@ -182,7 +187,7 @@ rotolrlemf whffk wkwmddsk
 <div class="div2">
 ${map.ROOM_CONTENT}
 <div>ROOM SIZE:${map.ROOM_SIZE}   BED TYPE:${map.ROOM_BEDTYPE}</div><br>
-<P class="p1"><input type="button" value="RESERVATION"></P>
+<P class="p1"><input class="res-go" type="button" value="RESERVATION"  onclick="location.href='/hotel/reservation/main'"></P>
 </div>
 <br>
 <div class="div3">
