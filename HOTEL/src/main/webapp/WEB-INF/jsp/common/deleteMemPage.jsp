@@ -52,6 +52,7 @@ pre {
 	text-align : center;
 }
 </style>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <h3 class="contents">회원탈퇴</h3>
 <div class="myForm-group">
 <pre>
@@ -69,6 +70,7 @@ pre {
 		</label>
 	</div>
 	<button type="button" class="btn btn-default btn-lg btn-block" id="deleteMemBtn">탈퇴 하기</button>
+	<button type="button" class="btn btn-default btn-lg btn-block" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 </div>
 <script>
 	$("#deleteMemBtn").click(function(){
@@ -99,5 +101,6 @@ pre {
 			}
 	});
 </script>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

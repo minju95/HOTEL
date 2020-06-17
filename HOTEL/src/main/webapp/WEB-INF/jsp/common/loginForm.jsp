@@ -50,6 +50,7 @@ button {
 	font-size: 20px;
 }
 </style>
+	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <script type="text/javascript">
 
 	 function fn_login() {
@@ -85,7 +86,7 @@ button {
 					찾기</a></li>
 			<li>
 				<button type="submit" class="btn btn-primary" id="submit">로그인</button>
-
+				<button type="button" class="btn btn-primary" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 			</li>
 		</ul>
 		<p>
@@ -94,4 +95,5 @@ button {
 		</p>
 	</div>
 </form>
+	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 <label></label>

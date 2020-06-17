@@ -40,7 +40,7 @@ weith:100%;
 
 .div-notice{
 weith:100%;
-
+height: 800px;
 border:1px solid black ;
  background-image:url(/hotel/image/main-notice.jpg);
  background-repeat:no-repeat;
@@ -59,7 +59,7 @@ top:268%;
 
 }
 
-    #notice{margin-left: calc(50% - 425px);width: 700px;text-align: center} 
+    #notice{margin-left: calc(50% - 425px);width: 700px;text-align: center; margin-top: 100px;} 
 	h2{width: 100px;  display: block; text-align: center;}
 	#PAGE_NAVI{text-align: center;margin-top:10%}
 	.notice_list{border-bottom:1px solid black ;border-collapse: collapse;}
@@ -228,6 +228,10 @@ color: white;
 background-repeat:no-repeat;
 background-size:100%;
 }
+thead>tr>th{
+	text-align:center;
+	}
+
 
 </style>
 
@@ -296,12 +300,12 @@ background-size:100%;
 </div>
 </div>
 </div>
-<br>
+<br><br><br><br>
 <!-- 시설 소개-->
 
 <div class="div-fac">
 	<center><h1 >시설소개</h1></center>
-	
+	<br><br>
 <div class="div-fac_2">
 	<c:forEach items="${list2}" var="fac">
 	<c:forTokens items="${fac.HOTEL_IMGS_FILE }" delims="," var="item">		
@@ -352,7 +356,7 @@ background-size:100%;
 
 <div class="div-notice">
 
-
+<br><br><br>
 <center><h1 class="h1" >NOTICE</h1></center>
 <!--  <div class="div-notice-son">-->
 <form id="notice">
@@ -386,7 +390,6 @@ background-size:100%;
 		</table>
 		</form>
 	</div>
-<br>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <script type="text/javascript">
 

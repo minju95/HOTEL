@@ -1,4 +1,4 @@
-<%@page contentType="text/html;  charset=UTF-8" %>
+<%@page contentType="text/html; charset=UTF-8"%>
 <%@page import="java.util.Date" %>
 <jsp:useBean id="today" class="java.util.Date"/>
 
@@ -7,12 +7,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- include) include/include-header.jspf -->
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
+
+<meta charset="UTF-8">
 </head>
 
 <!-- 링크) jQuery 링크 -->
@@ -260,7 +263,7 @@ $(document).ready(function(){
 	$("a[name='rsvbtn']").on("click", function(e){
 		if ($("#MEM_USERID").val() == '') {
 			alert('로그인 후 이용 바랍니다.');
-			location = '/hotel/main';
+			location = '/hotel/loginForm';
 			return false;
 		}
 		e.preventDefault();
@@ -286,13 +289,17 @@ function fn_nextStep(obj){
 <link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
 <!-- 마우스 우클릭 방지 -->
 <body oncontextmenu="return false" ondragstart="return false">
+<div>
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center" >
-   <br><br><br><h1>R E S E R V A T I O N</h1></div>
+<div class="div-about" align="center">
+   <br>
+   <br>
+   <br>
+   <h1>R E S E R V A T I O N</h1></div>
+</div>
 <div class="a_layer">
 <div class="a_layer_inner">
 <div class="a_content">
-
 
 <!-- 검색 start -->
 <div class="top">
@@ -574,16 +581,17 @@ function layer_open(el){
 					<div class="pop_div" style="border-bottom: 1px solid black;">객실　명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
 					<div class="pop_div">기준인원 : Adults: <input type="text" id="pop_adult" class="pop_person" readonly>, Children : <input type="text" id="pop_child" class="pop_person" readonly></div>
 					<div class="pop_div">객실 편의 시설 : <br>
-						<div style="width: 400px; height: 200px; overflow: hidden; float: left;">
-							<textarea id="pop_fac" class="pop_fac" cols="20" rows="11" readonly></textarea>
+						<div style="width: 400px; float: left;">
+							<textarea id="pop_fac" class="pop_fac" cols="20" rows="12" readonly></textarea>
 						</div>
 					</div>
 					<div class="pop_div">체크인 : <input type="text" id="pop_checkIn" class="pop_tt" readonly>, 체크아웃 : <input type="text" id="pop_checkOut" class="pop_tt" readonly></div>
 					<div class="pop_div">
-					<div>호텔 취소 정책
-						<div class="pop_can">체크인 1일 17시 까지 50% 환불</div>
-						<div class="pop_can">체크인 2일 17시 까지 80% 환불</div>
-						<div class="pop_can">체크인 3일 17시 까지 100% 환불</div>
+					<div>
+						<div class="pop_canT">호텔 취소 정책</div>
+						<div class="pop_can"> - 체크인 1일 17시 까지 50% 환불</div>
+						<div class="pop_can"> - 체크인 2일 17시 까지 80% 환불</div>
+						<div class="pop_can"> - 체크인 3일 17시 까지 100% 환불</div>
  					</div>
 					</div>
 				</div>
@@ -602,7 +610,6 @@ function layer_open(el){
 </div>
 </div>
 </div>
-
 <!-- include) 푸터 -->
 <%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>

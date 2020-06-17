@@ -14,6 +14,8 @@
       GROUP BY 
             ROOM_TYPE, 
             ROOM_NAME
+      ORDER BY
+      		ROOM_TYPE
 
 ]]>
 </select>

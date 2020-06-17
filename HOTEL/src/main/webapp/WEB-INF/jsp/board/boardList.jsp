@@ -11,7 +11,9 @@
 	.notice_list th{border-bottom:1px solid black;}
 	.notice_list tr{height: 50px}
 	.notice_list tr td{border-bottom:1px solid black;}
-	
+	thead>tr>th{
+	text-align:center;
+	}
 	.div-about{
  background-image:url(/hotel/image/hotel.jpg);
 height:250px;

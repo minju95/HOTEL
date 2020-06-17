@@ -53,6 +53,7 @@ button {
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <input type="hidden" name="alert" value="${resultMsg}"/>
 <form action="/hotel/passwordReset" method="post">
 		<div id="findMemform">
@@ -64,6 +65,7 @@ button {
 				<li><input type="email" class="form-control" name="MEM_EMAIL" id="MEM_EMAIL" placeholder="이메일주소"></li>	
 	
 				<button class="btn btn-primary" type="submit" id="pwResetBtn">비밀번호 재설정</button>
+				<button type="button" class="btn btn-primary" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 			</ul>		
 			
 			
@@ -142,6 +144,6 @@ $(function(){
 
 </script>	 -->
 	
-	
+	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

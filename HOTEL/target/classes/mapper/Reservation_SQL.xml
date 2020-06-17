@@ -163,4 +163,71 @@
 		]]>
 	</select>
 	
+	<select id="selectUserResList" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"/>
+	<![CDATA[
+	SELECT
+        ROW_NUMBER() OVER (ORDER BY RES_CHK_SDAY DESC, RES_CHK_EDAY ASC, RES_DATE ASC, RES_NO ASC) RNUM, 
+		A.ROOM_ID, A.RES_NO,
+		TO_CHAR(A.RES_DATE, 'YY/MM/DD') RES_DATE, A.ROOM_NAME, A.RES_ADULT, A.RES_CHILD,
+		TO_CHAR(A.RES_CHK_SDAY, 'YY/MM/DD') RES_CHK_SDAY, TO_CHAR(A.RES_CHK_EDAY, 'YY/MM/DD') RES_CHK_EDAY,
+		TO_CHAR(A.RES_PRICE, 'L999,999,999') RES_PRICE, NVL(A.RES_ANOTHER,' ') RES_ANOTHER,
+		A.RES_ID, A.CAR_ID
+	FROM 
+		(SELECT
+		A.ROOM_ID, RES_NO, RES_DATE, ROOM_NAME, RES_ADULT, RES_CHILD, RES_CHK_SDAY, RES_CHK_EDAY, RES_PRICE,
+		SUBSTR(NVL(A.RES_ANOTHER,' '),1,10) RES_ANOTHER,
+		RES_ID, CAR_ID
+		FROM RESERVATION A, ROOM B
+		WHERE MEM_ID = (SELECT MEM_ID FROM MEMBER WHERE MEM_USERID = #{MEM_USERID})
+		AND A.ROOM_ID = B.ROOM_ID
+		ORDER BY RES_DATE, RES_CHK_SDAY, RES_CHK_EDAY) A,
+		CARD B
+	WHERE A.CAR_ID = B.CAR_ID(+)
+	]]>
+	<choose>
+		<when test="searchOption == 'RES_NO'">
+			AND RES_NO LIKE '%${keyword}%'
+		</when>
+		<when test="searchOption == 'CAR_NAME'">
+			AND CAR_NAME LIKE '%${keyword}%'
+		</when>
+		<when test="searchOption == 'RES_CHK_SDAY'">
+			AND TO_CHAR(RES_CHK_SDAY, 'YYYY-MM-DD') = TO_CHAR('${keyword}','YYYY-MM-DD')
+		</when>
+		<when test="searchOption == 'RES_CHK_EDAY'">
+			AND TO_CHAR(RES_CHK_EDAY, 'YYYY-MM-DD') = TO_CHAR('${keyword}','YYYY-MM-DD')
+		</when>
+		<otherwise>
+		</otherwise>
+	</choose>
+		<include refid="common.pagingPost"/>
+	</select>
+	
+	<!-- 카카오 결제의 경우 CAR_ID 를 0으로 고정 -->
+	<insert id="kakaoInsertReservation" parameterType="hashmap">
+	INSERT INTO RESERVATION
+		(RES_ID, ROOM_ID, MEM_ID, CAR_ID, RES_ADULT, RES_CHILD, RES_ANOTHER, RES_CHK_SDAY, RES_CHK_EDAY, RES_DATE, RES_NO, RES_PRICE)
+	VALUES
+		(#{RES_ID}, #{ROOM_ID}, (SELECT MEM_ID FROM MEMBER WHERE MEM_USERID=#{MEM_USERID}),
+		'0', #{adult}, #{child}, #{RES_ANOTHER}, TO_DATE(#{fromdate},'YYYY-MM-DD'),
+		TO_DATE(#{todate},'YYYY-MM-DD'), sysdate,
+		TO_NUMBER(CONCAT(#{RES_ID}, TO_CHAR(sysdate, 'HHMISS'))), #{ROOM_PRICE})
+	</insert>
+	
+	<select id="kakaoSelectResult" parameterType="hashmap" resultType="hashmap">
+	SELECT
+		A.RES_ID, A.CAR_ID, TO_CHAR(A.RES_CHK_SDAY, 'YYYY-MM-DD') RES_CHK_SDAY, A.RES_ANOTHER,
+        TO_CHAR(A.RES_CHK_EDAY, 'YYYY-MM-DD') RES_CHK_EDAY, A.RES_ADULT, A.RES_CHILD, A.RES_NO,
+		TO_CHAR(A.RES_PRICE, '999,999,999') RES_PRICE, B.MEM_NAME, B.MEM_EMAIL,
+		REGEXP_REPLACE(B.MEM_PHONE, '(.{3})(.+)(.{4})', '\1-\2-\3') MEM_PHONE,
+		(SELECT ROOM_NAME
+	 FROM ROOM
+		 WHERE ROOM_ID = (SELECT ROOM_ID FROM RESERVATION WHERE RES_ID=#{RES_ID})) ROOM_NAME
+		FROM RESERVATION A,
+	    (SELECT MEM_NAME, MEM_PHONE, MEM_EMAIL, MEM_ID FROM MEMBER) B
+	WHERE RES_ID=#{RES_ID}
+	AND A.MEM_ID = B.MEM_ID
+	</select>
+	
 </mapper>

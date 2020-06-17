@@ -20,7 +20,6 @@ font-size: 22px;
 width: 1000px;
 position: relative;
  background-color:  white;
-border:1px solid black ;
 font-size: 20px;
   margin: auto;
 }
@@ -29,9 +28,9 @@ font-size: 20px;
 width: 1000px;
 position: relative;
  background-color:  white;
-border:1px solid black ;
 font-size: 20px;
   margin: auto;
+  margin-bottom:30px;
 }
 
 #p1{

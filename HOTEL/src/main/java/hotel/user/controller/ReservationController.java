@@ -65,10 +65,22 @@ public class ReservationController {
 	// RESERVATION result > cancel
 	@RequestMapping(value = "/reservation/cancel", method = RequestMethod.POST)
 	public ModelAndView cancel(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/common/main");
+		ModelAndView mv = new ModelAndView("redirect:/main");
 		
 		reservationService.cancelReservation(commandMap.getMap());
 		reservationService.cancelCard(commandMap.getMap());
+		
+		return mv;
+	}
+	
+	// RESERVATION result > cancel
+	@RequestMapping(value = "/reservation/resCancel", method = RequestMethod.POST)
+	public ModelAndView resCancel(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/reservation/resList");
+		
+		reservationService.cancelReservation(commandMap.getMap());
+		reservationService.cancelCard(commandMap.getMap());
+		
 		return mv;
 	}
 	
@@ -82,5 +94,63 @@ public class ReservationController {
 	 * reservationService.roomView(commandMap.getMap()); mv.addObject("list", list);
 	 * return mv; }
 	 */
+	
+	// RESERVATION test kakaoPay 
+	@RequestMapping(value = "/reservation/kakao")
+	public ModelAndView kakao(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/reservation/kakao");
+		List<Map<String, Object>> list = reservationService.kakaoInsert(commandMap.getMap());
+		
+		mv.addObject("list", list);
+		return mv;
+	}
+
+	
+	// RESERVATION test
+	@RequestMapping(value = "/payments/complete")
+	public ModelAndView complete() throws Exception {
+		ModelAndView mv = new ModelAndView("/reservation/complete");
+		return mv;
+	}
+	
+	// RESERVATION test
+	@RequestMapping(value = "/order/payFail")
+	public ModelAndView payFail() throws Exception {
+		ModelAndView mv = new ModelAndView("/reservation/payFail");
+		return mv;
+	}
+	
+	// RESERVATION test
+	@RequestMapping(value = "/order/paySuccess")
+	public ModelAndView paySuccess() throws Exception {
+		ModelAndView mv = new ModelAndView("/order/paySuccess");
+		return mv;
+	}
+	 
+	
+	// RESERVATION userList
+	@RequestMapping(value = "/reservation/resList")
+	public ModelAndView reservationList(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("/reservation/resList");
+		List<Map<String, Object>> list = reservationService.selectUserResList(commandMap.getMap());
+		mv.addObject("list", list);
+		return mv;
+	}
+	
+	// RESERVATION search userList
+	@RequestMapping(value ="/reservation/searchResList", method = RequestMethod.POST)
+	public ModelAndView searchReservationList(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("jsonView");
+		List<Map<String,Object>> list = reservationService.selectUserResList(commandMap.getMap());
+		mv.addObject("list", list);
+	 
+		if(list.size() > 0) {
+			mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
+		} else{
+			mv.addObject("TOTAL", 0);
+		}
+
+		return mv;
+	}
 	
 }

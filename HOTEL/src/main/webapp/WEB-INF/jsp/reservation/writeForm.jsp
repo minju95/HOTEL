@@ -6,8 +6,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- include) include/include-header.jspf -->
-<%@include file="/WEB-INF/include/include-header.jspf"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
+<meta charset="UTF-8">
 <!-- include) include/include-topMenu.jsp -->
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 </head>
@@ -21,7 +27,7 @@
 <input type="hidden" id="RES_ID" value="${RES_ID}">
 <input type="hidden" id="CAR_ID" value="${CAR_ID}">
 <div class="a_layer">
-<div class="a_layer_inner">
+<div class="a_layer_inner" style="mar==gin-right: 10%;">
 <div class="a_content">
 
 <div class="top">
@@ -55,12 +61,13 @@
 		</tr>
 		<tr>
 			<td colspan="4" style="text-align:right; padding:20px;">
-			<button type="button" id="card" class="write_btn">다음단계</button>
+				<button type="button" id="card" class="write_btn">다음단계</button>
+				<button type="button" id="kakao" class="write_btn">카카오테스트</button>
 			</td>
 		</tr>
 </table><br><br>
 </div>
-<div id="cardForm">
+<div id="cardForm" style="padding: 10px;">
 	<table style="width:1000px; text-align:center; margin:10px;">
 		<tr>
 			<th colspan="4" class="write_title">RESERVATION INFOMATION</th>
@@ -68,7 +75,15 @@
 		<tr>
 			<td class="write_midlleTitle">카드사명</td>
 			<td class="write_tdbox">
-				<input type="text" id="CAR_COMPANY" class="write_company">
+				<select class="write_company" style="font-size: 12px; height: 40px;">
+					<option id="CAR_COMPANY" value="국민카드" selected="selected">국민카드</option>
+					<option id="CAR_COMPANY" value="하나카드">하나카드</option>
+					<option id="CAR_COMPANY" value="삼성카드">삼성카드</option>
+					<option id="CAR_COMPANY" value="신한카드">신한카드</option>
+					<option id="CAR_COMPANY" value="우리카드">우리카드</option>
+					<option id="CAR_COMPANY" value="BC카드">BC카드</option>
+				</select>
+				<div class="write_check" id="company_check"></div>
 			</td>
 			<td class="write_midlleTitle">소유자명</td>
 			<td class="write_tdbox">
@@ -113,6 +128,31 @@
 <%@include file="/WEB-INF/include/include-body.jspf"%>
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 
+<!-- 스크립트) 카카오 테스트 -->
+<script type="text/javascript">
+$(document).ready(function(){
+	$("#kakao").on("click", function(e){
+		e.preventDefault();
+		fn_kakao();
+	});
+});
+</script>
+<script type="text/javascript">
+function fn_kakao(){
+	var comSubmit = new ComSubmit();
+	comSubmit.setUrl("<c:url value='/reservation/kakao' />");
+	comSubmit.addParam("ROOM_ID", $("#ROOM_ID").val());
+	comSubmit.addParam("MEM_USERID", $("#MEM_USERID").val());
+	comSubmit.addParam("adult", $("#adult").val());
+	comSubmit.addParam("child", $("#child").val());
+	comSubmit.addParam("RES_ANOTHER", $("#RES_ANOTHER").val());
+	comSubmit.addParam("fromdate", $("#fromdate").val());
+	comSubmit.addParam("todate", $("#todate").val());
+	comSubmit.addParam("ROOM_PRICE", $("#ROOM_PRICE").val());
+	comSubmit.addParam("RES_ID", $("#RES_ID").val());
+	comSubmit.submit();
+}
+</script>
 
 <!-- 스크립트) F5키 막는 방법 -->
 <script type="text/javascript">
@@ -136,6 +176,7 @@ $(document).ready(function(){
 	$("#card").on("click", function(e){
 		$("#cardForm").show();
 		$("#card").hide();
+		$("#kakao").hide();
 		$("#pay").show();
 		e.preventDefault();
 	});
@@ -147,20 +188,34 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$("#pay").on("click", function(e){
 		e.preventDefault();
-		if ($(NUM_1).val() == '' || $(NUM_2).val() == '' || $(NUM_3).val() == '' || $(NUM_4).val() == '') {
+		if ($(company_check).val() != '') {
+			alert('11카드사명을 정확히 입력해주세요.');
+			$(CAR_COMPANY).focus();
+			return false;
+		}
+		if ($(CAR_COMPANY).val() == '') {
+			alert('카드사명을 정확히 입력해주세요.');
+			$(CAR_COMPANY).focus();
+			return false;
+		}
+		if ($(NUM_1).val() == '' || $(NUM_2).val() == '' || $(NUM_3).val() == '' || $(NUM_4).val() == '' || $(number_check).val() != '') {
 			alert('카드번호를 정확히 입력해주세요.');
+			$(NUM_1).focus();
 			return false;
 		}
-		if ($(CAR_NAME).val() == '') {
+		if ($(CAR_NAME).val() == '' || $(name_check).val() != '') {
 			alert('소유자명을 정확히 입력해주세요.');
+			$(CAR_NAME).focus();
 			return false;
 		}
-		if ($(VAL_YEAR).val() == '' || $(VAL_MONTH).val() == '') {
+		if ($(VAL_YEAR).val() == '' || $(VAL_MONTH).val() == '' || $(val_check).val() != '') {
 			alert('유효기간을 정확히 입력해주세요.');
+			$(VAL_YEAR).focus();
 			return false;
 		}
-		if ($(CAR_CVCNUM).val() == '') {
+		if ($(CAR_CVCNUM).val() == '' || $(cvc_check).val() != '') {
 			alert('CVC번호를 정확히 입력해주세요.');
+			$(CAR_CVCNUM).focus();
 			return false;
 		}
 		if ($(ROOM_PRICE).val() == '' || $(ROOM_PRICE).val() < 0) {
@@ -189,14 +244,10 @@ function fn_pay(){
 	
 	comSubmit.addParam("CAR_ID", $("#CAR_ID").val());
 	comSubmit.addParam("CAR_COMPANY", $("#CAR_COMPANY").val());
-	
 	var CAR_NUMBER = $(NUM_1).val()+"-"+$(NUM_2).val()+"-"+$(NUM_3).val()+"-"+$(NUM_4).val();
-	
 	comSubmit.addParam("CAR_NUMBER", CAR_NUMBER);
 	comSubmit.addParam("CAR_NAME", $("#CAR_NAME").val());
-	
 	var CAR_VALIDITYPERIOD = $(VAL_YEAR).val() + "-" + $(VAL_MONTH).val();
-	
 	comSubmit.addParam("CAR_VALIDITYPERIOD", CAR_VALIDITYPERIOD);
 	comSubmit.addParam("CAR_CVCNUM", $("#CAR_CVCNUM").val());
 	comSubmit.submit();
@@ -206,6 +257,15 @@ function fn_pay(){
 <!-- 스크립트) 유효성 검사 -->
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#CAR_COMPANY").blur(function(){
+        var company=$("#CAR_COMPANY").val();
+        if(company == ""){
+			$("#company_check").text('카드사명을 정확히 입력해주세요.');
+			$("company").focus();
+        }else {
+			$("#company_check").text('');
+     	}
+	});
 	$("#NUM_1").blur(function(){
         var num1=$("#NUM_1").val();
         if(num1 == "" || num1.length < 4){
@@ -213,7 +273,6 @@ $(document).ready(function(){
 			$("NUM_1").focus();
         }else {
 			$("#number_check").text('');
-			$("#NUM_2").focus();
      	}
 	});
 	$("#NUM_2").blur(function(){
@@ -223,7 +282,6 @@ $(document).ready(function(){
 			$("NUM_2").focus();
         }else {
 			$("#number_check").text('');
-			$("#NUM_3").focus();
      	}
 	});
 	$("#NUM_3").blur(function(){
@@ -233,7 +291,6 @@ $(document).ready(function(){
 			$("NUM_3").focus();
         }else {
 			$("#number_check").text('');
-			$("#NUM_4").focus();
      	}
 	});
 	$("#NUM_4").blur(function(){
@@ -243,7 +300,6 @@ $(document).ready(function(){
 			$("NUM_4").focus();
         }else {
 			$("#number_check").text('');
-			$("CAR_NAME").focus();
      	}
 	});
 	$("#CAR_NAME").blur(function(){
@@ -253,7 +309,6 @@ $(document).ready(function(){
 			$("CAR_NAME").focus();
         }else {
 			$("#name_check").text('');
-			$("VAL_YEAR").focus();
      	}
 	});
 	$("#VAL_YEAR").blur(function(){
@@ -270,7 +325,6 @@ $(document).ready(function(){
             $("VAL_YEAR").focus();
         } else {
 			$("#val_check").text('');
-			$("VAL_MONTH").focus();
      	}
 	});
 	$("#VAL_MONTH").blur(function(){
@@ -290,7 +344,6 @@ $(document).ready(function(){
 			$("VAL_MONTH").focus();
         } else {
 			$("#val_check").text('');
-			$("CAR_NAME").focus();
      	}
 	});
 	$("#CAR_CVCNUM").blur(function(){

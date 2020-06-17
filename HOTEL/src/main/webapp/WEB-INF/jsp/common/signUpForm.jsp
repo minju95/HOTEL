@@ -52,9 +52,10 @@
 	width: 70px;
 }
 </style>
+	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<form id="signUp" action="/hotel/signUp">
-		<h3 class="contents">회원가입</h3>
-		<div class="myForm-group">
+		<h3 class="contents" style="margin-top:80px;">회원가입</h3>
+		<div class="myForm-group" style="margin-top:150px;">
 			<div class="form-group">
 				<label for="MEM_USERID">아이디</label> <input type="text"
 					class="form-control" id="MEM_USERID" name="MEM_USERID"
@@ -105,9 +106,12 @@
 			</div>
 			<button type="button" class="btn btn-primary btn-lg btn-block"
 				id="signUpBtn">가입하기</button>
+				<button type="button" class="btn btn-primary btn-lg btn-block" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 		</div>
 	</form>
-
+	<div>
+	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+	</div>
 	<script>
 		$(function() {
 			$(document).ready(function() {

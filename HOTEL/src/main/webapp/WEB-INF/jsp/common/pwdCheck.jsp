@@ -49,6 +49,7 @@ button {
 </style>
 
 <input type="hidden" name="alert" value="${alert}"/>
+	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <form action="/hotel/modifyMemForm" id=pwdcheckfrm onsubmit="return passcheck();" method="post">
 	<div id="mypageform">
 		<h1>개인정보변경</h1>
@@ -63,12 +64,15 @@ button {
 				</li>
 				<li>
 					<button class="btn btn-primary" type="submit">확인</button>
+					<button type="button" class="btn btn-primary" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 				</li>
 			</ul>
 		</div>
 	</div>
 </form>
-
+<div style="margin-top:500px;">
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+</div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -86,6 +90,7 @@ function passcheck() {
 	}
 	return true;
 }
+
 
 
 </script>

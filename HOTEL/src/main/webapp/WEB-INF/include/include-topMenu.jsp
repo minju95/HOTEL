@@ -92,6 +92,7 @@ header {
 	position: relative;
 	text-align: center;
 }
+#login_form {font-size: 15px; text-decoration: none; padding: 5px; margin: 10px; font-weight: bold; color: black;}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -101,11 +102,10 @@ header {
 		<c:set var="ID" value="${USERID }" />
 		<c:choose>
 			<c:when test="${ID != NULL}">
-${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a
-					href="/hotel/modifyMemForm">회원정보 수정</a>
+${ID }님, 환영합니다. <a id="login_form" href="/hotel/logout">로그아웃</a> | <a id="login_form" href="/hotel/modifyMemForm">회원정보 수정</a>
 			</c:when>
 			<c:otherwise>
-				<a href="/hotel/loginForm">로그인</a> | <a href="/hotel/signUpForm">회원가입</a>
+				<a id="login_form" href="/hotel/loginForm">로그인</a> | <a id="login_form" href="/hotel/signUpForm">회원가입</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
@@ -146,24 +146,38 @@ ${ID }님, 환영합니다. <a href="/hotel/logout">로그아웃</a> | <a
    </li> 
     </ul> 
     </li> 
-            
+             
     <li class="topMenuLi"  style=" margin-top:10px;"> 
-    <a class="menuLink" href="/hotel/facilities?FAC_HOTEL_ID=2">FACILITIES</a> 
+    <a class="menuLink" href="/hotel/facilities?FAC_HOTEL_ID=146">FACILITIES</a> 
     <ul class="submenu"> 
-    <li style="margin-left: 455px;"><a href="/hotel/facilities?FAC_HOTEL_ID=1" class="submenuLink">Buffet Lennon</a></li>
-     <li><a href="/hotel/facilities?FAC_HOTEL_ID=2" class="submenuLink">Cafe Lennon</a></li> 
-     <li><a href="/hotel/facilities?FAC_HOTEL_ID=3" class="submenuLink">Business Corner</a></li>
-      <li><a href="/hotel/facilities?FAC_HOTEL_ID=4" class="submenuLink">Conference room</a></li>
+    <li style="margin-left: 455px;"><a href="/hotel/facilities?FAC_HOTEL_ID=146" class="submenuLink">Buffet Lennon</a></li>
+     <li><a href="/hotel/facilities?FAC_HOTEL_ID=145" class="submenuLink">Cafe Lennon</a></li> 
+     <li><a href="/hotel/facilities?FAC_HOTEL_ID=147" class="submenuLink">Business Corner</a></li>
+      <li><a href="/hotel/facilities?FAC_HOTEL_ID=149" class="submenuLink">Conference room</a></li>
       </ul> 
     </li> 
           
     <li class="topMenuLi" style=" margin-top:10px;"> 
     <a class="menuLink" href="/hotel/reservation/main">RESERVATION</a> 
     <ul class="submenu"> 
-    <li style="margin-left: 638px;"><a href="/hotel/reservation/main" class="submenuLink">Reservation</a>
-    </li>
- <li><a href="/hotel/reservation/" class="submenuLink">?????</a>
- </li> 
+    <li style="margin-left: 638px;"><a href="/hotel/reservation/main" class="submenuLink">Reservation</a></li>
+		<c:if test="${ID != null}">
+    		<li><a href="/hotel/reservation/resList" name="list" class="submenuLink">Booking List</a></li>
+    	<script type="text/javascript">
+    	$(document).ready(function(){
+    		$("a[name='list']").on("click", function(e){
+    			e.preventDefault();
+    			fn_list();
+    		});
+    	});
+    	function fn_list(){
+    		var comSubmit = new ComSubmit();
+    		comSubmit.setUrl("<c:url value='/reservation/resList' />");
+    		comSubmit.addParam("MEM_USERID", $("#ID").val());
+    		comSubmit.submit();
+    	}
+    	</script>
+    	</c:if>
       </ul> 
       </li> 
                 

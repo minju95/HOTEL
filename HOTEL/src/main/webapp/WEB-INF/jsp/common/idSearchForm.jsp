@@ -56,6 +56,7 @@ button {
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 </head>
 <body>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<input type="hidden" name="alert" value="${resultMsg}" />
 	<form action="/hotel/idSearch" method="post">
 		<div id="findMemform">
@@ -69,6 +70,7 @@ button {
 					id="MEM_EMAIL" placeholder="이메일주소"></li>
 
 				<button class="btn btn-primary" type="submit" id="findIdBtn">찾기</button>
+				<button type="button" class="btn btn-primary" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 			</ul>
 
 			<p>
@@ -86,5 +88,6 @@ button {
 					}
 				});
 	</script>
+	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>

@@ -76,6 +76,7 @@
 	<a href="#this" class="btn" id="write">등록하기</a>
 	<a href="#this" class="btn" id="list">목록으로</a>
 </center>
+<br>
 </form>
 
 	<%@ include file="/WEB-INF/include/include-body.jspf" %>
@@ -88,13 +89,28 @@
 			fn_noticeList(); //fn_facList()함수 호출
 		});
 
-		function fn_insertNotice(){
-				var comSubmit = new ComSubmit("noticeWrite");
-				comSubmit.setUrl("<c:url value='/admin/newNotice' />");
-				comSubmit.submit();
+		$("#write").on("click", function(e) { //'등록하기'를 클릭하면
+			e.preventDefault();
+			fn_insertNotice();//fn_insertFac()함수 호출
+		});
+	});
+
+	function fn_noticeList(pageNo) { //리스트로 이동하는 함수
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/admin/noticeList' />");
+		comSubmit.submit();
+
+	}
+	
+	function fn_insertNotice(){
+		var comSubmit = new ComSubmit("noticeWrite");
+		comSubmit.setUrl("<c:url value='/admin/newNotice' />");
+		comSubmit.submit();
 		}
 	
-	</script>	
+	</script>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+	
 </body>
 
 </html>

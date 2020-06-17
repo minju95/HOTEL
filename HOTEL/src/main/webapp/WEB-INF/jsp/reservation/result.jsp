@@ -3,8 +3,14 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!-- include) include/include-header.jspf -->
-<%@include file="/WEB-INF/include/include-header.jspf"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
+<meta charset="UTF-8">
 <!-- include) include/include-topMenu.jsp -->
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 </head>
@@ -30,7 +36,7 @@
 			<tr>
 				<td><input class="write_date" type="text" id="number" value="${ttt.RES_NO}" readonly></td>
 				<td><input class="write_date" type="text" id="name" value="${ttt.MEM_NAME}" readonly></td>
-				<td><input class="write_date" type="text" id="phone" value="${ttt.MEM_PHONE}" readonly>				</td>
+				<td><input class="write_date" type="text" id="phone" value="${ttt.MEM_PHONE}" readonly></td>
 				<td><input class="write_date" type="text" id="email" value="${ttt.MEM_EMAIL}" readonly></td>
 			</tr>
 			<tr>

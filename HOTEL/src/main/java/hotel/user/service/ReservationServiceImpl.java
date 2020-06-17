@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 
 /*import org.apache.log4j.Logger;*/
 import org.springframework.stereotype.Service;
+import org.springframework.web.servlet.ModelAndView;
+
+import hotel.common.common.CommandMap;
 import hotel.user.dao.ReservationDao;
 
 @Service("ReservationService")
@@ -70,5 +73,18 @@ public class ReservationServiceImpl implements ReservationService{
 		return reservationDAO.roomView(map);
 	}
 	
+	@Override
+	public List<Map<String, Object>> selectUserResList(Map<String, Object> map) throws Exception {
+		return reservationDAO.selectUserResList(map);
+	}
+	
+	/*test kakao */
+	@Override
+	public List<Map<String, Object>> kakaoInsert(Map<String, Object> map)
+	throws Exception {
+		reservationDAO.kakaoInsertReservation(map);
+		
+		return reservationDAO.kakaoSelectResult(map);
+	}
 	
 }

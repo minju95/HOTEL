@@ -33,7 +33,7 @@
       WHERE 
           F.FAC_HOTEL_ID = M.FAC_HOTEL_ID
       AND 
-          F.FAC_HOTEL_ID = 103
+          F.FAC_HOTEL_ID = 146
 
       GROUP BY 
           F.FAC_HOTEL_ID,

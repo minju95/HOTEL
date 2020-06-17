@@ -79,4 +79,21 @@ public class ReservationDao extends AbstractDAO{
 		return (List<Map<String, Object>>) selectList("reservation.selectRoomView", map);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> selectUserResList(Map<String, Object> map) throws Exception {
+		return (List<Map<String, Object>>)selectPagingList("reservation.selectUserResList", map);
+	}
+	
+	/*test - kakao*/
+	@SuppressWarnings("unchecked")
+	public void kakaoInsertReservation(Map<String, Object> map)
+	throws Exception {
+		insert("reservation.kakaoInsertReservation", map);
+	}
+	@SuppressWarnings("unchecked")
+	public List<Map<String, Object>> kakaoSelectResult(Map<String, Object> map)
+	throws Exception {
+		return (List<Map<String, Object>>) selectList("reservation.kakaoSelectResult", map);
+	}
+	
 }

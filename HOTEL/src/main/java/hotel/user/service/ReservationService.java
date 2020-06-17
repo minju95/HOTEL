@@ -5,6 +5,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import hotel.common.common.CommandMap;
+
 public interface ReservationService {
 
 	/*예약 메인 리스트, /reservation/main - get */
@@ -28,5 +30,10 @@ public interface ReservationService {
 	
 	/*roomView*/
 	List<Map<String, Object>> roomView(Map<String, Object> map) throws Exception;
+	
+	List<Map<String, Object>> selectUserResList(Map<String, Object> map) throws Exception;
+	
+	/*test - kakao*/
+	List<Map<String, Object>> kakaoInsert(Map<String, Object> map) throws Exception;
 	
 }
