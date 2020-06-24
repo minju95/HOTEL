@@ -5,6 +5,12 @@
 <html>
 <head>
 <style>
+.header {
+	width: 1200px;
+    margin: 0 auto 0 auto;
+    height: 90px;
+    position: relative;
+	}
 #topMenu {
 	height: 119px;
 	width: 100%; /* [변경] 하위 메뉴와 동일하게 맞춤 */
@@ -86,31 +92,27 @@
 	background-color: #dddddd;
 }
 
-header {
-	font-size: 30px;
-	color: red;
-	position: relative;
-	text-align: center;
-}
 #login_form {font-size: 15px; text-decoration: none; padding: 5px; margin: 10px; font-weight: bold; color: black;}
 </style>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-	<div style="text-align:right;">
+
+	<div class="header" style="text-align:right;">
 		<c:set var="ID" value="${USERID }" />
 		<c:choose>
 			<c:when test="${ID != NULL}">
-${ID }님, 환영합니다. <a id="login_form" href="/hotel/logout">로그아웃</a> | <a id="login_form" href="/hotel/modifyMemForm">회원정보 수정</a>
+${ID}님, 환영합니다. <a id="login_form" href="/hotel/logout">로그아웃</a> | <a id="login_form" href="/hotel/modifyMemForm">회원정보 수정</a>
 			</c:when>
 			<c:otherwise>
-				<a id="login_form" href="/hotel/loginForm">로그인</a> | <a id="login_form" href="/hotel/signUpForm">회원가입</a>
+				<a id="login_form" href="#">예약확인</a> | <a id="login_form" href="/hotel/loginForm">로그인</a> | <a id="login_form" href="/hotel/signUpForm">회원가입</a>
 			</c:otherwise>
 		</c:choose>
 	</div>
+	
 	<c:set var="isAdmin" value="${ADMIN }" />
-<nav id="topMenu" > 
+<nav id="topMenu"> 
 <ul>
 <li  style=" margin-top:5px;">
  <a class="menuLink" href="/hotel/main"><img src="<c:url value='/image/SIENNA-TOP.PNG'/>" width="140" height="80" /></a>
