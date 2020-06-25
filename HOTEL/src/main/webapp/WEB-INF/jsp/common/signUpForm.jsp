@@ -32,12 +32,13 @@
 
 .myForm-group {
 	position: absolute;
-	left: calc(50% - 400px/ 2);
+	left: calc(50% - 600px/ 2);
 	top: 100px;
 }
 
 .form-control {
-	width: 400px;
+	width: 690px;
+	height: 55px;
 }
 
 #user_email {
@@ -55,19 +56,32 @@
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<form id="signUp" action="/hotel/signUp">
 		<h3 class="contents" style="margin-top:80px;">회원가입</h3>
-		<div class="myForm-group" style="margin-top:150px;">
+		<div class="myForm-group" style="margin-top:300px;">
+				
+			
+			<div class="form-group">
+				<label for="MEM_NAME">성명 (국문)</label> <input type="text"
+					class="form-control" id="MEM_NAME" name="MEM_NAME"
+					placeholder="성명(국문)을 입력하세요.">
+			</div>
+			
+			<div class="form-group">
+				<label for="MEM_NAME_EN">성명 (영문)</label> <input type="text"
+					class="form-control" id="MEM_NAME_EN" name="MEM_NAME_EN"
+					placeholder="성명(영문)을 입력하세요.">
+			</div>
+			
+			
 			<div class="form-group">
 				<label for="MEM_USERID">아이디</label> <input type="text"
 					class="form-control" id="MEM_USERID" name="MEM_USERID"
 					placeholder="아이디를 입력하세요">
 			</div>
+			
+			<!-- 유효성 검사 -->
 			<div id="id_check"></div>
 			<input type="hidden" id="isCheck" value="0">
-			<div class="form-group">
-				<label for="MEM_NAME">이름</label> <input type="text"
-					class="form-control" id="MEM_NAME" name="MEM_NAME"
-					placeholder="이름을 입력하세요">
-			</div>
+			
 			<div id="name_check"></div>
 			<div class="form-group">
 				<label for="pw1">비밀번호</label> <input type="password"
@@ -109,7 +123,7 @@
 				<button type="button" class="btn btn-primary btn-lg btn-block" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 		</div>
 	</form>
-	<div>
+	<div style="margin-top: 1500px;">
 	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 	</div>
 	<script>

@@ -17,13 +17,7 @@
 <!-- reservation/main css -->
 <link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
 <style type="text/css">
-.div-about{
- background-image:url(/hotel/image/hotel.jpg);
-height:250px;
-color: white;
-background-repeat:no-repeat;
-background-size:100%;
-}
+
 .div-reservation{
 weith:100%;
 
@@ -222,28 +216,26 @@ top:228%;*/
   .text {font-size: 11px}
 }
 .div-about{
- background-image:url(/hotel/image/hotel.jpg);
-height:250px;
-color: white;
-background-repeat:no-repeat;
-background-size:100%;
+/* background-image:url(/hotel/image/main_image.JPG);
+ */width: 1920px;
+height:600px;
+
 }
+
 thead>tr>th{
 	text-align:center;
 	}
 
-
 </style>
 
 </head>
-  <%@ include file="/WEB-INF/include/include-header.jspf" %>
+<%@ include file="/WEB-INF/include/include-header.jspf" %>
 <body oncontextmenu="return false" ondragstart="return false">
-
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 
-<div class="div-about" align="center" ></div>
+	<img src="/hotel/image/main_image.jpg" class="div-about">
 
-<!-- 객실 소개 s -->
+<!-- 객실 소개 -->
 <div class="div-reservation">
 <div class="a_layer">
 <div class="a_layer_inner" style="margin: 0px;">

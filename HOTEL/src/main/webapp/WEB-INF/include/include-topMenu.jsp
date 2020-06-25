@@ -6,11 +6,17 @@
 <head>
 <style>
 .header {
-	width: 1200px;
+	width: 1920px;
     margin: 0 auto 0 auto;
     height: 90px;
     position: relative;
+    text-align: right;
 	}
+.loginArea {
+    position: absolute;
+    top: 19px;
+    right: 80px;
+}
 #topMenu {
 	height: 119px;
 	width: 100%; /* [변경] 하위 메뉴와 동일하게 맞춤 */
@@ -32,7 +38,7 @@
 	vertical-align: middle;
 	text-align: center;
 	-position: relative;
-	/*margin-left:80px;*/
+	/*margin-left:80px;*/s
 	/* margin-top:5px;*/
 }
 
@@ -50,7 +56,7 @@
 }
 
 .topMenuLi:hover .menuLink { /* 상위 메뉴의 li에 마우스오버 되었을 때 스타일 설정 */
-	color: red;
+	color: white;
 	background-color: #4d4d4d;
 }
 
@@ -99,7 +105,8 @@
 </head>
 <body>
 
-	<div class="header" style="text-align:right;">
+	<div class="header">
+		<div class="loginArea">
 		<c:set var="ID" value="${USERID }" />
 		<c:choose>
 			<c:when test="${ID != NULL}">
@@ -109,14 +116,13 @@ ${ID}님, 환영합니다. <a id="login_form" href="/hotel/logout">로그아웃<
 				<a id="login_form" href="#">예약확인</a> | <a id="login_form" href="/hotel/loginForm">로그인</a> | <a id="login_form" href="/hotel/signUpForm">회원가입</a>
 			</c:otherwise>
 		</c:choose>
+		</div>
 	</div>
 	
 	<c:set var="isAdmin" value="${ADMIN }" />
 <nav id="topMenu"> 
 <ul>
-<li  style=" margin-top:5px;">
- <a class="menuLink" href="/hotel/main"><img src="<c:url value='/image/SIENNA-TOP.PNG'/>" width="140" height="80" /></a>
- </li>
+
 
 
  <li class="topMenuLi" style="margin-left:100px; margin-top:10px;">
