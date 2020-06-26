@@ -52,63 +52,78 @@
 #isCheck_Email {
 	width: 70px;
 }
+.buttons {
+width:345px;
+height:55px;
+border-color: #ad9e87;
+border:none;
+background-color: #ad9e87;
+color: #fff;
+}
 </style>
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<form id="signUp" action="/hotel/signUp">
 		<h3 class="contents" style="margin-top:80px;">회원가입</h3>
 		<div class="myForm-group" style="margin-top:300px;">
 				
+			<!-- 유효성 검사 -->
+			<input type="hidden" id="isCheck" value="0">
 			
 			<div class="form-group">
 				<label for="MEM_NAME">성명 (국문)</label> <input type="text"
-					class="form-control" id="MEM_NAME" name="MEM_NAME"
-					placeholder="성명(국문)을 입력하세요.">
+					class="form-control" id="MEM_NAME" name="MEM_NAME">
+			<div id="name_check"></div>
 			</div>
 			
-			<div class="form-group">
-				<label for="MEM_NAME_EN">성명 (영문)</label> <input type="text"
-					class="form-control" id="MEM_NAME_EN" name="MEM_NAME_EN"
-					placeholder="성명(영문)을 입력하세요.">
+			
+			<div class="form-inline">
+				<label for="MEM_NAME_EN">성명 (영문)</label>
+				<br>
+					<input type="text" id="MEM_NAME_EN" name="MEM_NAME_EN" placeholder="HONG(성)" class="form-control" style="width: 340px; height: 55px" >
+					<input type="text" id="MEM_NAME_EN" name="MEM_NAME_EN" placeholder="GILDONG(이름)" class="form-control" style="width: 350px; height: 55px">
 			</div>
 			
+			<br>
 			
 			<div class="form-group">
 				<label for="MEM_USERID">아이디</label> <input type="text"
-					class="form-control" id="MEM_USERID" name="MEM_USERID"
-					placeholder="아이디를 입력하세요">
+					class="form-control" id="MEM_USERID" name="MEM_USERID">
+			<div id="id_check"></div><!-- 유효성 체크 -->
 			</div>
 			
-			<!-- 유효성 검사 -->
-			<div id="id_check"></div>
-			<input type="hidden" id="isCheck" value="0">
 			
-			<div id="name_check"></div>
 			<div class="form-group">
 				<label for="pw1">비밀번호</label> <input type="password"
-					class="form-control" id="pw1" name="MEM_PW"
-					placeholder="비밀번호를 입력하세요">
+					class="form-control" id="pw1" name="MEM_PW">
+			<div id="pw1_check"></div><!-- 유효성 체크 -->
 			</div>
-			<div id="pw1_check"></div>
+			
+			
 			<div class="form-group">
 				<label for="pw2">비밀번호 확인</label> <input type="password"
-					class="form-control" id="pw2" placeholder="비밀번호 확인">
-			</div>
+					class="form-control" id="pw2">
 			<div id="pw2_check"></div>
-			<div class="form-group">
-				<label for="MEM_PHONE">전화번호</label> <input type="text"
-					class="form-control" id="MEM_PHONE" name="MEM_PHONE"
-					placeholder="전화번호를 입력하세요">
 			</div>
-			<div id="phone_check"></div>
+			
+			
 			<div class="form-group">
-				<label for="user_email">이메일 주소</label>
+				<label for="MEM_PHONE">휴대전화 (띄어쓰기 없이 '-'를 생략한 형식으로 입력하세요.)</label> <input type="text"
+					class="form-control" id="MEM_PHONE" name="MEM_PHONE">
+			<div id="phone_check"></div>
+			</div>
+			
+			
+			<div class="form-group">
+				<label for="user_email">이메일 주소 </label>
 				<div class="form-inline">
 					<input type="email" class="form-control" id="user_email"
-						name="MEM_EMAIL" placeholder="이메일을 입력하세요">
-					<button type="button" class="btn btn-default" id="isCheck_Email">인증</button>
+						name="MEM_EMAIL" placeholder="example@gmail.com" style="width: 590px" >
+					<button type="button" class="btn btn-default" id="isCheck_Email" style="width: 100px; height: 55px;">인증</button>
+					<div id="email_check"></div>
 				</div>
 			</div>
-			<div id="email_check"></div>
+			
+			
 			<div id="isCheck_EmailForm" class="form-group">
 				<label for="user_email">인증번호 확인</label>
 				<div class="form-inline">
@@ -118,14 +133,17 @@
 					<input type="hidden" id="isEmailAuth" value="0">
 				</div>
 			</div>
-			<button type="button" class="btn btn-primary btn-lg btn-block"
-				id="signUpBtn">가입하기</button>
-				<button type="button" class="btn btn-primary btn-lg btn-block" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
+			
+			<button type="button" 
+				id="signUpBtn" class="buttons">가입하기</button>
+			<button type="button" class="buttons"
+				id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 		</div>
 	</form>
 	<div style="margin-top: 1500px;">
 	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 	</div>
+	
 	<script>
 		$(function() {
 			$(document).ready(function() {
@@ -181,8 +199,8 @@
 			//이름입력
 			$("#MEM_NAME").blur(function() {
 				var mem_name = $("#MEM_NAME").val();
-				if (mem_name == "") {
-					$("#name_check").text('필수 항목 입니다.');
+				if (mem_name == "" || mem_name.trim()=="") {
+					$("#name_check").text('필수 항목입니다.');
 					$("#name_check").css('color', 'red');
 				} else {
 					$("#name_check").text('');
@@ -192,7 +210,7 @@
 			$("#pw1").blur(function() {
 				var pw1 = $("#pw1").val();
 				if (pw1 == "") {
-					$("#pw1_check").text('필수 항목 입니다.');
+					$("#pw1_check").text('필수 항목입니다.');
 					$("#pw1_check").css('color', 'red');
 				} else {
 					$("#pw1_check").text('');
@@ -245,6 +263,7 @@
 				});
 			});
 
+			//alert창 띄우기
 			function fn_signUp() {
 				if ($("#MEM_USERID").val().length < 1) {
 					alert("아이디를 입력해주세요.");

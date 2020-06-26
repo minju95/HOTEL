@@ -6,7 +6,7 @@
 <head>
 <style>
 .header {
-	width: 1920px;
+	width: 100%;
     margin: 0 auto 0 auto;
     height: 90px;
     position: relative;

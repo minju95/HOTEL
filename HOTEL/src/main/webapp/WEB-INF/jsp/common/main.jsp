@@ -216,10 +216,9 @@ top:228%;*/
   .text {font-size: 11px}
 }
 .div-about{
-/* background-image:url(/hotel/image/main_image.JPG);
- */width: 1920px;
+width: 1920px;
 height:600px;
-
+margin: 0 auto;
 }
 
 thead>tr>th{
@@ -232,9 +231,9 @@ thead>tr>th{
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-
-	<img src="/hotel/image/main_image.jpg" class="div-about">
-
+	<div class="div-about">
+	<img src="/hotel/image/main_image.jpg" >
+	</div>
 <!-- 객실 소개 -->
 <div class="div-reservation">
 <div class="a_layer">

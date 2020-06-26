@@ -43,11 +43,15 @@
 button {
 	width: 100%;
 	height: 50px;
-	background-color: #ffd014;
+	border-color: #ad9e87;
+    background-color: #ad9e87;
+    color: #fff;
 	display: block;
 	border: none;
 	margin-top: 10px;
 	font-size: 20px;
+	text-align: center;
+	
 }
 </style>
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
@@ -85,8 +89,8 @@ button {
 			<li><a class="btn btn-link" href="/hotel/idSearchForm">아이디
 					찾기</a></li>
 			<li>
-				<button type="submit" class="btn btn-primary" id="submit">로그인</button>
-				<button type="button" class="btn btn-primary" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
+				<button type="submit" class="button" id="submit">로그인</button>
+				<button type="button" class="button" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 			</li>
 		</ul>
 		<p>
