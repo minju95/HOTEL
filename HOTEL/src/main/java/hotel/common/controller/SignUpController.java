@@ -29,19 +29,25 @@ public class SignUpController {
 	private LoginService loginService;
 	
 	//회원 가입 폼 이동
-	@RequestMapping(value="/signUpForm")
-	public ModelAndView SignUpForm() throws Exception{
-		ModelAndView mv = new ModelAndView("/common/signUpForm");
+	@RequestMapping(value="/signUpTerms")
+	public ModelAndView SignUpForm1() throws Exception{
+		ModelAndView mv = new ModelAndView("/common/signUpTerms");
 		
 		return mv;
 	}
+	//회원 가입 폼 이동
+		@RequestMapping(value="/signUpForm")
+		public ModelAndView SignUpForm2() throws Exception{
+			ModelAndView mv = new ModelAndView("/common/signUpForm");
+			
+			return mv;
+		}
+	
 	//회원 가입 처리
 	@RequestMapping(value="/signUp")
 	public ModelAndView insertSignUp(CommandMap commandMap) throws Exception{
-		ModelAndView mv = new ModelAndView("redirect:/main");
-		
+		ModelAndView mv = new ModelAndView("/common/signUpComplete");
 		signUpService.insertSignUp(commandMap.getMap());
-		
 		return mv;
 	}
 	//아이디 중복 체크
@@ -57,7 +63,7 @@ public class SignUpController {
 	//이메일 인증-회원가입
     @RequestMapping(value = "/emailAuth", produces = "application/json")
     @ResponseBody
-    public boolean sendMailAuth(HttpSession session, @RequestParam String user_email) {
+    public boolean sendMailAuth(HttpSession session, @RequestParam String MEM_EMAIL) {
         int ran = new Random().nextInt(100000) + 10000; // 10000 ~ 99999
         String joinCode = String.valueOf(ran);
         session.setAttribute("joinCode", joinCode);
@@ -65,7 +71,7 @@ public class SignUpController {
         String subject = "<HOTEL> 회원가입 인증 코드입니다.";
         StringBuilder sb = new StringBuilder();
         sb.append("귀하의 인증 코드는 " + joinCode + " 입니다.");
-        return loginService.send(subject, sb.toString(), "1teampjt@gmail.com", user_email, null);
+        return loginService.send(subject, sb.toString(), "1teampjt@gmail.com", MEM_EMAIL, null);
     }
     
     //이메일 인증확인

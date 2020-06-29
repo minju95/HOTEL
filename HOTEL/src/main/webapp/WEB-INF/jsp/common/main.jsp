@@ -32,19 +32,6 @@ weith:100%;
 /*border:1px solid black ;*/
 }
 
-.div-notice{
-weith:100%;
-height: 800px;
-border:1px solid black ;
- background-image:url(/hotel/image/main-notice.jpg);
- background-repeat:no-repeat;
- background-position:center;
-background-size:cover;
- color: white;
-}
-.div-notice-son{
-width: 850px;
-
  background-color:  white;
 position: relative;
 /*bottom:70%;*/
@@ -345,58 +332,8 @@ thead>tr>th{
 <br><br>
 
 
-<div class="div-notice">
-
-<br><br><br>
-<center><h1 class="h1" >NOTICE</h1></center>
-<!--  <div class="div-notice-son">-->
-<form id="notice">
-	
-		<table name="noticeList" class="notice_list" align="center" width="850">
-			<colgroup>
-				<col width="15%"/>
-				<col width="55%"/>
-				<col width="30%"/>
-				
-			</colgroup>
-			<thead>
-				<tr>
-					<th scope="col">글번호</th>
-					<th scope="col">제  목</th>
-					<th scope="col">작성일</th>
-					
-				</tr>
-			</thead>
-			<tbody>
-			<c:forEach items="${list}" var="board">
-			<tr>
-			<td>${board.RNUM}</td>
-			<td class='title'>
-						<a class="a1" href='#this' name='title'>${board.NOTICE_TITLE }</a>
-						<input type='hidden' name='id' value="${board.NOTICE_ID }"> 
-						</td><td>${board.NOTICE_DATE }</td>
-						</tr>
-						</c:forEach>
-			</tbody>
-		</table>
-		</form>
-	</div>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
 <script type="text/javascript">
-
-$(document).ready(function(){ 
-	  $("a[name='title']").on("click", function(e){ //제목
-		   e.preventDefault(); fn_noticeDetail($(this));
-		    });
-	     });
-
-
-function fn_noticeDetail(obj){
-    var comSubmit = new ComSubmit();
-    comSubmit.setUrl("<c:url value='/board/boardDetail' />");
-    comSubmit.addParam("NOTICE_ID", obj.parent().find("input[name='id']").val());
-    comSubmit.submit();
-}
 
 
 var slideIndex = 0;

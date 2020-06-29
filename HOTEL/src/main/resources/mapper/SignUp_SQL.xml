@@ -19,7 +19,9 @@
         INSERT INTO 
         MEMBER(
         	MEM_ID, 
-	        MEM_NAME, 
+	        MEM_NAME,
+	        MEM_LN_EN,
+	        MEM_FN_EN,
 	        MEM_USERID, 
 	        MEM_PW, 
 	        MEM_PHONE, 
@@ -27,7 +29,9 @@
         ) 
 		VALUES(
 			SEQ_MEM_ID.NEXTVAL, 
-			#{MEM_NAME}, 
+			#{MEM_NAME},
+			#{MEM_LN_EN},
+			#{MEM_FN_EN},
 			#{MEM_USERID}, 
 			#{MEM_PW}, 
 			#{MEM_PHONE}, 

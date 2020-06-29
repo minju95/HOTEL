@@ -88,14 +88,6 @@ body.en .sub_txt_bg dl{ font-size: 14px;}
 font-size:16px;
 }
 
-.div-about{
-
- background-image:url(/hotel/image/hotel.jpg);
-height:250px;
-color: #e5a880;
-background-repeat:no-repeat;
-background-size:100%;
-}
 
 </style>
     </head>

@@ -25,7 +25,6 @@
 }
 </style>
 <!-- 하단정보 시작 -->
-
 <div id="footer">
 	<div class="location_wrap">
 		<div class="main">

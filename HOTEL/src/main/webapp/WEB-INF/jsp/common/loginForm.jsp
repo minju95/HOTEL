@@ -14,7 +14,13 @@
 	text-align: center;
 	margin-bottom: 100px
 }
-
+.loginText {
+	width: 648px;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: left;
+	border-bottom: 3px solid black;
+}
 .logintable {
 	padding-top: 50px;
 	padding-left: 0;
@@ -51,7 +57,9 @@ button {
 	margin-top: 10px;
 	font-size: 20px;
 	text-align: center;
-	
+}
+a {
+text-decoration: none;
 }
 </style>
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
@@ -78,7 +86,9 @@ button {
 <form action="/hotel/login" method="post" id="frm"
 	onsubmit="return fn_login();">
 	<div id="loginform">
-		<h1>로그인</h1>
+	<div class="loginText">
+		<h3 style="margin-top: 100px;">로그인</h3>
+	</div>
 		<ul class="logintable">
 			<li><input type="text" class="form-control" name="MEM_USERID"
 				id="MEM_USERID" placeholder="아이디"></li>

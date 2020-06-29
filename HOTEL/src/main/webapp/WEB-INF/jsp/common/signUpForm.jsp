@@ -18,9 +18,108 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <script src="<c:url value='/js/common.js'/>" charset="utf-8"></script>
-</head>
-<body>
-	<style>
+
+
+<style>
+.signUpText {
+	width: 648px;
+	heigth: 300px;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+	padding-bottom: 40px;
+}
+.stepbox {
+color: #333; font-size: 16px; line-height: 1.6;
+word-break: keep-all; font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif; letter-spacing: -1px;
+-webkit-font-smoothing: antialiased; outline: 0; margin: 0 auto; min-width: 320px;
+padding: 0 15px; max-width: 760px;
+}
+
+.stepbox__wrap col-3 {
+color: #333;
+font-size: 16px;
+line-height: 1.6;
+word-break: keep-all;
+font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+letter-spacing: -1px;
+-webkit-font-smoothing: antialiased;
+outline: 0;
+padding: 0;
+list-style: none;
+margin: 0 -1px;
+}
+
+.inner {line-height: 1.6;
+list-style: none;
+font-size: 18px;
+text-align: center;
+word-break: keep-all;
+font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+box-sizing: border-box;
+letter-spacing: -1px;
+-webkit-font-smoothing: antialiased;
+outline: 0;
+margin: 0;
+position: relative;
+color: #fff;
+height: 50px;
+padding: 12px 10px;
+background-color: #998465;
+}
+
+.inner_n {line-height: 1.6;
+list-style: none;
+font-size: 18px;
+text-align: center;
+word-break: keep-all;
+font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+box-sizing: border-box;
+letter-spacing: -1px;
+-webkit-font-smoothing: antialiased;
+outline: 0;
+margin: 0;
+position: relative;
+color: #fff;
+height: 50px;
+padding: 12px 10px;
+background-color: #ccc;
+}
+
+.stepbox__list {
+color: #333;
+line-height: 1.6;
+word-break: keep-all;
+font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+letter-spacing: -1px;
+-webkit-font-smoothing: antialiased;
+outline: 0;
+margin: 0;
+list-style: none;
+float: left;
+font-size: 18px;
+text-align: center;
+padding: 0 1px;
+width: 33.33%;
+}
+
+.text {
+line-height: 1.6;
+list-style: none;
+font-size: 18px;
+text-align: center;
+color: #fff;
+word-break: keep-all;
+font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
+box-sizing: border-box;
+letter-spacing: -1px;
+-webkit-font-smoothing: antialiased;
+outline: 0;
+margin: 0;
+padding: 0;
+display: inline-block;
+}
+
 .contents {
 	width: 100%;
 	float: left;
@@ -31,9 +130,10 @@
 }
 
 .myForm-group {
-	position: absolute;
-	left: calc(50% - 600px/ 2);
-	top: 100px;
+	width: 700px;
+	height: 800px;
+	margin: 0 600px;
+	margin-top: 80px;
 }
 
 .form-control {
@@ -41,7 +141,7 @@
 	height: 55px;
 }
 
-#user_email {
+#MEM_EMAIL {
 	width: 325px;
 }
 
@@ -61,13 +161,38 @@ background-color: #ad9e87;
 color: #fff;
 }
 </style>
+</head>
+<body>
+
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<form id="signUp" action="/hotel/signUp">
-		<h3 class="contents" style="margin-top:80px;">회원가입</h3>
-		<div class="myForm-group" style="margin-top:300px;">
-				
-			<!-- 유효성 검사 -->
-			<input type="hidden" id="isCheck" value="0">
+	<form id="signUp" method="POST" action="/hotel/signUp">
+	<div class="signUpText">
+		<h3 style="margin-top: 100px;">회원가입</h3>
+	</div>
+		
+		
+        <div class="stepbox">
+           <ol class="stepbox__wrap col-3">
+                <li class="stepbox__list">
+                    <div class="inner_n">
+                        <p class="text">Step 1</p>
+                    </div>
+                </li>
+                <li class="stepbox__list">
+                    <div class="inner">
+                        <p class="text">Step 2</p>
+                    </div>
+                </li>
+                <li class="stepbox__list">
+                    <div class="inner_n">
+                        <p class="text">Step 3</p>
+                    </div>
+                </li>
+            </ol>          
+        </div>
+		
+<br><br><br>
+		<div class="myForm-group">
 			
 			<div class="form-group">
 				<label for="MEM_NAME">성명 (국문)</label> <input type="text"
@@ -75,22 +200,20 @@ color: #fff;
 			<div id="name_check"></div>
 			</div>
 			
-			
 			<div class="form-inline">
 				<label for="MEM_NAME_EN">성명 (영문)</label>
 				<br>
-					<input type="text" id="MEM_NAME_EN" name="MEM_NAME_EN" placeholder="HONG(성)" class="form-control" style="width: 340px; height: 55px" >
-					<input type="text" id="MEM_NAME_EN" name="MEM_NAME_EN" placeholder="GILDONG(이름)" class="form-control" style="width: 350px; height: 55px">
+					<input type="text" id="MEM_LN_EN" name="MEM_LN_EN" placeholder="HONG(성)" class="form-control" style="width: 340px; height: 55px" >
+					<input type="text" id="MEM_FN_EN" name="MEM_FN_EN" placeholder="GILDONG(이름)" class="form-control" style="width: 350px; height: 55px">
 			</div>
 			
-			<br>
 			
 			<div class="form-group">
 				<label for="MEM_USERID">아이디</label> <input type="text"
 					class="form-control" id="MEM_USERID" name="MEM_USERID">
 			<div id="id_check"></div><!-- 유효성 체크 -->
 			</div>
-			
+			<input type="hidden" id="isCheck" value="0">
 			
 			<div class="form-group">
 				<label for="pw1">비밀번호</label> <input type="password"
@@ -98,13 +221,11 @@ color: #fff;
 			<div id="pw1_check"></div><!-- 유효성 체크 -->
 			</div>
 			
-			
 			<div class="form-group">
 				<label for="pw2">비밀번호 확인</label> <input type="password"
 					class="form-control" id="pw2">
 			<div id="pw2_check"></div>
 			</div>
-			
 			
 			<div class="form-group">
 				<label for="MEM_PHONE">휴대전화 (띄어쓰기 없이 '-'를 생략한 형식으로 입력하세요.)</label> <input type="text"
@@ -114,37 +235,70 @@ color: #fff;
 			
 			
 			<div class="form-group">
-				<label for="user_email">이메일 주소 </label>
+				<label for="MEM_EMAIL">이메일 주소</label>
 				<div class="form-inline">
-					<input type="email" class="form-control" id="user_email"
-						name="MEM_EMAIL" placeholder="example@gmail.com" style="width: 590px" >
-					<button type="button" class="btn btn-default" id="isCheck_Email" style="width: 100px; height: 55px;">인증</button>
-					<div id="email_check"></div>
+					<input type="email" class="form-control" id="MEM_EMAIL"
+						name="MEM_EMAIL" placeholder="example@gmail.com" style="width:610px;">
+					<button type="button" class="btn btn-default" id="isCheck_Email" style="width:80px; height: 55px;">인증</button>
 				</div>
+			<div id="email_check"></div>
 			</div>
-			
-			
+		
 			<div id="isCheck_EmailForm" class="form-group">
-				<label for="user_email">인증번호 확인</label>
+				<label for="MEM_EMAIL">인증번호 확인</label>
 				<div class="form-inline">
-					<input type="email" class="form-control" id="emailAuth"
-						name="emailAuth" placeholder="인증번호를 입력하세요">
-					<button type="button" class="btn btn-default" id="isAuth">확인</button>
+					<input type="text" class="form-control" id="emailAuth"
+						name="emailAuth" placeholder="인증번호를 입력하세요." style="width:610px;">
+					<button type="button" class="btn btn-default" id="isAuth" style="width:80px; height: 55px;">확인</button>
 					<input type="hidden" id="isEmailAuth" value="0">
 				</div>
 			</div>
 			
-			<button type="button" 
-				id="signUpBtn" class="buttons">가입하기</button>
-			<button type="button" class="buttons"
-				id="submit" onclick="location.href='/hotel/main'">홈으로</button>
+			<button type="button" id="main" class="buttons" onclick="location.href='/hotel/main'">홈으로</button>
+			
+			<input type="submit" id="signUpBtn" class="buttons" onclick="fn_signUp(); return false;" value="가입하기">
 		</div>
 	</form>
-	<div style="margin-top: 1500px;">
+	<%-- <div>
 	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
-	</div>
-	
+	</div> --%>
 	<script>
+	//공란 확인
+	/* $(document).ready(function() {
+		$("#signUpBtn").click(function(e) {
+			e.preventDefault();
+			fn_signUp();
+			alert("넘어갔니");
+		});
+	}); */
+
+	$(document).on("click", "#signUpBtn", function(){
+	    alert('클릭됨');
+	}); 
+	function fn_signUp() {
+		if ($("#MEM_USERID").val().length < 1) {
+			alert("아이디를 입력해주세요.");
+		} else if ($("#MEM_NAME").val().length < 1) {
+			alert("이름을 입력해주세요.");
+		} else if ($("#pw1").val().length < 1) {
+			alert("사용하실 비밀번호를 입력해주세요.");
+		} else if ($("#pw2").val().length < 1) {
+			alert("사용하실 비밀번호를 입력해주세요.");
+		} else if ($("#MEM_PHONE").val().length < 1) {
+			alert("전화번호를 입력해주세요.");
+		} else if ($("#MEM_EMAIL").val().length < 1) {
+			alert("이메일을 입력해주세요.");
+		} else if ($("#isCheck").val() != '1') {
+			alert("아이디를 확인해주세요.");
+		} else if ($("#isEmailAuth").val() != '1') {
+			alert("이메일 인증을 해주세요.");
+		} else {
+			$("#signUp").submit();
+			//alert("가입이 완료되었습니다.");
+		}
+	}
+
+	
 		$(function() {
 			$(document).ready(function() {
 				$("#isCheck_EmailForm").hide();
@@ -199,8 +353,8 @@ color: #fff;
 			//이름입력
 			$("#MEM_NAME").blur(function() {
 				var mem_name = $("#MEM_NAME").val();
-				if (mem_name == "" || mem_name.trim()=="") {
-					$("#name_check").text('필수 항목입니다.');
+				if (mem_name == "") {
+					$("#name_check").text('필수 항목 입니다.');
 					$("#name_check").css('color', 'red');
 				} else {
 					$("#name_check").text('');
@@ -210,7 +364,7 @@ color: #fff;
 			$("#pw1").blur(function() {
 				var pw1 = $("#pw1").val();
 				if (pw1 == "") {
-					$("#pw1_check").text('필수 항목입니다.');
+					$("#pw1_check").text('필수 항목 입니다.');
 					$("#pw1_check").css('color', 'red');
 				} else {
 					$("#pw1_check").text('');
@@ -227,9 +381,9 @@ color: #fff;
 				}
 			});
 			//이메일 입력
-			$("#user_email").blur(function() {
-				var user_email = $("#user_email").val();
-				if (user_email == "") {
+			$("#MEM_EMAIL").blur(function() {
+				var MEM_EMAIL = $("#MEM_EMAIL").val();
+				if (MEM_EMAIL == "") {
 					$("#email_check").text('필수 항목 입니다.');
 					$("#email_check").css('color', 'red');
 				} else {
@@ -255,41 +409,14 @@ color: #fff;
 					$("#pw2_check").css('color', 'red');
 				}
 			});
-			//공란 확인
-			$(document).ready(function() {
-				$("#signUpBtn").unbind("click").click(function(e) {
-					e.preventDefault();
-					fn_signUp();
-				});
-			});
+			
 
-			//alert창 띄우기
-			function fn_signUp() {
-				if ($("#MEM_USERID").val().length < 1) {
-					alert("아이디를 입력해주세요.");
-				} else if ($("#MEM_NAME").val().length < 1) {
-					alert("이름을 입력해주세요.");
-				} else if ($("#pw1").val().length < 1) {
-					alert("사용하실 비밀번호를 입력해주세요.");
-				} else if ($("#pw2").val().length < 1) {
-					alert("사용하실 비밀번호를 입력해주세요.");
-				} else if ($("#MEM_PHONE").val().length < 1) {
-					alert("전화번호를 입력해주세요.");
-				} else if ($("#user_email").val().length < 1) {
-					alert("이메일을 입력해주세요.");
-				} else if ($("#isCheck").val() != '1') {
-					alert("아이디를 확인해주세요.");
-				} else if ($("#isEmailAuth").val() != '1') {
-					alert("이메일 인증을 해주세요.");
-				} else {
-					$('#signUp').submit();
-				}
-			}
+		
 
 			//이메일 인증 		
 			//   이메일 인증 버튼 클릭시 발생하는 이벤트
 			$(document).on("click", "#isCheck_Email", function() {
-				if ($("#user_email").val().length < 1) {
+				if ($("#MEM_EMAIL").val().length < 1) {
 					alert("이메일을 입력해주세요.");
 					return false;
 				} else {
@@ -298,7 +425,7 @@ color: #fff;
 
 						type : "POST",
 						url : "/hotel/emailAuth",
-						data : "user_email=" + $("#user_email").val(),
+						data : "MEM_EMAIL=" + $("#MEM_EMAIL").val(),
 
 						success : function(data) {
 							alert("인증번호가 발송되었습니다. 이메일을 확인해주세요.");

@@ -25,13 +25,14 @@ public class MemberController {
 	@Resource(name="MemberService")
 	private MemberService memberService;
 
+	
 	//수정 전 비밀번호 확인
-		@RequestMapping(value="/modifyMemForm", method=RequestMethod.GET)
-		public ModelAndView pwdCheck() throws Exception{
-			ModelAndView mv = new ModelAndView("/common/pwdCheck");
+	@RequestMapping(value="/modifyMemForm", method=RequestMethod.GET)
+	public ModelAndView pwdCheck() throws Exception{
+		ModelAndView mv = new ModelAndView("/common/pwdCheck");
 			
-			return mv;
-		}
+		return mv;
+	}
 	
 	//회원 정보 수정 폼 이동
 		@RequestMapping(value="/modifyMemForm", method=RequestMethod.POST)

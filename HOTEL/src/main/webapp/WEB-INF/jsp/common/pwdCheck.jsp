@@ -11,7 +11,16 @@
 	text-align: center;
 	margin-bottom: 10px;
 }
-
+#pwdcheck {
+width: 700px;
+height: 300px;
+}
+.confirmText {
+	width: 648px;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+}
 .pwdchecktable {
 	padding-top: 30px;
 	padding-left: 0;
@@ -37,14 +46,13 @@
 	margin-bottom: 20px
 }
 
-button {
-	width: 100%;
-	height: 50px;
-	background-color: #ffd014;
-	display: block;
-	border: none;
-	margin-top: 10px;
-	font-size: 20px;
+.buttons {
+width:150px;
+height:55px;
+border-color: #ad9e87;
+border:none;
+background-color: #ad9e87;
+color: #fff;
 }
 </style>
 
@@ -52,21 +60,27 @@ button {
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <form action="/hotel/modifyMemForm" id=pwdcheckfrm onsubmit="return passcheck();" method="post">
 	<div id="mypageform">
-		<h1>개인정보변경</h1>
+	<div class="confirmText">
+		<h2 style="margin-top: 100px;">회원정보</h2>
+		<br>
+		<h5>외부로부터 고객님의 정보를 안전하게 보호하기 위해 비밀번호를 다시 한 번 확인 합니다.</h5>
+	</div>
 		<!-- 패스워드확인-->
 		<div id="pwdcheck">
-			<h5>안전한 개인정보변경을 위해서<br> 현재 사용중인 
-			비밀번호를 입력해주세요</h5>
+			
 			<ul class="pwdchecktable">
+				<li style="text-align: left;">
+					<label>비밀번호</label>
+				</li>
 				<li>
 					<input type="password" class="form-control" name="MEM_PW" id="MEM_PW"
-						placeholder="비밀번호를 입력해주세요.">
-				</li>
-				<li>
-					<button class="btn btn-primary" type="submit">확인</button>
-					<button type="button" class="btn btn-primary" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
+						placeholder="비밀번호를 입력하세요.">
 				</li>
 			</ul>
+					<input type="submit" class="buttons" value="확인">
+					<input type="button" class="buttons" onclick="location.href='/hotel/main'" value="홈으로">
+					
+			
 		</div>
 	</div>
 </form>

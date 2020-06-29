@@ -14,6 +14,13 @@
 </head>
 <body>
 <style>
+.deleteText {
+	width: 800px;
+	margin: 0 auto;
+	margin-top: 100px;
+	text-align: center;
+	font-size: 16px;
+}
 .contents {
     width: 100%;
     float: left;
@@ -23,7 +30,9 @@
     margin-bottom: 50px;
 }
 .myForm-group {
-	position : absolute;
+	position : relative;
+	width: 600px;
+	height: 800px;
 	left : calc(50% - 400px/2);
 	top : 100px;
 }
@@ -53,7 +62,14 @@ pre {
 }
 </style>
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<h3 class="contents">회원탈퇴</h3>
+<div class="deleteText">
+		<h2 style="margin-top: 100px;"><b>회원탈퇴</b></h2>
+		<br>
+		<h3><b>회원을 탈퇴하시겠습니까?</b></h3>
+		<br>회원 탈퇴를 신청하시면 리워즈 회원 자격이 상실됩니다.
+		<br>해당 아이디는 즉시 탈퇴가 처리되며 영구적으로 사용이 중지되므로 해당 아이디로 재가입이 불가능합니다.
+</div>
+
 <div class="myForm-group">
 <pre>
 회원 탈퇴시 호텔 예약 및 서비스는
@@ -101,6 +117,5 @@ pre {
 			}
 	});
 </script>
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 </body>
 </html>
