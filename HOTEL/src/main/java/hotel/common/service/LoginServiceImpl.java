@@ -31,12 +31,7 @@ public class LoginServiceImpl implements LoginService{
     public void setJavaMailSender(JavaMailSender javaMailSender) {
         this.javaMailSender = javaMailSender;
     } 
-	/*
-	 * @Override public List<Map<String, Object>> selectBoardList(Map<String,
-	 * Object> map) throws Exception { return sampleDAO.selectBoardList(map);
-	 * 
-	 * }
-	 */
+
 
 	@Override
 	public Map<String, Object> selectLogin(Map<String, Object> map) throws Exception {
@@ -76,7 +71,7 @@ public class LoginServiceImpl implements LoginService{
             helper.setFrom(from);
             helper.setTo(to);
  
-          
+            //첨부파일 처리
             if (filePath != null) {
                 File file = new File(filePath);
                 if (file.exists()) {
@@ -92,21 +87,6 @@ public class LoginServiceImpl implements LoginService{
         return false;
 	}
 
-	
 
-	/*
-	 * @Override public Map<String, Object> selectBoardDetail(Map<String, Object> map) throws Exception {
-	 *  sampleDAO.updateHitCnt(map); 
-	 *  Map<String, Object> resultMap = sampleDAO.selectBoardDetail(map); 
-	 *  
-	 *  return resultMap; 
-	 *  }
-	 * 
-	 * @Override public void updateBoard(Map<String, Object> map) throws Exception{
-	 * sampleDAO.updateBoard(map); }
-	 * 
-	 * @Override public void deleteBoard(Map<String, Object> map) throws Exception {
-	 * sampleDAO.deleteBoard(map); }
-	 */
 
 }

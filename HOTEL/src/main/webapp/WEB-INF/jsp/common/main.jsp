@@ -14,6 +14,10 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.5.0/journal/bootstrap.min.css">
+
 <!-- reservation/main css -->
 <link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
 <style type="text/css">
@@ -84,7 +88,7 @@ img {vertical-align: middle;}
 /* Slideshow container */
 .slideshow-container {
 margin-top: 15px;
-max-width: 700px;
+max-width: 900px;
 position: relative;
 /*margin-left: 5%;*/
 float: left;
@@ -218,17 +222,18 @@ thead>tr>th{
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <body oncontextmenu="return false" ondragstart="return false">
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about">
+<!-- 	<div class="div-about">
 	<img src="/hotel/image/main_image.jpg" >
-	</div>
+	</div> -->
 <!-- 객실 소개 -->
 <div class="div-reservation">
 <div class="a_layer">
 <div class="a_layer_inner" style="margin: 0px;">
 <div class="a_content">
-	<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 80%; margin-left: 10%; margin-top: 50px;">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel" style="width: 100%;">
 	<!-- Indicators -->
-	<ol class="carousel-indicators" style="bottom: 200px;">
+	<ol class="carousel-indicators">
 	<c:choose>
 		<c:when test="${fn:length(roomView) > 0}">
 			<c:forEach items="${roomView}" var="row" varStatus="status">
@@ -242,13 +247,12 @@ thead>tr>th{
 	</ol>
 	
 	<!-- Wrapper for slides -->
-	<div class="view_title">객실 소개</div>
 	<div class="carousel-inner" role="listbox" style="width: 80%; margin-left: 10%;">
 	<c:choose>
 		<c:when test="${fn:length(roomView) > 0}">
 			<c:forEach items="${roomView}" var="row" varStatus="status">
 				<div class="item <c:if test="${status.index eq 0}">active</c:if>" style="background-color: #fff;">
-					<img class="" alt="${row.ROOM_TYPE}" src="<spring:url value='/image/${row.ROOM_IMGS_FILE}'/>">
+					<img class="" alt="${row.ROOM_TYPE}" src="<c:url value='/image/facilities/180821-24-2000-din-seoul-hotel.jpg.thumb.1920.1920.jpg'/>">
 					<div style="margin-top: 10px; padding: 10px;">
 						<span class="view_name">${row.ROOM_NAME}</span><br/><br/>
 						<span class="view_content">${row.ROOM_CONTENT}</span><br/><br/>
@@ -263,8 +267,9 @@ thead>tr>th{
 			<h2>조회된 결과가 없습니다.</h2>
 		</c:otherwise>
 	</c:choose>
-	</div>
-	  <!-- Left and right controls -->
+	
+	
+	 <!-- Left and right controls -->
 	  <a class="left view_button" href="#myCarousel" role="button" data-slide="prev">
 	    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 	    <span class="sr-only">Previous</span>
@@ -273,6 +278,7 @@ thead>tr>th{
 	    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 	    <span class="sr-only">Next</span>
 	  </a>
+	</div>
 	</div>
 </div>
 </div>

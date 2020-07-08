@@ -35,18 +35,17 @@ public class MemberController {
 	}
 	
 	//회원 정보 수정 폼 이동
-		@RequestMapping(value="/modifyMemForm", method=RequestMethod.POST)
-		public ModelAndView select(CommandMap commandMap,HttpSession session) throws Exception {
+	@RequestMapping(value="/modifyMemForm", method=RequestMethod.POST)
+	public ModelAndView select(CommandMap commandMap,HttpSession session) throws Exception {
 			
-			ModelAndView mv = new ModelAndView();
-			String id = (String) session.getAttribute("USERID");
-			commandMap.put("MEM_USERID", id);
+		ModelAndView mv = new ModelAndView();
+		String id = (String) session.getAttribute("USERID");
+		commandMap.put("MEM_USERID", id);
 			
-			String pw =(String)memberService.selectMyLogin(commandMap.getMap(),"MEM_USERID");
-			Map<String, Object> MemberInfo;
+		String pw =(String)memberService.selectMyLogin(commandMap.getMap(),"MEM_USERID");
+		Map<String, Object> MemberInfo;
 			
 			if(id.equals(pw)) {
-				
 				mv.setViewName("/common/modifyMemForm");
 				MemberInfo = memberService.selectMemInfo(id);
 				mv.addObject("MemberInfo",MemberInfo);
@@ -56,44 +55,46 @@ public class MemberController {
 				mv.setViewName("/common/pwdCheck");
 			}
 			return mv;
-		}
+	}
 				
-	//회원 정보 수정
-		@RequestMapping(value="/modifyMem")
-		public ModelAndView modifyMem(CommandMap commandMap) throws Exception{
-			ModelAndView mv = new ModelAndView("redirect:/main");
+	//회원 정보 수정 처리
+	@RequestMapping(value="/modifyMem")
+	public ModelAndView modifyMem(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("redirect:/main");
 			
-			memberService.updateMember(commandMap.getMap());
+		memberService.updateMember(commandMap.getMap());
 			
-			return mv;
-		}
-	//회원탈퇴 페이지 이동
-		@RequestMapping(value="/deleteMemPage")
-		public ModelAndView deleteMemPage(HttpSession session) throws Exception{
-			ModelAndView mv = new ModelAndView("/common/deleteMemPage");
+		return mv;
+	}
+	
+	//회원 탈퇴 페이지 이동
+	@RequestMapping(value="/deleteMemPage")
+	public ModelAndView deleteMemPage(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView("/common/deleteMemPage");
 			
-			String id = (String)session.getAttribute("USERID");
-			mv.addObject("id", id);
+		String id = (String)session.getAttribute("USERID");
+		mv.addObject("id", id);
 			
-			return mv;
-		}
-	//회원탈퇴 처리
-		@RequestMapping(value="/deleteMem")
-		@ResponseBody
-		public ModelAndView deleteMem(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
-			ModelAndView mv = new ModelAndView("jsonView");
+		return mv;
+	}
+	
+	//회원 탈퇴 처리
+	@RequestMapping(value="/deleteMem")
+	@ResponseBody
+	public ModelAndView deleteMem(CommandMap commandMap, HttpSession session, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("jsonView");
 			
-			String id = (String)session.getAttribute("USERID");
-			commandMap.put("MEM_USERID", id);
-			memberService.deleteMember(commandMap.getMap());
-			session.removeAttribute("USERID");
-			String url = request.getScheme()+"://"
-						+request.getServerName()+":"
-						+request.getServerPort()
-						+request.getContextPath()+"/main";
-			mv.addObject("URL", url);
-			mv.addObject("result", "complete");
+		String id = (String)session.getAttribute("USERID");
+		commandMap.put("MEM_USERID", id);
+		memberService.deleteMember(commandMap.getMap());
+		session.removeAttribute("USERID");
+		String url = request.getScheme()+"://"
+					+request.getServerName()+":"
+					+request.getServerPort()
+					+request.getContextPath()+"/main";
+		mv.addObject("URL", url);
+		mv.addObject("result", "complete");
 			
-			return mv;
-		}
+		return mv;
+	}
 }

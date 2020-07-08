@@ -25,6 +25,12 @@ public class MemberDAO extends AbstractDAO{
 		return (Map<String,Object>) sqlSession.selectOne("member.selectMemInfo", id);
 	}
 	
+	@SuppressWarnings("unchecked")
+	public Map<String, Object> selectMemInfo2(Map<String, Object> map)  throws Exception{
+		return (Map<String,Object>)selectOne("member.selectMemInfo", map);
+	}
+	
+	
 	public void updateMember(Map<String, Object> map) throws Exception{
 		update("member.updateMember", map);
 	}

@@ -2,8 +2,9 @@
 <!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
- <mapper namespace="signUp">
- <!-- 아이디 중복체크 -->
+<mapper namespace="signUp">
+ 
+<!-- 아이디 중복체크 -->
 <select id="selectIdCheck" parameterType="String" resultType="int">
 <![CDATA[
 	SELECT 
@@ -13,6 +14,7 @@
         MEM_USERID = #{mem_userid}
 ]]>
 </select>
+
  <!-- 회원가입 -->
 <insert id="insertSignUp" parameterType="hashmap">
 <![CDATA[	
@@ -25,7 +27,8 @@
 	        MEM_USERID, 
 	        MEM_PW, 
 	        MEM_PHONE, 
-	        MEM_EMAIL
+	        MEM_EMAIL,
+	        MEM_JOINDATE
         ) 
 		VALUES(
 			SEQ_MEM_ID.NEXTVAL, 
@@ -35,8 +38,11 @@
 			#{MEM_USERID}, 
 			#{MEM_PW}, 
 			#{MEM_PHONE}, 
-			LOWER(#{MEM_EMAIL})
+			LOWER(#{MEM_EMAIL}),
+			SYSDATE
 		)
 ]]>
 </insert>
+
+
 </mapper>

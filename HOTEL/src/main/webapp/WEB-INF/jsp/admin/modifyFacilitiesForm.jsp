@@ -1,211 +1,213 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %> 
+
 <% 
 	pageContext.setAttribute("br", "<br/>");
 	pageContext.setAttribute("cn", "\n");
-%>
+%> 
 
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf" %>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
-	<meta charset="UTF-8">
-<style>
-    #facModify{margin-left: calc(50% - 400px);width: 800px;}
-	h2{width: 800px;  display: block; text-align: center;}
-	
-	#PAGE_NAVI{text-align: center;margin-top:10%}
-	
-	.div-about{
- 	background-image:url(/hotel/image/hotel.jpg);
-	height:250px;
-	color: #e5a880;
-	background-repeat:no-repeat;
-	background-size:100%;
-	}
-	a {
-		text-decoration: none;
-		color: black;
-	}
-</style>
-<title>부대시설 수정하기</title>
-	<!-- 부트스트랩 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
+<meta charset="UTF-8">
+<%@include file="/WEB-INF/include/mata.jsp" %>
 </head>
 
-<body>
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center">
-   <br>
-   <br>
-   <br>
-   <h1>F A C I L I T I E S </h1>
-</div>	
-<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-<h3 align="center">부대시설 수정하기</h3>
-<br>
-	<form id="facModify" name="facModify" enctype="multipart/form-data">
-	<table name="facModify" class="table table-striped" style="width: 800px;" >
-		<tbody>
-		 	<tr>
-		 		<td scope="row" width="20%">부대시설명</td>
-				<td width="80">
-					<input type="hidden" id="FAC_HOTEL_ID" name="FAC_HOTEL_ID" value="${map.FAC_HOTEL_ID}">
-					<input type="text" id="FAC_HOTEL_NAME" name="FAC_HOTEL_NAME" size="30" value="${map.FAC_HOTEL_NAME}">
-
-				</td>
-			</tr>
-			<tr>
-				<td scope="row">위치</td>
-				<td>
-					<input type="text" id="FAC_HOTEL_LOCATION" name="FAC_HOTEL_LOCATION" size="30" value="${map.FAC_HOTEL_LOCATION}"> 
-
-				</td>
-			</tr>
-			<tr>
-				<td scope="row">운영시간</td>
-				<td>
-					<input type="text" id="FAC_HOTEL_TIME" name="FAC_HOTEL_TIME" size="30" value="${map.FAC_HOTEL_TIME}"> 
-
-				</td>
-			</tr>
-			<tr>
-				<td scope="row">전화번호</td>
-				<td>
-					<input type="text" id="FAC_HOTEL_PHONE" name="FAC_HOTEL_PHONE" size="30" value="${map.FAC_HOTEL_PHONE}"> 
-
-				</td>
-
-			</tr>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td>시설</td>
-				<td>
-					<textarea rows="5" cols="80" title="내용" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC">${map.FAC_HOTEL_FAC}</textarea>
-				</td>
-			</tr>
-		 	<tr>
-		 		<td>내용</td>
-					<td colspan="4" class="view_text">
-						<textarea rows="5" cols="80" title="내용" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT">${map.FAC_HOTEL_CONTENT}</textarea>
-					</td>
-			</tr>
-			<tr>
-				<td>세부사항</td>
-					<td colspan="4" class="view_text">
-						<textarea rows="5" cols="80" title="내용" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL">${map.FAC_HOTEL_DETAIL}</textarea>
-					</td>
-			</tr>
-			<tr>
-				<td scope="row">이미지</td>
-				<td colspan="4">
-					<c:forEach var="row" items="${list }" varStatus="var">
-					<!-- varStatus: 상태용 변수로 for문이 돌아가는 상태를 알게 해주는 변수 -->
-					<p>
-						<!-- 숨김 처리 -->
-						<input type="hidden" id="FAC_HOTEL_ID"  name="IDX_${var.index}" value="${row.FAC_HOTEL_ID }">
-						<input type="hidden" id="HOTEL_IMGS_ID"  name="HOTEL_IMGS_ID_${var.index}" value="${row.HOTEL_IMGS_ID }">
-						<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
+<title>부대시설 수정</title>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+  
+  
+<div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">부대시설 수정</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form  id="frm"  action="<c:url value='/admin/modifyFacilities'/>" method="post" name="frm"
+              enctype="multipart/form-data">
+                <div class="card-body">
+               
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">부대시설명</label>
+                    <div class="col-sm-10">
+                      <input type="hidden" id="FAC_HOTEL_ID" name="FAC_HOTEL_ID" value="${map.FAC_HOTEL_ID}">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_NAME" name="FAC_HOTEL_NAME" value="${map.FAC_HOTEL_NAME}"  placeholder="회원 ID" >
+                    </div>
+                  </div>
+                  
+                    <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">위치</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_LOCATION" name="FAC_HOTEL_LOCATION" value="${map.FAC_HOTEL_LOCATION}"  placeholder="회원 ID" >
+                    </div>
+                  </div>
+                  
+                     <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">운영시간</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_TIME" name="FAC_HOTEL_TIME" value="${map.FAC_HOTEL_TIME}"  placeholder="회원 ID" >
+                    </div>
+                  </div>
+                  
+                       <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_PHONE" name="FAC_HOTEL_PHONE" value="${map.FAC_HOTEL_PHONE}"  placeholder="회원 ID" >
+                    </div>
+                  </div>
+                  
+                  
+                  
+                 <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">시설</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="10" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC">${map.FAC_HOTEL_FAC}</textarea>
+                    </div>
+                   </div>
+                   
+                     
+                 <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="10" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT">${map.FAC_HOTEL_CONTENT}</textarea>
+                    </div>
+                   </div>
+               
+                 <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">세부사항</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="10" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL">${map.FAC_HOTEL_DETAIL}</textarea>
+                    </div>
+                   </div>
+                   
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">이미지</label>
+                   
+                    <div class="col-sm-10">
+                    <c:forEach var="row" items="${list }" varStatus="var">
+                    
+                      <div class="custom-file" >
+							<input type="hidden" id="FAC_HOTEL_ID"  name="IDX_${var.index}" value="${row.FAC_HOTEL_ID }">
+							<input type="hidden" id="HOTEL_IMGS_ID"  name="HOTEL_IMGS_ID_${var.index}" value="${row.HOTEL_IMGS_ID }">
+							<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
+	                      	
+	                      	<!-- 이미지_상대경로 -->
+							<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}" style = "width:600px; heigth:600px;">
+							<br>
+							<a href="#this" id="name_${var.index}" name="name_${var.index}">${row.HOTEL_IMGS_FILE}</a>
 						
-						<!-- 이미지 출력 -->
-						<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}" style = "width:600px; heigth:600px;">
-						<input type="file" id="file_${var.index}" name="file_${var.index}">
-						
-						<!-- 파일명 출력  -->
-						
-						<a href="#this" id="name_${var.index}" name="name_${var.index}">${row.HOTEL_IMGS_FILE}</a>
-					</p>
+						<div class="custom-file">
+	                        <input type="file" class="custom-file-input" id="file_${var.index}" name="file_${var.index}">
+	                        <label class="custom-file-label" for="file_${var.index}">Choose file</label>
+                      </div>
+					  </div>
 					</c:forEach>
-					<div id="fileDiv">
+                   </div>
+					</div>
+					
+                     <div id="fileDiv">
 						<input type="hidden" id="FAC_HOTEL_ID"  name="IDX_${var.index}" value="${row.FAC_HOTEL_ID }">
 					</div>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
+                  </div>
+                  
+              </form>
 	
-	<center>
-		<a href="#this" class="btn" id="modify">수정하기</a>
-		<a href="#this" class="btn" id="addFile">이미지 추가</a>
-		<a href="#this" class="btn" id="list">목록으로</a>
-	</center>
-	</form>
-	<br>
-	
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
-	
-	<script>
-		var img_count = 1;
-		
-		$(document).ready(function() {
-			$("#modify").on("click", function(e) { //'수정하기' 누르면
-				e.preventDefault();
-				fn_facModify();
-			});
-			$("#addFile").on("click", function(e) { //파일추가 버튼
-				e.preventDefault();
-				fn_addFile();
-			});
-			$("#list").on("click", function(e) { //'목록으로'를 클릭하면
-				e.preventDefault();
-				fn_facList(); //fn_facList()함수 호출
-			});
-	});   
-   
-	function fn_facList(pageNo){ //리스트로 이동하는 함수
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/facilitiesList' />");
+	<table align="center">
+	<tr>
+		<td><input type="button" class="btn btn-block btn-outline-success" onclick="location.href='<c:url value="/admin/facilitiesList"/>'" value="목록으로">
+		</td>
+		<td><input type="submit" class="btn btn-block btn-outline-primary" onclick="fn_facModify()" value="공지 수정">
+		</td>
+		<td>
+		 <input type="button" class="btn btn-block btn-outline-success" onclick="fn_addFile()" value="이미지 추가"></td>
+	</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+	<%@include file="/WEB-INF/include/footer.jsp" %>
+<!-- jQuery -->
+<%@include file="/WEB-INF/include/script.jsp" %>
+<script>
+var imageNum = ${fn:length(list)};
+
+function fn_facModify(){
+	//유효성 검사
+	if($("#FAC_HOTEL_NAME").val() == "") {
+		alert("부대시설명을 입력해주세요");
+	} else if($("#FAC_HOTEL_LOCATION").val() == "") {
+		alert("부대시설 위치를 입력해주세요");
+	} else if($("#FAC_HOTEL_TIME").val() == "") {
+		alert("운영시간을 입력해주세요");
+	} else if($("#FAC_HOTEL_PHONE").val() == "") {
+		alert("전화번호를 입력해주세요");
+	} else if($("#FAC_HOTEL_CONTENT").val() == "") {
+		alert("상세내용을 입력해주세요");
+	} 
+	else {
+		alert("부대시설 수정이 완료되었습니다.");
+		var comSubmit = new ComSubmit("frm");
+		comSubmit.setUrl("<c:url value='/admin/modifyFacilities' />");
 		comSubmit.submit();
-		
-	}  
-	
-	function fn_facModify(){
-		//유효성 검사
-		if($("#FAC_HOTEL_NAME").val() == "") {
-			alert("부대시설명을 입력해주세요");
-		} else if($("#FAC_HOTEL_LOCATION").val() == "") {
-			alert("부대시설 위치를 입력해주세요");
-		} else if($("#FAC_HOTEL_TIME").val() == "") {
-			alert("운영시간을 입력해주세요");
-		} else if($("#FAC_HOTEL_PHONE").val() == "") {
-			alert("전화번호를 입력해주세요");
-		} else if($("#FAC_HOTEL_CONTENT").val() == "") {
-			alert("상세내용을 입력해주세요");
-		} 
-		else {
-			alert("부대시설 수정이 완료되었습니다.");
-			var comSubmit = new ComSubmit("facModify");
-			comSubmit.setUrl("<c:url value='/admin/modifyFacilities' />");
-			comSubmit.submit();
-		}
 	}
+}
 
-	function fn_addFile() {
-		//alert(img_count); //1 -> 3
-		while (img_count <= 2) { //이미지 개수 제한
 
-			var str = "<tr><td><input type='file' name='HOTEL_IMGS_FILE_"
-					+ (img_count) + "'></td></tr>";
-			img_count++; //숫자올리고
-			//alert(img_count); //2
-		}
+function fn_addFile() {
+	//var out = '<c:out value="${list}"/>'; //[{HOTEL_IMGS_ID=5, HOTEL_IMGS_FILE=dddd.jpg, FAC_HOTEL_ID=6}]
+	//alert(out.length);
+	//alert(${fn:length(list)});
+	//alert(imageNum);
+	//var img_count = 1;
+
+	if(imageNum == 1) {
+		//alert("처음!"+imageNum);
+		//alert(img_count); //1
+		var str = "<div class='form-group row'><label for='inputEmail3' class='col-sm-2 col-form-label'>이미지</label><div class='col-sm-10'><div class='custom-file'><input type='file' class='custom-file-input' id='HOTEL_IMGS_FILE' name='HOTEL_IMGS_FILE"+(imageNum)+"'><label class='custom-file-label' for='HOTEL_IMGS_FILE'>Choose file</label></div></div></div>";
+		//${fn:length(list)};
+		imageNum++;
 		$("#fileDiv").append(str);
-	}
+		//alert("두번째"+imageNum);
+	} else {
+	alert("이미지는 2개까지 업로드 가능합니다.");
+		}
+	
+}
 
-	function fn_facList(pageNo) { //리스트로 이동하는 함수
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/facilitiesList' />");
-		comSubmit.submit();
+/* 
+<div class="form-group row">
+ <label for="inputEmail3" class="col-sm-2 col-form-label">이미지</label>
+ 
+ <div class="col-sm-10">
+   <div class="custom-file">
+     <input type="file" class="custom-file-input" id="NOTICE_IMG" name="NOTICE_IMG">
+     <label class="custom-file-label" for="NOTICE_IMG">Choose file</label>
+   </div>
+ </div>
+	</div>
 
-	}
-</script>
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+
+ */
+</script>	
 
 </body>
 </html>
+
+
+

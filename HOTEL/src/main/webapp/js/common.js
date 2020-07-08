@@ -126,9 +126,17 @@ function gfn_renderPaging(params){
 	
 	for(var i=first; i<(first+last); i++){
 		if(i != currentIndex){
-			str += "<a href='#this' class='pad_1' style='padding: 5px;' onclick='_movePage("+i+")'>"+i+"</a>";
+			str +="<a href='#this' class='pad_1' style='padding: 5px;' onclick='_movePage("+i+")'>"
+			+"<span style='width: 30px; height: 30px; font-size: 16px; line-height: 30px; padding: 0 10px; margin: 0 2.5px; color: #fff; background: #192a39; font-weight: 400;'>"
+			+i
+			+"</span>"
+			+"</a>";
 		}else{
-			str += "<b><a href='#this' class='pad_1' style='padding: 5px;' onclick='_movePage("+i+")'>"+i+"</a></b>"
+			str += "<a href='#this' class='pad_1' style='padding: 5px;' onclick='_movePage("+i+")'>"
+			+"<span style='width: 30px; height: 30px; font-size: 16px; line-height: 30px; padding: 0 10px; margin: 0 2.5px; color: #fff; background: #192a39; font-weight: 400;'>"
+			+i
+			+"</span>"
+			+"</a>"
 		}
 	}
 	$("#"+divId).append(preStr + str + postStr);

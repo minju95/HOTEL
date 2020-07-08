@@ -73,10 +73,6 @@ button {
 				<button type="button" class="btn btn-primary" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
 			</ul>
 
-			<p>
-				아직 회원이 아니신가요? <a class="btn btn-link" href="/hotel/signUpForm">회원가입하기</a>
-			</p>
-
 		</div>
 	</form>
 	<script>

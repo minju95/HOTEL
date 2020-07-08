@@ -1,149 +1,156 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
-<style>
-#notice {
-	margin-left: calc(50% - 400px);
-	width: 800px;
-	text-align: center
-}
+<%@include file="/WEB-INF/include/mata.jsp" %>
 
-h2 {
-	width: 800px;
-	display: block;
-	text-align: center;
-}
-
-#PAGE_NAVI {
-	text-align: center;
-	margin-top: 10%
-}
-
-.div-about {
-	background-image: url(/hotel/image/hotel.jpg);
-	height: 250px;
-	color: #e5a880;
-	background-repeat: no-repeat;
-	background-size: 100%;
-}
-
-a {
-	text-decoration: none;
-	color: black;
-}
-</style>
-
-<!-- 부트스트랩 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <title>부대시설 등록</title>
-</head>
-
-<body>
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-
-<div class="div-about" align="center" >
-   <br>
-   <br>
-   <br>
-   <h1>F A C I L I T I E S </h1>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+  
+<div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">부대시설 등록</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form class="form-horizontal" id="frm" name="frm" action="<c:url value='/adminNoticeWrite'/>" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                
+                
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">부대시설명</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_NAME" name="FAC_HOTEL_NAME" placeholder="부대시설명">
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">위치</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_LOCATION" name="FAC_HOTEL_LOCATION" placeholder="위치">
+                    </div>
+                  </div>
+                  
+                   <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">운영시간</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_TIME" name="FAC_HOTEL_TIME" placeholder="운영 시간">
+                    </div>
+                  </div>
+                  
+                  
+                  
+                   <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_PHONE" name="FAC_HOTEL_PHONE" placeholder="전화번호">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">시설</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="5" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC" ></textarea>
+                    </div>
+                   </div>
+                   
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="5" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT" ></textarea>
+                    </div>
+                  </div>
+                  
+                     
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">세부사항</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="5" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL" ></textarea>
+                    </div>
+                  </div>
+                  
+                  
+                   <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">사진</label>
+                    
+                    <div class="col-sm-10">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
+                        <label class="custom-file-label" for="HOTEL_IMGS_FILE">Choose file</label>
+                      </div>
+                    </div>
+         			</div>
+         			
+         			<div id="fileDiv">
+         			<!-- 
+		                   <div class="form-group row">
+		                    <label for="inputEmail3" class="col-sm-2 col-form-label">사진2</label>
+		                    
+		                    <div class="col-sm-10">
+		                      <div class="custom-file">
+		                        <input type="file" class="custom-file-input" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE">
+		                        <label class="custom-file-label" for="HOTEL_IMGS_FILE">Choose file</label>
+		                      </div>
+		                    </div>
+		         			</div>
+		         			
+		         			 -->
+                  	</div>
+                  
+                  
+                  </div>
+                <!-- /.card-body -->
+                
+                <!-- /.card-footer -->
+              </form>
 </div>
-   
-<h3 align="center">부대시설 등록</h3>
-<br>
-
-
-<form id="frm" name="frm" enctype="multipart/form-data">
-<table name="facWrite" border="1" cellspacing="0" cellpadding="0" align="center">
-	<colgroup>
-		<col width="20%"/>
-		<col width="80%"/>
-	</colgroup>
-	<tbody>
-		<tr>
-		
-			<th>부대시설명</th>
-			<td>
-				<input type="text" id="FAC_HOTEL_NAME" name="FAC_HOTEL_NAME"
-										size="70">
-			</td>
-		</tr>
-		<tr>
-			<th>위치</th>
-			<td>
-				<input type="text" id="FAC_HOTEL_LOCATION" name="FAC_HOTEL_LOCATION"
-										size="70">
-			</td>
-		</tr>
-		<tr>
-			<th>운영시간</th>
-			<td>
-				<input type="text" id="FAC_HOTEL_TIME" name="FAC_HOTEL_TIME"
-										size="70">
-			</td>
-		</tr>
-		<tr>
-			<th>전화번호</th>
-			<td>
-				<input type="text" id="FAC_HOTEL_PHONE" name="FAC_HOTEL_PHONE"
-										size="70">
-			</td>
-		</tr>
-		<tr>
-			<th>시설</th>
-			<td>
-				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC"></textarea>
-
-			</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>
-				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_CONTENT"
-											name="FAC_HOTEL_CONTENT"></textarea>
-			</td>
-		</tr>
-		<tr>
-			<th>세부사항</th>
-			<td>
-				<textarea rows="10" cols="100" title="내용" id="FAC_HOTEL_DETAIL"
-											name="FAC_HOTEL_DETAIL"></textarea>
-			</td>
-		</tr>
-		<tr>
-			<th>파일</th>
-			<td>
-				<div id="fileDiv">
-					<p>
-						<input type="file" id="HOTEL_IMGS_FILE" name="HOTEL_IMGS_FILE_0">
-					</p>
-				</div>
-			</td>
-		</tr>
 		
 		
-	</tbody>
+	<table align="center">
+	<tr>
+		<td>
+			<input type="button" class="btn btn-block btn-outline-success" id="write" value="등록하기">
+		</td>
+		<td>
+			<input type="submit" class="btn btn-block btn-outline-success"  id="addFile" value="이미지 추가">
+		</td>
+		<td>
+			<input type="button" class="btn btn-block btn-outline-primary" id="list" value="목록으로" >
+		</td>
+	</tr>
+	</table>
+
+
+</div>
+
+
 
 	
-</table>
-<center>
-	<a href="#this" class="btn" id="write">등록하기</a>
-	<a href="#this" class="btn" id="addFile">파일추가</a>
-	<a href="#this" class="btn" id="list">목록으로</a>
-</center>
-</form>
+  </div>    
+</div>
+<%@include file="/WEB-INF/include/footer.jsp" %>
+<!-- jQuery -->
+<%@include file="/WEB-INF/include/script.jsp" %>
 
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>
+</body>
 <script>
 	var img_count = 1; //전역변수 선언(태그가 추가될 때마다 그 값을 1씩 증가시켜 name값이 계속 바뀜)
 
@@ -197,11 +204,13 @@ a {
 		while (img_count < 2) { //파일 추가 개수 제한
 			var str = "<tr><td><input type='file' name='HOTEL_IMGS_FILE_"
 					+ (img_count++) + "'></td></tr>";
+
+			var str = "<div class='form-group row'><label for='inputEmail3' class='col-sm-2 col-form-label'>사진2</label><div class='col-sm-10'><div class='custom-file'><input type='file' class='custom-file-input' id='HOTEL_IMGS_FILE' name='HOTEL_IMGS_FILE"
+				+ (img_count++) + "'><label class='custom-file-label' for='HOTEL_IMGS_FILE'>Choose file</label></div></div></div>";
 			$("#fileDiv").append(str);
 		}
 	}
 </script>	
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 
 </body>
 </html>

@@ -8,6 +8,9 @@
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 <style>
+a {
+text-decoration: none;
+}
 #loginform {
 	width: 648px;
 	margin: 0 auto;
@@ -104,7 +107,7 @@ text-decoration: none;
 			</li>
 		</ul>
 		<p>
-			아직 회원이 아니신가요? <a class="btn btn-link" href="/hotel/signUpForm">회원가입하기</a>
+			아직 회원이 아니신가요? <a class="btn btn-link" href="/hotel/signUpTerms">회원가입하기</a>
 
 		</p>
 	</div>

@@ -1,6 +1,6 @@
 <%@ page language="java" 
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,6 +101,7 @@ text-decoration: none;
 	left: 0;
 	top: 60px; 
 	background-color: #dddddd; /* 하위 메뉴 전체 배경색 설정 */
+	z-index: 1;
 }
 
 .submenu li {
@@ -227,15 +228,15 @@ ${ID}님 <a id="login_form" href="#">예약확인</a> | <a id="login_form" href=
       </ul> 
       </li> 
     <c:set var="isAdmin" value="${ADMIN}" />
-    	<c:if test="${isAdmin == 'Y'}">h
+    	<c:if test="${isAdmin == 'Y'}">
        <li class="topMenuLi"> 
-   	   <a class="menuLink" href="/hotel/admin/roomsList">MANAGEMENT</a> 
-	    <ul class="submenu"> 
+   	   <a class="menuLink" href="/hotel/admin/main">MANAGEMENT</a> 
+	   <!--  <ul class="submenu"> 
 		    <li style="margin-left: 350px;"><a href="/hotel/admin/roomsList" class="submenuLink">객실관리</a></li>
 		    <li><a href="/hotel/admin/facilitiesList" class="submenuLink">부대시설관리</a></li>
 		    <li><a href="/hotel/admin/noticeList" class="submenuLink">공지사항관리</a></li>
 		    <li><a href="/hotel/admin/reservationList" class="submenuLink">예약자 조회</a></li>
-	     </ul> 
+	     </ul>  -->
       </li> 
       </c:if>
      </ul>

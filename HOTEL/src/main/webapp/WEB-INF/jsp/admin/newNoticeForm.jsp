@@ -1,116 +1,135 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
-<style>
-    #noticeWrite{margin-left: calc(50% - 400px);width: 800px;} 
-	h2{width: 800px;  display: block; text-align: center;}
+<%@include file="/WEB-INF/include/mata.jsp" %>
+
+
+<title>부대시설 등록</title>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+  
+<div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">공지사항 등록</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form class="form-horizontal" id="frm" name="frm" action="<c:url value='/adminNoticeWrite'/>" method="post" enctype="multipart/form-data">
+                <div class="card-body">
+                
+                
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">제목</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="NOTICE_TITLE" name="NOTICE_TITLE" placeholder="제목">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="10" id="NOTICE_CONTENT" name="NOTICE_CONTENT"
+                        placeholder="내용" ></textarea>
+                    </div>
+                   </div>
+                   
+                 
+                   <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">이미지</label>
+                    
+                    <div class="col-sm-10">
+                      <div class="custom-file">
+                        <input type="file" class="custom-file-input" id="NOTICE_IMG" name="NOTICE_IMG">
+                        <label class="custom-file-label" for="NOTICE_IMG">Choose file</label>
+                      </div>
+                    </div>
+         			</div>
+
+                  
+                  </div>
+                <!-- /.card-body -->
+                
+                <!-- /.card-footer -->
+              </form>
+</div>
+		
+		
+	<table align="center">
+	<tr>
+		<td>
+			<input type="button" class="btn btn-block btn-outline-success" id="write" value="등록하기">
+		</td>
+		<td>
+			<input type="button" class="btn btn-block btn-outline-primary" id="list" value="목록으로" >
+		</td>
+	</tr>
+	</table>
+
+
+</div>
+
+
+
 	
-	.div-about{
- 	background-image:url(/hotel/image/hotel.jpg);
-	height:250px;
-	color: #e5a880;
-	background-repeat:no-repeat;
-	background-size:100%;
-	}
-	
-	a{
-	text-decoration: none;
-	color: black;
-	}
+  </div>    
+</div>
+<%@include file="/WEB-INF/include/footer.jsp" %>
+<!-- jQuery -->
+<%@include file="/WEB-INF/include/script.jsp" %>
 
-</style>
-	<!-- 부트스트랩 -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-<title>공지사항 등록</title>
-</head>
-
-<body>
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>N O T I C E</h1>
-	</div>
-<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-<h3 align="center">공지사항 등록</h3> <br>
-
-<form id="noticeWrite"  name="noticeWrite" enctype="multipart/form-data">
-
-
-<table name="noticeWrite" border="0" cellspacing="0" cellpadding="0">
-	<colgroup>
-		<col width="15%" />
-		<col width="85%" />
-	</colgroup>
-	
-	<tbody>
-		<tr>
-			<th>제목</th>
-			<td>
-				<input type="text" id="NOTICE_TITLE" name="NOTICE_TITLE" size="70">
-			</td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td>
-				<textarea rows="30" cols="100" title="내용" id="NOTICE_CONTENT" name="NOTICE_CONTENT"></textarea>
-			</td>
-		</tr>
-		 <tr>
-			<th>이미지 등록</th>
-			<td>
-				<input type="file" id="NOTICE_IMG" name="NOTICE_IMG">
-			</td>
-		</tr>
-	</tbody>
-</table>
-
-<center>
-	<a href="#this" class="btn" id="write">등록하기</a>
-	<a href="#this" class="btn" id="list">목록으로</a>
-</center>
-<br>
-</form>
-
-	<%@ include file="/WEB-INF/include/include-body.jspf" %>
-	
-
+</body>
 <script>
+	var img_count = 1; //전역변수 선언(태그가 추가될 때마다 그 값을 1씩 증가시켜 name값이 계속 바뀜)
+
 	$(document).ready(function() {
 		$("#list").on("click", function(e) { //'목록으로'를 클릭하면
 			e.preventDefault();
 			fn_noticeList(); //fn_facList()함수 호출
 		});
-
+		
 		$("#write").on("click", function(e) { //'등록하기'를 클릭하면
 			e.preventDefault();
 			fn_insertNotice();//fn_insertFac()함수 호출
 		});
 	});
 
-	function fn_noticeList(pageNo) { //리스트로 이동하는 함수
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/noticeList' />");
-		comSubmit.submit();
+		function fn_insertNotice() {
+			//유효성 검사
+			if($("#NOTICE_TITLE").val() == "")
+				{
+				alert("제목을 입력해주세요");
+			} else if($("#NOTICE_CONTENT").val() == "") {
+				alert("내용을 입력해주세요");
+			} 
+			else {
+				alert("공지사항이 등록되었습니다.")
+				var comSubmit = new ComSubmit("frm");
+				comSubmit.setUrl("<c:url value='/admin/newNotice' />");
+				comSubmit.submit();
+				}
 
-	}
-	
-	function fn_insertNotice(){
-		var comSubmit = new ComSubmit("noticeWrite");
-		comSubmit.setUrl("<c:url value='/admin/newNotice' />");
-		comSubmit.submit();
 		}
-	
-	</script>
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
-	
-</body>
 
+	function fn_noticeList() {
+		location.href = "<c:url value='/admin/noticeList'/>";
+	}
+</script>	
+
+</body>
 </html>

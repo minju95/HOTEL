@@ -19,7 +19,7 @@ import hotel.common.logger.LoggerAspect;
 @Controller
 public class AdminFacilitiesController {
 	Logger log = Logger.getLogger(this.getClass());
-	//ㅂㅏㄱㅁㅣㄴㅈㅜ
+	
 	@Resource(name="AdminFacilitiesService")
 	private AdminFacilitiesService adminFacilitiesService;
 	
@@ -65,7 +65,7 @@ public class AdminFacilitiesController {
 		ModelAndView mv = new ModelAndView("redirect:/admin/facilitiesList");
 		adminFacilitiesService.insertFacilities(commandMap.getMap(), request);
 		return mv;
-		}
+	}
 	
 	//부대시설 상세보기
 	@RequestMapping(value="admin/facilitiesDetail")

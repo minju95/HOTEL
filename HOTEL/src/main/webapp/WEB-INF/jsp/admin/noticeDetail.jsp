@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
 	pageContext.setAttribute("br", "<br/>");
 	pageContext.setAttribute("cn", "\n");
@@ -7,155 +9,123 @@
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
-<style>
-    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
-	h2{width: 800px;  display: block; text-align: center;}
-	#PAGE_NAVI{text-align: center;margin-top:10%}
-	
-	.div-about{
-	 background-image:url(/hotel/image/hotel.jpg);
-	 height:250px;
-	color: #e5a880;
-	background-repeat:no-repeat;
-	background-size:100%;
-	}
-	
-	a{
-	text-decoration: none;
-	color: black;
-	}
+<%@include file="/WEB-INF/include/mata.jsp" %>
 
-</style>
 
-<title>공지사항 상세보기</title>
-<!-- 부트스트랩 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>N O T I C E</h1>
-	</div>
-<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-	<h3 align="center">공지사항 상세보기</h3>
-	<br>
-
-	<form id="frm">
-	<input type="hidden" id="NOTICE_ID" name="NOTICE_ID" value="${map.NOTICE_ID }">
-	
-	<table name="noticeDetail" class="table table-striped" align="center" style="width: 800px;" >
+<title>부대시설 등록</title>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+  
+  
+<div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">공지사항 상세</h3>
+              </div>
+	<form class="form-horizontal" id="frm" name="frm"  action="<c:url value='/adminItemWrite'/>" method="post" enctype="multipart/form-data">
+		<input type="hidden" id="NOTICE_ID" name="NOTICE_ID" value="${map.NOTICE_ID }">
+		<div class="card-body">
 		
-			<tr>
-				<th width="15%">제목</th>
-				<td width="85%">${map.NOTICE_TITLE}</td>
-				
-			</tr>
-		 	<tr>
-				<th>작성일</th>
-				<td>${map.NOTICE_DATE}</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td colspan="5" height="100">${fn:replace(map.NOTICE_CONTENT, cn, br)}</td>
-			</tr>
-			<tr>
-				<th>이미지</th>
-						<c:choose>
-							<c:when test="${map.NOTICE_IMG != NULL}">
-							<td>
-								<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
-								<!-- 이미지_상대경로 -->
-								<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
-								<br>
-								<!-- 이미지명 -->
-								${map.NOTICE_IMG}
-							</td>
-									</c:when>
-									<c:otherwise>
-										<td>업로드된 이미지가 없습니다.</td>
-									</c:otherwise>	
+		<div class="form-group row">
+                    <label for="ITEM_NUM" class="col-sm-2 col-form-label">제목</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="map.NOTICE_TITLE" name="map.NOTICE_TITLE" value="${map.NOTICE_TITLE}" readonly>
+                    </div>
+        </div>
+        <div class="form-group row">
+                    <label for="ITEM_NAME" class="col-sm-2 col-form-label">작성일</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="map.NOTICE_DATE" name="map.NOTICE_DATE" value="${map.NOTICE_DATE}"  readonly>
+                    </div>
+        </div>
+        
+         <div class="form-group row">
+                    <label for="ITEM_NAME" class="col-sm-2 col-form-label">공개여부</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="map.NOTICE_ISVIEW" name="map.NOTICE_ISVIEW" value="${map.NOTICE_ISVIEW}"  readonly>
+                    </div>
+        </div>
+        
+          <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
+                     <div class="col-sm-10">
+                       <textarea class="form-control" rows="10" id="NOTICE_CONTENT" name="NOTICE_CONTENT"  readonly>${map.NOTICE_CONTENT}</textarea>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">사진</label>
+                   
+                    <div class="col-sm-10">
+                    <c:choose>
+                    	<c:when test="${map.NOTICE_IMG != NULL}">
+                      <div class="custom-file" >
+                      	<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
+                      	<!-- 이미지_상대경로 -->
+                      	<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:800px; heigth:600px;">
+                      	<br>${map.NOTICE_IMG}
+                      </div>
+                      </c:when>
+					<c:otherwise>
+					업로드된 이미지가 없습니다.
+					</c:otherwise>	
 						</c:choose>
-					
-					<%-- <td align="center">
-						${map.NOTICE_IMG}
-						<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:200px; heigth:120px;">
-					</td> --%>
-			</tr>
-			
-			<tr>
-				<th>공개여부</th>
-				<td>${map.NOTICE_ISVIEW}</td>
-			</tr>
-		</tbody>
-	
+                   </div>
+                 
+                  
+			</div>
+		</form>
+		</div>
+		
+		
+	<table align="center">
+		<tr>
+			<td><input type="button" class="btn btn-block btn-outline-success" onclick="fn_noticeModifyForm()" value="수정하기">
+			</td>
+			<td><input type="button" class="btn btn-block btn-outline-danger" onclick="fn_noticeDelete()" value="삭제하기">
+			</td>
+			<td><input type="button" class="btn btn-block btn-outline-primary" onclick="fn_noticeList() " value="목록으로"/>
+			</td>
+		</tr>
 	</table>
 
-	</form>
-	<center>
-		<a href="#this" class="btn" id="modify">수정하기</a> <a href="#this"
-			class="btn" id="delete">삭제하기</a> <a href="#this" class="btn"
-			id="list">목록으로</a>
-	</center>
-	<br>
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>
-
-	<script>
-		$(document).ready(function() {
-			$("#list").on("click", function(e) { //목록으로 누르면
-				e.preventDefault();
-				fn_facList();
-			});
-
-			$("#modify").on("click", function(e) { //수정하기 누르면
-				e.preventDefault();
-				fn_facModifyForm();
-			});
-
-			$("#delete").on("click", function(e) { //삭제하기 누르면
-				e.preventDefault();
-				fn_deleteNotice();
-			});
-		});
-
-		function fn_facList(pageNo) { //리스트로 이동하는 함수
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/admin/noticeList' />");
-			comSubmit.submit();
-
-		}
-
-		function fn_facModifyForm() {
-			var NOTICE_ID = "${map.NOTICE_ID}";
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/admin/modifyNoticeForm' />");
-			comSubmit.addParam("NOTICE_ID", NOTICE_ID);
-			comSubmit.submit();
-		}
-
-		function fn_deleteNotice() {
-			if (confirm("삭제하시겠습니까?") == true) {
-				
-				alert("삭제되었습니다.");
-				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/admin/deleteNotice' />");
-				comSubmit.addParam("NOTICE_ID", $("#NOTICE_ID").val());
-				comSubmit.submit();
-			} else {
-				return;
-			}
-		}
-	</script>
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+	</div>
+	 </div>
+	 </div>
 </body>
+<%@include file="/WEB-INF/include/footer.jsp" %>
+<!-- jQuery -->
+<%@include file="/WEB-INF/include/script.jsp" %>
+
+<script>
+function fn_noticeList() { //리스트로 이동하는 함수
+	location.href = "<c:url value='/admin/noticeList'/>";
+}
+
+function fn_noticeModifyForm() {
+	 location.href='<c:url value="/admin/modifyNoticeForm?NOTICE_ID=${map.NOTICE_ID}"/>';
+}
+
+ function fn_noticeDelete() {
+	if (confirm("삭제하시겠습니까?") == true) {
+		location.href='<c:url value="/admin/deleteNotice?NOTICE_ID=${map.NOTICE_ID}"/>'
+		alert("삭제되었습니다.");
+	} else {
+		return false;
+	}
+ }
+</script>
 </html>

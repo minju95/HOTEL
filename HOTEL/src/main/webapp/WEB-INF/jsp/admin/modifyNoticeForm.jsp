@@ -1,174 +1,140 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<% 
+	pageContext.setAttribute("br", "<br/>");
+	pageContext.setAttribute("cn", "\n");
+%> 
 
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
-<style>
-    #noticeModify{margin-left: calc(50% - 400px);width: 800px;} 
-	
-	h2{width: 800px;  display: block; text-align: center;}
-	
-	.div-about{ 
- 	background-image:url(/hotel/image/hotel.jpg);
-	height:250px;
-	color: #e5a880;
-	background-repeat:no-repeat;
-	background-size:100%;
-	}
-	
-	a{
-	text-decoration: none;
-	color: black;
-	}
-
-</style>
-<title>공지사항 수정폼</title>
-
-<!-- 부트스트랩  -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
+<%@include file="/WEB-INF/include/mata.jsp" %>
 </head>
 
-<body>
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center" >
-   <br>
-   <br>
-   <br>
-   <h1>N O T I C E</h1></div>
-   <%@ include file="/WEB-INF/include/include-admin.jspf"%>
-   <br>
-<h3 align="center">공지사항 수정</h3>
-<br>
-	<form id="noticeModify"  name="noticeModify" enctype="multipart/form-data">
-	<table name="noticeModify" class="table table-striped" style="width: 800px;" >
+<title>공지사항 수정</title>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+  
+  
+<div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">공지사항 수정</h3>
+              </div>
+              <!-- /.card-header -->
+              <!-- form start -->
+              <form  id="frm"  action="<c:url value='/admin/modifyNotice'/>" method="post" name="frm"
+              enctype="multipart/form-data">
+                <div class="card-body">
+               
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">제목</label>
+                    <div class="col-sm-10">
+                      <input type="hidden" id="NOTICE_ID" name="NOTICE_ID" value="${map.NOTICE_ID}">
+                      <input class="form-control" type="text"  id="NOTICE_TITLE" name="NOTICE_TITLE" value="${map.NOTICE_TITLE}"  placeholder="회원 ID" >
+                    </div>
+                  </div>
+                  
+                 <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="10" id="NOTICE_CONTENT" name="NOTICE_CONTENT">${map.NOTICE_CONTENT}</textarea>
+                    </div>
+                   </div>
+                   
+                   
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">사진</label>
+                   
+                    <div class="col-sm-10">
+                    <c:choose>
+                    	<c:when test="${map.NOTICE_IMG != NULL}">
+                      <div class="custom-file" >
+                      	<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
+                      	<!-- 이미지_상대경로 -->
+                      	<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:800px; heigth:600px;">
+                      	<br>업로드된 파일명 : ${map.NOTICE_IMG}
 
-		<tbody>
-			<tr>
-				<th width="30%">제목</th>
-				<td width="70%">
-					<input type="hidden" id="NOTICE_ID" name="NOTICE_ID" value="${map.NOTICE_ID}">
-					<input type="text" id="NOTICE_TITLE" name="NOTICE_TITLE" size="60" value="${map.NOTICE_TITLE}">
-
-				</td>
-			</tr>
-			<tr>
-				<th>내용</th>
-				<td>
-					<textarea rows="10" cols="80" title="내용" id="NOTICE_CONTENT" name="NOTICE_CONTENT">${map.NOTICE_CONTENT}</textarea>
-
-				</td>
-			</tr>
-			<tr>
-				<th>이미지</th>
-				<%-- <c:choose>
-					<c:when test="${map.NOTICE_IMG != NULL}">
-					 <td>
-						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
-						<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
-						<br>
-						업로드된 파일명 : ${map.NOTICE_IMG}
-						<br>
-						<input type="file" name="newFile" id="newFile">
-					</td>
-				</c:when>
-				<c:otherwise>
-					<td>
-					업로드된 이미지가 없습니다.<br>
+		                <input type="button" class="btn btn-block btn-outline-success" onclick="fn_removeImg()"
+		                style="width: 120px; height:30px; line-height: 10px; text-align: center;"
+		                value="이미지 삭제"><br>
+						<div class="custom-file">
+	                        <input type="file" class="custom-file-input" id="newFile" name="newFile">
+	                        <label class="custom-file-label" for="newFile">Choose file</label>
+						</div>
+                      </div>
+                      </c:when>
+					<c:otherwise>
+					업로드된 이미지가 없습니다.
+					<br>
 					**파일 추가를 원하시면 아래 '파일 선택' 버튼을 클릭하여 이미지를 업로드해주세요.<br><br>
 						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
-						<input type="file" name="newFile" id="newFile">
-					</td>
-				</c:otherwise>
-				</c:choose> --%>
-				
-				<c:choose>
-					<c:when test="${map.NOTICE_IMG != NULL}">
-					 <td>
-						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
-						<img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:600px; heigth:600px;">
-						<br>
-						업로드된 파일명 : ${map.NOTICE_IMG}
-						<br>
-						<input type="file" name="newFile" id="newFile">
-						<br>
-						<a href="#this" class="btn" id="removeImg">이미지 삭제</a>
-					</td>
-				</c:when>
-				<c:otherwise>
-					<td>
-					업로드된 이미지가 없습니다.<br>
-					**파일 추가를 원하시면 아래 '파일 선택' 버튼을 클릭하여 이미지를 업로드해주세요.<br><br>
-						<input type="hidden" name="orgFile" value="${map.NOTICE_IMG}" id="orgFile">
-						<input type="file" name="newFile" id="newFile">
-					</td>
-				</c:otherwise>
-				</c:choose>
-			</tr>
-			<tr>
-				<th>공개여부</th>
-				<td>
-					<input type="radio" id="NOTICE_ISVIEW" name="NOTICE_ISVIEW" value=Y>공개&nbsp;
-					<input type="radio" id="NOTICE_ISVIEW" name="NOTICE_ISVIEW" value=N>비공개
+						<div class="custom-file">
+	                        <input type="file" class="custom-file-input" id="newFile" name="newFile">
+	                        <label class="custom-file-label" for="newFile">Choose file</label>
+						</div>
+					</c:otherwise>	
+						</c:choose>
+                   </div>
+					</div>
 
-				</td>
-			</tr>
-		</tbody>
-	</table>
-	</form>
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">공개여부</label>
+                    <div class="col-sm-6">
+                      <div class="form-check" style="display: inline-block;">
+                          <input class="form-check-input" type="radio" name="NOTICE_ISVIEW" id="radio1" value=Y>
+                          <label class="form-check-label" for="radio1">공개</label>
+                      </div>&nbsp;&nbsp;&nbsp;
+                      <div class="form-check" style="display: inline-block;">
+                          <input class="form-check-input" type="radio" name="NOTICE_ISVIEW" id="radio2" value=N>
+                          <label class="form-check-label" for="radio2">비공개</label>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+              </form>
 	
-	<center>
-		<a href="#this" class="btn" id="modify">수정하기</a>
-		<a href="#this" class="btn" id="list">목록으로</a>
-	</center>
-	<br>
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
-	
-	<script>
-		$(document).ready(function() {
-			$("#list").on("click", function(e) { //'목록으로' 클릭시
-				e.preventDefault();
-				fn_noticeList();
-			});
-
-			$("#modify").on("click", function(e) { //'수정하기' 클릭시
-				e.preventDefault();
-				fn_noticeModify();
-			});
-			
-			$("#modify").on("click", function(e) { //'이미지 삭제' 클릭시
-				e.preventDefault();
-				fn_removeImg();
-			});
-			
-		});
-
-	function fn_noticeList(pageNo){ //리스트로 이동하는 함수
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/admin/noticeList' />");
-		comSubmit.submit();
-		
-	}  
-	
-	function fn_noticeModify(obj){
-		var comSubmit = new ComSubmit("noticeModify");
-		comSubmit.setUrl("<c:url value='/admin/modifyNotice' />");
-		comSubmit.submit();
+	<table align="center">
+	<tr>
+		<td><input type="button" class="btn btn-block btn-outline-success" onclick="location.href='<c:url value="/admin/noticeList"/>'" value="목록으로">
+		</td>
+		<td><input type="submit" class="btn btn-block btn-outline-primary" onclick="fn_noticeModify()" value="공지 수정">
+		</td>
+	</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+	<%@include file="/WEB-INF/include/footer.jsp" %>
+<!-- jQuery -->
+<%@include file="/WEB-INF/include/script.jsp" %>
+<script>
+	 function fn_noticeModify(obj){
+		var comSubmit = new ComSubmit("frm");
+				comSubmit.setUrl("<c:url value='/admin/modifyNotice' />");
+				comSubmit.submit();
 	}
 
 	function fn_removeImg() {
-		var comSubmit = new ComSubmit("removeImg");
+		/* var comSubmit = new ComSubmit("removeImg");
 		comSubmit.setUrl = ("<c:url value='/admin/removeImg'/>");
-		comSubmit.submit();
+		comSubmit.submit(); */
 	}
-	</script>
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+	</script>	
 
-	</body>
+</body>
 </html>

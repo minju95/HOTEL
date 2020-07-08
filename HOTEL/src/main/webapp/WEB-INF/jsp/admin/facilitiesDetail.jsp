@@ -1,172 +1,143 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <% 
 	pageContext.setAttribute("br", "<br/>");
 	pageContext.setAttribute("cn", "\n");
-%>
-
+%> 
 <!DOCTYPE html>
 <html>
 <head>
-<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
+<%@include file="/WEB-INF/include/mata.jsp" %>
+
 
 <title>부대시설 상세보기</title>
-
-<style>
-    #notice{margin-left: calc(50% - 400px);width: 800px;text-align: center} 
-	h2{width: 800px;  display: block; text-align: center;}
-	
-	#PAGE_NAVI{text-align: center;margin-top:10%}
-
-	.div-about{
- 	background-image:url(/hotel/image/hotel.jpg);
-	height:250px;
-	color: #e5a880;
-	background-repeat:no-repeat;
-	background-size:100%;
-	}
-	a{
-	text-decoration: none;
-	color: black;
-	}
-</style>
-
-<!-- 부트스트랩 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center" >
-   <br><br><br>
-   <h1>F A C I L I T I E S </h1>
-</div>
-	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-<h3 align="center">부대시설 상세보기</h3>
-<br>
-	<form id="frm">
-	<table name="facDetail" class="table table-striped" align="center" style="width: 1000px;" >
-		<thead>
-			<tr>
-				<th width="20%" scope="row">부대시설명</th>
-				<th width="20%" scope="row">위치</th>
-				<th width="20%" scope="row">운영시간</th>
-				<th width="20%" scope="row">전화번호</th>
-				<th width="20%" scope="row">시설</th>
-			</tr>
-		</thead>
-		<tbody>
-		 	<tr>
-				<td>${map.FAC_HOTEL_NAME}</td>
-				<td>${map.FAC_HOTEL_LOCATION}</td>
-				<td>${map.FAC_HOTEL_TIME}</td>
-				<td>${map.FAC_HOTEL_PHONE}</td>
-				<td>${map.FAC_HOTEL_FAC}</td>
-			</tr>
-		</tbody>
-		<tbody>
-			<tr>
-				<th>내용</th>
-			</tr>
-			<tr>
-				<td colspan="5" height="100" style="padding-left:50px;">
-					${fn:replace(map.FAC_HOTEL_CONTENT, cn, br)}
-				</td>
-			</tr>
-			
-			<tr>
-				<th>세부사항</th>
-			</tr>
-			<tr>
-				<td colspan="5" height="100" style="padding-left:50px;">${fn:replace(map.FAC_HOTEL_DETAIL, cn, br)}
-				</td>
-			</tr>
-			<tr>
-			 <th scope="row">이미지</th>
-			<td colspan="4">
-				<c:forEach var="row" items="${list }">
-					<p>
-						<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
-							
-						<!-- 이미지_상대경로 -->
-						<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}"
-							style = "width:600px; heigth:600px;">
-						<br>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">
+  
+  
+<div class="card card-info">
+              <div class="card-header">
+                <h3 class="card-title">부대시설 상세</h3>
+              </div>
+	<form class="form-horizontal" id="frm" name="frm"  action="<c:url value='/adminItemWrite'/>" method="post" enctype="multipart/form-data">
+		<div class="card-body">
+		
+		<div class="form-group row">
+                    <label for="ITEM_NUM" class="col-sm-2 col-form-label">부대시설명</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="FAC_HOTEL_NAME" name="FAC_HOTEL_NAME" value="${map.FAC_HOTEL_NAME}" readonly>
+                    </div>
+        </div>
+        <div class="form-group row">
+                    <label for="ITEM_NAME" class="col-sm-2 col-form-label">위치</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="FAC_HOTEL_LOCATION" name="FAC_HOTEL_LOCATION" value="${map.FAC_HOTEL_LOCATION}"  readonly>
+                    </div>
+        </div>
+          <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
+                    <div class="col-sm-10">
+                      <input class="form-control" type="text"  id="FAC_HOTEL_PHONE" name="FAC_HOTEL_PHONE" value="${map.FAC_HOTEL_PHONE}" readonly>
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">시설</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="5" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC" readonly >${map.FAC_HOTEL_FAC}</textarea>
+                    </div>
+                   </div>
+                   
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="5" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT" readonly>${map.FAC_HOTEL_FAC}</textarea>
+                    </div>
+                  </div>
+                  
+                     
+                  <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">세부사항</label>
+                    <div class="col-sm-10">
+                       <textarea class="form-control" rows="5" id="FAC_HOTEL_DETAIL" name="FAC_HOTEL_DETAIL"  readonly>${map.FAC_HOTEL_DETAIL}</textarea>
+                    </div>
+                  </div>
+                  
+                   <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">사진</label>
+                   
+                    <div class="col-sm-10">
+                      <c:forEach var="row" items="${list }">
+                    
+                      <div class="custom-file" >
+                      	<input type="hidden" id="FAC_HOTEL_ID" value="${row.FAC_HOTEL_ID }">
+                      	<!-- 이미지_상대경로 -->
+                      	<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}" style = "width:800px; heigth:600px;">
+                      	<br>
 						<!-- 이미지 파일명 -->
 						<a href="#this" name="HOTEL_IMGS_FILE">${row.HOTEL_IMGS_FILE }</a>
-					</p>
-					<!-- 이미지_절대경로 -->
-					<%-- <img src= "C:/Users/학생용/git/HOTEL/HOTEL/src/main/webapp/resources/${row.HOTEL_IMGS_FILE}"
-						style = "width:200px; heigth:120px;"> --%>
-				</c:forEach>
-
+                      </div>
+                      </c:forEach>
+                      
+                    </div>
+         			</div>
+			</div>
+		</form>
+		</div>
+		
+		
+		
+	<table align="center">
+		<tr>
+			<td><input type="button" class="btn btn-block btn-outline-success" onclick="fn_facModifyForm()" value="수정하기">
 			</td>
-			</tr>
-
-		</tbody>
+			<td><input type="button" class="btn btn-block btn-outline-danger" onclick="fn_facDelete()" value="삭제하기">
+			</td>
+			<td><input type="button" class="btn btn-block btn-outline-primary" onclick="fn_facList() " value="목록으로"/>
+			</td>
+		</tr>
 	</table>
-	</form>
-	<center>
-		<a href="#this" class="btn" id="modify">수정하기</a>
-		<a href="#this" class="btn" id="delete">삭제하기</a>
-		<a href="#this" class="btn" id="list">목록으로</a>
-	</center>
-	<br>
-	
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
-	
-	<script>
-		$(document).ready(function() {
-			$("#list").on("click", function(e) { //목록으로 누르면
-				e.preventDefault();
-				fn_facList();
-			});
-			
-			$("#modify").on("click", function(e) { //수정하기 누르면
-				e.preventDefault();
-				fn_facModifyForm();
-			});
-			
-			$("#delete").on("click", function(e) { //'삭제하기' 누르면
-				e.preventDefault();
-				fn_facDelete();
-			});
-		});
 
-		function fn_facList(pageNo) { //리스트로 이동하는 함수
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/admin/facilitiesList' />");
-			comSubmit.submit();
+	</div>
+	 </div>
+	 </div>
+</body>
+<%@include file="/WEB-INF/include/footer.jsp" %>
+<!-- jQuery -->
+<%@include file="/WEB-INF/include/script.jsp" %>
 
-		}
+<script>
+function fn_facList() { //리스트로 이동하는 함수
+	location.href = "<c:url value='/admin/facilitiesList'/>";
+}
 
-		function fn_facModifyForm() {
-			var FAC_HOTEL_ID = "${map.FAC_HOTEL_ID}";
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/admin/modifyFacilitiesForm' />");
-			comSubmit.addParam("FAC_HOTEL_ID", FAC_HOTEL_ID);
-			comSubmit.submit();
-		}
+function fn_facModifyForm() {
+	 location.href='<c:url value="/admin/modifyFacilitiesForm?FAC_HOTEL_ID=${map.FAC_HOTEL_ID}"/>'
+}
 
-		function fn_facDelete() {
-			if (confirm("삭제하시겠습니까?") == true) {
-				alert("삭제되었습니다.");
-				var comSubmit = new ComSubmit();
-				comSubmit.setUrl("<c:url value='/admin/deleteFacilities' />");
-				comSubmit.addParam("FAC_HOTEL_ID", $("#FAC_HOTEL_ID").val());
-				comSubmit.submit();
-			} else {
-				return;
-			}
-		}
-	</script>
-	
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
-	</body>
+ function fn_facDelete() {
+	if (confirm("삭제하시겠습니까?") == true) {
+		location.href='<c:url value="/admin/deleteFacilities?FAC_HOTEL_ID=${map.FAC_HOTEL_ID}"/>'
+		alert("삭제되었습니다.");
+	} else {
+		return false;
+	}
+ }
+</script>
 </html>
+
+

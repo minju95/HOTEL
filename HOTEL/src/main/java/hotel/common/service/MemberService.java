@@ -16,6 +16,10 @@ public interface MemberService {
 	public void deleteMember(Map<String, Object> map) throws Exception;
 
 	public boolean send(String subject, String text, String from, String to, String filePath);	
+	
+	
+	Map<String, Object> selectMemInfo2(Map<String, Object> map) throws Exception;
+
 	 /* 
 	 * void updateBoard(Map<String, Object> map) throws Exception;
 	 * 

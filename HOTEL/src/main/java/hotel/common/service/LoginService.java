@@ -6,10 +6,6 @@ import java.util.Map;
 
 public interface LoginService {
 
-	/*
-	 * List<Map<String, Object>> selectBoardList(Map<String, Object> map) throws
-	 * Exception;
-	 */
 	
 	Map<String, Object> selectLogin(Map<String, Object> map) throws Exception;
 	
@@ -20,10 +16,11 @@ public interface LoginService {
 	void updatePwd(Map<String, Object> map) throws Exception;
 	
 	public boolean send(String subject, String text, String from, String to, String filePath);	
-	 /* 
-	 * void updateBoard(Map<String, Object> map) throws Exception;
-	 * 
-	 * void deleteBoard(Map<String, Object> map) throws Exception;
-	 */
-
+	/* 메일 전송
+	 * subject: 제목
+	 * text: 내용
+	 * from: 보내는 메일 주소 
+	 * to: 받는 메일 주소 
+	 * filePath: 첨부파일 경로, 첨부파일이 없을 경우 null처리
+	 * */
 }

@@ -32,7 +32,7 @@
 .stepbox {
 color: #333; font-size: 16px; line-height: 1.6;
 word-break: keep-all; font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif; letter-spacing: -1px;
--webkit-font-smoothing: antialiased; outline: 0; margin: 0 auto; min-width: 320px;
+-webkit-font-smoothing: antialiased; outline: 0; margin: 0 auto; min-width: 350px;
 padding: 0 15px; max-width: 760px;
 }
 
@@ -47,7 +47,7 @@ letter-spacing: -1px;
 outline: 0;
 padding: 0;
 list-style: none;
-margin: 0 -1px;
+
 }
 
 .inner {line-height: 1.6;
@@ -56,7 +56,6 @@ font-size: 18px;
 text-align: center;
 word-break: keep-all;
 font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
-box-sizing: border-box;
 letter-spacing: -1px;
 -webkit-font-smoothing: antialiased;
 outline: 0;
@@ -74,7 +73,6 @@ font-size: 18px;
 text-align: center;
 word-break: keep-all;
 font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-serif;
-box-sizing: border-box;
 letter-spacing: -1px;
 -webkit-font-smoothing: antialiased;
 outline: 0;
@@ -94,13 +92,13 @@ font-family: "Open Sans",Noto-lang-Regular,NotoKR-Regular,"Malgun Gothic",sans-s
 letter-spacing: -1px;
 -webkit-font-smoothing: antialiased;
 outline: 0;
-margin: 0;
+margin: 0 auto;
 list-style: none;
 float: left;
 font-size: 18px;
 text-align: center;
 padding: 0 1px;
-width: 33.33%;
+width: 31%;
 }
 
 .text {
@@ -132,7 +130,7 @@ display: inline-block;
 .myForm-group {
 	width: 700px;
 	height: 800px;
-	margin: 0 600px;
+	margin: 0 auto;
 	margin-top: 80px;
 }
 
@@ -160,17 +158,22 @@ border:none;
 background-color: #ad9e87;
 color: #fff;
 }
+.box {
+width: 800px;
+height: 1000px;
+margin: 0 auto;
+}
 </style>
 </head>
 <body>
 
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<form id="signUp" method="POST" action="/hotel/signUp">
+	<form id="signUp" method="POST" action="/hotel/signUpComplete">
 	<div class="signUpText">
 		<h3 style="margin-top: 100px;">회원가입</h3>
 	</div>
 		
-		
+	<div class="box">	
         <div class="stepbox">
            <ol class="stepbox__wrap col-3">
                 <li class="stepbox__list">
@@ -190,8 +193,9 @@ color: #fff;
                 </li>
             </ol>          
         </div>
+        <br><br><br>
 		
-<br><br><br>
+
 		<div class="myForm-group">
 			
 			<div class="form-group">
@@ -254,27 +258,19 @@ color: #fff;
 				</div>
 			</div>
 			
-			<button type="button" id="main" class="buttons" onclick="location.href='/hotel/main'">홈으로</button>
-			
-			<input type="submit" id="signUpBtn" class="buttons" onclick="fn_signUp(); return false;" value="가입하기">
+			<button type="button" id="main" class="buttons" onclick="location.href='/hotel/signUpTerms'">이전</button>
+			<input type="submit" id="signUpBtn" class="buttons" onclick="fn_signUp(); return false;" value="다음">
 		</div>
+	</div>
 	</form>
 	<%-- <div>
 	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 	</div> --%>
-	<script>
-	//공란 확인
-	/* $(document).ready(function() {
-		$("#signUpBtn").click(function(e) {
-			e.preventDefault();
-			fn_signUp();
-			alert("넘어갔니");
-		});
-	}); */
-
+<script>
 	$(document).on("click", "#signUpBtn", function(){
-	    alert('클릭됨');
-	}); 
+	    //alert('클릭됨');
+	});
+	
 	function fn_signUp() {
 		if ($("#MEM_USERID").val().length < 1) {
 			alert("아이디를 입력해주세요.");
@@ -295,31 +291,24 @@ color: #fff;
 		} else {
 			$("#signUp").submit();
 			//alert("가입이 완료되었습니다.");
+			
 		}
 	}
-
 	
-		$(function() {
-			$(document).ready(function() {
-				$("#isCheck_EmailForm").hide();
+	$(function() {
+		$(document).ready(function() {
+			$("#isCheck_EmailForm").hide();
+	});
 
-			});
-
-			// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
-			$("#MEM_USERID")
-					.blur(
-							function() {
-
-								var mem_userid = $('#MEM_USERID').val();
-								$
-										.ajax({
-											url : '${pageContext.request.contextPath}/idCheck?mem_userid='
-													+ mem_userid,
-											type : 'get',
-											success : function(data) {
-												console
-														.log("1 = 중복o / 0 = 중복x : "
-																+ data);
+	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
+	$("#MEM_USERID").blur(
+		function() {
+			var mem_userid = $('#MEM_USERID').val();
+			$.ajax({
+				url : '${pageContext.request.contextPath}/idCheck?mem_userid='+ mem_userid,
+				type : 'get',
+				success : function(data) {
+					console.log("1 = 중복o / 0 = 중복x : "+ data);
 
 												if (data > 0) {
 

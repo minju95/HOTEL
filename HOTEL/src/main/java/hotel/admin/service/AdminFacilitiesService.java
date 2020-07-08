@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 @Service("AdminFacilitiesService")
 public interface AdminFacilitiesService {
-	
-	
 	//리스트
 	List<Map<String, Object>> selectFacList(Map<String, Object> map) throws Exception;
 	
@@ -26,5 +24,4 @@ public interface AdminFacilitiesService {
 	
 	//삭제
 	void deleteFacilities(Map<String, Object> map) throws Exception;
-		
 }

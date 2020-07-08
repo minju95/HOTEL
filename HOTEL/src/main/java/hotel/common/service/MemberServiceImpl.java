@@ -88,6 +88,12 @@ public class MemberServiceImpl implements MemberService{
         return false;
 	}
 
+
+	@Override
+	public Map<String, Object> selectMemInfo2(Map<String, Object> map) throws Exception {
+		return memberDAO.selectMemInfo2(map);
+	}
+
 	
 
 	/*

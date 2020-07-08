@@ -44,12 +44,11 @@ public class MainController {
   	  
   	  //객실소개
   	  List<Map<String, Object>> roomView = reservationService.roomView(commandMap.getMap());
-  	mv.addObject("roomView", roomView);
+  	  mv.addObject("roomView", roomView);
   	  
   	  System.out.println(mv);
 	
-	  return mv; }
-	 
-	
+	  return mv;
+	  }
 	
 }

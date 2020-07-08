@@ -23,13 +23,16 @@ import hotel.common.common.CommandMap;
 @Controller
 public class AdminNoticeController {
 Logger log = Logger.getLogger(this.getClass());
-//private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\";
 
-private String uploadPath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc2
+//private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\";
+//private String uploadPath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc2
+
+private String uploadPath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //성환 pc
+
 	@Resource(name="AdminNoticeService")
 	private AdminNoticeService adminNoticeService;
 	
-	//공지사항  목록 조회
+	//공지사항  목록
 	@RequestMapping(value="/admin/noticeList")
 	public ModelAndView boardList(CommandMap commandMap) throws Exception{
 	    ModelAndView mv = new ModelAndView("/admin/noticeList");
@@ -39,6 +42,7 @@ private String uploadPath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\weba
 	    return mv;
 	}
 	
+	//공지사항 목록 (json형태)
 	@RequestMapping(value="/admin/selectNoticeList")
 	public ModelAndView selectFacList(CommandMap commandMap)throws Exception{
 		ModelAndView mv = new ModelAndView("jsonView");
@@ -112,6 +116,7 @@ private String uploadPath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\weba
 		return mv;
 		
 	}
+	
 	//공지사항 삭제
 	@RequestMapping(value="admin/deleteNotice")
 	public ModelAndView deleteNotice(CommandMap commandMap) throws Exception{
@@ -172,8 +177,6 @@ private String uploadPath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\weba
 		}
 		
 		//새로 등록된 파일이 없고 기존 이미지를 없애려면?
-		
-		
 		adminNoticeService.modifyNotice(commandMap.getMap(), request);
 		
 		mv.addObject("NOTICE_ID", commandMap.get("NOTICE_ID"));
@@ -182,7 +185,4 @@ private String uploadPath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\weba
 		return mv;
 		
 	}
-	
-	
-	
 }

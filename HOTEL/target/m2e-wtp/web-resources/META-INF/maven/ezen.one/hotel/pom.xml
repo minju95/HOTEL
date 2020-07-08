@@ -33,7 +33,7 @@
 	</repositories>
 	<dependencies>
 	
-	<!-- emailAuth -->	
+	<!-- emailAuth(이메일 인증) -->	
 	<dependency>
   	  <groupId>javax.mail</groupId>
   	  <artifactId>mail</artifactId>

@@ -14,14 +14,12 @@ import org.springframework.web.servlet.ModelAndView;
 public class AdminMainController {
 	Logger log = Logger.getLogger(this.getClass());
 
-	//관리자 페이지 이동 (메인페이지 -> 일별 객실 현황)
-	@RequestMapping(value="/admin")
+	//관리자 페이지 이동 
+	@RequestMapping(value="/admin/main")
 	public ModelAndView modifyMemForm() throws Exception{
-		ModelAndView mv = new ModelAndView("/admin/resDayList");
-		// 내용 작성
+		ModelAndView mv = new ModelAndView("/admin/main");
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		String aa = request.getSession().getServletContext().getRealPath("/resources/");
-
 		System.out.println(aa);
 
 		return mv;

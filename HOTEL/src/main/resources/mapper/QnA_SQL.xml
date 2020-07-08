@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="qna">
+<!-- Q&A 작성 -->
+<insert id="insertQNA" parameterType="hashmap">
+<![CDATA[
+	INSERT INTO QNA(
+		QNA_NUM,
+		QNA_TITLE,
+		QNA_CONTENT,
+		QNA_DATE,
+		QNA_CATE,
+		QNA_RSTATE,
+		MEM_USERID)
+	VALUES(
+		SEQ_QNA_NUM.NEXTVAL,  
+	    #{QNA_TITLE},
+		#{QNA_CONTENT},
+		SYSDATE,
+		#{QNA_CATE}, 
+		'N',
+		(SELECT MEM_USERID FROM MEMBER WHERE MEM_USERID=#{MEM_USERID})
+	)
+]]>			
+</insert>
+
+<select id="selectQnAList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/>
+<![CDATA[
+SELECT
+	ROWNUM RNUM, 
+	QNA_NUM,
+	QNA_TITLE,
+	TO_CHAR(QNA_DATE,'yyyy/mm/dd')QNA_DATE,
+	QNA_RSTATE,
+	QNA_CATE
+FROM QNA
+ORDER BY
+	QNA_NUM desc
+]]>
+<include refid="common.pagingPost"/>
+</select>
+
+</mapper>
+ 

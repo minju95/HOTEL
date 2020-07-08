@@ -116,7 +116,6 @@ $( function() {
 			
 			if (beforefrom != "" && beforefrom >= currentdate) { //param입실 !="" && param입실 >= 오늘
 				var before = beforefrom.split("-");
-				var b = new Date(before[0], before[1]-1, before[2], 0, 0, 0, 0);
 				alert('지난 날짜의 예약은 불가합니다.');
 				$("#fromdate").datepicker("setDate", b);
 				return false;

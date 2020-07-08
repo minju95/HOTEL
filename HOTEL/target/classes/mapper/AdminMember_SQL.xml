@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "//mybatos.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="adminMember">
+<!-- 사용자 정보 불러오기 -->
+<select id="selectMemInfo" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/>
+<![CDATA[
+	SELECT
+		ROWNUM RNUM,
+		MEM_ID,
+       	MEM_USERID,  
+       	MEM_NAME,
+       	TO_CHAR(MEM_JOINDATE, 'YYYY-MM-DD') MEM_JOINDATE
+	FROM 
+		MEMBER
+]]>
+<choose>
+				<when test="searchOption == 'MEM_USERID'">
+					WHERE MEM_USERID LIKE '%${keyword}%' 
+				</when>
+				<otherwise>
+				</otherwise>
+			</choose>
+		<include refid="common.pagingPost"/>
+</select>
+
+
+</mapper>

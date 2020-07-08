@@ -10,8 +10,10 @@
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 	
+	<!--  Spring MVC framework 환경에서 리소스 매핑
+	 -->
 	<mvc:resources mapping="/image/**" location="/resources/"/>
-
+	<mvc:resources mapping="/resources/**" location="/resources/" />  
 	
 	<context:component-scan base-package="hotel" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>

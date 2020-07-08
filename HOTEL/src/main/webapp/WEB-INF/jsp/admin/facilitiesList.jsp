@@ -1,104 +1,90 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
-<head>
-<%@ include file="/WEB-INF/include/include-header.jspf"%>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
+
 <meta charset="UTF-8">
-
-<title>부대시설 리스트</title>
+<%@include file="/WEB-INF/include/mata.jsp" %>
 <style>
-    #facilities{margin-left: calc(50% - 400px);width: 800px;} 
-	h2{width: 800px;  display: block; text-align: center;}
-	
-	#PAGE_NAVI{text-align: center;}
-	
-	.div-about{
- 	background-image:url(/hotel/image/hotel.jpg);
-	height:250px;
-
-	color: #e5a880;
-	background-repeat:no-repeat;
-	background-size:100%;
-	}
-	
-	a{
-	text-decoration: none;
-	color: black;
-	}
-
+#PAGE_NAVI{text-align: center;}
 </style>
-
-<!-- 부트스트랩 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
-</head>
-
-<body>
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center" >
+<title>부대시설 리스트</title>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+      
+   <br><br><br>  
+   <h1 class="m-0 text-dark" align="center">부대시설 리스트</h1>
    <br>
-   <br>
-   <br>
-   <h1>F A C I L I T I E S </h1></div>
-    <%@ include file="/WEB-INF/include/include-admin.jspf"%>  	
-   
-<form id="facilities">
-<h3 align="center">부대시설 관리</h3>
-<br>	
-	<table name="facList" class="table table-striped" align="center" style="width: 800px;" >
-
-		<thead>
-			<tr>
-				<td>번호</td>
-				<td>부대시설명</td>
-				<td>위치</td>
-				<td>운영시간</td>
-				<td>전화번호</td>
-			</tr>
-		</thead>
-		<tbody>
-		</tbody>
-		<tfoot>
-			<tr>
-				<td colspan="5" align="center">
-				<a href="#this" class="btn" id="write" >등록</a>
-				</td>
-			</tr>
-		</tfoot>
-	</table>
-
-	
-	
-	<div id="PAGE_NAVI">
-		<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
-	</div>
-	<br>
-
-            <select id="searchOption" size="1">
-                <option id="FAC_HOTEL_NAME" value="FAC_HOTEL_NAME"
-								selected="selected">부대시설명</option>
-            </select>
-            
-                 <input type="text" size="16" name="keyword"
+   <div class="row">
+          <div class="col-12">
+          	
+<div class="card-body table-responsive p-0">
+	   <form id="facilities">
+	   <div style="float: right">
+			    <select id="searchOption" size="1" style="height: 35px;">
+		                <option id="FAC_HOTEL_NAME" value="FAC_HOTEL_NAME" 
+										selected="selected">부대시설명</option>
+		        </select>
+                 <input type="text" size="16" name="keyword" class="form-control mr-sm-1" style="width: 200px; display: inline-block;"
 							value="${keyword}" placeholder="검색어 입력" onkeyup="enterkey();">
                  <!--검색어를 쓰고 엔터키를 누르면 먹지를 않기때문에 onkeyup="enterkey();를 주는 고 밑이 function으로 연결-->
                  <input type="text" style="display: none;" />
                  <!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
-                 <input type="button" value="검 색" onClick="fn_facList(1)">
-   	</form>
-	<br>
-	
-	<%@ include file="/WEB-INF/include/include-body.jspf"%>		
-	
-	<script>
+                 <input type="button" class="btn btn-secondary my-2 my-sm-0 " value="검 색" onClick="fn_facList(1)">
+	   </div>
+	   <br><br>
+	   
+	   
+	    <table class="table table-head-fixed text-nowrap" name="facList">
+	       <thead>
+			<tr>
+				<th scope="col">공지사항번호</th>
+                <th scope="col">부대시설명</th>
+                <th scope="col">위치</th>
+                <th scope="col">운영시간</th>
+                <th scope="col">전화번호</th>
+			</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	    </table>
+	    
+	    <div id="PAGE_NAVI">
+			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+		</div>
+		<br>
+	    </form>
+	   </div>
+	</div>
+   <!--  row  div  end-->
+    
+</div>
+</div>
+</div>
+</div>    
+</div>
+</div>   
+<%@include file="/WEB-INF/include/footer.jsp" %>
+<!-- jQuery -->
+<%@include file="/WEB-INF/include/script.jsp" %>
+
+</body>
+<script>
 		$(document).ready(function() {
 			fn_facList(1);
 
@@ -113,13 +99,6 @@
 				fn_facList(1);
 			}
 		}
-
-		function fn_facWrite() { //등록 클릭시
-			var comSubmit = new ComSubmit();
-			comSubmit.setUrl("<c:url value='/admin/newFacilitiesForm'/>");
-			comSubmit.submit();
-		}
-
 		function fn_facDetail(obj) { //부대시설명 클릭시
 			var comSubmit = new ComSubmit();
 			comSubmit.setUrl("<c:url value='/admin/facilitiesDetail' />");
@@ -160,9 +139,7 @@
 				gfn_renderPaging(params);
 
 				var str = "";
-				$
-						.each(
-								data.list,
+				$.each(data.list,
 								function(key, value) {
 									str += "<tr>"
 											+ "<td>"
@@ -191,6 +168,5 @@
 			}
 		}
 	</script>
-<%@ include file="/WEB-INF/include/include-footer.jsp"%>
-</body>
+
 </html>
