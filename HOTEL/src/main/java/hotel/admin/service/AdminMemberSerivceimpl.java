@@ -20,8 +20,17 @@ public class AdminMemberSerivceimpl implements AdminMemberService {
 	
 	@Override
 	public List<Map<String, Object>> selectMemInfo(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
 		return adminMemberDAO.selectMemInfo(map);
 	}
+	
+	@Override
+	public Map<String, Object> memberDetail(Map<String, Object> map) throws Exception {
+		return adminMemberDAO.memberDetail(map);
+		
+	}
 
+	@Override
+	public int selectMemNum() throws Exception {
+		return adminMemberDAO.selectMemNum();
+	}
 }

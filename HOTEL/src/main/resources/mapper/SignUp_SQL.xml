@@ -28,7 +28,9 @@
 	        MEM_PW, 
 	        MEM_PHONE, 
 	        MEM_EMAIL,
-	        MEM_JOINDATE
+	        MEM_JOINDATE,
+	        MEM_GRADE,
+	        MEM_POINT
         ) 
 		VALUES(
 			SEQ_MEM_ID.NEXTVAL, 
@@ -39,10 +41,10 @@
 			#{MEM_PW}, 
 			#{MEM_PHONE}, 
 			LOWER(#{MEM_EMAIL}),
-			SYSDATE
+			SYSDATE,
+			'CLASSIC',
+			'0'
 		)
 ]]>
 </insert>
-
-
 </mapper>

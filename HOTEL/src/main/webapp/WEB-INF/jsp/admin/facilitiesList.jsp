@@ -10,7 +10,6 @@
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/include/mata.jsp" %>
 <style>
-#PAGE_NAVI{text-align: center;}
 </style>
 <title>부대시설 리스트</title>
 <body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
@@ -26,34 +25,31 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-      
-   <br><br><br>  
-   <h1 class="m-0 text-dark" align="center">부대시설 리스트</h1>
-   <br>
+        
    <div class="row">
-          <div class="col-12">
-          	
+     <div class="col-12">
+   <div class="card">
+    <div class="card-header">
+                <h3 class="card-title">부대시설 리스트</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 400px;">
+                  	<select id="searchOption" size="1">
+		                <option id="FAC_HOTEL_NAME" value="FAC_HOTEL_NAME" selected="selected">부대시설명</option>
+		        	</select>
+                    <input type="text" name="keyword" class="form-control float-right" value="${keyword}" placeholder="검색어 입력"  onkeyup="enterkey();">
+
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+     </div>
 <div class="card-body table-responsive p-0">
-	   <form id="facilities">
-	   <div style="float: right">
-			    <select id="searchOption" size="1" style="height: 35px;">
-		                <option id="FAC_HOTEL_NAME" value="FAC_HOTEL_NAME" 
-										selected="selected">부대시설명</option>
-		        </select>
-                 <input type="text" size="16" name="keyword" class="form-control mr-sm-1" style="width: 200px; display: inline-block;"
-							value="${keyword}" placeholder="검색어 입력" onkeyup="enterkey();">
-                 <!--검색어를 쓰고 엔터키를 누르면 먹지를 않기때문에 onkeyup="enterkey();를 주는 고 밑이 function으로 연결-->
-                 <input type="text" style="display: none;" />
-                 <!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
-                 <input type="button" class="btn btn-secondary my-2 my-sm-0 " value="검 색" onClick="fn_facList(1)">
-	   </div>
-	   <br><br>
-	   
-	   
-	    <table class="table table-head-fixed text-nowrap" name="facList">
+	    <table class="table table-hover" name="facList">
 	       <thead>
 			<tr>
-				<th scope="col">공지사항번호</th>
+				<th scope="col">번호</th>
+				<th scope="col">타입</th>
                 <th scope="col">부대시설명</th>
                 <th scope="col">위치</th>
                 <th scope="col">운영시간</th>
@@ -63,22 +59,23 @@
 		<tbody>
 		</tbody>
 	    </table>
-	    
-	    <div id="PAGE_NAVI">
-			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+        <!-- /.card -->
+	    <div class="card-footer clearfix" >
+	    	<ul class="pagination pagination-sm m-0 float-right" id="PAGE_NAVI">
+				<li  class="page-item">
+					<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+				</li>
+			</ul>
 		</div>
-		<br>
-	    </form>
+		
 	   </div>
 	</div>
-   <!--  row  div  end-->
-    
+    </div>
 </div>
 </div>
 </div>
 </div>    
 </div>
-</div>   
 <%@include file="/WEB-INF/include/footer.jsp" %>
 <!-- jQuery -->
 <%@include file="/WEB-INF/include/script.jsp" %>
@@ -144,6 +141,9 @@
 									str += "<tr>"
 											+ "<td>"
 											+ value.RNUM
+											+ "</td>"
+											+ "<td>"
+											+ value.FAC_HOTEL_TYPE
 											+ "</td>"
 											+ "<td>"
 											+ "<a href='#this' name='title'>"

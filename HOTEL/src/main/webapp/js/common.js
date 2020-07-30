@@ -110,32 +110,28 @@ function gfn_renderPaging(params){
 	var next = (parseInt((currentIndex-1)/10)+1)*10+1 < totalIndexCount ? (parseInt((currentIndex-1)/10)+1) *10+1 : totalIndexCount;
 	
 	if(totalIndexCount > 10){ //페이지수가 10개 이상인 경우
-		preStr += "<a herf='#this' class='pad_1' style='margin-right: 10px;' onclick='_movePage(1)'><img src='http://localhost:8080/hotel/image/bttttnrrrr.jpg' width='30px' height='30px' border='0' alt='right'></a>" +
-			"<a href='#this' class='pad_1' style='margin-right: 10px;' onclick='_movePage("+ prev +")'><img src='http://localhost:8080/hotel/image/bttttnrrrr.jpg' width='30px' height='30px' border='0' alt='right'></a>";
+		preStr += "<a href='#this' class='page-link' onclick='_movePage(1)'>&laquo;</a>" +
+				  "<a href='#this' class='page-link' onclick='_movePage("+ prev +")'>&laquo;</a>"; //1페이지, 이전 페이지로 이동
 		
 	}else if(totalIndexCount <=10 && totalIndexCount > 1){ //페이지수가 10개보다 작은 경우
-		preStr += "<a href='#this' class='pad_1' style='margin-right: 10px;' onclick='_movePage(1)'><img src='http://localhost:8080/hotel/image/bttttnrrrr.jpg' width='30px' height='30px' border='0' alt='right'></a>";
+		preStr += "<a href='#this' class='page-link' onclick='_movePage("+ prev +")'>&laquo;</a>"; //이전 페이지로 이동
 	}
 	
 	if(totalIndexCount > 10){ //페이지수가 10개 이상인 경우
-		postStr += "<a href='#this' class='pad_1' style='margin-left: 10px;' onclick='_movePage("+ next +")'><img src='http://localhost:8080/hotel/image/bttttn.jpg' width='30px' height='30px' border='0' alt='right'></a>"+
-			"<a href='#this' class='pad_1' style='margin-left: 10px;' onclick='_movePage("+ totalIndexCount +")'><img src='http://localhost:8080/hotel/image/bttttn.jpg' width='30px' height='30px' border='0' alt='right'></a>";
+		postStr += "<a href='#this' class='page-link' onclick='_movePage("+ post +")'>&raquo;</a>"+
+			"<a href='#this' class='page-link' onclick='_movePage("+ totalIndexCount +")'>&raquo;</a>"; //다음 페이지, 마지막 페이지로 이동
 	}else if(totalIndexCount <=10 && totalIndexCount > 1){ //페이지수가 10개보다 작은 경우
-		postStr+= "<a href='#this' class='pad_1' style='margin-left: 10px;' onclick='_movePage("+ totalIndexCount +")'><img src='http://localhost:8080/hotel/image/bttttn.jpg' width='30px' height='30px' border='0' alt='right'></a>";
+		postStr+= "<a href='#this' class='page-link' onclick='_movePage("+ next +")'>&raquo;</a>"; //다음 페이지로 이동
 	}
 	
 	for(var i=first; i<(first+last); i++){
 		if(i != currentIndex){
-			str +="<a href='#this' class='pad_1' style='padding: 5px;' onclick='_movePage("+i+")'>"
-			+"<span style='width: 30px; height: 30px; font-size: 16px; line-height: 30px; padding: 0 10px; margin: 0 2.5px; color: #fff; background: #192a39; font-weight: 400;'>"
+			str +="<a href='#this' class='page-link' onclick='_movePage(" +i+ ")'>"
 			+i
-			+"</span>"
 			+"</a>";
 		}else{
-			str += "<a href='#this' class='pad_1' style='padding: 5px;' onclick='_movePage("+i+")'>"
-			+"<span style='width: 30px; height: 30px; font-size: 16px; line-height: 30px; padding: 0 10px; margin: 0 2.5px; color: #fff; background: #192a39; font-weight: 400;'>"
+			str += "<a href='#this' class='page-link' onclick='_movePage(" +i+ ")'>"
 			+i
-			+"</span>"
 			+"</a>"
 		}
 	}

@@ -81,11 +81,7 @@
 
 <body>
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>A D M I N R O O M S</h1>
-	</div>
-<%@ include file="/WEB-INF/include/include-admin.jspf"%>
+	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
 	<h3 align="center">객실목록 리스트</h3>
 
 	<table name="roomsList" class="table table-striped" align="center"

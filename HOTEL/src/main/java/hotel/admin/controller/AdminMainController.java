@@ -1,5 +1,6 @@
 package hotel.admin.controller;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
@@ -10,18 +11,22 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import hotel.admin.service.AdminFacilitiesService;
+import hotel.admin.service.AdminMemberService;
+
 @Controller
 public class AdminMainController {
 	Logger log = Logger.getLogger(this.getClass());
-
-	//관리자 페이지 이동 
+	
+	@Resource(name="AdminMemberService")
+	private AdminMemberService adminMemberService;
+	
+	//관리자 페이지 이동
 	@RequestMapping(value="/admin/main")
-	public ModelAndView modifyMemForm() throws Exception{
+	public ModelAndView AdminMainPage() throws Exception{
 		ModelAndView mv = new ModelAndView("/admin/main");
-		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-		String aa = request.getSession().getServletContext().getRealPath("/resources/");
-		System.out.println(aa);
-
+		System.out.println("회원 수 : "+adminMemberService.selectMemNum());
+		mv.addObject("memNum", adminMemberService.selectMemNum());
 		return mv;
 	}
 }

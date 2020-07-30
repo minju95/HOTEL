@@ -2,7 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="adminFac">
-
 	<!-- 부대시설 목록 -->
 	<select id="facilitiesList" parameterType="hashmap" resultType="hashmap">
 		<include refid="common.pagingPre"/>
@@ -10,6 +9,13 @@
 			SELECT
 				ROWNUM RNUM,
 				FAC_HOTEL_ID,
+				CASE
+		            WHEN FAC_HOTEL_TYPE='SPA' THEN '스파 & 피트니스'
+					WHEN FAC_HOTEL_TYPE='BSN' THEN '비즈니스'
+					WHEN FAC_HOTEL_TYPE='CLT' THEN '문화'
+					WHEN FAC_HOTEL_TYPE='SHP' THEN '쇼핑'
+					WHEN FAC_HOTEL_TYPE='SVC' THEN '서비스'
+				ELSE '기타' END AS FAC_HOTEL_TYPE,
 				FAC_HOTEL_NAME,
 				FAC_HOTEL_LOCATION,
 				FAC_HOTEL_TIME,
@@ -41,21 +47,21 @@
 	INSERT INTO
 		FACILITIES_HOTEL(
 			FAC_HOTEL_ID,
+			FAC_HOTEL_TYPE,
 			FAC_HOTEL_NAME,
 			FAC_HOTEL_CONTENT,
 			FAC_HOTEL_LOCATION,
 			FAC_HOTEL_TIME,
-			FAC_HOTEL_FAC,
 			FAC_HOTEL_PHONE,
 			FAC_HOTEL_DETAIL
 		)
 	VALUES(
 			#{FAC_HOTEL_ID}, 
+			#{FAC_HOTEL_TYPE},
 			#{FAC_HOTEL_NAME}, 
 			#{FAC_HOTEL_CONTENT}, 
 			#{FAC_HOTEL_LOCATION}, 
 			#{FAC_HOTEL_TIME}, 
-			#{FAC_HOTEL_FAC},  
 			#{FAC_HOTEL_PHONE},  
 			#{FAC_HOTEL_DETAIL} 
 	)
@@ -64,7 +70,6 @@
 	
 	<!-- 부대시설 이미지 등록 -->
 	<insert id="insertFacilitiesImage" parameterType="hashmap" >
-	
 	<![CDATA[
 	INSERT INTO
 		HOTEL_IMAGES(
@@ -86,11 +91,17 @@
 			<![CDATA[			    
 			SELECT 
 			    FAC_HOTEL_ID,
+			    CASE
+		            WHEN FAC_HOTEL_TYPE='SPA' THEN '스파 & 피트니스'
+					WHEN FAC_HOTEL_TYPE='BSN' THEN '비즈니스'
+					WHEN FAC_HOTEL_TYPE='CLT' THEN '문화'
+					WHEN FAC_HOTEL_TYPE='SHP' THEN '쇼핑'
+					WHEN FAC_HOTEL_TYPE='SVC' THEN '서비스'
+				ELSE '기타' END AS FAC_HOTEL_TYPE,
 			    FAC_HOTEL_NAME,
 			    FAC_HOTEL_LOCATION,
 			    FAC_HOTEL_CONTENT,
 			    FAC_HOTEL_TIME,
-			    FAC_HOTEL_FAC,
 			    FAC_HOTEL_PHONE,
 			    FAC_HOTEL_DETAIL
 			FROM 
@@ -121,11 +132,11 @@
 	UPDATE
 		FACILITIES_HOTEL
 	SET
+		FAC_HOTEL_TYPE = #{FAC_HOTEL_TYPE},
 		FAC_HOTEL_NAME = #{FAC_HOTEL_NAME},
 		FAC_HOTEL_CONTENT = #{FAC_HOTEL_CONTENT},
 		FAC_HOTEL_LOCATION = #{FAC_HOTEL_LOCATION},
 		FAC_HOTEL_TIME = #{FAC_HOTEL_TIME},
-		FAC_HOTEL_FAC = #{FAC_HOTEL_FAC},
 		FAC_HOTEL_PHONE = #{FAC_HOTEL_PHONE},
 		FAC_HOTEL_DETAIL= #{FAC_HOTEL_DETAIL}
 	WHERE
@@ -152,6 +163,9 @@
 		<when test="HOTEL_IMGS_ID_2 != null">
 			HOTEL_IMGS_ID=#{HOTEL_IMGS_ID_2}
 		</when>
+		<when test="HOTEL_IMGS_ID_3 != null">
+			HOTEL_IMGS_ID=#{HOTEL_IMGS_ID_3}
+		</when>
 		<otherwise>
 		</otherwise>
 	</choose>
@@ -168,7 +182,7 @@
 	]]>	
 	</delete>
 	
-	<!-- 부대시설 삭제 -->
+	<!-- 부대시설 이미지 삭제 -->
 	<delete id="deleteFacImg" parameterType="hashmap">
 	<![CDATA[
 	DELETE FROM

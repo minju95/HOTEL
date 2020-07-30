@@ -11,11 +11,9 @@
 <%@include file="/WEB-INF/include/mata.jsp" %>
 <style>
 #PAGE_NAVI{text-align: center;}
-
 a { text-decoration:none !important }
 a:hover { text-decoration:none !important }
-
-출처: https://coding-restaurant.tistory.com/229 [코딩맛집]</style>
+</style>
 <title>공지사항 리스트</title>
 <body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
 <div class="wrapper">
@@ -55,7 +53,7 @@ a:hover { text-decoration:none !important }
 	   <br><br>
 	   
 	   
-	    <table class="table table-head-fixed text-nowrap" name="noticeList">
+	    <table class="table table-hover" name="noticeList">
 	       <thead>
 			<tr>
 				<th scope="col">공지사항번호</th>

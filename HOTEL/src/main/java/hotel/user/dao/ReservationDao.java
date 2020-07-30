@@ -27,14 +27,15 @@ public class ReservationDao extends AbstractDAO{
 	@SuppressWarnings("unchecked")
 	public int selectResId()
 	throws Exception {
-		return (int) selectOne("reservation.selectResId");
+		return (Integer) selectOne("reservation.selectResId");
+
 	}
 	
 	/*메인 > 예약 (SEQ_CAR_ID.NEXTVAL 리턴)*/
 	@SuppressWarnings("unchecked")
 	public int selectCarId()
 	throws Exception {
-		return (int) selectOne("reservation.selectCarId");
+		return (Integer) selectOne("reservation.selectCarId");
 	}
 
 	/*예약등록*/

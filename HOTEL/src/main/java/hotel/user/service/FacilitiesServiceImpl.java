@@ -24,23 +24,34 @@ Logger log = Logger.getLogger(this.getClass());
 	private FacilitiesDAO facilitiesDAO;
 	
 	@Override
+	public List<Map<String, Object>> selectFacTypeAndName(Map<String, Object> map) throws Exception {
+		return facilitiesDAO.selectFacTypeAndName(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> selectFacType(Map<String, Object> map) throws Exception {
+		return facilitiesDAO.selectFacType(map);
+	}
+	
+	@Override
 	public List<Map<String, Object>> selectFacilities(Map<String, Object> map) throws Exception {
 		return facilitiesDAO.selectFacilities(map);
-		
 	}
 	
 	@Override
-	public List<Map<String, Object>> mainFacilities(Map<String, Object> map) throws Exception {
-		return facilitiesDAO.mainFacilities(map);
-		
-	}
-
-	@Override
-	public Map<String, Object> selectTypeByFacilities(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		Map<String, Object> resultMap = facilitiesDAO.selectTypeByFacilities(map);
-		return resultMap;
+	public Map<String, Object> facDetail(Map<String, Object> map) throws Exception {
+		return facilitiesDAO.facDetail(map);
 	}
 	
+	@Override
+	public List<Map<String, Object>> facImgsDetail(Map<String, Object> map) throws Exception {
+		return facilitiesDAO.facImgsDetail(map);
+	}
+	
+	//ajax로 리스트 출력
+	@Override
+	public List<Map<String, Object>> selectFacList(Map<String, Object> map) throws Exception {
+		return facilitiesDAO.selectFacList(map);
+	}
 	
 }

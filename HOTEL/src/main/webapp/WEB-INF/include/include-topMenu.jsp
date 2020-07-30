@@ -5,35 +5,30 @@
 <html>
 <head>
 <style>
-a{
-text-decoration: none;
-}
-a:hover {
-text-decoration: none;
-}
+a{text-decoration: none;}
+a:hover {text-decoration: none;}
 .header {
-	width: 100%;
+	width: 1900px;
+	height: 90px;
     margin: 0 auto;
-    height: 90px;
-    position: relative;
-    text-align: right;
+    margin-top: 20px;
 }
 .logo {
 	width: 200px;
-	height: 50px;
+	height: 40px;
 	margin: 0 auto;
-	text-align: center;
-	border: 1px solid red;	
 }
-
 .loginArea {
-    position: absolute;
-    top: 19px;
-    right: 80px;
+    width: 500px;
+    height: 40px;
+    float: right;
+    padding: 10px;
+    line-height: 1.5;
+    text-align: center;
 }
 
 #topMenu { /* navigation bar 전체(글자 부분 박스 제외) */
-	width: 100%; /* [변경] 하위 메뉴와 동일하게 맞춤 */
+	width: 1900px; /* [변경] 하위 메뉴와 동일하게 맞춤 */
 	height: 60px;
 	position: relative;
 	margin: 0 auto;
@@ -43,8 +38,9 @@ text-decoration: none;
 
 #topMenu ul { /* 메인 메뉴 안의 ul을 설정함: 상위메뉴의 ul+하위 메뉴의 ul */
 	list-style: none;
-	margin: 0px;
+	margin: 0 auto;
 	padding: 0px;
+	margin: 0 auto;
 }
 
 #topMenu ul li { /* 메인 메뉴 안에 ul 태그 안에 있는 li 태그의 스타일 적용(상위/하위메뉴 모두) */
@@ -55,8 +51,6 @@ text-decoration: none;
 	vertical-align: middle;
 	text-align: center;
 	-position: relative;
-	/*margin-left:80px;*/s
-	/* margin-top:5px;*/
 }
 
 .menuLink, .submenuLink { /* 상위 메뉴와 하위 메뉴의 a 태그에 공통으로 설정할 스타일 */
@@ -67,10 +61,9 @@ text-decoration: none;
 	height: 50px;
 	font-size: 15px;
 	font-weight: bold;
-	font-family: "Trebuchet MS", Dotum;
 }
 
-.menuLink { /* 상위 메뉴의 글씨색을 흰색으로 설정 */
+.menuLink { /* 상위 메뉴의 글자색 */
 	color: white;
 }
 
@@ -109,7 +102,7 @@ text-decoration: none;
 }
 
 .topMenuLi:hover .submenu {
-	height: 60px; /*하위메뉴의 높이*/
+	height: 300px; /*하위메뉴의 높이*/
 }
 
 .submenuLink:hover { /*글자에 마우스 올렸을 때*/
@@ -118,84 +111,83 @@ text-decoration: none;
 }
 
 #login_form {font-size: 15px; text-decoration: none; padding: 5px; margin: 10px; font-weight: bold; color: black;}
-
-
 </style>
+
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Top Menu</title>
 </head>
 <body>
-<div class="header">
+	<div class="header">
 		<div class="logo">
-			<a href="/hotel/main">EZEN_PRJ_MODIFIED VER.</a>
-		</div>
-	
+				<a href="<c:url value='/main'/>"><img src="<c:url value='/image/Hotel_Logo.JPG'/>" class="logo"></a>
+		</div>		
+		
 		<div class="loginArea">
-		<c:set var="ID" value="${USERID }" />
-		<c:choose>
-			<c:when test="${ID != NULL}">
-${ID}님 <a id="login_form" href="#">예약확인</a> | <a id="login_form" href="/hotel/logout">로그아웃</a>  | <a id="login_form" href="/hotel/myPage">마이페이지</a> 
-			</c:when>
-			<c:otherwise>
-				<a id="login_form" href="#">예약확인</a> | <a id="login_form" href="/hotel/loginForm">로그인</a> | <a id="login_form" href="/hotel/signUpTerms">회원가입</a>
-			</c:otherwise>
-		</c:choose>
+			<c:set var="ID" value="${USERID}" />
+			<c:set var="isAdmin" value="${ADMIN}" />
+			<c:choose>
+				<c:when test="${ID != NULL && isAdmin != 'Y'}">
+		${ID}님 <a id="login_form" href="#">예약확인</a>|<a id="login_form" href="/hotel/logout">로그아웃</a>|<a id="login_form" href="/hotel/myPage">마이페이지</a> 
+	    		</c:when>
+	    		<c:when test="${ID != NULL && isAdmin == 'Y'}">
+		${ID}님 <a id="login_form" href="#">예약확인</a>|<a id="login_form" href="/hotel/logout">로그아웃</a>|<a id="login_form" href="/hotel/myPage">마이페이지</a>|<a id="login_form" href="/hotel/admin/main">관리자페이지</a> 
+	    		</c:when>
+				<c:otherwise>
+					<c:choose>
+	    				<c:when test="${ID == NULL}">
+						<a id="login_form" href="/hotel/loginForm">로그인</a>|<a id="login_form" href="/hotel/signUpTerms">회원가입</a>
+						</c:when>
+						<c:otherwise>
+						</c:otherwise>
+					</c:choose>
+				</c:otherwise>
+			</c:choose>
 		</div>
 	</div>
-	
-	<c:set var="isAdmin" value="${ADMIN }" />
 <nav id="topMenu"> 
-<ul class="topMenuUl">
-
- <li class="topMenuLi"  style="margin-left:500px;"> 
-    <a class="menuLink" href="/hotel/about">호텔 소개</a> 
-    	<ul class="submenu"> 
-    		<li style="margin-left: 824px;"><a href="/hotel/about" class="submenuLink">About Hotel</a></li> 
-   		</ul> 
-  </li> 
-
- <li class="topMenuLi">
- <a class="menuLink" href="/hotel/rooms?ROOM_TYPE=1">객실</a>
-  <ul class="submenu">
-   <li style="margin-left: 150px;">
-   <a href="/hotel/rooms?ROOM_TYPE=1" class="submenuLink longLink">Business Double</a>
-   </li> 
-   <li>
-   <a href="/hotel/rooms?ROOM_TYPE=2" class="submenuLink longLink">Business Twin</a>
-   </li> 
-   <li>
-   <a href="/hotel/rooms?ROOM_TYPE=3" class="submenuLink longLink">Superior Double</a>
-   </li> 
-   <li>
-   <a href="/hotel/rooms?ROOM_TYPE=4" class="submenuLink longLink">Superior Twin</a>
-   </li> 
-   <li>
-   <a href="/hotel/rooms?ROOM_TYPE=5" class="submenuLink longLink">Drama Suite</a>
-   </li> 
-   <li>
-   <a href="/hotel/rooms?ROOM_TYPE=6" class="submenuLink longLink">Deluxe Suite</a>
-   </li> 
-   <li>
-   <a href="/hotel/rooms?ROOM_TYPE=7" class="submenuLink lon gLink">Premium Suite</a>
-   </li> 
-   <li>
-   <a href="/hotel/rooms?ROOM_TYPE=8" class="submenuLink longLink">Sienna Suite</a>
-   </li> 
-    </ul> 
-    </li> 
-             
+	<ul class="topMenuUl">
+		<li class="topMenuLi" style="margin-left: 550px;"> 
+    		<a class="menuLink" href="/hotel/information">라떼호텔 소개</a> 
+  		</li> 
+ 		<li class="topMenuLi">
+			<a class="menuLink" href="/hotel/rooms?ROOM_TYPE=1">객실</a>
+  			<ul class="submenu">
+		 	    <li style="margin-left: 150px;"><a href="/hotel/rooms?ROOM_TYPE=1" class="submenuLink longLink">Business Double</a></li> 
+			    <li><a href="/hotel/rooms?ROOM_TYPE=2" class="submenuLink longLink">Business Twin</a></li> 
+			    <li><a href="/hotel/rooms?ROOM_TYPE=3" class="submenuLink longLink">Superior Double</a></li> 
+			    <li><a href="/hotel/rooms?ROOM_TYPE=4" class="submenuLink longLink">Superior Twin</a></li> 
+			    <li><a href="/hotel/rooms?ROOM_TYPE=5" class="submenuLink longLink">Drama Suite</a></li> 
+			    <li><a href="/hotel/rooms?ROOM_TYPE=6" class="submenuLink longLink">Deluxe Suite</a></li> 
+			    <li><a href="/hotel/rooms?ROOM_TYPE=7" class="submenuLink lon gLink">Premium Suite</a></li> 
+			    <li><a href="/hotel/rooms?ROOM_TYPE=8" class="submenuLink longLink">Sienna Suite</a></li> 
+ 			</ul> 
+  		</li> 
+        <li class="topMenuLi"> 
+	    	<a class="menuLink" href="/hotel/board/list">프로모션</a> 
+		</li>
+		     
     <li class="topMenuLi"> 
-    <a class="menuLink" href="/hotel/facilities?FAC_HOTEL_ID=146">다이닝(부대시설)</a> 
-    <ul class="submenu"> 
-    <li style="margin-left: 455px;"><a href="/hotel/facilities?FAC_HOTEL_ID=146" class="submenuLink">Buffet Lennon</a></li>
-     <li><a href="/hotel/facilities?FAC_HOTEL_ID=145" class="submenuLink">Cafe Lennon</a></li> 
-     <li><a href="/hotel/facilities?FAC_HOTEL_ID=147" class="submenuLink">Business Corner</a></li>
-      <li><a href="/hotel/facilities?FAC_HOTEL_ID=149" class="submenuLink">Conference room</a></li>
-      </ul> 
+    	<a class="menuLink" href="/hotel/facilities">부대시설</a> 
+    	<ul class="submenu"> 
+    		<li style="margin-left: 455px;"><a href="#" class="submenuLink">스파 & 피트니스</a>
+    			<div class="" style="background-color:#dddddd; color:black; ">
+	    			<div style="height: 30px; font-size: 14px;">피트니스 센터</div>
+	    			<div style="height: 30px; font-size: 14px;">호텔 사우나</div>
+	    			<div style="height: 30px; font-size: 14px;">설화수 스파</div>
+	    			<div style="height: 30px; font-size: 14px;">호텔  수영장</div>
+	    			<div style="height: 30px; font-size: 14px;">골프 연습장</div>
+	    			<div style="height: 30px; font-size: 14px;">호텔 사우나</div>
+    			</div>
+    		</li>
+     		<li><a href="#" class="submenuLink">비즈니스</a></li> 
+     		<li><a href="#" class="submenuLink">문화</a></li>
+      		<li><a href="#" class="submenuLink">쇼핑</a></li>
+      		<li><a href="#" class="submenuLink">서비스</a></li>
+      	</ul>
     </li> 
           
     <li class="topMenuLi"> 
-    <a class="menuLink" href="/hotel/reservation/main">RESERVATION</a> 
+    <a class="menuLink" href="/hotel/reservation/main">예약하기</a> 
     <ul class="submenu"> 
     <li style="margin-left: 638px;"><a href="/hotel/reservation/main" class="submenuLink">Reservation</a></li>
 		<c:if test="${ID != null}">
@@ -220,25 +212,11 @@ ${ID}님 <a id="login_form" href="#">예약확인</a> | <a id="login_form" href=
                 
    
            
-    <li class="topMenuLi"> 
-    <a class="menuLink" href="/hotel/board/list">NOTICE</a> 
-    <ul class="submenu"> 
-    <li style="margin-left: 1000px;"><a href="/hotel/board/list" class="submenuLink">Notice</a></li>
-  
-      </ul> 
-      </li> 
-    <c:set var="isAdmin" value="${ADMIN}" />
-    	<c:if test="${isAdmin == 'Y'}">
-       <li class="topMenuLi"> 
-   	   <a class="menuLink" href="/hotel/admin/main">MANAGEMENT</a> 
-	   <!--  <ul class="submenu"> 
-		    <li style="margin-left: 350px;"><a href="/hotel/admin/roomsList" class="submenuLink">객실관리</a></li>
-		    <li><a href="/hotel/admin/facilitiesList" class="submenuLink">부대시설관리</a></li>
-		    <li><a href="/hotel/admin/noticeList" class="submenuLink">공지사항관리</a></li>
-		    <li><a href="/hotel/admin/reservationList" class="submenuLink">예약자 조회</a></li>
-	     </ul>  -->
-      </li> 
-      </c:if>
+    
+	
+    
+    
+    
      </ul>
       </nav>
 </body>

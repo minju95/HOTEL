@@ -32,12 +32,9 @@ public class MainController {
 	@Resource(name = "ReservationService")
 	private ReservationService reservationService;
 	
-	  @RequestMapping(value = "/main") public ModelAndView
+	@RequestMapping(value = "/main") public ModelAndView
 	  openSampleList(CommandMap commandMap) throws Exception {
 	  ModelAndView mv = new ModelAndView("common/main");
-	  
-	  List<Map<String,Object>> list2 = facilitiesService.mainFacilities(commandMap.getMap());
-		mv.addObject("list2", list2);
 	  
 	  List<Map<String,Object>> list = noticeService.mainBoardList(commandMap.getMap());
   	  mv.addObject("list", list);
@@ -46,9 +43,8 @@ public class MainController {
   	  List<Map<String, Object>> roomView = reservationService.roomView(commandMap.getMap());
   	  mv.addObject("roomView", roomView);
   	  
-  	  System.out.println(mv);
-	
 	  return mv;
 	  }
+	
 	
 }

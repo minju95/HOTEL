@@ -10,16 +10,12 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class AboutController {
-
 	Logger log = Logger.getLogger(this.getClass());
-
 	
-	  @RequestMapping(value = "/about") public ModelAndView
-	  openSampleList(Map<String, Object> commandMap) throws Exception {
-	  ModelAndView mv = new ModelAndView("common/aboutHotel");
-	  
-	  return mv; }
-	 
-	
-	
+	//호텔 소개 페이지
+	@RequestMapping(value = "/information")
+	public ModelAndView openSampleList(Map<String, Object> commandMap) throws Exception {
+	  ModelAndView mv = new ModelAndView("common/hotelInformation");
+	  return mv;
+	 }
 }

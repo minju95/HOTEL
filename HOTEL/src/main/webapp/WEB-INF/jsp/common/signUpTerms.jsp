@@ -665,9 +665,6 @@ overflow-y: scroll;
 			location.href = "<c:url value='/signUpForm'/>";
 		}
 	}
-	
-
-	
 </script>
 </body>
 </html>

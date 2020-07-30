@@ -1,64 +1,141 @@
-<%@ page language="java" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <div style="margin-top: 200px;"></div>
+  <!-- Site footer -->
+    <footer  class="site-footer mt-5">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <h6>LATTE HOTEL</h6>
+            <p class="text-justify">Scanfcode.com <i>CODE WANTS TO BE SIMPLE </i> is an initiative  to help the upcoming programmers with the code. Scanfcode focuses on providing the most efficient code or snippets as the code wants to be simple. We will help programmers build up concepts in different programming languages that include C, C++, Java, HTML, CSS, Bootstrap, JavaScript, PHP, Android, SQL and Algorithm.</p>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <ul class="footer-links">
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+              <li></li>
+            </ul>
+          </div>
+
+          <div class="col-xs-6 col-md-3">
+            <h6>LATTE HOTEL</h6>
+            <ul class="footer-links">
+              <li><a href="http://scanfcode.com/about/">라떼 호텔 소개</a></li>
+              <li><a href="http://scanfcode.com/contact/">프로모션</a></li>
+              <li><a href="http://scanfcode.com/contribute-at-scanfcode/">공지사항</a></li>
+              <li><a href="http://scanfcode.com/privacy-policy/">고객의 소리</a></li>
+              <li><a href="http://scanfcode.com/sitemap/">Sitemap</a></li>
+            </ul>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8 col-sm-6 col-xs-12">
+            <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+         <a href="#">Scanfcode</a>.
+            </p>
+          </div>
+
+        </div>
+      </div>
+</footer>
 <style>
-#footer {
- 	border-top: 4px solid #FF4F00;
-	position: relative;
-	clear: both;
-	zoom: 1;
-	background: #192a39;
-	color: White;
-	font-size: 12px;
+.site-footer
+{
+  background-color:black;
+  padding:45px 0 20px;
+  font-size:15px;
+  line-height:24px;
+  color:#737373;
 }
-
-.main_common {
-	display: inline-block;
-	width: 300px;
-	vertical-align: top;
-	border: 1px solid #192a39;
-	margin-left: 50px;
-	margin-top: 15px;
+.site-footer hr
+{
+  border-top-color:#bbb;
+  opacity:0.5
 }
-
-.imge {
-	display: inline-block;
-	margin-left: 10px;
+.site-footer hr.small
+{
+  margin:20px 0
+}
+.site-footer h6
+{
+  color:#fff;
+  font-size:16px;
+  text-transform:uppercase;
+  margin-top:5px;
+  letter-spacing:2px
+}
+.site-footer a
+{
+  color:#737373;
+}
+.site-footer a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links
+{
+  padding-left:0;
+  list-style:none
+}
+.footer-links li
+{
+  display:block
+}
+.footer-links a
+{
+  color:#737373
+}
+.footer-links a:active,.footer-links a:focus,.footer-links a:hover
+{
+  color:#3366cc;
+  text-decoration:none;
+}
+.footer-links.inline li
+{
+  display:inline-block
+}
+.site-footer .social-icons
+{
+  text-align:right
+}
+.site-footer .social-icons a
+{
+  width:40px;
+  height:40px;
+  line-height:40px;
+  margin-left:6px;
+  margin-right:0;
+  border-radius:100%;
+  background-color:#33353d
+}
+.copyright-text
+{
+  margin:0
+}
+@media (max-width:991px)
+{
+  .site-footer [class^=col-]
+  {
+    margin-bottom:30px
+  }
+}
+@media (max-width:767px)
+{
+  .site-footer
+  {
+    padding-bottom:0
+  }
+  .site-footer .copyright-text,.site-footer .social-icons
+  {
+    text-align:center
+  }
 }
 </style>
-<!-- 하단정보 시작 -->
-<div id="footer">
-	<div class="location_wrap">
-		<div class="main">
-			<div class="imge">
-				<p>
-					<img src="<c:url value='/image/SIENNA-FOOT.PNG'/>"
-						style="width: 150px; height: 100px">
-				</p>
-			</div>
-			<div class="main_1 main_common">
-
-				<p>
-					우편번호: 10908<br> 주소: 경기도 파주시 야당동 소리천로 31<br> (야당동
-					1081-2번지)
-				</p>
-				<p>대표자:홍길동</p>
-			</div>
-			<div class="main_2 main_common">
-				<p>객실예약문의번호 :031-943-7260/031.943.7260</p>
-				<p>기업체제휴문의 :031-943-7255</p>
-				<p>FAX : 031 943 7277</p>
-			</div>
-		</div>
-	</div>
-	<!--메인 location 끝-->
-	<footer>
-		<p>Copyright © 2017 HOTEL SIENNA. All rights reserved.</p>
-	</footer>
-	<!--푸터 끝-->
-	<script>
-/* 		$(document).ready(function() {
-			headerMain();
-		}) */
-	</script>
-</div>
-<!--// 라인업 끝 -->
-

@@ -41,7 +41,21 @@
               <form  id="frm"  action="<c:url value='/admin/modifyFacilities'/>" method="post" name="frm"
               enctype="multipart/form-data">
                 <div class="card-body">
-               
+               		
+               		<div class="form-group row">
+            	<label for="inputEmail3" class="col-sm-2 col-form-label">부대시설 타입</label>
+                <div class="col-sm-10">
+                	<select class="form-control" id="FAC_HOTEL_TYPE" name="FAC_HOTEL_TYPE">
+						<option value="SPA">스파 & 피트니스</option>
+						<option value="BSN">비즈니스</option>
+						<option value="CLT">문화</option>
+						<option value="SHP">쇼핑</option>
+						<option value="SVC">서비스</option>
+					</select>
+                </div>
+        	</div>
+               	  	
+               		
                   <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">부대시설명</label>
                     <div class="col-sm-10">
@@ -60,29 +74,19 @@
                      <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">운영시간</label>
                     <div class="col-sm-10">
-                      <input class="form-control" type="text"  id="FAC_HOTEL_TIME" name="FAC_HOTEL_TIME" value="${map.FAC_HOTEL_TIME}"  placeholder="회원 ID" >
+                      <input class="form-control" type="text"  id="FAC_HOTEL_TIME" name="FAC_HOTEL_TIME" value="${map.FAC_HOTEL_TIME}"  placeholder="운영시간" >
                     </div>
                   </div>
                   
                        <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">전화번호</label>
                     <div class="col-sm-10">
-                      <input class="form-control" type="text"  id="FAC_HOTEL_PHONE" name="FAC_HOTEL_PHONE" value="${map.FAC_HOTEL_PHONE}"  placeholder="회원 ID" >
+                      <input class="form-control" type="text"  id="FAC_HOTEL_PHONE" name="FAC_HOTEL_PHONE" value="${map.FAC_HOTEL_PHONE}"  placeholder="전화번호" >
                     </div>
                   </div>
-                  
-                  
-                  
-                 <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">시설</label>
-                    <div class="col-sm-10">
-                       <textarea class="form-control" rows="10" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC">${map.FAC_HOTEL_FAC}</textarea>
-                    </div>
-                   </div>
-                   
                      
                  <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">시설 정보</label>
                     <div class="col-sm-10">
                        <textarea class="form-control" rows="10" id="FAC_HOTEL_CONTENT" name="FAC_HOTEL_CONTENT">${map.FAC_HOTEL_CONTENT}</textarea>
                     </div>
@@ -107,7 +111,7 @@
 							<input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
 	                      	
 	                      	<!-- 이미지_상대경로 -->
-							<img src= "/hotel/image/${row.HOTEL_IMGS_FILE}" style = "width:600px; heigth:600px;">
+							<img src= "/hotel/image/facilities/${row.HOTEL_IMGS_FILE}" style = "width:600px; heigth:600px;">
 							<br>
 							<a href="#this" id="name_${var.index}" name="name_${var.index}">${row.HOTEL_IMGS_FILE}</a>
 						
@@ -153,8 +157,6 @@ function fn_facModify(){
 		alert("부대시설명을 입력해주세요");
 	} else if($("#FAC_HOTEL_LOCATION").val() == "") {
 		alert("부대시설 위치를 입력해주세요");
-	} else if($("#FAC_HOTEL_TIME").val() == "") {
-		alert("운영시간을 입력해주세요");
 	} else if($("#FAC_HOTEL_PHONE").val() == "") {
 		alert("전화번호를 입력해주세요");
 	} else if($("#FAC_HOTEL_CONTENT").val() == "") {

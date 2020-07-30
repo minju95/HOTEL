@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import hotel.common.common.CommandMap;
@@ -23,31 +24,47 @@ public class FacilitiesController {
 	
 	@Resource(name="FacilitiesService")
 	private FacilitiesServiceImpl facilitiesService;
-	 
-	@RequestMapping("/facilitieslist")
-	public ModelAndView selectFacilities(CommandMap commandMap) throws Exception {
-		// view 화면인 main.jsp에 DB로부터 읽어온 데이터를 보여준다.
-		ModelAndView mv = new ModelAndView("facilities/facilitieList");
-		//addObject view에 넘어가는 데이터
+	
+	//부대시설 목록
+	@RequestMapping("/facilities")
+	public ModelAndView facilitiesMain(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("facilities/facilitiesMain");
+		Map<String, Object> map =commandMap.getMap();
+		String FAC_HOTEL_TYPE=(String)commandMap.get("FAC_HOTEL_TYPE");
+		mv.addObject("FAC_HOTEL_TYPE",FAC_HOTEL_TYPE);
+		List<Map<String,Object>> list2 = facilitiesService.selectFacType(commandMap.getMap());
+		mv.addObject("list2", list2);
 		List<Map<String,Object>> list = facilitiesService.selectFacilities(commandMap.getMap());
+		mv.addObject("list", list);
+		
+		System.out.println(mv);
+		return mv;
+	}
+	
+	//부대시설 상세화면
+	@RequestMapping("/facilitiesDetail")
+	public ModelAndView facilitiesDetail(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("facilities/facilitiesDetail");
+		Map<String, Object> map = facilitiesService.facDetail(commandMap.getMap());
+		List<Map<String,Object>> list = facilitiesService.facImgsDetail(commandMap.getMap());
+		mv.addObject("map", map);
 		mv.addObject("list", list);
 		System.out.println(mv);
 		return mv;
 	}
 	
 	
-	@RequestMapping(value="/facilities")
-	public ModelAndView selectTypeByFacilities(CommandMap commandMap) 
-		throws Exception{
-		ModelAndView mv = new ModelAndView("facilities/facilitie");
-		System.out.println("ㅍ편의"+commandMap.getMap());
-		List<Map<String,Object>> list = facilitiesService.selectFacilities(commandMap.getMap());
-		mv.addObject("list", list);
-		Map<String, Object> map = facilitiesService.selectTypeByFacilities(commandMap.getMap());
-		//System.out.println("편의시설 이미지"+map);
-		mv.addObject("map", map);
-		//System.out.println("편의ㅏ시설"+mv);
-		
-		return mv;
-	}
+	//ajax로 데이터 받기
+	@RequestMapping(value="/selectFacList", method=RequestMethod.POST)
+    public ModelAndView openBoardList(CommandMap commandMap) throws Exception{
+    	ModelAndView mv = new ModelAndView("jsonView");
+    	String FAC_HOTEL_TYPE=(String)commandMap.get("FAC_HOTEL_TYPE");
+    	
+    	List<Map<String,Object>> list = facilitiesService.selectFacList(commandMap.getMap());
+    	mv.addObject("list", list);
+    	System.out.println(mv);
+    	
+    	return mv;
+    }
+	
 }

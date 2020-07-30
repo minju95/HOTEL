@@ -19,12 +19,15 @@
 <!-- 사용자 정보 불러오기 -->
 <select id="selectMemInfo" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT 
+	SELECT
+		MEM_ID,
        	MEM_USERID,  
        	MEM_PW,
        	MEM_NAME,
        	MEM_EMAIL,
-       	MEM_PHONE
+       	MEM_PHONE,
+       	MEM_GRADE,
+       	MEM_POINT
 	FROM 
 		MEMBER
 	WHERE 

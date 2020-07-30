@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="adminQnA">
+
+<!-- 관리자 페이지: Q&A 목록 -->
+<select id="qnaList" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"/>
+	<![CDATA[
+	SELECT
+		ROWNUM RNUM,
+		QNA_NUM,
+		MEM_USERID,
+		QNA_CATE,
+		QNA_TITLE,
+		TO_CHAR(QNA_DATE, 'YYYY-MM-DD') QNA_DATE,
+		DECODE(QNA_RSTATE, 'N', '미답변', 'Y', '답변완료') QNA_RSTATE 
+	FROM QNA
+	]]>
+	<include refid="common.pagingPost"/>
+</select>
+
+<!-- 관리자 페이지: Q&A 상세보기-->
+<select id="qnaDetail" resultType="hashmap"> 
+<![CDATA[
+SELECT
+		Q.QNA_NUM,
+		Q.MEM_USERID,
+		Q.QNA_CATE,
+		Q.QNA_TITLE,
+		Q.QNA_CONTENT,
+		TO_CHAR(Q.QNA_DATE, 'YYYY-MM-DD') QNA_DATE,
+		Q.QNA_RTITLE,
+		Q.QNA_RCONTENT,
+		Q.QNA_RDATE,
+		Q.QNA_RSTATE,
+        M.MEM_NAME
+	FROM QNA Q, MEMBER M
+	WHERE
+        Q.QNA_NUM = #{QNA_NUM}
+    AND Q.MEM_USERID = M.MEM_USERID
+	]]>
+</select>
+
+<!-- 관리자 페이지: Q&A 답변 -->
+<update id="qnaReply" parameterType="hashmap">
+<![CDATA[
+	UPDATE QNA 
+	SET 
+	QNA_RTITLE = #{QNA_RTITLE},
+	QNA_RCONTENT = #{QNA_RCONTENT},
+	QNA_RDATE = SYSDATE,
+	QNA_RSTATE = 'Y' 
+WHERE 
+	QNA_NUM=#{QNA_NUM}
+]]>
+</update>
+</mapper>

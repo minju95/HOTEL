@@ -1,4 +1,3 @@
-
 package hotel.admin.controller;
 
 import java.util.List;

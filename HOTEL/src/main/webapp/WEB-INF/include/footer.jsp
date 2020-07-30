@@ -5,7 +5,7 @@
     <div class="float-right d-none d-sm-block">
       <b>Version</b> 3.0.0-alpha
     </div>
-    <strong>Copyright &copy; 2014-2018 <a href="localhost:7080/lotto.do">MJProject.io</a>.</strong> All rights
+    <strong>Copyright &copy; 2014-2018 <a href="localhost:7080/lotto.do">AdminLTE.io.</a>.</strong> All rights
     reserved.
   </footer>
  

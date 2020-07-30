@@ -8,16 +8,14 @@
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script> 
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
 
-
-
+<head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Font Awesome -->
- <link rel="stylesheet"
+  <link rel="stylesheet"
    href="<c:url value='/resources/plugins/fontawesome-free/css/all.min.css'/>"> 
-  
   
   <!-- Ionicons -->
   <link rel="stylesheet"  type="text/css"

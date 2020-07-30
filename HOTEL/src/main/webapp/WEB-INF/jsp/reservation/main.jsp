@@ -3,18 +3,15 @@
 <jsp:useBean id="today" class="java.util.Date"/>
 
 <!-- Quest1 : Ajax 검색기능 필요 (6/09) -->
-
 <!DOCTYPE html>
 <html>
 <head>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+	<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
-
 <meta charset="UTF-8">
 </head>
 
@@ -290,12 +287,7 @@ function fn_nextStep(obj){
 <body oncontextmenu="return false" ondragstart="return false">
 <div>
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-<div class="div-about" align="center">
-   <br>
-   <br>
-   <br>
-   <h1>R E S E R V A T I O N</h1></div>
-</div>
+
 <div class="a_layer">
 <div class="a_layer_inner">
 <div class="a_content">

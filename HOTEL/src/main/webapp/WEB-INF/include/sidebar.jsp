@@ -18,16 +18,6 @@
     </a>
     <!-- Sidebar -->
     <div class="sidebar">
-      <!-- Sidebar user panel (optional) -->
-      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-        <div class="image">
-          <img src="<c:url value='/resources/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image'/>">
-        </div>
-        <div class="info">
-          <a href="/hotel/admin/main" class="d-block">Administrator</a>
-        </div>
-      </div>
-
       <!-- Sidebar Menu -->
       <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
@@ -99,9 +89,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="openAdminItemWrite" id="item_write" class="nav-link">
+                <a href="<c:url value='/admin/reservationList'/>" id="item_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>회원 차단</p>
+                  <p>예약자 목록</p>
                 </a>
               </li>
             </ul>

@@ -149,12 +149,6 @@ font-size: 14px;
 
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="hotel">
-<div class="div-about" align="center" >
-   <br>
-   <br>
-   <br>
-   <h1>A C C O M M O D A T I O N </h1></div>
-   
 <div class="room-list">
 <br>
 		<table align="center">

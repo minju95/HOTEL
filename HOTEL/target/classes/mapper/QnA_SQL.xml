@@ -26,22 +26,41 @@
 ]]>			
 </insert>
 
+<!-- Q&A 목록 -->
 <select id="selectQnAList" parameterType="hashmap" resultType="hashmap">
 <include refid="common.pagingPre"/>
 <![CDATA[
 SELECT
-	ROWNUM RNUM, 
+	ROWNUM RNUM,
 	QNA_NUM,
 	QNA_TITLE,
 	TO_CHAR(QNA_DATE,'yyyy/mm/dd')QNA_DATE,
-	QNA_RSTATE,
-	QNA_CATE
+	DECODE( QNA_RSTATE, 'N','처리중','Y','답변완료') QNA_RSTATE,
+	MEM_USERID
 FROM QNA
+WHERE MEM_USERID = #{MEM_USERID}
 ORDER BY
-	QNA_NUM desc
+	QNA_DATE DESC
 ]]>
 <include refid="common.pagingPost"/>
 </select>
 
+
+
+<!-- Q&A 상세보기 -->
+<select id="selectQnADetail" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT
+	QNA_NUM,
+	QNA_TITLE,
+	TO_CHAR(QNA_DATE,'yyyy/mm/dd')QNA_DATE,
+	DECODE( QNA_RSTATE, 'N','처리중','Y','답변완료') QNA_RSTATE,
+	MEM_USERID
+FROM QNA
+WHERE MEM_USERID = #{MEM_USERID}
+ORDER BY
+	QNA_DATE DESC
+]]>
+</select>
 </mapper>
  

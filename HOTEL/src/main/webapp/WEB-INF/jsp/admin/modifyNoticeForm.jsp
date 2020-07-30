@@ -104,6 +104,9 @@
                       </div>
                     </div>
                   </div>
+                  
+                  
+                  
                   </div>
               </form>
 	
@@ -123,10 +126,19 @@
 <!-- jQuery -->
 <%@include file="/WEB-INF/include/script.jsp" %>
 <script>
+
+/* 라디오 버튼(동의/미동의) 유효성 체크 */
 	 function fn_noticeModify(obj){
-		var comSubmit = new ComSubmit("frm");
-				comSubmit.setUrl("<c:url value='/admin/modifyNotice' />");
-				comSubmit.submit();
+			var radio1 = $('input:radio[id=radio1]').is(':checked');
+			var radio2 = $('input:radio[id=radio2]').is(':checked');
+				if(radio1==false && radio2 == false) {
+					alert("공개여부를 설정해주세요.");
+					return false;
+				} else {
+					var comSubmit = new ComSubmit("frm");
+					comSubmit.setUrl("<c:url value='/admin/modifyNotice' />");
+					comSubmit.submit();
+				}
 	}
 
 	function fn_removeImg() {

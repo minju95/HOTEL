@@ -27,7 +27,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 		//String filePath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc2
 		
 		
-		String filePath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //성환 pc
+		String filePath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\facilities\\"; //성환 pc
 		//String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //민주 pc
 		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
@@ -77,7 +77,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 	map, HttpServletRequest request) throws Exception {
 		//String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc
 		//String filePath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc2
-		String filePath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //성환 pc
+		String filePath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\facilities\\"; //성환 pc
 
 		
 		//String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; 
@@ -95,6 +95,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 		Map<String, Object> listMap = null;
 		
 		String FAC_HOTEL_ID = (String) map.get("FAC_HOTEL_ID"); //ServiceImpl에서 전달해준 map에서 신규 생성되는 게시글의 번호를 받아오도록 함
+		String HOTEL_IMGS_ID_3 = "";
 		String HOTEL_IMGS_ID_2 = "";
 		String HOTEL_IMGS_ID_1 = "";
 		String HOTEL_IMGS_ID_0 = (String) map.get("HOTEL_IMGS_ID_0");
@@ -106,6 +107,10 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 		
 		if((String) map.get("HOTEL_IMGS_ID_2") != null) {
 			HOTEL_IMGS_ID_2 = (String) map.get("HOTEL_IMGS_ID_2");
+		}
+		
+		if((String) map.get("HOTEL_IMGS_ID_3") != null) {
+			HOTEL_IMGS_ID_3 = (String) map.get("HOTEL_IMGS_ID_3");
 		}
 		
 		String requestName = null;
@@ -140,6 +145,8 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 					listMap.put("HOTEL_IMGS_ID_1", HOTEL_IMGS_ID_1);
 				} else if(Integer.parseInt(idx0_last) == 2) {
 					listMap.put("HOTEL_IMGS_ID_2", HOTEL_IMGS_ID_2);
+				} else if(Integer.parseInt(idx0_last) == 3) {
+					listMap.put("HOTEL_IMGS_ID_3", HOTEL_IMGS_ID_3);
 				}
 				
 				listMap.put("HOTEL_IMGS_FILE", originalFileName);
