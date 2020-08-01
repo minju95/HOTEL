@@ -15,7 +15,6 @@
     - Google Developers(Maps Platform), 
     - Kakao Developer(KakaoPay API),
     - Summernote(Wysiwyg HTML editor)
------------------------------------------------
 ## 내용
 * 구현기능
   - 회원가입
