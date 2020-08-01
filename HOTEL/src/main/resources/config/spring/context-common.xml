@@ -25,7 +25,7 @@
 	</bean>
 	
 	
-	<!-- 이메일 인증번호 전송 관련 설정 -->
+	<!-- 이메일 인증번호 전송 관련 설정 (Gmail) -->
   	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
     <property name="host" value="smtp.gmail.com" />
     <property name="port" value="587" />

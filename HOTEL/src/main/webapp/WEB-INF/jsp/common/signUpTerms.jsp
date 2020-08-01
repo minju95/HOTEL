@@ -629,6 +629,7 @@ overflow-y: scroll;
 			<button type="button" id="next" class="buttons">다음</button>
 			
 		</div>
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 
 <script>
 	/* 체크 박스(전체 동의) 유효성 체크 */

@@ -120,7 +120,6 @@
 			var total = data.TOTAL;
 			//alert(total); //총 게시글 개수
 			var body = $("table[name='facList'] > tbody");
-			//alert(body);
 			body.empty();
 			if (total == 0) {
 				var str = "<tr><td colspan='5' align='center'>조회된 결과가 없습니다.</td></tr>";
@@ -136,27 +135,26 @@
 				gfn_renderPaging(params);
 
 				var str = "";
-				$.each(data.list,
-								function(key, value) {
-									str += "<tr>"
-											+ "<td>"
-											+ value.RNUM
-											+ "</td>"
-											+ "<td>"
-											+ value.FAC_HOTEL_TYPE
-											+ "</td>"
-											+ "<td>"
-											+ "<a href='#this' name='title'>"
-											+ value.FAC_HOTEL_NAME
-											+ "</a>"
-											+ "<input type='hidden' name='title' value=" + value.FAC_HOTEL_ID + ">"
-											+ "</td>" + "<td>"
-											+ value.FAC_HOTEL_LOCATION
-											+ "</td>" + "<td>"
-											+ value.FAC_HOTEL_TIME + "</td>"
-											+ "<td>" + value.FAC_HOTEL_PHONE
-											+ "</td>" + "</tr>";
-								});
+				$.each(data.list, function(key, value) {
+					str += "<tr>"
+						+ "<td>"
+						+ value.RNUM
+						+ "</td>"
+						+ "<td>"
+						+ value.FAC_HOTEL_TYPE
+						+ "</td>"
+						+ "<td>"
+						+ "<a href='#this' name='title'>"
+						+ value.FAC_HOTEL_NAME
+						+ "</a>"
+						+ "<input type='hidden' name='title' value=" + value.FAC_HOTEL_ID + ">"
+						+ "</td>" + "<td>"
+						+ value.FAC_HOTEL_LOCATION
+						+ "</td>" + "<td>"
+						+ value.FAC_HOTEL_TIME + "</td>"
+						+ "<td>" + value.FAC_HOTEL_PHONE
+						+ "</td>" + "</tr>";
+				});
 				//이거 넣어야 데이터 들어감
 				body.append(str);
 

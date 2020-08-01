@@ -50,7 +50,7 @@ public class AdminFacilitiesController {
 		return mv;
 	}
 	
-	//부대시설 등록폼(이 메소드 안에선 등록 처리 로직 X)
+	//부대시설 등록폼 (이 메소드 안에선 등록 처리 로직 X)
 	@RequestMapping(value="/admin/newFacilitiesForm")
 	public ModelAndView insertFacilities(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/admin/newFacilitiesForm");

@@ -50,8 +50,8 @@ public class ReservationServiceImpl implements ReservationService{
 	@Override
 	public List<Map<String, Object>> insert(Map<String, Object> map)
 	throws Exception {
-		reservationDAO.insertReservation(map);
 		reservationDAO.insertCard(map);
+		reservationDAO.insertReservation(map);
 		
 		return reservationDAO.selectResult(map);
 	}

@@ -263,9 +263,10 @@ margin: 0 auto;
 		</div>
 	</div>
 	</form>
-	<%-- <div>
+	
 	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
-	</div> --%>
+	
+	
 <script>
 	$(document).on("click", "#signUpBtn", function(){
 	    //alert('클릭됨');
@@ -302,164 +303,138 @@ margin: 0 auto;
 
 	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#MEM_USERID").blur(
-		function() {
-			var mem_userid = $('#MEM_USERID').val();
-			$.ajax({
-				url : '${pageContext.request.contextPath}/idCheck?mem_userid='+ mem_userid,
-				type : 'get',
-				success : function(data) {
-					console.log("1 = 중복o / 0 = 중복x : "+ data);
-
-												if (data > 0) {
-
-													$("#id_check").text(
-															"사용중인 아이디입니다.");
-													$("#id_check").css("color",
-															"red");
-													$("#isCheck").val("0");
-
-												} else if (mem_userid == "") {
-													// 입력하지 않을 경우
-													$('#id_check').text(
-															'아이디를 입력해주세요.');
-													$('#id_check').css('color',
-															'red');
-													$("#isCheck").val("0");
-
-												} else if (data == 0) {
-													// 0 : 사용가능
-													$("#id_check").text(
-															"사용가능한 아이디입니다.");
-													$("#id_check").css("color",
-															"blue");
-													$("#isCheck").val("1");
-
-												}
-
-											}
-										});
-							});
-			//이름입력
-			$("#MEM_NAME").blur(function() {
-				var mem_name = $("#MEM_NAME").val();
-				if (mem_name == "") {
-					$("#name_check").text('필수 항목 입니다.');
-					$("#name_check").css('color', 'red');
-				} else {
-					$("#name_check").text('');
-				}
+	function() {
+		var mem_userid = $('#MEM_USERID').val();
+		$.ajax({
+			url : '${pageContext.request.contextPath}/idCheck?mem_userid='+ mem_userid,
+			type : 'get',
+			success : function(data) {
+			console.log("1 = 중복o / 0 = 중복x : "+ data);
+			if (data > 0) {
+				$("#id_check").text("사용중인 아이디입니다.");
+				$("#id_check").css("color","red");
+				$("#isCheck").val("0");
+			} else if (mem_userid == "") { // 입력하지 않을 경우
+				$('#id_check').text('아이디를 입력해주세요.');
+				$('#id_check').css('color','red');
+				$("#isCheck").val("0");
+			} else if (data == 0) { // 0 : 사용가능
+				$("#id_check").text("사용가능한 아이디입니다.");
+				$("#id_check").css("color", "blue");
+				$("#isCheck").val("1");
+			}
+			}
 			});
-			//비밀번호 입력
-			$("#pw1").blur(function() {
-				var pw1 = $("#pw1").val();
-				if (pw1 == "") {
-					$("#pw1_check").text('필수 항목 입니다.');
-					$("#pw1_check").css('color', 'red');
-				} else {
-					$("#pw1_check").text('');
-				}
-			});
-			//전화번호 입력
-			$("#MEM_PHONE").blur(function() {
-				var mem_phone = $("#MEM_PHONE").val();
-				if (mem_phone == "") {
-					$("#phone_check").text('필수 항목 입니다.');
-					$("#phone_check").css('color', 'red');
-				} else {
-					$("#phone_check").text('');
-				}
-			});
-			//이메일 입력
-			$("#MEM_EMAIL").blur(function() {
-				var MEM_EMAIL = $("#MEM_EMAIL").val();
-				if (MEM_EMAIL == "") {
-					$("#email_check").text('필수 항목 입니다.');
-					$("#email_check").css('color', 'red');
-				} else {
-					$("#email_check").text('');
-				}
-			});
-			//비번일치
-			$("#pw2").blur(function() {
-				var pwd1 = $("#pw1").val();
-				var pwd2 = $("#pw2").val();
-				if (pwd1 != "" || pwd2 != "") {
-					if (pwd1 == pwd2) {
-						$("#pw2_check").text('비밀번호가 일치 합니다.');
-						$("#pw2_check").css('color', 'blue');
-					} else {
-						$("#pw2_check").text('비밀번호가 일치 하지 않습니다.');
-						$("#pw2_check").css('color', 'red');
-					}
-				}
+	});
 
-				else if (pwd2 == "") {
-					$("#pw2_check").text('필수 항목 입니다.');
-					$("#pw2_check").css('color', 'red');
-				}
-			});
+	//이름입력
+	$("#MEM_NAME").blur(function() {
+	var mem_name = $("#MEM_NAME").val();
+	if (mem_name == "") {
+		$("#name_check").text('필수 항목 입니다.');
+		$("#name_check").css('color', 'red');
+	} else {
+		$("#name_check").text('');
+	}
+	});
+	
+	//비밀번호 입력
+	$("#pw1").blur(function() {
+	var pw1 = $("#pw1").val();
+	if (pw1 == "") {
+		$("#pw1_check").text('필수 항목 입니다.');
+		$("#pw1_check").css('color', 'red');
+	} else {
+		$("#pw1_check").text('');
+	}
+	});
+	
+	//전화번호 입력
+	$("#MEM_PHONE").blur(function() {
+	var mem_phone = $("#MEM_PHONE").val();
+	if (mem_phone == "") {
+		$("#phone_check").text('필수 항목 입니다.');
+		$("#phone_check").css('color', 'red');
+	} else {
+		$("#phone_check").text('');
+		}
+	});
+	
+	//이메일 입력
+	$("#MEM_EMAIL").blur(function() {
+	var MEM_EMAIL = $("#MEM_EMAIL").val();
+	if (MEM_EMAIL == "") {
+		$("#email_check").text('필수 항목 입니다.');
+		$("#email_check").css('color', 'red');
+	} else {
+		$("#email_check").text('');
+	}
+	});
+
+	//비번일치
+	$("#pw2").blur(function() {
+	var pwd1 = $("#pw1").val();
+	var pwd2 = $("#pw2").val();
+	if (pwd1 != "" || pwd2 != "") {
+		if (pwd1 == pwd2) {
+			$("#pw2_check").text('비밀번호가 일치 합니다.');
+			$("#pw2_check").css('color', 'blue');
+		} else {
+			$("#pw2_check").text('비밀번호가 일치 하지 않습니다.');
+			$("#pw2_check").css('color', 'red');
+		}
+	}
+	else if (pwd2 == "") {
+		$("#pw2_check").text('필수 항목 입니다.');
+		$("#pw2_check").css('color', 'red');
+	}
+	});
 			
-
-		
-
-			//이메일 인증 		
-			//   이메일 인증 버튼 클릭시 발생하는 이벤트
-			$(document).on("click", "#isCheck_Email", function() {
-				if ($("#MEM_EMAIL").val().length < 1) {
-					alert("이메일을 입력해주세요.");
+	//이메일 인증 		
+	//이메일 인증 버튼 클릭시 발생하는 이벤트
+	$(document).on("click", "#isCheck_Email", function() {
+		if ($("#MEM_EMAIL").val().length < 1) {
+			alert("이메일을 입력해주세요.");
+			return false;
+		} else { // 이메일 중복 체크 후 메일 발송 비동기 처리 
+			$.ajax({
+				type : "POST",
+				url : "/hotel/emailAuth",
+				data : "MEM_EMAIL=" + $("#MEM_EMAIL").val(),
+				success : function(data) {
+					alert("인증번호가 발송되었습니다. 이메일을 확인해주세요.");
+					$("#isCheck_EmailForm").show();
+					},
+				error : function(data) {
+					alert("에러가 발생했습니다.");
 					return false;
-				} else {
-					// 이메일 중복 체크 후 메일 발송 비동기 처리 
-					$.ajax({
-
-						type : "POST",
-						url : "/hotel/emailAuth",
-						data : "MEM_EMAIL=" + $("#MEM_EMAIL").val(),
-
-						success : function(data) {
-							alert("인증번호가 발송되었습니다. 이메일을 확인해주세요.");
-							$("#isCheck_EmailForm").show();
-						},
-						error : function(data) {
-							alert("에러가 발생했습니다.");
-							return false;
-						}
-					});
 				}
 			});
+		}
+	});
 
-			// 이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
-			$(document).on(
-					"click",
-					"#isAuth",
-					function() {
-
-						$.ajax({
-
-							type : "POST",
-							url : "/hotel/emailAuthCheck",
-							data : "joinCode=" + $('#emailAuth').val()
-									+ "&ran=" + $("#ran").val(),
-							success : function(data) {
-								console.log(data.result);
-								if (data.result == "complete") {
-									$("#isAuth").contents().unwrap().wrap(
-											'<div id="isAuth"></div>');
-									$("#isAuth").text("인증완료");
-									$("#isAuth").css('color', 'blue').css(
-											'display', 'inline');
-									$("#isEmailAuth").val("1");
-								} else if (data.result == "fail") {
-									alert("인증번호를 잘못 입력하셨습니다.")
-								}
-							},
-
-							error : function(data) {
-								alert("에러가 발생했습니다.");
-							}
-						});
-					});
+	// 이메일 인증번호 입력 후 인증 버튼 클릭 이벤트
+	$(document).on("click","#isAuth", function() {
+		$.ajax({
+			type : "POST",
+			url : "/hotel/emailAuthCheck",
+			data : "joinCode=" + $('#emailAuth').val()	+ "&ran=" + $("#ran").val(),
+			success : function(data) {
+			console.log(data.result);
+				if (data.result == "complete") {
+					$("#isAuth").contents().unwrap().wrap('<div id="isAuth"></div>');
+					$("#isAuth").text("인증완료");
+					$("#isAuth").css('color', 'blue').css('display', 'inline');
+					$("#isEmailAuth").val("1");
+				} else if (data.result == "fail") {
+					alert("인증번호를 잘못 입력하셨습니다.")
+				}
+			error : function(data) {},
+				alert("에러가 발생했습니다.");
+			}
 		});
-	</script>
+	});
+});
+</script>
 </body>
 </html>
