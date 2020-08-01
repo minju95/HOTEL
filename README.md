@@ -13,5 +13,7 @@
   - IDE & Tool: Eclipse STS, SQLDeveloper, Maven
   - API:
     - Google Developers(Maps Platform), 
-    - Kakao Developer(KakaoPay API), Summernote(Wysiwyg HTML editor)
+    - Kakao Developer(KakaoPay API),
+    - Summernote(Wysiwyg HTML editor)
+-----------------------------------------------
 ## 내용
