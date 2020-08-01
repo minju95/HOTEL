@@ -118,12 +118,6 @@ font-size: 18px;
  color:white;
 }
 .aa:hover { text-decoration: underline; }
-
-.room-list{
- background-color: #0f1927;
- height:50px;
-
-}
 .p1{
 
 font-size: 14px;
@@ -141,31 +135,16 @@ font-size: 14px;
 </style>
 
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>객실 리스트</title>
 </head>
+
 <%@ include file="/WEB-INF/include/include-header.jspf" %>
 <%@ include file="/WEB-INF/include/include-body.jspf"%>
+<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
+
 <body oncontextmenu="return false" ondragstart="return false">
 
-<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 <div class="hotel">
-<div class="room-list">
-<br>
-		<table align="center">
-			<tr>
-				<c:forEach items="${list}" var="room">
-
-					<!--  <td>${fac.FAC_HOTEL_ID}</td>-->
-					<td><a class="aa" href='#this' name="title">
-							${room.ROOM_NAME} </a>&emsp; <input type='hidden' name='id'
-						value="${room.ROOM_TYPE }"></td>
-
-				</c:forEach>
-			</tr>
-		</table>
-	</div>
-<br>
-<br>
 <div class="div1">
 <br>
 <b>${map.ROOM_NAME}</b>

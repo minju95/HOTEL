@@ -9,11 +9,7 @@
 
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/include/mata.jsp" %>
-<style>
-#PAGE_NAVI{text-align: center;}
-a { text-decoration:none !important }
-a:hover { text-decoration:none !important }
-</style>
+
 <title>공지사항 리스트</title>
 <body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
 <div class="wrapper">
@@ -28,31 +24,27 @@ a:hover { text-decoration:none !important }
     <!-- Content Header (Page header) -->
     <div class="content-header">
       <div class="container-fluid">
-      
-   <br><br><br>  
-   <h1 class="m-0 text-dark" align="center">공지사항 리스트</h1>
-   <br>
+        
    <div class="row">
-          <div class="col-12">
-          	
-<div class="card-body table-responsive p-0">
-	   <form id="facilities">
-	   <div style="float: right">
-			    <select id="searchOption" size="1" style="height: 35px;">
-		                <option id="NOTICE_TITLE" value="NOTICE_TITLE" 
-										selected="selected">제목</option>
-		        </select>
-                 <input type="text" size="16" name="keyword" class="form-control mr-sm-1" style="width: 200px; display: inline-block;"
-							value="${keyword}" placeholder="검색어 입력" onkeyup="enterkey();">
-                 <!--검색어를 쓰고 엔터키를 누르면 먹지를 않기때문에 onkeyup="enterkey();를 주는 고 밑이 function으로 연결-->
-                 <input type="text" style="display: none;" />
-                 <!-- type="text"가 하나일때는 밑의 설명처럼 서브밋처럼 액션 주소를 따라감, 그래서 꼼수로 보이지않는 텍스트를 하나 더 넣어줌 -->
-                 <input type="button" class="btn btn-secondary my-2 my-sm-0 " value="검 색" onClick="fn_noticeList(1)">
+     <div class="col-12">
+      <div class="card">
+    <div class="card-header">
+                <h3 class="card-title">공지사항 리스트</h3>
+                <div class="card-tools">
+                  <div class="input-group input-group-sm" style="width: 400px;">
+                  	<select id="searchOption" size="1">
+		                <option id="NOTICE_TITLE" value="NOTICE_TITLE" selected="selected">제목</option>
+		        	</select>
+                    <input type="text" name="keyword" class="form-control float-right" value="${keyword}" placeholder="검색어 입력"  onkeyup="enterkey();">
 
-	   </div>
-	   <br><br>
-	   
-	   
+                    <div class="input-group-append">
+                      <button type="submit" class="btn btn-default"><i class="fas fa-search"></i></button>
+                    </div>
+                  </div>
+                </div>
+     </div>
+      
+<div class="card-body table-responsive p-0">
 	    <table class="table table-hover" name="noticeList">
 	       <thead>
 			<tr>
@@ -66,15 +58,17 @@ a:hover { text-decoration:none !important }
 		</tbody>
 	    </table>
 	    
-	    <div id="PAGE_NAVI">
-			<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+	    <div class="card-footer clearfix" >
+	    	<ul class="pagination pagination-sm m-0 float-right" id="PAGE_NAVI">
+				<li  class="page-item">
+					<input type="hidden" id="PAGE_INDEX" name="PAGE_INDEX" />
+				</li>
+			</ul>
 		</div>
-		<br>
-	    </form>
+		
 	   </div>
 	</div>
-   <!--  row  div  end-->
-    
+    </div>
 </div>
 </div>
 </div>

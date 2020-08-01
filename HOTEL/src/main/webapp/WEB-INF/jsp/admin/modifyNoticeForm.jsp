@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<% 
-	pageContext.setAttribute("br", "<br/>");
-	pageContext.setAttribute("cn", "\n");
-%> 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,7 +46,7 @@
                  <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">내용</label>
                     <div class="col-sm-10">
-                       <textarea class="form-control" rows="10" id="NOTICE_CONTENT" name="NOTICE_CONTENT">${map.NOTICE_CONTENT}</textarea>
+                       <textarea class="form-control" rows="10" id="summernote" name="NOTICE_CONTENT">${map.NOTICE_CONTENT}</textarea>
                     </div>
                    </div>
                    
@@ -126,7 +121,17 @@
 <!-- jQuery -->
 <%@include file="/WEB-INF/include/script.jsp" %>
 <script>
-
+$(document).ready(function() {
+	$('#summernote').summernote({
+		  height: 300,                 // 에디터 높이
+		  minHeight: null,             // 최소 높이
+		  maxHeight: null,             // 최대 높이
+		  focus: true,                  // 에디터 로딩후 포커스를 맞출지 여부
+		  lang: "ko-KR",					// 한글 설정
+		  placeholder: '내용'	//placeholder 설정
+          
+	});
+});
 /* 라디오 버튼(동의/미동의) 유효성 체크 */
 	 function fn_noticeModify(obj){
 			var radio1 = $('input:radio[id=radio1]').is(':checked');
