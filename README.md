@@ -6,7 +6,7 @@
 * 팀 구성: 김다운, 김도환, 김민경(팀장), 박민주
 * 프로젝트 소개: 호텔 객실 예약 시스템이 구현된 웹 애플리케이션 
 * 개발 환경:
-  - Programming Language: Java, JSP, HTML/CSS/JS
+  - Programming Language: Java, JSP, HTML, CSS, JavaScript
   - Framework: Spring Framework 4.0, MyBatis
   - DataBase: Oracle 11g
   - Server: Tomcat 9.0
