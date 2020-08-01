@@ -11,5 +11,7 @@
   - DataBase: Oracle 11g
   - Server: Tomcat 9.0
   - IDE & Tool: Eclipse STS, SQLDeveloper, Maven
-  - API: Google Developers(Maps Platform),  Kakao Developer(KakaoPay API), Summernote(Wysiwyg HTML editor)
+  - API:
+    - Google Developers(Maps Platform), 
+    - Kakao Developer(KakaoPay API), Summernote(Wysiwyg HTML editor)
 ## 내용
