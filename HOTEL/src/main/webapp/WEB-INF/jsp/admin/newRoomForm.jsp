@@ -4,18 +4,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
+<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
+<%@include file="/WEB-INF/include/mata.jsp" %>
+
 <title>객실 등록</title>
-<link rel="stylesheet" type="text/css"
-	href="<c:url value='/css/adminCommon.css'/>" />
-<!-- 부트스트랩 -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 </head>
+
 <style>
 .form-group {
 	width: 300px;
@@ -50,19 +46,30 @@
 	text-align: left;
 }
 </style>
-<body>
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>A D M I N R O O M S</h1>
-	</div>
-	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
-	<h3 align="center">객실 등록</h3>
-	<form id="frm" name="frm" action="/hotel/admin/newRoom"
-		enctype="multipart/form-data" method="post">
-		<div style="width:100%; margin-top:50px;" align="center">
-			<div align="center" style="width: 1070px;" class="newRoom_form">
-				<div>
+<body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
+<div class="wrapper">
+  <!-- Navbar -->
+  <%@include file="/WEB-INF/include/navbar.jsp" %>
+  
+  <!-- Main Sidebar Container -->
+  <%@include file="/WEB-INF/include/sidebar.jsp" %>
+  
+ <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header">'
+  
+<div class="card card-info">
+	<div class="card-header">
+    	<h3 class="card-title">공지사항 등록</h3>
+    </div>
+    <!-- /.card-header -->
+    <!-- form start -->
+
+<form id="frm"  name="frm" action="/hotel/admin/newRoom" enctype="multipart/form-data" method="post">
+	<div style="width:100%; margin-top:50px;" align="center">
+	<div align="center" style="width: 1070px;" class="newRoom_form">
+	<div>
 					<div style="float: left">
 						<div class="form-group">
 							<label for="ROOM_TYPE">객실 유형</label> <select class="form-control"
@@ -78,6 +85,9 @@
 								<option id="ROOM_TYPE" value="8">Sienna Suite</option>
 							</select>
 						</div>
+						
+						
+						
 						<div class="form-group">
 							<label for="ROOM_NAME">객실 호수</label> <input type="text"
 								class="form-control" id="ROOM_ID" name="ROOM_ID"
@@ -194,42 +204,50 @@
 				</div>
 		</div>
 	</form>
+</div>
+</div>    
+</div>	
+</div>	
+</div>	
 	<%@ include file="/WEB-INF/include/include-footer.jsp"%>
+	<!-- jQuery -->
+	<%@include file="/WEB-INF/include/script.jsp" %>
 
-	<script type="text/javascript">
-		var img_count = 1; //전역변수 선언(태그가 추가될 때마다 그 값을 1씩 증가시켜 name값이 계속 바뀜)
+</body>	
 
-		$(document).ready(function() {
-			$("#list").on("click", function(e) { //'목록으로'를 클릭하면
-				e.preventDefault();
-				fn_roomsList(); //fn_roomsList()함수 호출
-			});
 
-			$("#write").on("click", function(e) { //'등록하기'를 클릭하면
-				e.preventDefault();
-				fn_insertRooms();//fn_insertRooms()함수 호출
-			});
+<script type="text/javascript">
+	var img_count = 1; //전역변수 선언(태그가 추가될 때마다 그 값을 1씩 증가시켜 name값이 계속 바뀜)
 
-			$("#addFile").on("click", function(e) { //파일추가 버튼
-				e.preventDefault();
-				fn_addFile();
-			});
-		})
+	$(document).ready(function() {
+		$("#list").on("click", function(e) { //'목록으로'를 클릭하면
+			e.preventDefault();
+			fn_roomsList(); //fn_roomsList()함수 호출
+		});
 
-		function fn_roomsList() {
-			location.href = "<c:url value='/admin/roomsList'/>";
-		}
+		$("#write").on("click", function(e) { //'등록하기'를 클릭하면
+			e.preventDefault();
+			fn_insertRooms();//fn_insertRooms()함수 호출
+		});
 
-		function fn_insertRooms() {
-			//유효성 검사
-			if ($("#ROOM_TYPE").val() == "") {
-				alert("객실 유형을 선택해주세요");
-			} else if ($("#ROOM_NAME").val() == "") {
-				alert("객실 이름을 입력해주세요");
-			} else if ($("#ROOM_ADULT").val() == ""
-					|| $("#ROOM_CHILD").val() == "") {
-				alert("기준인원을 선택해주세요");
-			} else if ($("#fac1").is(":checked") == false
+		$("#addFile").on("click", function(e) { //파일추가 버튼
+			e.preventDefault();
+			fn_addFile();
+		});
+	})
+
+	function fn_roomsList() {
+		location.href = "<c:url value='/admin/roomsList'/>";
+	}
+
+	function fn_insertRooms() { //유효성 검사
+		if ($("#ROOM_TYPE").val() == "") {
+			alert("객실 유형을 선택해주세요");
+		} else if ($("#ROOM_NAME").val() == "") {
+			alert("객실 이름을 입력해주세요");
+		} else if ($("#ROOM_ADULT").val() == "" || $("#ROOM_CHILD").val() == "") {
+			alert("기준인원을 선택해주세요");
+		} else if ($("#fac1").is(":checked") == false
 					&& $("#fac2").is(":checked") == false
 					&& $("#fac3").is(":checked") == false
 					&& $("#fac4").is(":checked") == false
@@ -241,33 +259,33 @@
 					&& $("#fac10").is(":checked") == false
 					&& $("#fac11").is(":checked") == false) {
 				alert("편의시설을 최소 1개이상 선택해주세요");
-			} else if ($("#ROOM_SIZE").val() == "") {
-				alert("객실크기를 입력해주세요");
-			} else if ($("#ROOM_BEDTYPE").val() == "") {
-				alert("침대유형을 선택해주세요");
-			} else if ($("#ROOM_CHK_INTIME").val() == ""
-					|| $("#ROOM_CHK_OUTTIME").val() == "") {
-				alert("체크인/체크아웃 시간을 선택해주세요");
-			} else if ($("#ROOM_PRICE").val() == "") {
-				alert("예약금액을 선택해주세요");
-			} //else if($("#ROOM_IMGS_FILE_0").val() == "") {
+		} else if ($("#ROOM_SIZE").val() == "") {
+			alert("객실크기를 입력해주세요");
+		} else if ($("#ROOM_BEDTYPE").val() == "") {
+			alert("침대유형을 선택해주세요");
+		} else if ($("#ROOM_CHK_INTIME").val() == ""
+				|| $("#ROOM_CHK_OUTTIME").val() == "") {
+			alert("체크인/체크아웃 시간을 선택해주세요");
+		} else if ($("#ROOM_PRICE").val() == "") {
+			alert("예약금액을 선택해주세요");
+		} //else if($("#ROOM_IMGS_FILE_0").val() == "") {
 			//alert("이미지를 최소 1개 이상 입력해주세요");
 			//} 
-			else {
-				alert("새 객실이 등록되었습니다.")
-				$('#frm').submit();
+		else {
+			alert("새 객실이 등록되었습니다.")
+			$('#frm').submit();
 			}
 		}
 
-		function fn_addFile() {
-			if (img_count != 4) {
-				var str = "<input type='file' id='ROOM_IMGS_FILE_"
-						+ (img_count++) + "' name='ROOM_IMGS_FILE_"
-						+ (img_count) + "'>";
-				$("#fileDiv").append(str);
-			}
+	function fn_addFile() {
+		if (img_count != 4) {
+		var str = "<input type='file' id='ROOM_IMGS_FILE_"
+				+ (img_count++) + "' name='ROOM_IMGS_FILE_"
+				+ (img_count) + "'>";
+			$("#fileDiv").append(str);
 		}
-	</script>
+	}
+</script>
 
-</body>
+
 </html>

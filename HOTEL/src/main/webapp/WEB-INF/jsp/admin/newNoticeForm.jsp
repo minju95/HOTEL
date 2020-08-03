@@ -9,8 +9,11 @@
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/include/mata.jsp" %>
 
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
-<title>부대시설 등록</title>
+<title>공지사항 등록</title>
 <body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -45,8 +48,7 @@
                     <div class="col-sm-10">
                        <!-- <textarea class="form-control" rows="10" id="NOTICE_CONTENT" name="NOTICE_CONTENT"
                         placeholder="내용" ></textarea> -->
-                        <textarea id="summernote" class="form-control" name="NOTICE_CONTENT" placeholder="내용" >
-                        </textarea>
+                        <textarea id="summernote" class="form-control" name="NOTICE_CONTENT" placeholder="내용" ></textarea>
                     </div>
                    </div>
                  
@@ -93,7 +95,7 @@
 <script>
 	var img_count = 1; //전역변수 선언(태그가 추가될 때마다 그 값을 1씩 증가시켜 name값이 계속 바뀜)
 	
-	$(document).ready(function() {
+	$(document).ready(function() { //페이지 실행시 자동으로 동작하는 함수
 		$("#list").on("click", function(e) { //'목록으로'를 클릭하면
 			e.preventDefault();
 			fn_noticeList(); //fn_facList()함수 호출
@@ -109,9 +111,12 @@
 			minHeight: null, // 최소 높이
 			maxHeight: null, // 최대 높이
 			focus: true, // 에디터 로딩후 포커스를 맞출지 여부
-			lang: "ko-KR", // 한글 설정
+			lang: 'ko-KR', // 한글 설정
 			placeholder: '내용'	//placeholder 설정
 		});
+		$('.dropdown-toggle').dropdown()
+
+				
 		
 	});
 

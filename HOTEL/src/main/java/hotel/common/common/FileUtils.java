@@ -23,12 +23,7 @@ public class FileUtils { //파일을 특정 폴더에 저장하고 DB에 입력�
 	public  List<Map<String, Object>> parseInsertFileInfo(Map<String, Object>
 	map, HttpServletRequest request) throws Exception {
 		
-		//String filePath = "C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc
-		//String filePath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc2
-		
-		
 		String filePath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\facilities\\"; //성환 pc
-		//String filePath = "C:\\Users\\Minju\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //민주 pc
 		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
 		

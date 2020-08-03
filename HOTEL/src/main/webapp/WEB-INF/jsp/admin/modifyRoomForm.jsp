@@ -49,10 +49,7 @@
 <body>
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<div class="div-about" align="center">
-		<br> <br> <br>
-		<h1>A D M I N R O O M S</h1>
 	</div>
-	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
 	<h3 align="center">객실정보 수정</h3>
 	<form id="frm" name="frm" action="/hotel/admin/modifyRoom"
 		enctype="multipart/form-data" method="post">

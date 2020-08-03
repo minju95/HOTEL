@@ -80,8 +80,6 @@
 </head>
 
 <body>
-	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
-	<%@ include file="/WEB-INF/include/include-admin.jspf"%>
 	<h3 align="center">객실목록 리스트</h3>
 
 	<table name="roomsList" class="table table-striped" align="center"
