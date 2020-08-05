@@ -10,7 +10,7 @@
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/include/mata.jsp" %>
 
-<title>공지사항 리스트</title>
+<title>공지사항 목록</title>
 <body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -29,7 +29,7 @@
      <div class="col-12">
       <div class="card">
     <div class="card-header">
-                <h3 class="card-title">공지사항 리스트</h3>
+                <h3 class="card-title">공지사항 목록</h3>
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 400px;">
                   	<select id="searchOption" size="1">
@@ -48,7 +48,7 @@
 	    <table class="table table-hover" name="noticeList">
 	       <thead>
 			<tr>
-				<th scope="col">공지사항번호</th>
+				<th scope="col">번호</th>
                 <th scope="col">제목</th>
                 <th scope="col">공개여부</th>
                 <th scope="col">작성일</th>

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="<c:url value='/css/adminCommon.css'/>" />
@@ -11,7 +10,7 @@
 <%@include file="/WEB-INF/include/mata.jsp" %>
 <style>
 </style>
-<title>부대시설 리스트</title>
+<title>부대시설 목록</title>
 <body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
 <div class="wrapper">
   <!-- Navbar -->
@@ -30,7 +29,7 @@
      <div class="col-12">
    <div class="card">
     <div class="card-header">
-                <h3 class="card-title">부대시설 리스트</h3>
+                <h3 class="card-title">부대시설 목록</h3>
                 <div class="card-tools">
                   <div class="input-group input-group-sm" style="width: 400px;">
                   	<select id="searchOption" size="1">

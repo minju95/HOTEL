@@ -236,8 +236,8 @@ function initMap() {
 			var stat = $('#person_adult').attr('value');
 			var num = parseInt(stat,10);
 			num++;
-			if(num>2){
-				num=2;
+			if(num>3){
+				num=3;
 			}
 			$('#person_adult').attr('value',num);
 		});

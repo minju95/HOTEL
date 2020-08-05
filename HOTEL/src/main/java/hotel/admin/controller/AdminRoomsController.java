@@ -51,8 +51,6 @@ public class AdminRoomsController {
 		
 		mv.addObject("list", list);
 		
-		
-		
 		if(list.size()>0) {
 			mv.addObject("TOTAL", list.get(0).get("TOTAL_COUNT"));
 		}else {

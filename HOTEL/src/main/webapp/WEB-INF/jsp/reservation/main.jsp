@@ -36,8 +36,8 @@
 			var stat = $('#person_adult').attr('value');
 			var num = parseInt(stat,10);
 			num++;
-			if(num>10){
-				num=10;
+			if(num>3){
+				num=3;
 			}
 			$('#person_adult').attr('value',num);
 		});
@@ -59,8 +59,8 @@
 			var num = parseInt(stat,10);
 			num++;
 		
-			if(num>10){
-				num=10;
+			if(num>1){
+				num=1;
 			}
 			$('#person_child').attr('value',num);
 		});
@@ -240,18 +240,6 @@ function fn_search(){
 }
 </script>
 
-<!-- 스크립트) F5키 사용 불가 코드 -->
-<script type="text/javascript">
-function noEvent() {
-	if (event.keyCode == 116 || event.keyCode == 9) {
-	return false;
-	}
-	else if(event.ctrlKey && (event.keyCode==78 || event.keyCode == 82)) {
-	return false;
-	}
-}
-document.onkeydown = noEvent;
-</script>
 
 <!-- 스크립트) 예약하기 버튼 눌렀을 때 동작 -->
 <script type="text/javascript">
@@ -283,8 +271,7 @@ function fn_nextStep(obj){
 
 <!-- reservation/main css -->
 <link rel="stylesheet" href="<c:url value='/js/reservation_main.css'/>">
-<!-- 마우스 우클릭 방지 -->
-<body oncontextmenu="return false" ondragstart="return false">
+<body>
 <div>
 <%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 
@@ -306,11 +293,11 @@ function fn_nextStep(obj){
 		</colgroup>
 		<thead>
 			<tr>
-				<th>입실</th>
-				<th>퇴실</th>
-				<th>성인</th>
-				<th>아동</th>
-				<th></th>
+				<th scope="col">체크인</th>
+				<th scope="col">체크아웃</th>
+				<th scope="col">성인</th>
+				<th scope="col">어린이</th>
+				<th scope="col"></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -342,7 +329,7 @@ function fn_nextStep(obj){
 				</td>
 				
 				<td style="text-align:center;">
-				<a href="#" id="adultPlus" class="plma">+</a>
+				<a href="#" id="adultMinus" class="plma">-</a>
 				<c:choose>
 					<c:when test="${empty param.adult}">
 						<input type="text" class="person" id="person_adult" readonly value="1">
@@ -353,11 +340,11 @@ function fn_nextStep(obj){
 						<input type="hidden" id="adult" value="${param.adult}">
 					</c:otherwise>
 				</c:choose>
-				<a href="#" id="adultMinus" class="plma">-</a>
+				<a href="#" id="adultPlus" class="plma">+</a>
 				</td>
 				
 				<td style="text-align:center;">
-				<a href="#" id="childPlus" class="plma">+</a>
+				<a href="#" id="childMinus" class="plma">-</a>
 				<c:choose>
 					<c:when test="${empty param.child}">
 						<input type="text" class="person" id="person_child" readonly value="0">
@@ -368,7 +355,7 @@ function fn_nextStep(obj){
 						<input type="hidden" id="child" value="${param.child}">
 					</c:otherwise>
 				</c:choose>
-				<a href="#" id="childMinus" class="plma">-</a>
+				<a href="#" id="childPlus" class="plma">+</a>
 				<td>
 					<a href="#this" class="searchBtn" name="search">Search</a>
 					<%@include file="/WEB-INF/include/include-body.jspf"%>
@@ -399,7 +386,9 @@ function fn_nextStep(obj){
 						<div class="roomIMG">이미지 준비 중</div>
 					</c:when>
 					<c:otherwise>
-						<div class="roomIMG"><a href="#this" name="atag_${status.index}" id="atag_${status.index}"><img alt="main" width="300" height="250" src="<spring:url value='/image/${list[status.index].ROOM_IMGS_FILE}'/>"></a></div>
+						<div class="roomIMG">
+						<a href="#this" name="atag_${status.index}" id="atag_${status.index}">
+						<img alt="main" width="300" height="250" src="<spring:url value='/image/${list[status.index].ROOM_IMGS_FILE}'/>"></a></div>
 					</c:otherwise>
 				</c:choose>
 				</td>
@@ -556,7 +545,7 @@ function layer_open(el){
 }
 </script>
 
-<!-- 상세보기 버튼 s -->
+<!-- 상세보기 버튼 s-->
 <div class="layer">
 	<div class="bg"></div>
 	<div id="layer2" class="pop-layer">
@@ -569,7 +558,7 @@ function layer_open(el){
 					<img id="pop_img" alt="main" width="100%" src="">
 				</div><br>
 				<div style="margin-top:280px;">
-					<div class="pop_div" style="border-bottom: 1px solid black;">객실　명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
+					<div class="pop_div" style="border-bottom: 1px solid black;">객실명 : <input type="text" id="pop_name" class="pop_ee" readonly></div>
 					<div class="pop_div">기준인원 : Adults: <input type="text" id="pop_adult" class="pop_person" readonly>, Children : <input type="text" id="pop_child" class="pop_person" readonly></div>
 					<div class="pop_div">객실 편의 시설 : <br>
 						<div style="width: 400px; float: left;">
@@ -577,19 +566,11 @@ function layer_open(el){
 						</div>
 					</div>
 					<div class="pop_div">체크인 : <input type="text" id="pop_checkIn" class="pop_tt" readonly>, 체크아웃 : <input type="text" id="pop_checkOut" class="pop_tt" readonly></div>
-					<div class="pop_div">
-					<div>
-						<div class="pop_canT">호텔 취소 정책</div>
-						<div class="pop_can"> - 체크인 1일 17시 까지 50% 환불</div>
-						<div class="pop_can"> - 체크인 2일 17시 까지 80% 환불</div>
-						<div class="pop_can"> - 체크인 3일 17시 까지 100% 환불</div>
- 					</div>
-					</div>
 				</div>
 				</p>
 				</div>
 				<div class="btn-r">
-					<a href="#" name="cbtn" class="cbtn">Close</a>
+					<a href="#" name="cbtn" class="cbtn">닫기</a>
 				</div>
 				<!--// content-->
 			</div>
