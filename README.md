@@ -5,6 +5,7 @@
 <div>
 <img src="https://user-images.githubusercontent.com/59958016/89597246-7f41ce80-d894-11ea-9057-95eed21abebd.png"></img>
 </div>
+
 ## Intro
 * 프로젝트명: HOTEL
 * 일정: 2020.05.18 ~ 2020.06.17 (프로젝트 이후 혼자 코드 수정 중)
@@ -20,6 +21,7 @@
     - Google Developers(Maps Platform), 
     - Kakao Developer(KakaoPay API),
     - Summernote(Wysiwyg HTML editor)
+    
 ## Content
 * 구현기능
   - 회원가입
