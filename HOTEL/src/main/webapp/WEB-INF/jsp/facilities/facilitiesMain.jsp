@@ -107,7 +107,8 @@ img {vertical-align: middle;}
 	</c:forEach> --%>
 	</div>
 	</div>
-
+<!-- include) 푸터 -->
+<%@ include file="/WEB-INF/include/include-footer.jsp"%>
 <script>
 
 //체크으으으박스으으

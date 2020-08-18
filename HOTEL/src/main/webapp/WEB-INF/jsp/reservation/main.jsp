@@ -1,4 +1,4 @@
-<%@page contentType="text/html; charset=UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.util.Date" %>
 <jsp:useBean id="today" class="java.util.Date"/>
 
@@ -6,15 +6,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+	
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-	<%@taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-	<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+	<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
 </head>
-
+<title>부대시설 메인</title>
+<%@ include file="/WEB-INF/include/include-header.jspf"%>
+<%@ include file="/WEB-INF/include/include-body.jspf"%>
 <!-- 링크) jQuery 링크 -->
 <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
 
@@ -388,7 +390,7 @@ function fn_nextStep(obj){
 					<c:otherwise>
 						<div class="roomIMG">
 						<a href="#this" name="atag_${status.index}" id="atag_${status.index}">
-						<img alt="main" width="300" height="250" src="<spring:url value='/image/${list[status.index].ROOM_IMGS_FILE}'/>"></a></div>
+						<img alt="main" width="300" height="250" src="<spring:url value='/image/rooms/${list[status.index].ROOM_IMGS_FILE}'/>"></a></div>
 					</c:otherwise>
 				</c:choose>
 				</td>

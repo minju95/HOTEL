@@ -48,7 +48,6 @@ public class AdminRoomsController {
 		ModelAndView mv = new ModelAndView("jsonView");
 		List<Map<String, Object>> list = adminRoomsService.selectRoomsList(commandMap.getMap());
 		
-		
 		mv.addObject("list", list);
 		
 		if(list.size()>0) {
@@ -61,80 +60,99 @@ public class AdminRoomsController {
 	}
 	
 	//객실 등록 폼 이동
-		@RequestMapping(value="/admin/newRoomForm")
-		public ModelAndView modifyMemForm(CommandMap commandMap) throws Exception{
-			ModelAndView mv = new ModelAndView("/admin/newRoomForm");
+	@RequestMapping(value="/admin/newRoomForm")
+	public ModelAndView modifyMemForm(CommandMap commandMap) throws Exception{
+		ModelAndView mv = new ModelAndView("/admin/newRoomForm");
+		return mv;
+	}
+		
+	//객실 등록처리
+	@RequestMapping(value="/admin/newRoom")
+	public ModelAndView newRoom(CommandMap commandMap, HttpServletRequest request) throws Exception{
+		ModelAndView mv = new ModelAndView("/admin/roomsList");
+		
+		// '/' 구분자를 하나로 합침
+		List<String> amty1 = new ArrayList();
+		List<String> amty2 = new ArrayList();
+		List<String> amty3 = new ArrayList();
+		List<String> svc = new ArrayList();
+		StringBuilder sb = new StringBuilder("");
+		StringBuilder sb2 = new StringBuilder("");
+		StringBuilder sb3 = new StringBuilder("");
+		StringBuilder sb4 = new StringBuilder("");
+		
+		//일반 어메니티
+		for(int i=1; i<=14; i++) {
+			if((String)commandMap.get("amty1_"+i) != "" && (String)commandMap.get("amty1_"+i) != null) {
+				amty1.add((String) commandMap.get("amty1_"+i));
+			}
+		}
 			
-			List<Map<String,Object>> list = adminRoomsService.selectRoomType(commandMap.getMap());
-			
-			mv.addObject("list", list);
-			
-			return mv;
+		for(int i=0; i<amty1.size(); i++) {
+			sb.append(amty1.get(i)+" / ");
+		}
+		String ROOM_AMTY1 = sb.substring(0, sb.length()-1);
+		
+		//욕실 어메니티
+		for(int i=1; i<=17; i++) {
+			if((String)commandMap.get("amty2_"+i) != "" && (String)commandMap.get("amty2_"+i) != null) {
+				amty2.add((String) commandMap.get("amty2_"+i));
+			}
+		}
+		for(int i=0; i<amty2.size(); i++) {
+			sb2.append(amty2.get(i)+" / ");
+		}
+		String ROOM_AMTY2 = sb2.substring(0, sb2.length()-1);
+		
+		//기타 어메니티
+		for(int i=1; i<=7; i++) {
+			if((String)commandMap.get("amty3_"+i) != "" && (String)commandMap.get("amty3_"+i) != null) {
+				amty3.add((String) commandMap.get("amty3_"+i));
+			}
 		}
 		
-	//객실 등록
-		@RequestMapping(value="/admin/newRoom")
-		public ModelAndView newRoom(CommandMap commandMap, HttpServletRequest request) throws Exception{
-			ModelAndView mv = new ModelAndView("/admin/roomsList");
-			
-			//ROOM_TYPE을 이름으로 변경 (ex : 1 -> Business Double)
-			String ROOM_NAME = (String)commandMap.get("ROOM_TYPE");
-			System.out.println(ROOM_NAME);
-			String room_name[] = {
-					"Business Double",
-					"Business Twin",
-					"Superior Double",
-					"Superior Twin",
-					"Drama Suite",
-					"Deluxe Suite",
-					"Premium Suite",
-					"Sienna Suite"
-			};
-			
-			for(int i=1; i<=8; i++) {
-				if(ROOM_NAME.equals(Integer.toString(i))) {
-					ROOM_NAME = room_name[i-1];
-				}
-			}
-			commandMap.getMap().put("ROOM_NAME", ROOM_NAME);
+		for(int i=0; i<amty3.size(); i++) {
+			sb3.append(amty3.get(i)+" / ");
+		}
+		String ROOM_AMTY3 = sb3.substring(0, sb3.length()-1);		
 		
-			//,구분자를 하나로 합침
-			List fac = new ArrayList();
-			StringBuilder sb = new StringBuilder("");
-			
-			for(int i=1; i<=11; i++) {
-				if((String)commandMap.get("fac"+i) != "" && (String)commandMap.get("fac"+i) != null) {
-					fac.add((String) commandMap.get("fac"+i));
-				}
+		//특별 서비스
+		for(int i=1; i<=7; i++) {
+			if((String)commandMap.get("svc"+i) != "" && (String)commandMap.get("svc"+i) != null) {
+				svc.add((String) commandMap.get("svc"+i));
 			}
-			
-			for(int i=0; i<fac.size(); i++) {
-				sb.append(fac.get(i)+",");
-			}
-			String ROOM_FAC_NAME = sb.substring(0, sb.length()-1);
-
-			commandMap.put("ROOM_FAC_NAME", ROOM_FAC_NAME);
-			
-			adminRoomsService.insertNewRoom(commandMap.getMap(), request);
-			
-			return mv;
 		}
 		
-		// 객실 상세보기
-		/*
-		 * @RequestMapping(value = "/admin/roomsDetail") public ModelAndView
-		 * roomsDetail(CommandMap commandMap) throws Exception { ModelAndView mv = new
-		 * ModelAndView("/admin/roomsDetail"); System.out.println(commandMap.getMap());
-		 * 
-		 * Map<String, Object> map =
-		 * adminRoomsService.selectRoomsDetail(commandMap.getMap()); mv.addObject("map",
-		 * map.get("map")); //기존의 게시글 상세정보 mv.addObject("list", map.get("list")); //첨부파일
-		 * 목록
-		 * 
-		 * return mv; }
-		 */
+		for(int i=0; i<svc.size(); i++) {
+			sb4.append(svc.get(i)+" / ");
+		}
+		String ROOM_SERVICE = sb4.substring(0, sb4.length()-1);
+		
+		commandMap.put("ROOM_AMTY1", ROOM_AMTY1);
+		commandMap.put("ROOM_AMTY2", ROOM_AMTY2);
+		commandMap.put("ROOM_AMTY3", ROOM_AMTY3);
+		commandMap.put("ROOM_SERVICE", ROOM_SERVICE);
+			
+		adminRoomsService.insertNewRoom(commandMap.getMap(), request);
+			
+		return mv;
+	}
+		
+	// 객실 상세보기
+	/*
+	 * @RequestMapping(value = "/admin/roomsDetail") public ModelAndView
+	 * roomsDetail(CommandMap commandMap) throws Exception { ModelAndView mv = new
+	 * ModelAndView("/admin/roomsDetail"); System.out.println(commandMap.getMap());
+	 * 
+	 * Map<String, Object> map =
+	 * adminRoomsService.selectRoomsDetail(commandMap.getMap()); mv.addObject("map",
+	 * map.get("map")); //기존의 게시글 상세정보 mv.addObject("list", map.get("list")); //첨부파일 목록
+	 * 
+	 * return mv;
+	 * }
+	 */
 
-		// 객실 수정 폼 이동
+	// 객실 수정 폼 이동
 		@RequestMapping(value = "/admin/modifyRoomForm")
 		public ModelAndView modifyRoomForm(CommandMap commandMap) throws Exception {
 			ModelAndView mv = new ModelAndView("/admin/modifyRoomForm");

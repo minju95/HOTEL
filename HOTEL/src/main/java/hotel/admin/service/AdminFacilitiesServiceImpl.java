@@ -65,7 +65,6 @@ public class AdminFacilitiesServiceImpl implements AdminFacilitiesService{
 			 }
 		}
 		*/
-		
 	}
 	
 	//상세보기

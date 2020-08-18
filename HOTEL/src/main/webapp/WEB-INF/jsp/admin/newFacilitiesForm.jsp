@@ -76,13 +76,6 @@
 	            </div>
             </div>
                   
-               <!--    <div class="form-group row">
-                    <label for="inputEmail3" class="col-sm-2 col-form-label">시설 정보</label>
-                    <div class="col-sm-10">
-                       <textarea class="form-control" rows="5" id="FAC_HOTEL_FAC" name="FAC_HOTEL_FAC" ></textarea>
-                    </div>
-                   </div> -->
-                   
              <div class="form-group row">
 	             <label for="inputEmail3" class="col-sm-2 col-form-label">시설 정보</label>
 	             <div class="col-sm-10">
@@ -150,11 +143,7 @@
 
 
 </div>
-
-
-
-	
-  </div>    
+</div>    
 </div>
 <%@include file="/WEB-INF/include/footer.jsp" %>
 <!-- jQuery -->

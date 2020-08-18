@@ -22,10 +22,9 @@ import hotel.common.common.CommandMap;
 
 @Controller
 public class AdminNoticeController {
-Logger log = Logger.getLogger(this.getClass());
-//private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\";
-//private String uploadPath = "C:\\Spring4\\STSApp4\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //학원 pc2
-private String uploadPath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //성환pc
+	Logger log = Logger.getLogger(this.getClass());
+	//private String uploadPath ="C:\\Users\\학생용\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\";
+	private String uploadPath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\"; //성환pc
 
 	@Resource(name="AdminNoticeService")
 	private AdminNoticeService adminNoticeService;
