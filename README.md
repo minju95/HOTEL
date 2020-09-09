@@ -1,3 +1,6 @@
+# [Toy Project] Hotel
+호텔 객실 예약 웹 개발 프로젝트 
+
 ## Screenshots
 <div>
 <img src="https://user-images.githubusercontent.com/59958016/89597246-7f41ce80-d894-11ea-9057-95eed21abebd.png" width="400" height="300"></img>
