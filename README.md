@@ -1,4 +1,4 @@
-## Screenshot
+## Screenshots
 <div>
 <img src="https://user-images.githubusercontent.com/59958016/89597246-7f41ce80-d894-11ea-9057-95eed21abebd.png" width="400" height="300"></img>
 <img src="https://user-images.githubusercontent.com/59958016/92439373-ae29c800-f1e5-11ea-96a9-5c7d243deaa8.png" width="400" height="300"></img>
