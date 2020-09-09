@@ -20,8 +20,7 @@
     - Kakao Developer(KakaoPay API),
     - Summernote(Wysiwyg HTML editor)
     
-## Content
-* 구현기능
+## Primary Functions
   - 회원가입
   - 로그인
   - 마이페이지 (회원정보 수정/회원 탈퇴, 1:1문의)
@@ -31,3 +30,5 @@
 ## My Contribution to the Project
   - 회원가입 기능 구현 (3단계: 약관동의, 회원정보 입력, 회원가입 완료 창)
   - 관리자페이지 제작
+  
+## 개발 관련 산출 문서
