@@ -43,6 +43,8 @@ public class MainController {
   	  List<Map<String, Object>> roomView = reservationService.roomView(commandMap.getMap());
   	  mv.addObject("roomView", roomView);
   	  
+  	  
+  	  
 	  return mv;
 	  }
 	

@@ -216,7 +216,7 @@ $(function(){
 	         url : "/hotel/emailAuth",
 	         data : "user_email=" + $("#user_email").val(),
 	         success : function(data){
-	               alert("인증번호가 발송되었습니다. 이메일을 확인해주세요.");
+	               alert("Please enter a verification code that we send to your email. ");
 	            
 	         },
 	         error : function(data){

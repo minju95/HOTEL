@@ -27,12 +27,9 @@
           ROWNUM,
           ROOM_TYPE,
           ROOM_NAME,
-          ROOM_FAC_NAME,
           ROOM_CONTENT,
           ROOM_SIZE,
           ROOM_BEDTYPE,
-          ROOM_CHK_INTIME,
-          ROOM_CHK_OUTTIME,
           ROOM_PRICE,
         ROOM_IMGS_FILE
       FROM
@@ -40,12 +37,9 @@
      
           R.ROOM_TYPE,
           R.ROOM_NAME,
-          R.ROOM_FAC_NAME,
           R.ROOM_CONTENT,
           R.ROOM_SIZE,
           R.ROOM_BEDTYPE,
-          R.ROOM_CHK_INTIME,
-          R.ROOM_CHK_OUTTIME,
           MIN(R.ROOM_PRICE) ROOM_PRICE,
           regexp_replace(LISTAGG(M.ROOM_IMGS_FILE, ',') 
       WITHIN GROUP (ORDER BY M.ROOM_IMGS_FILE),'([^,]+)(,\1)+', '\1') ROOM_IMGS_FILE
@@ -59,12 +53,9 @@
      
           R.ROOM_TYPE,
           R.ROOM_NAME,
-          R.ROOM_FAC_NAME,
           R.ROOM_CONTENT,
           R.ROOM_SIZE,
           R.ROOM_BEDTYPE,
-          R.ROOM_CHK_INTIME,
-          R.ROOM_CHK_OUTTIME,
           R.ROOM_PRICE) WHERE ROWNUM = 1
       
 ]]>

@@ -81,9 +81,9 @@ public class SignUpController {
         String joinCode = String.valueOf(ran);
         session.setAttribute("joinCode", joinCode);
  
-        String subject = "<HOTEL> 회원가입 인증 코드입니다.";
+        String subject = "Complete your sign up!";
         StringBuilder sb = new StringBuilder();
-        sb.append("귀하의 인증 코드는 " + joinCode + " 입니다.");
+        sb.append("To verify your email address please enter your 5-digit code on the website." + joinCode);
         return loginService.send(subject, sb.toString(), "1teampjt@gmail.com", MEM_EMAIL, null);
     }
     

@@ -14,7 +14,7 @@
 <a href="/hotel/admin/main" class="brand-link">
       <img src="<c:url value='/resources/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
            style="opacity: .8'/>">
-      <span class="brand-text font-weight-light">Admin Page</span>
+      <span class="brand-text font-weight-light">Admin Dashboard</span>
     </a>
     <!-- Sidebar -->
     <div class="sidebar">

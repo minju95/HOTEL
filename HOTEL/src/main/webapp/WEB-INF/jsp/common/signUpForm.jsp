@@ -170,7 +170,7 @@ margin: 0 auto;
 	<%@ include file="/WEB-INF/include/include-topMenu.jsp"%>
 	<form id="signUp" method="POST" action="/hotel/signUpComplete">
 	<div class="signUpText">
-		<h3 style="margin-top: 100px;">회원가입</h3>
+		<h3 style="margin-top: 100px;">Join Latte Honors</h3>
 	</div>
 		
 	<div class="box">	
@@ -207,39 +207,39 @@ margin: 0 auto;
 			<div class="form-inline">
 				<label for="MEM_NAME_EN">성명 (영문)</label>
 				<br>
-					<input type="text" id="MEM_LN_EN" name="MEM_LN_EN" placeholder="HONG(성)" class="form-control" style="width: 340px; height: 55px" >
-					<input type="text" id="MEM_FN_EN" name="MEM_FN_EN" placeholder="GILDONG(이름)" class="form-control" style="width: 350px; height: 55px">
+					<input type="text" id="MEM_LN_EN" name="MEM_LN_EN" placeholder="First name" class="form-control" style="width: 340px; height: 55px" >
+					<input type="text" id="MEM_FN_EN" name="MEM_FN_EN" placeholder="Last name" class="form-control" style="width: 350px; height: 55px">
 			</div>
 			
 			
 			<div class="form-group">
-				<label for="MEM_USERID">아이디</label> <input type="text"
+				<label for="MEM_USERID">ID *</label> <input type="text"
 					class="form-control" id="MEM_USERID" name="MEM_USERID">
 			<div id="id_check"></div><!-- 유효성 체크 -->
 			</div>
 			<input type="hidden" id="isCheck" value="0">
 			
 			<div class="form-group">
-				<label for="pw1">비밀번호</label> <input type="password"
+				<label for="pw1">Password *</label> <input type="password"
 					class="form-control" id="pw1" name="MEM_PW">
 			<div id="pw1_check"></div><!-- 유효성 체크 -->
 			</div>
 			
 			<div class="form-group">
-				<label for="pw2">비밀번호 확인</label> <input type="password"
+				<label for="pw2">Re-enter password *</label> <input type="password"
 					class="form-control" id="pw2">
 			<div id="pw2_check"></div>
 			</div>
 			
 			<div class="form-group">
-				<label for="MEM_PHONE">휴대전화 (띄어쓰기 없이 '-'를 생략한 형식으로 입력하세요.)</label> <input type="text"
+				<label for="MEM_PHONE">Mobile number (띄어쓰기 없이 '-'를 생략한 형식으로 입력하세요.)</label> <input type="text"
 					class="form-control" id="MEM_PHONE" name="MEM_PHONE">
 			<div id="phone_check"></div>
 			</div>
 			
 			
 			<div class="form-group">
-				<label for="MEM_EMAIL">이메일 주소</label>
+				<label for="MEM_EMAIL">Email *</label>
 				<div class="form-inline">
 					<input type="email" class="form-control" id="MEM_EMAIL"
 						name="MEM_EMAIL" placeholder="example@gmail.com" style="width:610px;">
@@ -249,7 +249,7 @@ margin: 0 auto;
 			</div>
 		
 			<div id="isCheck_EmailForm" class="form-group">
-				<label for="MEM_EMAIL">인증번호 확인</label>
+				<label for="MEM_EMAIL">Enter verification code.</label>
 				<div class="form-inline">
 					<input type="text" class="form-control" id="emailAuth"
 						name="emailAuth" placeholder="인증번호를 입력하세요." style="width:610px;">
@@ -259,7 +259,7 @@ margin: 0 auto;
 			</div>
 			
 			<button type="button" id="main" class="buttons" onclick="location.href='/hotel/signUpTerms'">이전</button>
-			<input type="submit" id="signUpBtn" class="buttons" onclick="fn_signUp(); return false;" value="다음">
+			<input type="submit" id="signUpBtn" class="buttons" onclick="fn_signUp(); return false;" value="Continue">
 		</div>
 	</div>
 	</form>
@@ -311,7 +311,7 @@ margin: 0 auto;
 			success : function(data) {
 			console.log("1 = 중복o / 0 = 중복x : "+ data);
 			if (data > 0) {
-				$("#id_check").text("사용중인 아이디입니다.");
+				$("#id_check").text("That ID is taken.");
 				$("#id_check").css("color","red");
 				$("#isCheck").val("0");
 			} else if (mem_userid == "") { // 입력하지 않을 경우
@@ -331,7 +331,7 @@ margin: 0 auto;
 	$("#MEM_NAME").blur(function() {
 	var mem_name = $("#MEM_NAME").val();
 	if (mem_name == "") {
-		$("#name_check").text('필수 항목 입니다.');
+		$("#name_check").text("User name is required.");
 		$("#name_check").css('color', 'red');
 	} else {
 		$("#name_check").text('');
@@ -402,7 +402,7 @@ margin: 0 auto;
 				url : "/hotel/emailAuth",
 				data : "MEM_EMAIL=" + $("#MEM_EMAIL").val(),
 				success : function(data) {
-					alert("인증번호가 발송되었습니다. 이메일을 확인해주세요.");
+					alert("Please enter a verification code that we send to your email. ");
 					$("#isCheck_EmailForm").show();
 					},
 				error : function(data) {
@@ -429,7 +429,8 @@ margin: 0 auto;
 				} else if (data.result == "fail") {
 					alert("인증번호를 잘못 입력하셨습니다.")
 				}
-			error : function(data) {},
+			},				
+			error : function(data) {
 				alert("에러가 발생했습니다.");
 			}
 		});

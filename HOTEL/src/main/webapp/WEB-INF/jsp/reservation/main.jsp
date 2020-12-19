@@ -295,10 +295,10 @@ function fn_nextStep(obj){
 		</colgroup>
 		<thead>
 			<tr>
-				<th scope="col">체크인</th>
-				<th scope="col">체크아웃</th>
-				<th scope="col">성인</th>
-				<th scope="col">어린이</th>
+				<th scope="col">Check In</th>
+				<th scope="col">Check Out</th>
+				<th scope="col">Adults</th>
+				<th scope="col">Children</th>
 				<th scope="col"></th>
 			</tr>
 		</thead>
@@ -396,7 +396,7 @@ function fn_nextStep(obj){
 				</td>
 				<td class="roomName">
 					${row.ROOM_NAME}<br>
-					<p class="cnt">( 잔여 객실 : ${row.CNT} )</p><br>
+					<p class="cnt">( Only ${row.CNT} left! )</p><br>
 					<input type="button" id="button_${status.index}" name="button_${status.index}" class="detailBtn" value="상세보기">
 					<!-- 상세보기 hidden 전달 값 -->
 				<input type="hidden" id="index_no" value="/hotel/image/${list[status.index].ROOM_IMGS_FILE}">
@@ -418,7 +418,7 @@ function fn_nextStep(obj){
 					</c:otherwise>
 				</c:choose>
 				<br><br>
-				<a href="#this" name="rsvbtn" class="booking">예약하기</a>
+				<a href="#this" name="rsvbtn" class="booking">Reserve</a>
 				<!-- 예약하기 hidden 전달 값 -->
 				<input type="hidden" id="ROOM_ID" value="${row.ROOM_ID}">
 				<input type="hidden" id="ROOM_NAME" value="${row.ROOM_NAME}">

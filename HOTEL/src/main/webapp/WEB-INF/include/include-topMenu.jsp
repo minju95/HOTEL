@@ -19,12 +19,13 @@ a:hover {text-decoration: none;}
 	margin: 0 auto;
 }
 .loginArea {
-    width: 500px;
+    width: 600px;
     height: 40px;
     float: right;
     padding: 10px;
     line-height: 1.5;
     text-align: center;
+    // border: 1px solid black;
 }
 
 #topMenu { /* navigation bar 전체(글자 부분 박스 제외) */
@@ -127,15 +128,15 @@ a:hover {text-decoration: none;}
 			<c:set var="isAdmin" value="${ADMIN}" />
 			<c:choose>
 				<c:when test="${ID != NULL && isAdmin != 'Y'}">
-		${ID}님 <a id="login_form" href="#">예약확인</a>|<a id="login_form" href="/hotel/logout">로그아웃</a>|<a id="login_form" href="/hotel/myPage">마이페이지</a> 
+		${ID} <a id="login_form" href="#">My reservation</a>|<a id="login_form" href="/hotel/logout">Sign Out</a>|<a id="login_form" href="/hotel/myPage">Manage Account</a> 
 	    		</c:when>
 	    		<c:when test="${ID != NULL && isAdmin == 'Y'}">
-		${ID}님 <a id="login_form" href="#">예약확인</a>|<a id="login_form" href="/hotel/logout">로그아웃</a>|<a id="login_form" href="/hotel/myPage">마이페이지</a>|<a id="login_form" href="/hotel/admin/main">관리자페이지</a> 
+		${ID} <a id="login_form" href="#">My reservation</a>|<a id="login_form" href="/hotel/logout">Sign Out</a>|<a id="login_form" href="/hotel/myPage">Manage Account</a>|<a id="login_form" href="/hotel/admin/main">Admin</a> 
 	    		</c:when>
 				<c:otherwise>
 					<c:choose>
 	    				<c:when test="${ID == NULL}">
-						<a id="login_form" href="/hotel/loginForm">로그인</a>|<a id="login_form" href="/hotel/signUpTerms">회원가입</a>
+						<a id="login_form" href="/hotel/loginForm">Sign In</a>|<a id="login_form" href="/hotel/signUpTerms">Create Account</a>
 						</c:when>
 						<c:otherwise>
 						</c:otherwise>
@@ -147,7 +148,7 @@ a:hover {text-decoration: none;}
 <nav id="topMenu"> 
 	<ul class="topMenuUl">
 		<li class="topMenuLi" style="margin-left: 550px;"> 
-    		<a class="menuLink" href="/hotel/information">라떼호텔 소개</a> 
+    		<a class="menuLink" href="/hotel/information">About Latte</a> 
   		</li> 
  		<li class="topMenuLi">
 			<a class="menuLink" href="/hotel/rooms?ROOM_TYPE=1">객실</a>
@@ -187,7 +188,7 @@ a:hover {text-decoration: none;}
     </li> 
           
     <li class="topMenuLi"> 
-    <a class="menuLink" href="/hotel/reservation/main">예약하기</a> 
+    <a class="menuLink" href="/hotel/reservation/main">Book Now</a> 
     <ul class="submenu"> 
     <li style="margin-left: 638px;"><a href="/hotel/reservation/main" class="submenuLink">Reservation</a></li>
 		<c:if test="${ID != null}">

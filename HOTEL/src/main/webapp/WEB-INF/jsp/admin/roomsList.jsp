@@ -44,11 +44,11 @@
 	<table class="table table-hover" name="roomsList">
 		<thead>
 			<tr>
-				<th>번호</th>
-				<th>객실 타입</th>
-				<th>객실명</th>
+				<th>No</th>
+				<th>Room Type</th>
+				<th>Room Name</th>
 				<th>객실호수</th>
-				<th>1박 가격</th>
+				<th>Price Per Night</th>
 			</tr>
 		</thead>
 		<tbody>

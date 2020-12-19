@@ -90,7 +90,7 @@ text-decoration: none;
 	onsubmit="return fn_login();">
 	<div id="loginform">
 	<div class="loginText">
-		<h3 style="margin-top: 100px;">로그인</h3>
+		<h3 style="margin-top: 100px;">Sign in</h3>
 	</div>
 		<ul class="logintable">
 			<li><input type="text" class="form-control" name="MEM_USERID"
@@ -99,11 +99,10 @@ text-decoration: none;
 				id="MEM_PW" placeholder="비밀번호"></li>
 			<li><a class="btn btn-link" href="/hotel/passwordResetForm">비밀번호
 					재설정</a></li>
-			<li><a class="btn btn-link" href="/hotel/idSearchForm">아이디
-					찾기</a></li>
+			<li><a class="btn btn-link" href="/hotel/idSearchForm">Forgot your ID?</a></li>
 			<li>
-				<button type="submit" class="button" id="submit">로그인</button>
-				<button type="button" class="button" id="submit" onclick="location.href='/hotel/main'">홈으로</button>
+				<button type="submit" class="button" id="submit">Sign in</button>
+				<button type="button" class="button" id="submit" onclick="location.href='/hotel/main'">Home</button>
 			</li>
 		</ul>
 		<p>
