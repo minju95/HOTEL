@@ -20,11 +20,11 @@
     - Summernote (Wysiwyg HTML editor)
     
 ## Primary Functions
-  - 회원가입
-  - 로그인
-  - 마이페이지 (회원정보 수정/회원 탈퇴, 1:1문의)
-  - 객실 예약 및 결제
-  - 관리자페이지 (객실, 부대시설, 프로모션, 1:1문의 관리)
+* Sign Up
+* Sign In
+* Room Reservation/Payment
+* User Dashboard
+* Admin Dashboard
   
 ## My Contribution to the Project
   - 회원가입 기능 구현 (3단계: 약관동의, 회원정보 입력, 회원가입 완료 창)
