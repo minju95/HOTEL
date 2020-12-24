@@ -1,4 +1,4 @@
-# [Toy Project] Hotel
+# [Side Project] Hotel
 호텔 객실 예약 웹 개발 프로젝트 
 
 ## Screenshots
@@ -7,9 +7,8 @@
 <img src="https://user-images.githubusercontent.com/59958016/92439373-ae29c800-f1e5-11ea-96a9-5c7d243deaa8.png" width="400" height="300"></img>
 </div>
 
-## Project Summary
-* 프로젝트명: HOTEL
-* 일정 및 인원: 2020.06 ~ 2020.07, 4명 (본인 포함, 프로젝트 이후 혼자 코드 수정 중)
+## Project Overview
+* Duration: 2020.06 ~ 2020.07
 * 프로젝트 소개: 호텔 객실 예약 시스템이 구현된 웹 애플리케이션 
 * 개발 환경 및 사용기술
   - Programming Language: Java 8, JSP, HTML, CSS, JavaScript
@@ -18,9 +17,9 @@
   - Server: Tomcat 9.0
   - IDE & Tool: Eclipse STS, SQLDeveloper, Maven
   - API:
-    - Google Developers(Maps Platform), 
-    - Kakao Developer(KakaoPay API),
-    - Summernote(Wysiwyg HTML editor)
+    - Google Developers (Maps Platform) 
+    - Kakao Developer (KakaoPay API)
+    - Summernote (Wysiwyg HTML editor)
     
 ## Primary Functions
   - 회원가입
@@ -33,4 +32,4 @@
   - 회원가입 기능 구현 (3단계: 약관동의, 회원정보 입력, 회원가입 완료 창)
   - 관리자페이지 제작
   
-## 개발 관련 산출 문서
+## Software Documentation
