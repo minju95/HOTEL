@@ -1,5 +1,4 @@
-# [Side Project] Hotel Reservation Websit
-호텔 객실 예약 웹 개발 프로젝트 
+# [Side Project] Hotel Reservation Website
 
 ## Screenshots
 <div>
@@ -9,8 +8,7 @@
 
 ## Project Overview
 * Duration: 2020.06 ~ 2020.07
-* 프로젝트 소개: 호텔 객실 예약 시스템이 구현된 웹 애플리케이션 
-* 개발 환경 및 사용기술
+* Environment
   - Programming Language: Java 8, JSP, HTML, CSS, JavaScript
   - Framework: Spring Framework 4.0, MyBatis
   - DataBase: Oracle 11g
