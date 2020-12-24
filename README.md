@@ -1,4 +1,4 @@
-# [Side Project] Hotel
+# [Side Project] Hotel Reservation Websit
 호텔 객실 예약 웹 개발 프로젝트 
 
 ## Screenshots
