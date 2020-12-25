@@ -31,7 +31,7 @@ public class SignUpController {
 	@Resource(name="MemberService")
 	private MemberService memberService;
 	
-	//회원 가입 폼 이동  
+	// 회원 가입 폼 이동  
 	@RequestMapping(value="/signUpTerms")
 	public ModelAndView SignUpForm1() throws Exception{
 		ModelAndView mv = new ModelAndView("/common/signUpTerms");
