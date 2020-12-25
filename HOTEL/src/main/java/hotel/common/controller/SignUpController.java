@@ -72,7 +72,7 @@ public class SignUpController {
 		return cnt;
 	}
 	
-	//이메일 인증-회원가입
+	//이메일 인증 (회원가입)
     @RequestMapping(value = "/emailAuth", produces = "application/json")
     // produces = "application/json": 요청에 대한 응답 형태로 json형식의 데이터를 원할 경우
     @ResponseBody
