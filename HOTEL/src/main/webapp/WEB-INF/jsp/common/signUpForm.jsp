@@ -363,10 +363,17 @@ margin: 0 auto;
 	//이메일 입력
 	$("#MEM_EMAIL").blur(function() {
 	var MEM_EMAIL = $("#MEM_EMAIL").val();
+	var regExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+	var mail_check = regExp.test($("#MEM_EMAIL").val());
 	if (MEM_EMAIL == "") {
-		$("#email_check").text('필수 항목 입니다.');
+		$("#email_check").text('Email address is required.');
 		$("#email_check").css('color', 'red');
-	} else {
+	}
+	else if(mail_check == false){
+		$("#email_check").text('Invalid email format');
+		$("#email_check").css('color', 'red');
+	}
+	else {
 		$("#email_check").text('');
 	}
 	});
@@ -393,10 +400,15 @@ margin: 0 auto;
 	//이메일 인증 		
 	//이메일 인증 버튼 클릭시 발생하는 이벤트
 	$(document).on("click", "#isCheck_Email", function() {
-		if ($("#MEM_EMAIL").val().length < 1) {
-			alert("이메일을 입력해주세요.");
+		var regExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+		var mail_check = regExp.test($("#MEM_EMAIL").val());
+		if (  $("#MEM_EMAIL").val().length < 1) {
 			return false;
-		} else { // 이메일 중복 체크 후 메일 발송 비동기 처리 
+		} 
+		else if(mail_check == false) { //정규표현식을 이용한 유효성 검사
+			return false;
+		}
+		else { // 이메일 중복 체크 후 메일 발송 비동기 처리 
 			$.ajax({
 				type : "POST",
 				url : "/hotel/emailAuth",

@@ -83,7 +83,10 @@ public class SignUpController {
  
         String subject = "Complete your sign up!";
         StringBuilder sb = new StringBuilder();
-        sb.append("To verify your email address please enter your 5-digit code on the website." + joinCode);
+        sb.append(" Please enter 5-digit code on the website to verify your email address as follows: "
+        			+ "<span style=\"color:blue;font-weight:bold;font-size:15px;\">"
+        			+ joinCode+"</span>");
+        
         return loginService.send(subject, sb.toString(), "1teampjt@gmail.com", MEM_EMAIL, null);
     }
     
