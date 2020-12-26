@@ -16,7 +16,7 @@ import hotel.admin.service.AdminFacilitiesService;
 import hotel.common.common.CommandMap;
 import hotel.common.logger.LoggerAspect;
 
-@Controller
+@Controller 
 public class AdminFacilitiesController {
 	Logger log = Logger.getLogger(this.getClass());
 	
