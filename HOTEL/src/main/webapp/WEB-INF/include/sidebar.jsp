@@ -29,7 +29,7 @@
           <li class="nav-item has-treeview">
             <a href="#" id="item_m" class="nav-link">
              <i class="nav-icon far fa-image"></i>
-              <p>객실관리
+              <p>Rooms
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -37,13 +37,13 @@
             <li class="nav-item">
                 <a href="<c:url value='/admin/roomsList'/>" id="item_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>객실 리스트</p>
+                  <p>View All Rooms</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<c:url value='/admin/newRoomForm'/>" id="item_write" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>객실 등록</p>
+                  <p>Add Room Details</p>
                 </a>
               </li>
             </ul>

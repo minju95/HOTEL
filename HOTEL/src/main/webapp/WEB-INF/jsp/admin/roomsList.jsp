@@ -7,7 +7,7 @@
 <script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 <meta charset="UTF-8">
 <%@include file="/WEB-INF/include/mata.jsp" %>
-<title>객실 목록</title>
+<title>Rooms</title>
 <body class="hold-transition sidebar-mini layout-fixed"><!-- Site wrapper -->
 <div class="wrapper">
 <!-- Navbar -->
@@ -25,7 +25,7 @@
     <div class="col-12">
    	<div class="card">
     <div class="card-header">
-    	<h3 class="card-title">객실 목록</h3>
+    	<h3 class="card-title">Rooms</h3>
         <div class="card-tools">
         <div class="input-group input-group-sm" style="width: 400px;">
          	<select id="searchOption" size="1">
@@ -47,8 +47,8 @@
 				<th>No</th>
 				<th>Room Type</th>
 				<th>Room Name</th>
-				<th>객실호수</th>
-				<th>Price Per Night</th>
+				<th>Room Number</th>
+				<th>Rates</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -90,25 +90,14 @@ var room_id; //수정클릭 시 방 호수 가져오기위해 전역변수 선�
 		}
 	}
 
-	function fn_roomsDetail(obj){ //부대시설명 클릭시
-		room_id = obj.parent().find("#ROOM_ID").val();
-	    var index = obj.parent().find("#ROOM_IMGS_FILE").val();
-	    var index_0 = index.split(',');
-	    var name = obj.parent().find("#ROOM_TYPE_NAME").val();
-	    var fac_detail = obj.parent().find("#ROOM_FAC_NAME").val().replace(/br/g,'\r\n');
-	    var adult = obj.parent().find("#ROOM_ADULT").val();
-	    var child = obj.parent().find("#ROOM_CHILD").val();
-	    	var checkIn = obj.parent().find("#ROOM_CHK_INTIME").val();
-	    	var checkOut = obj.parent().find("#ROOM_CHK_OUTTIME").val();
-	    	$('#pop_img').attr('src',"/hotel/image/rooms/"+index_0[0]);
-	    	$('#pop_name').attr('value',name);
-	    	$('#pop_fac').val(fac_detail);
-	    	$('#pop_adult').attr('value',adult);
-	    	$('#pop_child').attr('value',child);
-	    	$('#pop_checkIn').attr('value',checkIn);
-	    	$('#pop_checkOut').attr('value',checkOut);
-	    	$('#room_id').attr('value',room_id);
+	function fn_roomsDetail(obj) { //객실명 클릭시
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/admin/roomsDetail' />");
+		comSubmit.addParam("ROOM_ID", obj.parent().find(
+				"input[name='title']").val());
+		comSubmit.submit();
 	}
+	
 	
 	function fn_roomsList(pageNo) { //페이징 함수
 		var comAjax = new ComAjax();
@@ -152,7 +141,7 @@ var room_id; //수정클릭 시 방 호수 가져오기위해 전역변수 선�
 					+ "<a href='#this' name='title' data-toggle='modal' data-target='#myModal'>"
 					+ "<input type='hidden' id='ROOM_ID' name='title' value=\"" + value.ROOM_ID + "\">"
 					+ "<input type='hidden' id='ROOM_TYPE' name='type' value=\"" + value.ROOM_TYPE + "\">"
-					+ "<input type='hidden' id='ROOM_TYPE_NAME' name='type' value=\"" + value.ROOM_TYPE_NAME + "\">"
+					+ "<input type='hidden' id='ROOM_NAME' name='type' value=\"" + value.ROOM_TYPE_NAME + "\">"
 					+ "<input type='hidden' id='ROOM_FAC_NAME' name='type' value=\"" + value.ROOM_FAC_NAME + "\">"
 					+ "<input type='hidden' id='ROOM_ADULT' name='type' value=\"" + value.ROOM_ADULT + "\">"
 					+ "<input type='hidden' id='ROOM_CHILD' name='type' value=\"" + value.ROOM_CHILD + "\">"

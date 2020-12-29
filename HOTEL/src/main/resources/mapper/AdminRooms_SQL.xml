@@ -47,14 +47,12 @@
 	<select id="selectRoomType" parameterType="hashmap" resultType="hashmap">
 	SELECT 
 		ROOM_TYPE,
-	    DECODE(ROOM_TYPE,'1','Business Double',
-		DECODE(ROOM_TYPE,'2','Business Twin',
-		DECODE(ROOM_TYPE,'3','Superior Double',
-		DECODE(ROOM_TYPE,'4','Superior Twin',
-		DECODE(ROOM_TYPE,'5','Drama Suite',
-		DECODE(ROOM_TYPE,'6','Deluxe Suite',
-		DECODE(ROOM_TYPE,'7','Premium Suite',
-		DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE_NAME
+	    DECODE(ROOM_NAME,'Superior Room','Superior Room',
+		DECODE(ROOM_NAME,'Deluxe Room','Deluxe Room',
+		DECODE(ROOM_NAME,'Suite Room','Superior Double',
+		DECODE(ROOM_NAME,'Junior Suite Room','Junior Suite Room',
+		DECODE(ROOM_NAME,'Deluxe Suite Room','Deluxe Suite Room',
+		DECODE(ROOM_NAME,'Royal Suite Room','Royal Suite Room'))))))) ROOM_NAME
 	FROM ROOM
 	GROUP BY ROOM_TYPE
 	ORDER BY ROOM_TYPE asc
@@ -119,23 +117,17 @@
 	<select id="selectRoomsDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT
 	    ROOM_ID, 
-	    DECODE(ROOM_TYPE,'1','Business Double',
-		    	DECODE(ROOM_TYPE,'2','Business Twin',
-		    		DECODE(ROOM_TYPE,'3','Superior Double',
-		    			DECODE(ROOM_TYPE,'4','Superior Twin',
-		    				DECODE(ROOM_TYPE,'5','Drama Suite',
-		    					DECODE(ROOM_TYPE,'6','Deluxe Suite',
-		    						DECODE(ROOM_TYPE,'7','Premium Suite',
-		    							DECODE(ROOM_TYPE,'8','Sienna Suite',NULL)))))))) ROOM_TYPE,
-	    ROOM_NAME,
+	    DECODE(ROOM_NAME,'Superior Room','Superior Room',
+		DECODE(ROOM_NAME,'Deluxe Room','Deluxe Room',
+		DECODE(ROOM_NAME,'Suite Room','Superior Double',
+		DECODE(ROOM_NAME,'Junior Suite Room','Junior Suite Room',
+		DECODE(ROOM_NAME,'Deluxe Suite Room','Deluxe Suite Room',
+		DECODE(ROOM_NAME,'Royal Suite Room','Royal Suite Room')))))) ROOM_NAME,
 	    ROOM_ADULT,
 	    ROOM_CHILD,
-	    ROOM_FAC_NAME,
 	    ROOM_CONTENT,
 	    ROOM_SIZE,
 	    ROOM_BEDTYPE,
-	    ROOM_CHK_INTIME,
-	    ROOM_CHK_OUTTIME,
 	    ROOM_DATE,
 	    ROOM_PRICE
 	FROM
