@@ -272,34 +272,12 @@ margin: 0 auto;
 	    //alert('클릭됨');
 	});
 	
-	function fn_signUp() {
-		if ($("#MEM_USERID").val().length < 1) {
-			alert("아이디를 입력해주세요.");
-		} else if ($("#MEM_NAME").val().length < 1) {
-			alert("이름을 입력해주세요.");
-		} else if ($("#pw1").val().length < 1) {
-			alert("사용하실 비밀번호를 입력해주세요.");
-		} else if ($("#pw2").val().length < 1) {
-			alert("사용하실 비밀번호를 입력해주세요.");
-		} else if ($("#MEM_PHONE").val().length < 1) {
-			alert("전화번호를 입력해주세요.");
-		} else if ($("#MEM_EMAIL").val().length < 1) {
-			alert("이메일을 입력해주세요.");
-		} else if ($("#isCheck").val() != '1') {
-			alert("아이디를 확인해주세요.");
-		} else if ($("#isEmailAuth").val() != '1') {
-			alert("이메일 인증을 해주세요.");
-		} else {
-			$("#signUp").submit();
-			//alert("가입이 완료되었습니다.");
-			
-		}
-	}
-	
 	$(function() {
 		$(document).ready(function() {
 			$("#isCheck_EmailForm").hide();
 	});
+
+	// text() 함수: 해당 요소의 텍스트를 가져오거나 괄호안의 문구로 변경
 
 	// 아이디 유효성 검사(1 = 중복 / 0 != 중복)
 	$("#MEM_USERID").blur(
@@ -366,7 +344,7 @@ margin: 0 auto;
 	var regExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
 	var mail_check = regExp.test($("#MEM_EMAIL").val());
 	if (MEM_EMAIL == "") {
-		$("#email_check").text('Email address is required.');
+		$("#email_check").text('Email address is required.'); 
 		$("#email_check").css('color', 'red');
 	}
 	else if(mail_check == false){

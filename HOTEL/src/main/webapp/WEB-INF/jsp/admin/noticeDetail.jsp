@@ -60,25 +60,25 @@
         </div>
                   
                   
-        <div class="form-group row">
-        	<label for="inputEmail3" class="col-sm-2 col-form-label">사진</label>
+       <div class="form-group row">
+                    <label for="inputEmail3" class="col-sm-2 col-form-label">사진</label>
                    
-            <div class="col-sm-10">
-            <c:choose>
-	            <c:when test="${map.NOTICE_IMG != NULL}">
-	            <div class="custom-file" >
-	            <input type="hidden" id="OLD_FILE_NAME" name="OLD_FILE_NAME_${var.index}" value="${row.ROOM_IMGS_FILE}">
-	            <!-- 이미지_상대경로 -->
-	            <img src= "/hotel/image/${map.NOTICE_IMG}" style = "width:800px; heigth:600px;">
-	            <br>${map.NOTICE_IMG}
-	            </div>
-	            </c:when>
-				<c:otherwise>
-				업로드된 이미지가 없습니다.
-				</c:otherwise>	
-			</c:choose>
-            </div>
-			</div>
+                    <div class="col-sm-10">
+                      <c:forEach var="row" items="${list}">
+                    
+                      <div class="custom-file" >
+                      	<input type="hidden" id="ROOM_ID" value="${row.ROOM_IMGS_ID }">
+                      	<!-- 이미지_상대경로 -->
+                      	<img src= "/hotel/image/rooms/${row.ROOM_IMGS_FILE}" style = "width:800px; heigth:600px;">
+                      	<br>
+						<!-- 이미지 파일명 -->
+						<a href="#this" name="ROOM_IMGS_FILE">${row.ROOM_IMGS_FILE }</a>
+                      </div>
+                      </c:forEach>
+                      
+                    </div>
+         			</div>
+			
 			</div>
 	</form>
 </div>

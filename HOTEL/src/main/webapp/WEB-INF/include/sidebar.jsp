@@ -53,7 +53,7 @@
           <li class="nav-item has-treeview">
             <a href="#" id="item_m" class="nav-link">
              <i class="nav-icon far fa-image"></i>
-              <p>부대시설 관리
+              <p>Facilities
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -61,13 +61,13 @@
             <li class="nav-item">
                 <a href="<c:url value='/admin/facilitiesList'/>" id="item_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>부대시설 리스트</p>
+                  <p>View All Facilites</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="<c:url value='/admin/newFacilitiesForm'/>" id="item_write" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>부대시설 등록</p>
+                  <p>Add Facilities Detail</p>
                 </a>
               </li>
             </ul>

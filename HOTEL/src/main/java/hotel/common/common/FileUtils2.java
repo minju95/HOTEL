@@ -18,16 +18,13 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 @Component("fileUtils2") // 이 객체의 관리를 스프링이 담당하도록 함
 public class FileUtils2 { //파일을 특정 폴더에 저장하고 DB에 입력될 정보를 반환하도록 구성한 클래스
-	
-	
-	//HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
-	//private static String filePath = request.getSession().getServletContext().getRealPath("")+"\\resources\\"; //파일이 저장될 위치 선언
-	//String imagePath = request.getSession().getServletContext().getRealPath("")+"\\resources\\";
+
 
 	
 	public  List<Map<String, Object>> parseInsertFileInfo(Map<String, Object>
 	map, HttpServletRequest request) throws Exception {
-		String filePath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\rooms\\";
+		String filePath = "C:\\Users\\parks\\git\\HOTEL\\HOTEL\\HOTEL\\src\\main\\webapp\\resources\\rooms\\";
+		
 
 		//본인 경로로 변경하여 사용할 것!1
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) request;
@@ -43,6 +40,7 @@ public class FileUtils2 { //파일을 특정 폴더에 저장하고 DB에 입력
 		Map<String, Object> listMap = null;
 		
 		String room_type = (String) map.get("ROOM_TYPE"); //ServiceImpl에서 전달해준 map에서 신규 생성되는 게시글의 번호를 받아오도록 함
+		String room_id = (String) map.get("ROOM_ID");
 		File file = new File(filePath);
 		
 		
@@ -63,6 +61,7 @@ public class FileUtils2 { //파일을 특정 폴더에 저장하고 DB에 입력
 				
 				//위에서 만든 정보를 list에 추가
 				listMap = new HashMap<String, Object>();
+				listMap.put("ROOM_ID", room_id);
 				listMap.put("ROOM_TYPE", room_type);
 				listMap.put("ROOM_IMGS_FILE", originalFileName);
 				list.add(listMap);

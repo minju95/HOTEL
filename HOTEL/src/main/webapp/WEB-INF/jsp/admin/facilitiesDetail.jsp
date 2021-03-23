@@ -12,7 +12,7 @@
 	<script src="<c:url value='/js/common.js'/>" charset="UTF-8"></script>
 	<meta charset="UTF-8">
 	<%@include file="/WEB-INF/include/mata.jsp" %>
-<title>부대시설 상세보기</title>
+<title>Facilities Detail</title>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

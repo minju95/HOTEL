@@ -104,19 +104,22 @@
 	ROOM_IMAGES(
 		ROOM_IMGS_ID,
 		ROOM_TYPE,
-		ROOM_IMGS_FILE
+		ROOM_IMGS_FILE,
+		ROOM_ID
 	)
 	VALUES(
 		SEQ_ROOM_IMGS_ID.NEXTVAL,
 		#{ROOM_TYPE},
-		#{ROOM_IMGS_FILE}
+		#{ROOM_IMGS_FILE},
+		#{ROOM_ID}
 	)
 	</insert>
 	
 	<!-- 객실 상세보기 -->
 	<select id="selectRoomsDetail" parameterType="hashmap" resultType="hashmap">
 	SELECT
-	    ROOM_ID, 
+	    ROOM_ID,
+	    ROOM_TYPE, 
 	    DECODE(ROOM_NAME,'Superior Room','Superior Room',
 		DECODE(ROOM_NAME,'Deluxe Room','Deluxe Room',
 		DECODE(ROOM_NAME,'Suite Room','Superior Double',
@@ -126,6 +129,9 @@
 	    ROOM_ADULT,
 	    ROOM_CHILD,
 	    ROOM_CONTENT,
+	    ROOM_AMTY1,
+	    ROOM_AMTY2,
+	    ROOM_AMTY3,
 	    ROOM_SIZE,
 	    ROOM_BEDTYPE,
 	    ROOM_DATE,
@@ -147,7 +153,7 @@
 			FROM 
 				ROOM a, ROOM_IMAGES b
             WHERE
-                a.ROOM_TYPE = b.ROOM_TYPE
+                a.ROOM_ID = b.ROOM_ID
                 and
                 a.ROOM_ID = #{ROOM_ID}
 		]]>

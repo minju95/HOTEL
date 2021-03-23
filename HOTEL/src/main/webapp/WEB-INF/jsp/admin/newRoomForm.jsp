@@ -211,11 +211,14 @@
 		<label for="ROOM_PRICE">Rate per Night</label>
 		<input type="text" class="form-control" id="ROOM_PRICE" name="ROOM_PRICE" placeholder="50000">
 	</div>
-	<div id="fileDiv">
-			<label>Room Pictures</label>&nbsp;&nbsp;&nbsp;
-			<input type="button" class="btn btn-default" id="addFile" value="Add Files">
-			<input type="file" id="ROOM_IMGS_FILE_0" name="ROOM_IMGS_FILE_0">
-	</div>	
+	
+    <label>Room Photos</label>
+        <div class="custom-file">
+        	<input type="file" class="custom-file-input" id="ROOM_IMGS_FILE" name="ROOM_IMGS_FILE">
+            <label class="custom-file-label" for="ROOM_IMGS_FILE">Choose file</label>
+        </div>
+   <div id="fileDiv">
+   </div>
 </div>
 		
 	
@@ -223,12 +226,24 @@
 </div>
 </div>
 </div>
-<div align="center">
-	<div class="form-group">
-		<button type="button" id="list"  class="btn btn-default">목록으로</button>
-		<button type="button" id="write" class="btn btn-primary">Submit</button>
-	</div>
-</div>
+
+
+<table align="center">
+	<tr>
+		<td>
+			<input type="button" class="btn btn-block btn-outline-success" id="write" value="Register">
+		</td>
+		<td>
+			<input type="submit" class="btn btn-block btn-outline-success"  id="addFile" value="Add Image File">
+		</td>
+		<td>
+			<input type="button" class="btn btn-block btn-outline-primary" id="list" value="List" >
+		</td>
+	</tr>
+	</table>
+
+
+
 </form>
 </div>
 </div>    
@@ -292,13 +307,17 @@
 		}
 	}
 
-	function fn_addFile() {
-		if (img_count != 4) {
-		var str = "<input type='file' id='ROOM_IMGS_FILE_"
-				+ (img_count++) + "' name='ROOM_IMGS_FILE_"
-				+ (img_count) + "'>";
+		function fn_addFile() {
+		while (img_count <= 4) { //파일 추가 개수 제한
+			var str = "<tr><td><input type='file' name='ROOM_IMGS_FILE_"
+					+ (img_count++) + "'></td></tr>";
+
+			var str = "<label>Additonal Room Photos</label><div class='custom-file'><input type='file' class='custom-file-input' id='ROOM_IMGS_FILE' name='ROOM_IMGS_FILE"
+				+ (img_count++) + "'><label class='custom-file-label' for='ROOM_IMGS_FILE'>Choose file</label></div></div>";
 			$("#fileDiv").append(str);
 		}
 	}
+
+	
 </script>
 </html>

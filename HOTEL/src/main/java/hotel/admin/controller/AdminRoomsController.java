@@ -138,16 +138,17 @@ public class AdminRoomsController {
 		return mv;
 	}
 		
-	// 객실 상세보기
-	 @RequestMapping(value = "/admin/roomsDetail") public ModelAndView
-	 roomsDetail(CommandMap commandMap) throws Exception { ModelAndView mv = new
-	 ModelAndView("/admin/roomsDetail"); System.out.println(commandMap.getMap());
+	 // 객실 상세보기
+	 @RequestMapping(value = "/admin/roomsDetail")
+	 public ModelAndView roomsDetail(CommandMap commandMap) throws Exception {
+	 	ModelAndView mv = new ModelAndView("/admin/roomsDetail");
+	    System.out.println(commandMap.getMap());
 	 
-	 Map<String, Object> map =
-	 adminRoomsService.selectRoomsDetail(commandMap.getMap()); mv.addObject("map",
-	 map.get("map")); //기존의 게시글 상세정보 mv.addObject("list", map.get("list")); //첨부파일 목록
+	 	Map<String, Object> map = adminRoomsService.selectRoomsDetail(commandMap.getMap()); mv.addObject("map",
+	 	map.get("map")); //기존의 게시글 상세정보
+	 	mv.addObject("list", map.get("list")); //첨부파일 목록
 	 
-	 return mv;
+	 	return mv;
 	 }
 	 
 
